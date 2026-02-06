@@ -8,6 +8,8 @@ if(cepField){
       .then(response => response.json())
       .then(data => {
         if (data.erro) {
+          document.getElementById("cepErro").innerText = "CEP não encontrado!";
+          document.getElementById("cep").value = "";
           console.log("CEP não encontrado!");
       
         } else {
@@ -25,6 +27,16 @@ if(cepField){
   });
 }
 
+function mostrarSenha() {
+            const senha = document.getElementById("senha");
+            if (senha.type === "password") {
+                senha.type = "text";
+                document.getElementById("mostrarsenha").innerText = "Esconder";
+            } else {
+                senha.type = "password";
+                document.getElementById("mostrarsenha").innerText = "Mostrar";
+            }
+        }
 
 //MENU HAMBÚRGUER
 const menuToggle = document.getElementById("menuToggle");

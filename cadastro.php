@@ -71,12 +71,14 @@ if(isset($_POST['registrar'])){
 
         <div class="form-group">
             <label for="data_nascimento">Data de nascimento</label>
-            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" required>
+            <input type="text" class="form-control" id="data_nascimento" name="data_nascimento" required>
+            <p id="msgErro" style="color: red"></p>
         </div>
 
         <div class="form-group">
             <label for="cep">CEP</label>
             <input type="text" class="form-control" id="cep" name="cep" required>
+            <p id="cepErro" style="color: red"></p>
         </div>
 
         <div class="form-group">
@@ -116,6 +118,7 @@ if(isset($_POST['registrar'])){
         <div class="form-group">
             <label for="senha">Senha</label>
             <input type="password" class="form-control" id="senha" name="senha" required>
+            <span id="mostrarsenha" onclick="mostrarSenha()" style="cursor: pointer; font-size: 12px">Mostrar</span>
         </div>
 
         <button id="submitbutton" type="submit" class="btn btn-primary col-md-12" name="registrar">CADASTRAR</button>
@@ -125,5 +128,41 @@ if(isset($_POST['registrar'])){
     <p>Desenvolvido por SENAI - TCC 2026</p>
   </footer>
 <script src="script.js"></script>
+<script>
+        // VERIFICAÇÃO DE DATA DE NASCIMENTO VALIDA
+        document.addEventListener("DOMContentLoaded", function () {
+            const nascInput = document.querySelector('input[name="data_nascimento"]');
+
+            nascInput.addEventListener("input", function () {
+                let value = this.value.replace(/\D/g, "");
+                if (value.length > 8) value = value.slice(0, 8);
+
+                if (value.length >= 5) {
+                    value = value.replace(/^(\d{2})(\d{2})(\d{0,4})/, "$1/$2/$3");
+                } else if (value.length >= 3) {
+                    value = value.replace(/^(\d{2})(\d{0,2})/, "$1/$2");
+                }
+
+                this.value = value;
+
+                if (value.length === 10) {
+                    const dia = parseInt(value.slice(0, 2), 10);
+                    const mes = parseInt(value.slice(3, 5), 10);
+                    const ano = parseInt(value.slice(6, 10), 10);
+
+                    const anoAtual = new Date().getFullYear();
+
+                    const dataValida = dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano <= anoAtual;
+
+                    if (!dataValida) {
+                        document.getElementById("msgErro").innerText = "Data de nascimento inválida!";
+                        document.getElementById("data_nascimento").value = "";
+                    } else {
+                        document.getElementById("msgErro").innerText = "";
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -48,6 +48,7 @@ if(isset($_POST['submit'])){
 
         <label for="senha">Senha</label>
         <input type="password" id="senha" placeholder="Digite sua senha" name="senha" required>
+        <span id="mostrarsenha" onclick="mostrarSenha()" style="cursor: pointer; font-size: 12px">Mostrar</span>
 
         <button type="submit" name="submit">Entrar</button>
       </form>

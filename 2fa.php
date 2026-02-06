@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
         <div class="form">
             <div class="form-group col-md-20">
                 <label for="codigo">Código</label>
-                <input type="text" class="form-control" id="codigo" name="codigo" required>
+                <input type="number" class="form-control" id="codigo" name="codigo" required>
             </div>
         </div>
         <button id="submitbutton" type="submit" class="btn btn-primary col-md-12" name="submit">ENVIAR</button>
