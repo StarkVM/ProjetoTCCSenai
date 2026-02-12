@@ -1,12 +1,3 @@
-//MENU ABORGUE
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-// ANÚNCIO
 const anuncio = JSON.parse(localStorage.getItem("anuncioSelecionado"));
 const container = document.getElementById("anuncioDetalhe");
 
