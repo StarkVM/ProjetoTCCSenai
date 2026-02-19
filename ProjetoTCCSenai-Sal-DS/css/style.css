@@ -18,10 +18,13 @@
 }
 
 body {
-  background-color: var(--cinza-claro);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 /*NAVBAR*/
