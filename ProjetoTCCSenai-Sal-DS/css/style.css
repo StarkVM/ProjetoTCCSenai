@@ -157,6 +157,18 @@ body {
   background-color: var(--laranja-hover);
 }
 
+.btn-login {
+  background: none;
+  border: none;
+  color: var(--laranja-principal);
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.btn-login:hover {
+  text-decoration: underline;
+}
+
 /*FOOTER*/
 footer {
   background-color: var(--cinza-escuro);

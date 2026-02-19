@@ -75,10 +75,21 @@
   flex-direction: column;
 }
 
+.product-card {
+  overflow: hidden; /* Impede o zoom de quebrar o card */
+}
+
 .product-card img {
   width: 100%;
   border-radius: 6px;
   margin-bottom: 10px;
+
+  cursor: pointer;
+}
+
+/* Quando passar o mouse */
+.product-card img:hover {
+  transform: scale(1.05);
 }
 
 .product-card h3 {
