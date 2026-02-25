@@ -32,6 +32,7 @@
   background-color: var(--laranja-hover);
 }
 
+
 /* CATEGORIAS */
 .categories h2,
 .products h2 {
@@ -57,6 +58,72 @@
 
 .category:hover {
   background-color: var(--amarelo-destaque);
+}
+
+/* ===================== */
+/* CARROSSEL HOME */
+/* ===================== */
+
+.carousel {
+  margin-bottom: 40px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Altura fixa elegante */
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+
+/* Texto do banner */
+.carousel-caption {
+  bottom: 25%;
+}
+
+.carousel-caption h5 {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--branco);
+}
+
+.carousel-caption p {
+  font-size: 18px;
+  color: var(--branco);
+}
+
+/* Botões de navegação */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--laranja-principal);
+  border-radius: 50%;
+  padding: 15px;
+}
+
+/* Indicadores */
+.carousel-indicators button {
+  background-color: var(--cinza-medio);
+}
+
+.carousel-indicators .active {
+  background-color: var(--laranja-principal);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 250px;
+  }
+
+  .carousel-caption h5 {
+    font-size: 20px;
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+  }
 }
 
 /* PRODUTOS */
