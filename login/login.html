@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - TCC</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../generico/cssgenerico/style.css">
+</head>
+<body>
+<div id="header"></div>
+
+  <main class="main-content" id="">
+    <div class="login-container">
+      <h2>Login</h2>
+
+      <form id="loginForm" method="POST" action="login.php">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" name="email" required>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" name="senha" required>
+        <span id="mostrarsenha" onclick="mostrarSenha()" style="cursor: pointer; font-size: 12px">Mostrar</span>
+
+        <button type="submit" name="submit">Entrar</button>
+      </form>
+      <a href="../cadastro/cadastro.html"><button type="button" class="btn-registro"
+      >Não tem uma conta? Cadastre-se
+      </button></a>
+
+      <p id="mensagem"></p>
+    </div>
+  </main>
+
+<div id="footer"></div>
+
+  <script src="../generico/jsgenerico/script.js">
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+    const mensagem = document.getElementById("mensagem");
+
+    if (email === "" || senha === "") {
+        mensagem.textContent = "Preencha todos os campos!";
+        return;
+    }
+
+    // ligar backend
+    if (email === "admin@email.com" && senha === "123456") {
+        mensagem.style.color = "green";
+        mensagem.textContent = "Login realizado com sucesso!";
+    } else {
+        mensagem.style.color = "red";
+        mensagem.textContent = "E-mail ou senha invÃ¡lidos!";
+    }
+    });
+  </script>
+  <script src="../generico/jsgenerico/frame.js"></script>
+</body>
+</html>
