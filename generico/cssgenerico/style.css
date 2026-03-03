@@ -23,18 +23,83 @@ body {
   flex-direction: column;
 }
 
-/* ========================= */
-/* SEARCH NO HEADER - HOME */
-/* ========================= */
+/* NAVBAR */
 
-/* ESCONDE A BUSCA POR PADRÃO */
+.navbar {
+  background-color: var(--cinza-escuro);
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  color: var(--branco);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* NAV LINKS */
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  height: 100%;
+  align-items: center;
+}
+
+.nav-links li {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 20px;
+
+  color: var(--branco);
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: var(--amarelo-destaque);
+  color: var(--cinza-escuro);
+}
+
+/* MATERIAL ICONS */
+
+.material-symbols-outlined {
+  font-size: 28px;
+  line-height: 1;
+}
+
+/* SEARCH HEADER (APENAS SE USAR NA HOME) */
+
 .search-header {
   display: none;
 }
-/* MOSTRA SÓ NA HOME */
-.home-page .search-header {
-  display: flex;
-}
+
 .home-page .search-header {
   display: flex;
   gap: 10px;
@@ -59,175 +124,4 @@ body {
 
 .home-page .search-header button:hover {
   background-color: var(--laranja-hover);
-}
-
-main {
-  flex: 1;
-}
-
-/*NAVBAR*/
-
-.navbar {
-  background-color: var(--cinza-escuro) !important;
-  height: 60px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.navbar-brand {
-  color: var(--branco) !important;
-  font-weight: bold;
-}
-
-.navbar-nav {
-  align-items: center;
-}
-
-.nav-links{
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  padding: 8px;
-}
-
-.navbar-nav .nav-link {
-  color: var(--branco) !important;
-  font-weight: bold;
-}
-
-.navbar-nav .nav-link:hover {
-  background-color: var(--amarelo-destaque);
-  color: var(--cinza-escuro) !important;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  color: var(--branco);
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  height: 100%;
-}
-
-.nav-links li {
-  height: 100%;
-}
-
-.nav-links a {
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-
-  color: var(--branco);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-links a:hover {
-  background-color: gray;
-}
-
-/*CONTEÚDO*/
-
-#controller {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#main {
-  width: 600px;
-  padding: 45px;
-
-  background-color: var(--branco);
-  color: #000;
-
-  border-radius: 10px;
-  border-top: 10px solid var(--amarelo-destaque);
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  font-weight: 600;
-}
-/*RESPONSIVIDADE*/
-
-@media (max-width: 768px) {
-  #main {
-    width: 90%;
-    padding: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  #main {
-    width: 95%;
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 1.4rem;
-  }
-
-  p {
-    font-size: 0.95rem;
-  }
-}
-
-/*BOTÃO*/
-#submitbutton {
-  font-weight: bold;
-  color: #fff;
-  background-color: var(--laranja-principal);
-}
-
-#submitbutton:hover {
-  background-color: var(--laranja-hover);
-}
-
-.btn-login {
-  background: none;
-  border: none;
-  color: var(--laranja-principal);
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-.btn-login:hover {
-  text-decoration: underline;
-}
-
-/*FOOTER*/
-footer {
-  background-color: var(--cinza-escuro);
-  color: var(--branco);
-
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 14px;
-  line-height: 1;
-}
-
-footer p {
-  margin: 0;
 }
