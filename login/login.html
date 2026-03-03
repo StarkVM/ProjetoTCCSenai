@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Login - TCC</title>
-  <link rel="stylesheet" href="../css/login.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../generico/cssgenerico/style.css">
 </head>
 <body>
 <div id="header"></div>
@@ -13,7 +13,7 @@
     <div class="login-container">
       <h2>Login</h2>
 
-      <form id="loginForm" method="POST" action="../php/login.php">
+      <form id="loginForm" method="POST" action="login.php">
         <label for="email">E-mail</label>
         <input type="email" id="email" placeholder="Digite seu e-mail" name="email" required>
 
@@ -23,7 +23,7 @@
 
         <button type="submit" name="submit">Entrar</button>
       </form>
-      <a href="../html/cadastro.html"><button type="button" class="btn-registro"
+      <a href="../cadastro/cadastro.html"><button type="button" class="btn-registro"
       >Não tem uma conta? Cadastre-se
       </button></a>
 
@@ -33,7 +33,7 @@
 
 <div id="footer"></div>
 
-  <script src="/ProjetoTCCSenai-Sal-DS/js/script.js">
+  <script src="../generico/jsgenerico/script.js">
     document.getElementById("loginForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -56,6 +56,6 @@
     }
     });
   </script>
-  <script src="../js/frame.js"></script>
+  <script src="../generico/jsgenerico/frame.js"></script>
 </body>
 </html>

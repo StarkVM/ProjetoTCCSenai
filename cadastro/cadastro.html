@@ -10,13 +10,13 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../generico/cssgenerico/style.css">
 </head>
 <body>
 <div id="header"></div>
 <div id="main" class="container mt-5 mb-5">
     <h1 class="mb-4 bold text-center">CADASTRO</h1>
-    <form method="POST" action="../php/cadastro.php">
+    <form method="POST" action="cadastro.php">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="nome">Nome</label>
@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <label for="data_nascimento">Data de nascimento</label>
-            <input type="text" class="form-control" id="data_nascimento" name="data_nascimento" required>
+            <input type="date" lang="pt-BR" class="form-control" id="data_nascimento" name="data_nascimento" required>
             <p id="msgErro" style="color: red"></p>
         </div>
 
@@ -83,13 +83,13 @@
 
         <button id="submitbutton" type="submit" class="btn btn-primary col-md-12" name="registrar">CADASTRAR</button>
     </form>
-    <a href="../html/login.html"><button type="button" class="btn-login"
+    <a href="../login/login.html"><button type="button" class="btn-login"
       >Já tem uma conta? Login
       </button></a>
 </div>
 <div id="footer"></div>
-<script src="../js/script.js"></script>
-<script src="../js/frame.js"></script>
+<script src="../generico/jsgenerico/script.js"></script>
+<script src="../generico/jsgenerico/frame.js"></script>
 <script>
         // VERIFICAÇÃO DE DATA DE NASCIMENTO VALIDA
         document.addEventListener("DOMContentLoaded", function () {
