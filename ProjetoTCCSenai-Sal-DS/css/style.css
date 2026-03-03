@@ -23,6 +23,44 @@ body {
   flex-direction: column;
 }
 
+/* ========================= */
+/* SEARCH NO HEADER - HOME */
+/* ========================= */
+
+/* ESCONDE A BUSCA POR PADRÃO */
+.search-header {
+  display: none;
+}
+/* MOSTRA SÓ NA HOME */
+.home-page .search-header {
+  display: flex;
+}
+.home-page .search-header {
+  display: flex;
+  gap: 10px;
+  margin-left: 30px;
+}
+
+.home-page .search-header input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  width: 250px;
+}
+
+.home-page .search-header button {
+  padding: 6px 12px;
+  background-color: var(--laranja-principal);
+  color: var(--branco);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.home-page .search-header button:hover {
+  background-color: var(--laranja-hover);
+}
+
 main {
   flex: 1;
 }
@@ -30,10 +68,14 @@ main {
 /*NAVBAR*/
 
 .navbar {
-
   background-color: var(--cinza-escuro) !important;
   height: 60px;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar-brand {

@@ -21,13 +21,13 @@ const anuncios = [
   {
     id: 4,
     nome: "AAAAAAAA",
-    preço: "AAAAAAA",
+    preco: "AAAAAAA",
     imagem: "https://picsum.photos/400/250?random=4"
   },
     {
     id: 5,
     nome: "AAAAAAAA",
-    preço: "AAAAAAA",
+    preco: "AAAAAAA",
     imagem: "https://picsum.photos/400/250?random=5"
   }
 ];
