@@ -21,13 +21,13 @@ const anuncios = [
   {
     id: 4,
     nome: "AAAAAAAA",
-    preco: "AAAAAAA",
+    preço: "AAAAAAA",
     imagem: "https://picsum.photos/400/250?random=4"
   },
     {
     id: 5,
     nome: "AAAAAAAA",
-    preco: "AAAAAAA",
+    preço: "AAAAAAA",
     imagem: "https://picsum.photos/400/250?random=5"
   }
 ];
@@ -47,7 +47,7 @@ anuncios.forEach(anuncio => {
 
   card.addEventListener("click", () => {
     localStorage.setItem("anuncioSelecionado", JSON.stringify(anuncio));
-    window.location.href = "anuncio.html";
+    window.location.href = "../anuncio/anuncio.html";
   });
 
   grid.appendChild(card);

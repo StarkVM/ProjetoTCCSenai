@@ -7,27 +7,39 @@
 
 :root {
   --amarelo-destaque: #F5C400;
-  --laranja-principal: #F57C00;
-  --laranja-hover: #E86A00;
+  --laranja-principal: #fed800;
+  --laranja-hover: #d89503;
 
-  --cinza-escuro: #2B2B2B;
+  --cinza-escuro: #fdc435;
   --cinza-medio: #7A7A7A;
-  --cinza-claro: #F2F2F2;
+  --cinza-claro: #f2f2f2;
 
   --branco: #FFFFFF;
 }
+
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background: linear-gradient(
+    135deg,
+    #f8f7f3 0%,     /* off white neutro */
+    #ece9e3 45%,    /* cinza quente suave */
+    #f5f3ee 100%    /* off white levemente cremoso */
+  );
+}
+
+main {
+  flex: 1;
 }
 
 /* NAVBAR */
 
 .navbar {
   background-color: var(--cinza-escuro);
-  height: 100px;
+  height: 80px;
   position: fixed;
   top: 0;
   left: 0;
@@ -83,7 +95,7 @@ body {
 }
 
 .nav-links a:hover {
-  background-color: var(--amarelo-destaque);
+  background-color: var(--laranja-hover);
   color: var(--cinza-escuro);
 }
 
@@ -124,4 +136,91 @@ body {
 
 .home-page .search-header button:hover {
   background-color: var(--laranja-hover);
+}
+
+/*CONTEÚDO*/
+
+#controller {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main {
+  width: 600px;
+  padding: 45px;
+
+  background-color: var(--branco);
+  color: #000;
+
+  border-radius: 10px;
+  border-top: 10px solid var(--amarelo-destaque);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+}
+/*RESPONSIVIDADE*/
+
+@media (max-width: 768px) {
+  #main {
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #main {
+    width: 95%;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+/*BOTÃO*/
+#submitbutton {
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--laranja-principal);
+}
+
+#submitbutton:hover {
+  background-color: var(--laranja-hover);
+}
+
+.btn-login {
+  background: none;
+  border: none;
+  color: var(--laranja-principal);
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.btn-login:hover {
+  text-decoration: underline;
+}
+
+/*FOOTER*/
+footer {
+  background-color: var(--cinza-escuro);
+  color: var(--branco);
+
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  line-height: 1;
+}
+
+footer p {
+  margin: 0;
 }
