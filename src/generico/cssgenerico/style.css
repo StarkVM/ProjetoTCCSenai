@@ -105,6 +105,9 @@ main {
   font-size: 28px;
   line-height: 1;
 }
+.nav-links .material-symbols-outlined {
+  font-size: 32px;
+}
 
 /* SEARCH HEADER (APENAS SE USAR NA HOME) */
 
@@ -223,4 +226,93 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+/* BOTÃO HAMBURGUER */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--branco);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  font-size: 32px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+.nav-links {
+  position: absolute;
+  top: 80px;
+  right: 0;
+
+  background: var(--cinza-escuro);
+
+  flex-direction: column;
+
+  width: 100%;          /* ocupa a tela inteira */
+  max-width: 260px;     /* tamanho máximo */
+
+  display: none;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  padding: 16px 20px;
+
+  color: var(--branco);
+  text-decoration: none;
+}
+
+/* mostrar texto no mobile */
+.menu-text {
+  display: inline;
+}
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  /* pesquisa menor */
+  .home-page .search-header input {
+    width: 150px;
+  }
+}
+.menu-text {
+  display: none;
+  margin-left: 10px;
+  font-size: 16px;
+  .menu-text {
+  display: none;
+}
+
+.menu-text {
+  display: none;
+}
+
+@media (max-width:768px){
+
+  .menu-text{
+    display: inline;
+    font-size: 16px;
+  }
+
+}
 }

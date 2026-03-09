@@ -1,0 +1,24 @@
+.titulo-recuperar{
+display:flex;
+align-items:center;
+gap:8px;
+margin-bottom:10px;
+}
+
+.descricao{
+color:var(--cinza-medio);
+margin-bottom:20px;
+font-weight:normal;
+}
+
+#mensagem{
+margin-top:15px;
+font-weight:bold;
+}
+
+main{
+     flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
