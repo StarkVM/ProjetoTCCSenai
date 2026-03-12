@@ -212,15 +212,16 @@ main {
 
 /*FOOTER*/
 footer {
-  background-color: var(--cinza-escuro);
+  background-color: black;
   color: var(--branco);
 
-  height: 55px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 
   font-size: 14px;
+  font-style: bold;
   line-height: 1;
 }
 
