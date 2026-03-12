@@ -47,7 +47,7 @@
 }
 
 .category {
-  background-color: var(--branco);
+  background-color: #FFFFFF;
   padding: 12px 20px;
   border-radius: 20px;
   border: 1px solid var(--cinza-medio);
@@ -175,7 +175,7 @@
   }
 }
 .product-card {
-  background-color: var(--branco);
+  background-color: #FFFFFF;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
