@@ -149,8 +149,8 @@ main {
   width: 600px;
   padding: 45px;
 
-  background-color: var(--branco);
-  color: #000;
+  background-color: white; 
+  color: black;
 
   border-radius: 10px;
   border-top: 10px solid var(--amarelo-destaque);

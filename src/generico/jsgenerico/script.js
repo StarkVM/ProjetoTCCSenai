@@ -1,9 +1,13 @@
 //VIACEP API
 let cepField = document.getElementById("cep");
+let button = document.getElementById("submitbutton");
 
 if(cepField){
   cepField.addEventListener("input", function(){
       const cep = cepField.value
+      if(cep < 8){
+        button.disabled = true;
+      }
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(response => response.json())
       .then(data => {
@@ -11,6 +15,7 @@ if(cepField){
           document.getElementById("cepErro").innerText = "CEP não encontrado!";
           document.getElementById("cep").value = "";
           console.log("CEP não encontrado!");
+          button.disabled = true;
       
         } else {
           console.log(data); 
@@ -19,6 +24,7 @@ if(cepField){
           document.getElementById('bairro').value = data.bairro;
           document.getElementById('cidade').value = data.localidade;
           document.getElementById('estado').value = data.uf;
+          button.disabled = false;
         }
       })
       .catch(error => {
