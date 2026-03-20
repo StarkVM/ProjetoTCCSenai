@@ -16,7 +16,11 @@ try {
     if($data["connected"] == false)
     {
         
-        header("Location: error.php");
+        $erro[0] = print_r($data); // REMOVER NO FUTURO POR MOTIVOS DE SEGURANÇA
+        $erro[1] = curl_error($ch); // RETORNA O ERRO
+        header("Location: error.php?er=$erro[0]&er2=$erro[1]");
+        return;
+        
         
     }
 
