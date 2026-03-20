@@ -16,20 +16,23 @@ try {
     if($data["connected"] == false)
     {
         
-        $erro[0] = print_r($data); // REMOVER NO FUTURO POR MOTIVOS DE SEGURANÇA
-        $erro[1] = curl_error($ch); // RETORNA O ERRO
-        header("Location: error.php?er=$erro[0]&er2=$erro[1]");
-        return;
         
+        echo "<script>
+            console.log(" . print_r($data) . ");
+            console.log('Erro 2:', " . curl_error($ch) . ");    
+            </script>";
+        echo "<p style='color: red;'>Erro: sem conexão com o servidor!</p>";
         
     }
 
+    
+    
 
 } 
 catch (\Throwable $th) {
         echo $th;
         
-}   
+}
+
 
 ?>
-
