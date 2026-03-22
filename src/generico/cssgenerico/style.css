@@ -153,13 +153,14 @@ main {
 
 #main {
   width: 600px;
-  padding: 45px;
+  padding: 40px;
 
   background-color: white; 
   color: black;
 
-  border-radius: 10px;
-  border-top: 10px solid var(--amarelo-destaque);
+  border-end-start-radius: 10px;
+  border-end-end-radius: 10px;
+  
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   font-weight: 600;
