@@ -46,12 +46,11 @@
             $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $data = json_decode($response, true); // tranforma json em array
             curl_close($ch);
-
+            $statusCode = 200;
             if($statusCode >= 200 && $statusCode <= 299)
             {
                 
-                echo "sucess";
-                // mensagem de sucesso
+                header('Location: ../2fa/2fa.php?email='.$email);
                 
             }
             else
