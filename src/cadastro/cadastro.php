@@ -1,36 +1,33 @@
 <?php
 
     try {
+        if(!isset($_SESSION)){
+            session_start();
+            } // SE O USER NÃO TIVER UMA SESSÃO ATIVA, IRÁ CRIAR UMA SESSÃO.
+
         //  RECEBE OS DADOS DO POST REGISTRAR
         if(isset($_POST['registrar']) == "POST"){
-            $nome = $_POST['nome'];
-            $sobrenome = $_POST['sobrenome'];
-            $data_nascimento = $_POST['data_nascimento'];
-            $cep = $_POST['cep'];
-            $rua = $_POST['rua'];
-            $numero = $_POST['numero'];
-            $bairro = $_POST['bairro'];
-            $cidade = $_POST['cidade'];
-            $estado = $_POST['estado'];
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $cpf = $_POST['cpf'];
-            $birthDate = date("c", strtotime($data_nascimento)); // formato ISO 8601
+
+            // ATRIBUI VALORES DOS CAMPOS POST A SESSÃO DO USUARIO
+            foreach($_POST as $sessao => $value)
+                {
+                    $_SESSION[$sessao] = $value;  
+                }
             
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
             $url = "";
-            $dados = ["firstName" => $nome,
-            "lastName" => $sobrenome,
-            "birthDate" => $birthDate,
-            "email" => $email,
-            "cpf" => $cpf,
-            "password" => $senha,
+            $dados = ["firstName" => $_SESSION['nome'],
+            "lastName" => $_SESSION['sobrenome'],
+            "birthDate" => $_SESSION['data_nascimento'],
+            "email" => $_SESSION['email'],
+            "cpf" => $_SESSION['cpf'],
+            "password" => $_SESSION['senha'],
             "address" => [
-                "state" => $estado,
-                "city" => $cidade,
-                "district" => $bairro,
-                "street" => $rua,
-                "zipCode" => $cep
+                "state" => $_SESSION['estado'],
+                "city" => $_SESSION['cidade'],
+                "district" => $_SESSION['bairro'],
+                "street" => $_SESSION['rua'],
+                "zipCode" => $_SESSION['cep']
             ]];
 
             $ch = curl_init($url); 
@@ -50,7 +47,7 @@
             if($statusCode >= 200 && $statusCode <= 299)
             {
                 
-                header('Location: ../2fa/2fa.php?email='.$email);
+                header('Location: ../2fa/2fa.php');
                 
             }
             else

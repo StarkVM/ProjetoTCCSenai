@@ -1,7 +1,7 @@
 <?php 
 
     try {
-        $email = $_GET['email'];
+        session_start();
         if(isset($_POST['enviar']) == "POST")
             {
                 $codigo = $_POST['codigo'];
@@ -22,6 +22,7 @@
                 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 $data = json_decode($response, true); // tranforma json em array
                 curl_close($ch);
+                $statusCode = 300;
                 if($statusCode >= 200 && $statusCode <= 299)
                 {
                     
@@ -31,13 +32,8 @@
                 else
                 {
                     
+                    $msgErro = "<p style='color:red';> Código incorreto.</p>";
                     
-                    echo "<script>
-                    alert('Houve algum erro ao registrar, por favor, tente novamente.');
-                    setTimeout(function(){
-                            window.location.href = '';
-                        });
-                    </script>";
                     
                 }
             
@@ -70,7 +66,7 @@
 <div id="header"></div>
 <div id="main" class="container mt-5">
     <h1 class="mb-4 bold text-center">2FA</h1>
-    <p>CONFIRME O CÓDIGO ENVIADO AO SEU ENDEREÇO DE E-MAIL <?php echo $email; ?></p>
+    <p>CONFIRME O CÓDIGO ENVIADO AO SEU ENDEREÇO DE E-MAIL <?php echo $_SESSION['email']; ?></p>
     <form method="POST" >
         <div class="form" method="POST">
             <div class="form-group col-md-20">
@@ -78,7 +74,9 @@
                 <input type="number" class="form-control" id="codigo" name="codigo" required>
             </div>
         </div>
+        <?php if(isset($msgErro)) echo $msgErro; ?>
         <button id="submitbutton1" type="submit" class="btn btn-primary col-md-12" name="enviar">ENVIAR</button>
+        
     </form>
 </div>
 <div id="controller"></div>
