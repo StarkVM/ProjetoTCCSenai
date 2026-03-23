@@ -73,10 +73,12 @@ function confirmarSenha(){
   console.log("bostas")
   if(senha1.value == senha2.value){
     button.disabled = false;
+    document.getElementById("erroSenha").innerText = "";
   }
   else{
     console.log("Senha diferente");
     button.disabled = true;
+    document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
   }
 }
 

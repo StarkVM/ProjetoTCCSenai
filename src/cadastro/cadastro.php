@@ -14,7 +14,7 @@
             $estado = $_POST['estado'];
             $email = $_POST['email'];
             $senha = $_POST['senha'];
-            $cpf = null;
+            $cpf = $_POST['cpf'];
             $birthDate = date("c", strtotime($data_nascimento)); // formato ISO 8601
             
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS

@@ -13,6 +13,7 @@ try {
     curl_close($ch);
 
     $data = json_decode($response, true); // tranforma json em array
+    $data["connected"] = false;
     if($data["connected"] == false)
     {
         

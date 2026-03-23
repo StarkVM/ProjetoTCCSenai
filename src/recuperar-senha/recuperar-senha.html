@@ -33,7 +33,7 @@
                     Digite seu e-mail cadastrado para receber o link de redefinição de senha.
                 </p>
 
-                <form id="form-recuperar">
+                <form id="form-recuperar" method="post" action="recuperarSenha.php">
                     <div class="mb-3">
                         <label>Email</label>
 
@@ -42,6 +42,7 @@
                             class="form-control"
                             id="email"
                             placeholder="Digite seu e-mail"
+                            name="email"
                             required
                         >
                     </div>
@@ -50,6 +51,7 @@
                         type="submit"
                         class="btn w-100"
                         id="submitbutton"
+                        name="enviarLink"
                     >
                         Enviar link de recuperação
                     </button>
