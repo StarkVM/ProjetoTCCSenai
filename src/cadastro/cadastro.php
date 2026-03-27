@@ -43,7 +43,7 @@
             $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             $data = json_decode($response, true); // tranforma json em array
             curl_close($ch);
-            $statusCode = 200;
+            $statusCode = 300;
             if($statusCode >= 200 && $statusCode <= 299)
             {
                 
@@ -58,7 +58,8 @@
                 alert('Houve algum erro ao registrar, por favor, tente novamente.');
                 setTimeout(function(){
                         window.location.href = 'cadastro.html';
-                    });
+                        
+                    }); 
                 </script>";
                 
             }

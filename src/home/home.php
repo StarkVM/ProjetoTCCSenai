@@ -7,7 +7,7 @@ session_start();
 // verifica sessão primeiro
 if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 
-    if (time() - $_SESSION['tempo_saida'] <= 900) { // 15 min
+    if (time() - $_SESSION['tempo_saida'] > 5 && time() - $_SESSION['tempo_saida'] <= 900) { // 15 min
 
         $url = $_SESSION['ultima_url'];
 
@@ -18,7 +18,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
         }
     }
 }
-
+/*
 // PLANO B SE A SESSÃO NÃO EXISTIR
 if (isset($_COOKIE['ultima_url'])) {
 
@@ -28,7 +28,7 @@ if (isset($_COOKIE['ultima_url'])) {
         header("Location: $url");
         exit;
     }
-}
+}*/
 ?>
 
 <!DOCTYPE html>

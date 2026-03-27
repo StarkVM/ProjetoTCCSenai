@@ -26,4 +26,4 @@ function salvarUltimaPagina() {
 
 setInterval(() => {
     salvarUltimaPagina();
-}, 5000); // a cada 5 segundos
+}, 1000); // a cada 1 segundos
