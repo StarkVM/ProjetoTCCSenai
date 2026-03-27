@@ -18,17 +18,6 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
         }
     }
 }
-/*
-// PLANO B SE A SESSÃO NÃO EXISTIR
-if (isset($_COOKIE['ultima_url'])) {
-
-    $url = $_COOKIE['ultima_url'];
-
-    if (preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $url)) {
-        header("Location: $url");
-        exit;
-    }
-}*/
 ?>
 
 <!DOCTYPE html>
