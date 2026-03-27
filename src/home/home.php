@@ -2,6 +2,33 @@
 
 require "verification.php";
 
+session_start();
+
+// verifica sessão primeiro
+if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
+
+    if (time() - $_SESSION['tempo_saida'] <= 900) { // 15 min
+
+        $url = $_SESSION['ultima_url'];
+
+        // verifica a url
+        if (preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $url)) {
+            header("Location: $url");
+            exit;
+        }
+    }
+}
+
+// PLANO B SE A SESSÃO NÃO EXISTIR
+if (isset($_COOKIE['ultima_url'])) {
+
+    $url = $_COOKIE['ultima_url'];
+
+    if (preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $url)) {
+        header("Location: $url");
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +99,7 @@ require "verification.php";
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="home.js"></script>
-<script src="../generico/jsgenerico/frame.js"></script>
+<script src="../generico/jsgenerico/frame.js?v=2"></script>
 
 </body>
 </html>

@@ -10,3 +10,20 @@ fetch("../generico/htmlgenerico/footer.html")
   const menu = document.getElementById("navMenu");
   menu.classList.toggle("show");
 }
+
+// salva a pagina que o usuario está
+function salvarUltimaPagina() {
+    fetch("/ProjetoTCCSenai/src/controllers/ondeParou.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            url: window.location.pathname
+        })
+    });
+}
+
+setInterval(() => {
+    salvarUltimaPagina();
+}, 5000); // a cada 5 segundos
