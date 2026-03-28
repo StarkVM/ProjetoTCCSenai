@@ -11,7 +11,7 @@ if (isset($data['url']) && !empty($data['url'])) {
 
     // salva no cookie
     setcookie("ultima_url", $data['url'], [
-        'expires' => time() + 900, // 15 minutos
+        'expires' => time() + 20, // 15 minutos
         'path' => '/',
         'httponly' => true,
         'samesite' => 'Lax'
