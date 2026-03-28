@@ -13,11 +13,10 @@ try {
     curl_close($ch);
 
     $data = json_decode($response, true); // tranforma json em array
-    $data["connected"] = false;
+    error_reporting(0); // REMOVE AS LOGS DE ERROS NO HEADER
     if($data["connected"] == false)
     {
-        
-        
+
         echo "<script>
             console.log(" . print_r($data) . ");
             console.log('Erro 2:', " . curl_error($ch) . ");    

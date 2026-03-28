@@ -19,7 +19,8 @@ function salvarUltimaPagina() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            url: window.location.pathname
+            url: window.location.pathname,
+
         })
     });
 }
