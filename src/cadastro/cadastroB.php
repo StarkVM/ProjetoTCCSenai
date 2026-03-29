@@ -47,24 +47,29 @@
             $data = json_decode($response, true); // tranforma json em array
             curl_close($ch);
 
+            // VERIFICA O CODIGO DE RETORNO DA API E TRATA COM OS RESPECTIVOS CODIGOS
             if($statusCode >= 200 && $statusCode <= 299)
             {
                 
                 header('Location: ../2fa/2fa.php');
                 
             }
+            else if ($statusCode == 409 && $data['message'] == 'CPF already exists.') // CPF JÁ EXISTE
+            {
+
+
+                header('Location: cadastro.php?er=1');
+                
+            }
+            else if ($statusCode == 409 && $data['message'] == 'Email already exists.') // CPF JÁ EXISTE
+            {
+
+                header('Location: cadastro.php?er=2');
+            }
             else
             {
-                
-                
-                echo "<script>
-                alert('Houve algum erro ao registrar, por favor, tente novamente.');
-                setTimeout(function(){
-                        window.location.href = 'cadastro.php';
-                        
-                    }); 
-                </script>";
-                
+
+                header('Location: cadastro.php?er=3');
             }
         }
     } 
