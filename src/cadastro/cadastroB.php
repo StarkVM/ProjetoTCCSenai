@@ -13,11 +13,15 @@
                 {
                     $_SESSION[$sessao] = $value;
                 }
+            // CONVERTE A DATA NASCIMENTO PARA DATE TIME
+            $dataFormatada = new DateTime($_SESSION['data_nascimento']);
+            $dataFormatada->setTimezone(new DateTimeZone("UTC"));
 
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
             $url = "http://localhost:5000/api/v1/user-access/auth/register";
             $dados = ["firstName" => $_SESSION['nome'],
             "lastName" => $_SESSION['sobrenome'],
+            "birthDate" => $dataFormatada->format("Y-m-d\TH:i:s.v\Z"),
             "email" => $_SESSION['email'],
             "cpf" => $_SESSION['cpf'],
             "password" => $_SESSION['senha'],
