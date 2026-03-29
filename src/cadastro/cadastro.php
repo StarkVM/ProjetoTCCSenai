@@ -1,56 +1,15 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php
-
-//  RECEBE OS DADOS DO POST REGISTRAR
-    if(isset($_POST['registrar']) === "POST"){
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $data_nascimento = $_POST['data_nascimento'];
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        
-        echo "Pão de alho é a melhor coisa no churrasco";
-        //Trabalhe nesse arquivo misael, por favor.
-    }
-
-?>
-
-=======
-<?php
-
-//  RECEBE OS DADOS DO POST REGISTRAR
-    if(isset($_POST['registrar']) === "POST"){
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $data_nascimento = $_POST['data_nascimento'];
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        
-        echo "Pão de alho é a melhor coisa no churrasco";
-        //Trabalhe nesse arquivo misael, por favor.
-    }
-
-?>
-
->>>>>>> Sal-DS
-=======
 <?php
 session_start();
+error_reporting(0); // limpa os erros e avisos do header
 
-
+// SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
+$er = $_GET['er'];
+if(isset($er))
+{
+    if($er == "1") $responseError = "CPF informado já está existente em nosso sistema!";
+    else if($er == "2")  $responseError = "Email informado já está existente em nosso sistema! Por favor, digite outro.";
+    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+}
 
 ?>
 
@@ -168,6 +127,7 @@ session_start();
                 <p id="erroSenha" style="color:red;"></p>  
             </div>
         </div>
+        <p id="responseErro" style="color:red;"><?php  if(isset($responseError)) echo $responseError;?></p>
         <button id="submitbutton" type="submit" class="btn btn-primary col-md-12" name="registrar">CADASTRAR</button>
     </form>
     <a href="../login/login.html"><button type="button" class="btn-login"
@@ -227,4 +187,4 @@ session_start();
     <script src="../generico/jsgenerico/script.js"></script>
 </body>
 </html>
->>>>>>> 7c8fbbcda18e2e8d453c2a7a38dea1a78d5b6acf
+

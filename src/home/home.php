@@ -1,6 +1,3 @@
-<<<<<<< HEAD:src/home/home.html
-<<<<<<< HEAD
-=======
 <?php
 
 require "verification.php";
@@ -23,7 +20,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 }
 ?>
 
->>>>>>> 7c8fbbcda18e2e8d453c2a7a38dea1a78d5b6acf:src/home/home.php
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -167,5 +164,4 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <script src="../generico/jsgenerico/frame.js"></script>
 
 </body>
->>>>>>> Sal-DS
 </html>
