@@ -1,32 +1,49 @@
-<<<<<<< HEAD
-//VIACEP API
+// limpar campos ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+  if (cpfField) cpfField.value = "";
+  if (cepField) cepField.value = "";
+  if (senha1) senha1.value = "";
+  if (senha2) senha2.value = "";
+});
+
+// CAMPOS
 let cepField = document.getElementById("cep");
 let button = document.getElementById("submitbutton");
+let senha1 = document.getElementById("senha1");
+let senha2 = document.getElementById("senha2");
+let cpfField = document.getElementById("cpf");
 
-if(cepField){
-  cepField.addEventListener("input", function(){
-      const cep = cepField.value
-      if(cep < 8){
-        button.disabled = true;
-      }
+// botão começa desativado
+if (button) button.disabled = true;
+
+// =========================
+// VIACEP API
+// =========================
+if (cepField) {
+  cepField.addEventListener("input", function () {
+    const cep = cepField.value.replace(/\D/g, "");
+
+    if (cep.length < 8) {
+      button.disabled = true;
+      return;
+    }
+
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(response => response.json())
       .then(data => {
+
         if (data.erro) {
           document.getElementById("cepErro").innerText = "CEP não encontrado!";
-          document.getElementById("cep").value = "";
-          console.log("CEP não encontrado!");
           button.disabled = true;
-      
         } else {
-          console.log(data); 
-
           document.getElementById('rua').value = data.logradouro;
           document.getElementById('bairro').value = data.bairro;
           document.getElementById('cidade').value = data.localidade;
           document.getElementById('estado').value = data.uf;
+
           button.disabled = false;
         }
+
       })
       .catch(error => {
         console.error("Erro na requisição:", error);
@@ -34,81 +51,78 @@ if(cepField){
   });
 }
 
-function mostrarSenha() {
-            const senha = document.getElementById("senha");
-            if (senha.type === "password") {
-                senha.type = "text";
-                document.getElementById("mostrarsenha").innerText = "Esconder";
-            } else {
-                senha.type = "password";
-                document.getElementById("mostrarsenha").innerText = "Mostrar";
-            }
-        }
+// =========================
+// MOSTRAR SENHA (OLHINHO)
+// =========================
+function mostrarSenha(idSenha, idIcon) {
+  const senha = document.getElementById(idSenha);
+  const icon = document.getElementById(idIcon);
 
-/*MENU HAMBÚRGUER
+  if (senha.type === "password") {
+    senha.type = "text";
+    icon.classList.remove("bi-eye-slash");
+    icon.classList.add("bi-eye");
+  } else {
+    senha.type = "password";
+    icon.classList.remove("bi-eye");
+    icon.classList.add("bi-eye-slash");
+  }
+}
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+// =========================
+// CONFIRMAR SENHA
+// =========================
+if (senha1 && senha2) {
+  senha1.addEventListener("input", confirmarSenha);
+  senha2.addEventListener("input", confirmarSenha);
+}
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+function confirmarSenha() {
+  if (senha1.value === senha2.value) {
+    document.getElementById("erroSenha").innerText = "";
+    button.disabled = false;
+  } else {
+    document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
+    button.disabled = true;
+  }
+}
 
-=======
-//VIACEP API
-let cepField = document.getElementById("cep");
-let button = document.getElementById("submitbutton");
-button.disabled = true;
-if(cepField){
-  cepField.addEventListener("input", function(){
-      const cep = cepField.value
-      if(cep < 8){
-        button.disabled = true;
-      }
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.erro) {
-          document.getElementById("cepErro").innerText = "CEP não encontrado!";
-          document.getElementById("cep").value = "";
-          console.log("CEP não encontrado!");
-          button.disabled = true;
-      
-        } else {
-          console.log(data); 
+// =========================
+// VALIDAÇÃO DE CPF
+// =========================
+if (cpfField) {
+  cpfField.addEventListener("input", () => {
+    let cpf = cpfField.value.replace(/\D/g, "");
 
-          document.getElementById('rua').value = data.logradouro;
-          document.getElementById('bairro').value = data.bairro;
-          document.getElementById('cidade').value = data.localidade;
-          document.getElementById('estado').value = data.uf;
-          button.disabled = false;
-        }
-      })
-      .catch(error => {
-        console.error("Erro na requisição:", error);
-      });
+    if (TestaCPF(cpf)) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
   });
 }
 
-function mostrarSenha() {
-            const senha = document.getElementById("senha");
-            if (senha.type === "password") {
-                senha.type = "text";
-                document.getElementById("mostrarsenha").innerText = "Esconder";
-            } else {
-                senha.type = "password";
-                document.getElementById("mostrarsenha").innerText = "Mostrar";
-            }
-        }
+function TestaCPF(strCPF) {
+  let Soma = 0;
+  let Resto;
 
-/*MENU HAMBÚRGUER
+  if (strCPF == "00000000000") return false;
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+  for (let i = 1; i <= 9; i++)
+    Soma += parseInt(strCPF.substring(i - 1, i)) * (11 - i);
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+  Resto = (Soma * 10) % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(strCPF.substring(9, 10))) return false;
 
->>>>>>> Sal-DS
-*/
+  Soma = 0;
+
+  for (let i = 1; i <= 10; i++)
+    Soma += parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+
+  Resto = (Soma * 10) % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+
+  return true;
+}

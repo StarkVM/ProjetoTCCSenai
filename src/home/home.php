@@ -1,4 +1,29 @@
+<<<<<<< HEAD:src/home/home.html
 <<<<<<< HEAD
+=======
+<?php
+
+require "verification.php";
+
+session_start();
+
+// verifica sessão primeiro
+if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
+
+    if (time() - $_SESSION['tempo_saida'] > 5 && time() - $_SESSION['tempo_saida'] <= 900) { // 15 min
+
+        $url = $_SESSION['ultima_url'];
+
+        // verifica a url
+        if (preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $url)) {
+            header("Location: $url");
+            exit;
+        }
+    }
+}
+?>
+
+>>>>>>> 7c8fbbcda18e2e8d453c2a7a38dea1a78d5b6acf:src/home/home.php
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -67,7 +92,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="home.js"></script>
-<script src="../generico/jsgenerico/frame.js"></script>
+<script src="../generico/jsgenerico/frame.js?v=3"></script>
 
 </body>
 =======

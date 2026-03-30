@@ -29,33 +29,42 @@ Recuperar senha
 </h2>
 
 <p class="descricao">
-Digite seu e-mail cadastrado para receber o link de redefinição de senha.
+Digite seu e-mail cadastrado para redefinir sua senha.
 </p>
 
-<form id="form-recuperar">
+<form id="form-recuperar" method="post" action="recuperarSenha.php">
 
 <div class="mb-3">
-
 <label>Email</label>
-
 <input 
 type="email"
 class="form-control"
 id="email"
+name="email"
 placeholder="Digite seu e-mail"
 required
 >
+</div>
 
+<div class="mb-3">
+<label>Nova senha</label>
+<input 
+type="password"
+class="form-control"
+id="senha"
+name="senha"
+placeholder="Digite a nova senha"
+required
+>
 </div>
 
 <button 
 type="submit"
 class="btn w-100"
 id="submitbutton"
+name="enviarLink"
 >
-
-Enviar link de recuperação
-
+Redefinir senha
 </button>
 
 </form>
@@ -64,11 +73,9 @@ Enviar link de recuperação
 
 <button 
 class="btn-login"
-onclick="window.location.href='../login/login.html'"
+onclick="window.location.href='../login/login.php'"
 >
-
 Voltar para login
-
 </button>
 
 </div>

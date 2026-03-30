@@ -1,24 +1,60 @@
+#controller{
+  display: flex;
+  flex-direction: column;
+}
+
 .titulo-recuperar{
-display:flex;
-align-items:center;
-gap:8px;
-margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
 }
 
 .descricao{
-color:var(--cinza-medio);
-margin-bottom:20px;
-font-weight:normal;
+  color:var(--cinza-medio);
+  margin-bottom:20px;
+  font-weight:normal;
 }
 
 #mensagem{
-margin-top:15px;
-font-weight:bold;
+  margin-top:15px;
+  font-weight:bold;
 }
 
 main{
-     flex: 1;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Header amarelo */
+.recuperar-senha-header{
+  width: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  background-color: #FEE659;
+  padding: 20px;
+  color: #131716;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.recuperar-senha-header h2{
+  font-weight: 600;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px){
+  .recuperar-senha-header{
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 480px){
+  .recuperar-senha-header{
+    width: 95%;
+    padding: 20px;
+  }
 }
