@@ -1,3 +1,52 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<?php
+
+//  RECEBE OS DADOS DO POST REGISTRAR
+    if(isset($_POST['registrar']) === "POST"){
+        $nome = $_POST['nome'];
+        $sobrenome = $_POST['sobrenome'];
+        $data_nascimento = $_POST['data_nascimento'];
+        $cep = $_POST['cep'];
+        $rua = $_POST['rua'];
+        $numero = $_POST['numero'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        
+        echo "Pão de alho é a melhor coisa no churrasco";
+        //Trabalhe nesse arquivo misael, por favor.
+    }
+
+?>
+
+=======
+<?php
+
+//  RECEBE OS DADOS DO POST REGISTRAR
+    if(isset($_POST['registrar']) === "POST"){
+        $nome = $_POST['nome'];
+        $sobrenome = $_POST['sobrenome'];
+        $data_nascimento = $_POST['data_nascimento'];
+        $cep = $_POST['cep'];
+        $rua = $_POST['rua'];
+        $numero = $_POST['numero'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        
+        echo "Pão de alho é a melhor coisa no churrasco";
+        //Trabalhe nesse arquivo misael, por favor.
+    }
+
+?>
+
+>>>>>>> Sal-DS
+=======
 <?php
 session_start();
 
@@ -178,3 +227,4 @@ session_start();
     <script src="../generico/jsgenerico/script.js"></script>
 </body>
 </html>
+>>>>>>> 7c8fbbcda18e2e8d453c2a7a38dea1a78d5b6acf

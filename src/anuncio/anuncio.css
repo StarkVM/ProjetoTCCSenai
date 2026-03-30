@@ -21,13 +21,13 @@
 
 .anuncio-card h1 {
   margin-bottom: 10px;
-  color: var(--cinza-escuro);
+  color: var(--laranja-principal);
 }
 
 .preco {
   font-size: 22px;
   font-weight: bold;
-  color: var(--laranja-principal);
+  color: var(--amarelo-principal);
   margin-bottom: 15px;
 }
 
@@ -41,11 +41,11 @@
   padding: 14px 22px;
   border: none;
   border-radius: 8px;
-  background-color: var(--cinza-escuro);
-  color: var(--branco);
+  background-color: var(--laranja-principal);
+  color: var(--preto);
   cursor: pointer;
 }
 
 .anuncio-card button:hover {
-  background-color: var(--laranja-principal);
+  background-color: var(--amarelo-principal);
 }

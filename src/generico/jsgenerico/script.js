@@ -1,40 +1,49 @@
-//Limpar campos ao carregar a página, isso evita alguns bugs:
+// limpar campos ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
-  cpfField.value = null;
-  cepField.value = null;
-  senha1.value = null;
-  senha2.value = null;
-})
+  if (cpfField) cpfField.value = "";
+  if (cepField) cepField.value = "";
+  if (senha1) senha1.value = "";
+  if (senha2) senha2.value = "";
+});
 
-
-//VIACEP API
+// CAMPOS
 let cepField = document.getElementById("cep");
 let button = document.getElementById("submitbutton");
-button.disabled = true;
-if(cepField){
-  cepField.addEventListener("input", function(){
-      const cep = cepField.value
-      if(cep < 8){
-        button.disabled = true;
-      }
+let senha1 = document.getElementById("senha1");
+let senha2 = document.getElementById("senha2");
+let cpfField = document.getElementById("cpf");
+
+// botão começa desativado
+if (button) button.disabled = true;
+
+// =========================
+// VIACEP API
+// =========================
+if (cepField) {
+  cepField.addEventListener("input", function () {
+    const cep = cepField.value.replace(/\D/g, "");
+
+    if (cep.length < 8) {
+      button.disabled = true;
+      return;
+    }
+
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(response => response.json())
       .then(data => {
+
         if (data.erro) {
           document.getElementById("cepErro").innerText = "CEP não encontrado!";
-          document.getElementById("cep").value = "";
-          console.log("CEP não encontrado!");
           button.disabled = true;
-      
         } else {
-          console.log(data); 
-
           document.getElementById('rua').value = data.logradouro;
           document.getElementById('bairro').value = data.bairro;
           document.getElementById('cidade').value = data.localidade;
           document.getElementById('estado').value = data.uf;
+
           button.disabled = false;
         }
+
       })
       .catch(error => {
         console.error("Erro na requisição:", error);
@@ -42,92 +51,78 @@ if(cepField){
   });
 }
 
-//olhinho do "mostrar senha"
-function mostrarSenha(pswrd, eye) {
-  const senha = document.getElementById(pswrd);
-  const elemento = document.getElementById(eye);
+// =========================
+// MOSTRAR SENHA (OLHINHO)
+// =========================
+function mostrarSenha(idSenha, idIcon) {
+  const senha = document.getElementById(idSenha);
+  const icon = document.getElementById(idIcon);
+
   if (senha.type === "password") {
-      senha.type = "text";
-      elemento.classList.remove("bi-eye-slash")
-      elemento.classList.add("bi-eye");
-      
+    senha.type = "text";
+    icon.classList.remove("bi-eye-slash");
+    icon.classList.add("bi-eye");
   } else {
-      senha.type = "password";
-      elemento.classList.remove("bi-eye")
-      elemento.classList.add("bi-eye-slash");
+    senha.type = "password";
+    icon.classList.remove("bi-eye");
+    icon.classList.add("bi-eye-slash");
   }
 }
 
-//Confirme sua sneha
-let senha1 = document.getElementById("senha1");
-let senha2 = document.getElementById("senha2");
-
-if(senha1 || senha2){
-
-  senha1.addEventListener("input", () => confirmarSenha());
-  senha2.addEventListener("input", () => confirmarSenha());
-  
+// =========================
+// CONFIRMAR SENHA
+// =========================
+if (senha1 && senha2) {
+  senha1.addEventListener("input", confirmarSenha);
+  senha2.addEventListener("input", confirmarSenha);
 }
 
-function confirmarSenha(){
-  console.log("bostas")
-  if(senha1.value == senha2.value){
-    button.disabled = false;
+function confirmarSenha() {
+  if (senha1.value === senha2.value) {
     document.getElementById("erroSenha").innerText = "";
-  }
-  else{
-    console.log("Senha diferente");
-    button.disabled = true;
+    button.disabled = false;
+  } else {
     document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
+    button.disabled = true;
   }
 }
 
-//VERIFICAÇÃO DE CPF
-let cpfField = document.getElementById("cpf");
-
-if(cpfField){
+// =========================
+// VALIDAÇÃO DE CPF
+// =========================
+if (cpfField) {
   cpfField.addEventListener("input", () => {
-  let cpf = cpfField.value.replace(/\D/g, "");
-  
-  let valido = TestaCPF(cpf);
-  
-  if(valido){
-    button.disabled = false;
-  }
-  else{
-    button.disabled = true;
-  }
-});
+    let cpf = cpfField.value.replace(/\D/g, "");
+
+    if (TestaCPF(cpf)) {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
+  });
 }
 
 function TestaCPF(strCPF) {
-    var Soma;
-    var Resto;
-    Soma = 0;
+  let Soma = 0;
+  let Resto;
+
   if (strCPF == "00000000000") return false;
 
-  for (let i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
-  Resto = (Soma * 10) % 11;
+  for (let i = 1; i <= 9; i++)
+    Soma += parseInt(strCPF.substring(i - 1, i)) * (11 - i);
 
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+  Resto = (Soma * 10) % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(strCPF.substring(9, 10))) return false;
 
   Soma = 0;
-    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11))  Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
-    return true;
+  for (let i = 1; i <= 10; i++)
+    Soma += parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+
+  Resto = (Soma * 10) % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(strCPF.substring(10, 11))) return false;
+
+  return true;
 }
-
-/*MENU HAMBÚRGUER
-
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
-
-*/

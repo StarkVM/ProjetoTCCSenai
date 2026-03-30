@@ -14,7 +14,7 @@
 
 .about-hero h1 {
   font-size: 36px;
-  color: var(--cinza-escuro);
+  color: var(--laranja-principal);
   margin-bottom: 15px;
 }
 
@@ -39,12 +39,12 @@
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 5px solid var(--laranja-principal);
+  border-top: 5px solid var(--amarelo-principal);
 }
 
 .about-card h2 {
   margin-bottom: 15px;
-  color: var(--cinza-escuro);
+  color: var(--laranja-principal);
 }
 
 .about-card p {
@@ -60,7 +60,7 @@
 
 /* Card destaque */
 .about-card.destaque {
-  border-top: 5px solid var(--amarelo-destaque);
+  border-top: 5px solid var(--amarelo-alaranjado);
 }
 
 /* ANIMAÇÃO */
