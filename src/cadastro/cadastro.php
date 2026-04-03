@@ -8,6 +8,7 @@ if(isset($er))
 {
     if($er == "1") $responseError = "CPF informado já está existente em nosso sistema!";
     else if($er == "2")  $responseError = "Email informado já está existente em nosso sistema! Por favor, digite outro.";
+    else if($er == "3")  $responseError = "Senha informada contém menos de 8 caracteres!";
     else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
 }
 
