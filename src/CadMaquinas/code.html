@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fcf9f8",
+                    "surface": "#fcf9f8",
+                    "on-background": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#d7c3ae",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffddb5",
+                    "surface-container-high": "#ebe7e7",
+                    "outline": "#857462",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#2ac6ff",
+                    "primary": "#835400",
+                    "secondary-container": "#d7e4ec",
+                    "tertiary-fixed": "#c0e8ff",
+                    "on-secondary-fixed-variant": "#3c494f",
+                    "primary-fixed-dim": "#ffb957",
+                    "surface-dim": "#dcd9d9",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary-fixed-dim": "#71d2ff",
+                    "on-secondary-container": "#5a666d",
+                    "on-secondary-fixed": "#111d23",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-surface-variant": "#524434",
+                    "error": "#ba1a1a",
+                    "secondary": "#546067",
+                    "surface-container": "#f0edec",
+                    "secondary-fixed-dim": "#bbc8d0",
+                    "on-tertiary-fixed": "#001e2b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#643f00",
+                    "on-primary-fixed": "#2a1800",
+                    "inverse-surface": "#313030",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#004d66",
+                    "primary-container": "#f9a825",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#835400",
+                    "on-tertiary-container": "#004f69",
+                    "surface-container-highest": "#e5e2e1",
+                    "tertiary": "#006687",
+                    "inverse-primary": "#ffb957",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#1c1b1b",
+                    "secondary-fixed": "#d7e4ec",
+                    "on-primary-container": "#674100"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .primary-gradient {
+        background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-[#fcf9f8]/80 backdrop-blur-md sticky top-0 z-50 docked full-width">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#1c1b1b] uppercase font-headline">TITAN RENTALS</div>
+<nav class="hidden md:flex items-center gap-8 font-headline tracking-tight text-sm font-bold uppercase">
+<a class="text-[#4a4949] hover:text-[#1c1b1b] hover:opacity-80 transition-opacity duration-200" href="#">Home</a>
+<a class="text-[#4a4949] hover:text-[#1c1b1b] hover:opacity-80 transition-opacity duration-200" href="#">Catalog</a>
+<a class="text-[#835400] border-b-2 border-[#835400] pb-1 hover:opacity-80 transition-opacity duration-200" href="#">Rentals</a>
+<a class="text-[#4a4949] hover:text-[#1c1b1b] hover:opacity-80 transition-opacity duration-200" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 font-headline text-xs font-bold uppercase tracking-widest text-[#4a4949] hover:text-on-surface transition-colors">Login</button>
+<button class="px-6 py-2 primary-gradient text-white font-headline text-xs font-bold uppercase tracking-widest rounded-md active:scale-95 duration-100 shadow-sm">Sign Up</button>
+</div>
+</div>
+<div class="bg-[#e5e2e1] h-[1px] w-full"></div>
+</header>
+<main class="max-w-[1440px] mx-auto px-8 py-16 md:py-24">
+<!-- Hero Section Asymmetry -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-end">
+<div class="lg:col-span-8">
+<h1 class="font-headline text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-on-background mb-6">
+                    REGISTER <span class="text-primary italic">ASSETS.</span>
+</h1>
+<p class="font-body text-lg text-secondary max-w-xl leading-relaxed">
+                    Deploy your fleet into the Titan ecosystem. Precision onboarding for industrial-grade machinery providers. Complete the technical specifications to initiate registration.
+                </p>
+</div>
+<div class="lg:col-span-4 flex flex-col items-start lg:items-end">
+<div class="bg-surface-container-low px-6 py-4 rounded-md inline-block">
+<span class="font-headline text-xs font-bold tracking-widest uppercase text-primary block mb-1">Registration Status</span>
+<span class="font-headline text-2xl font-black">PROVIDER_v4.0</span>
+</div>
+</div>
+</div>
+<!-- Main Form Bento Layout -->
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Section 1: Machine Info -->
+<div class="lg:col-span-7 bg-surface-container-low p-8 rounded-md">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">engineering</span>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">01. Machine Identity</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Asset Name</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="E.g. TITAN EX-400" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Machine Type</label>
+<select class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+<option>Excavator</option>
+<option>Crawler Crane</option>
+<option>Bulldozer</option>
+<option>Loader</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Brand / Manufacturer</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Enter Brand" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Model Number</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Serial/Model" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Manufacturing Year</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="2024" type="number"/>
+</div>
+</div>
+</div>
+<!-- Section 2: Technical Specs (Right Column) -->
+<div class="lg:col-span-5 bg-surface-container-highest p-8 rounded-md flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">settings_input_component</span>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">02. Engineering Specs</h2>
+</div>
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Operating Weight (Tons)</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="00.0" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Net Power (HP/kW)</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Engine Power Output" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Bucket / Lifting Capacity</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Max Payload" type="text"/>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/20">
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+                        Precision brutalism requires exact metrics. Errors in specifications may result in technical mismatch during procurement.
+                    </p>
+</div>
+</div>
+<!-- Section 3: Pricing & Availability (Asymmetric Layout) -->
+<div class="lg:col-span-4 bg-surface-container-low p-8 rounded-md">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">03. Rental Rates</h2>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-lowest p-6 rounded-sm border-l-4 border-primary">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary mb-2 block">Rate Per Hour</label>
+<div class="flex items-center gap-2">
+<span class="font-headline text-2xl font-black">$</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 font-headline text-3xl font-black w-full" placeholder="0.00" type="text"/>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-sm border-l-4 border-primary-container">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary mb-2 block">Rate Per Day</label>
+<div class="flex items-center gap-2">
+<span class="font-headline text-2xl font-black">$</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 font-headline text-3xl font-black w-full" placeholder="0.00" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Photo Upload Area -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-md shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add_a_photo</span>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">04. Visual Evidence</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary text-3xl mb-2">upload_file</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-widest">Main Front</span>
+</div>
+<div class="aspect-square relative overflow-hidden rounded-sm group">
+<img alt="Machinery" class="w-full h-full object-cover" data-alt="Close up professional industrial photography of a yellow excavator hydraulic arm showing grease and mechanical details in daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAzHiMu42dC2uxBppvcQ_UpkAr012M7cYhO6ZTf-XXZTETYdXL8uiEzhZurziMbBpjhZnNourO1iBbpnQOdzk3-EWb1wiaGVklljyTZ9u4GTgi40GvijrJomLVwQcxOhFrqBPShqta07N3UvOsm5NcY-eYMbDx3SlARAMDxMbA6XgU9AxcrtckZHEAntmJO2ZkhMSTvP6YLRv2X3qFDD2tUazaGn40Ga6hz2wrOpWE40AJ_kQKAQaP1WIo9zaRn8qSR33s1g_iBS5d"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">delete</span>
+</div>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline text-3xl mb-2">add</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-widest">Add View</span>
+</div>
+<div class="aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-outline text-3xl mb-2">add</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-widest">Add Specs</span>
+</div>
+</div>
+</div>
+<!-- Section 5: Location Coverage -->
+<div class="lg:col-span-12 bg-surface-container-high p-8 rounded-md overflow-hidden relative">
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-4">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h2 class="font-headline text-xl font-bold uppercase tracking-tight">05. Fleet Logistics</h2>
+</div>
+<div class="space-y-4">
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Primary Service Hub</label>
+<input class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="City, State" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Coverage Radius (Miles)</label>
+<input class="accent-primary" max="500" min="10" type="range"/>
+<div class="flex justify-between font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
+<span>10mi</span>
+<span>250mi</span>
+<span>500mi</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 h-64 lg:h-80 rounded-sm overflow-hidden bg-surface-container-dim relative grayscale opacity-60">
+<img alt="Map View" class="w-full h-full object-cover" data-alt="Satellite topographic map of an industrial zone with high-contrast road layouts and structural outlines in a dark architectural style." data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2QmQ8PZx4cSKsIYirGv1axrACzYY9DOIGvPF7-YmtMp3aFOe39342MlcyTL-JlhvllbItTn-HrzX3yzxpKXqBuQEDGVtJOnP6tqBzAzSWlmTh5cmHWDnncpT3JC--rYAFPJChjToEW6LUf7r_HLJOCQdZEo2d6b83HEHht4moy1jHm5xrtnypmc2b8S7iggYwqpzjQs0AL_F4jykJMv89i351hywbP_Kzq5ncNHoNgCJ_68DnHDIrw_q9cUWlV_i0vo3cw_WZ4k-U"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-12 h-12 bg-primary/20 rounded-full animate-pulse flex items-center justify-center border-2 border-primary">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Button -->
+<div class="lg:col-span-12 flex flex-col md:flex-row justify-between items-center gap-8 py-12 border-t border-outline-variant/30 mt-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-primary-container">verified_user</span>
+<div>
+<h4 class="font-headline text-sm font-bold uppercase tracking-tight">Security Protocol Active</h4>
+<p class="font-body text-xs text-secondary">Information provided is bound by the Titan Provider Agreement.</p>
+</div>
+</div>
+<button class="w-full md:w-auto px-12 py-6 primary-gradient text-white font-headline text-xl font-black uppercase tracking-tighter rounded-md active:scale-95 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-4" type="submit">
+                    REGISTER MACHINE
+                    <span class="material-symbols-outlined">arrow_forward_ios</span>
+</button>
+</div>
+</form>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f6f3f2] border-t border-[#e5e2e1] w-full px-12 py-16">
+<div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<div class="text-lg font-bold text-[#1c1b1b] mb-4">TITAN RENTALS</div>
+<p class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271]">© 2024 TITAN RENTALS INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Fleet Solutions</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Safety Standards</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Contact Engineering</a>
+</div>
+</div>
+</footer>
+</body></html>
