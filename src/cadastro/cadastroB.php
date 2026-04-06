@@ -13,6 +13,12 @@
             foreach ($_POST as $sessao => $value) {
                 $_SESSION[$sessao] = $value;
             }
+            // VERIFICAÇÃO DE QUANTIDADE DE CARACTERES NA SENHA
+            $senhaF = trim($_SESSION['senha']);
+            if(strlen($senhaF) < 8){
+                header('Location: cadastro.php?er=3');
+                return;
+            }
             // CONVERTE A DATA NASCIMENTO PARA DATE TIME
             $dataFormatada = new DateTime($_SESSION['data_nascimento']);
             $dataFormatada->setTimezone(new DateTimeZone("UTC"));
@@ -32,11 +38,7 @@
                     "street" => $_SESSION['rua'],
                     "zipCode" => $_SESSION['cep']
                 ]];
-            $senhaF = trim($_SESSION['senha']);
-            if(strlen($senhaF) < 8){
-                header('Location: cadastro.php?er=3');
-                return;
-            }
+            
             $ch = curl_init($url);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
