@@ -24,7 +24,7 @@ function atualizarContadorCadastro()
         $totalDia = $row["quantidade_dia"] + $contador;
         if (mysqli_num_rows($resultado) > 0) {
 
-            $sql = $sql = "UPDATE cadastros_qtd SET quantidade_dia = '$totalDia', 
+            $sql = "UPDATE cadastros_qtd SET quantidade_dia = '$totalDia', 
             total = '$totalCadastros'
         WHERE data_dia = '$dia' 
           AND data_mes = '$mes' 
