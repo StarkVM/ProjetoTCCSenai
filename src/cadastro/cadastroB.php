@@ -33,7 +33,7 @@
                     "zipCode" => $_SESSION['cep']
                 ]];
             $senhaF = trim($_SESSION['senha']);
-            if(count_chars($senhaF) < 8){
+            if(strlen($senhaF) < 8){
                 header('Location: cadastro.php?er=3');
                 return;
             }
