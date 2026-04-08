@@ -170,16 +170,16 @@ session_start();
 <div class="grid grid-cols-1 gap-5">
 <div class="relative">
 <label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Full Name</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="Engineering Lead / Lead Contact" type="text"/>
+<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="Engineering Lead / Lead Contact" type="text" name="nome"/>
 </div>
 <div class="relative">
 <label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Corporate Email</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="name@titan-rentals.com" type="email"/>
+<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="name@titan-rentals.com" type="email" name="email"/>
 </div>
 <div class="grid grid-cols-2 gap-4">
 <div class="relative">
 <label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Phone Number</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="+1 (000) 000-0000" type="tel"/>
+<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="+1 (000) 000-0000" type="tel" name=""/>
 </div>
 <div class="relative">
 <label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">CPF / CNPJ</label>
@@ -188,7 +188,7 @@ session_start();
 </div>
 <div class="relative">
 <label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Secure Password</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="••••••••••••" type="password"/>
+<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="••••••••••••" type="password" name="senha"/>
 </div>
 </div>
 <!-- Terms and Conditions -->

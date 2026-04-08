@@ -282,3 +282,22 @@ footer p {
     width: 150px;
   }
 }
+/* SUB-HEADER */
+.sub-header {
+  background-color: var(--amarelo-principal);
+  border-top: 2px solid var(--laranja-principal);
+}
+
+.sub-header nav a {
+  color: var(--preto);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.sub-header nav a:hover {
+  color: var(--branco);
+  background-color: var(--laranja-hover);
+  padding: 6px 12px;
+  border-radius: 4px;
+}
