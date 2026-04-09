@@ -109,17 +109,12 @@
 <!-- Breadcrumb & Title Section -->
 <section class="mb-12">
 <div class="flex items-center gap-2 text-xs uppercase tracking-widest text-outline mb-4">
-<span>Fleet</span>
-<span class="material-symbols-outlined text-[10px]">chevron_right</span>
-<span>Earthmoving</span>
-<span class="material-symbols-outlined text-[10px]">chevron_right</span>
-<span class="text-on-surface">TITAN X-5000 Excavator</span>
+
 </div>
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
 <div>
-<h1 class="text-5xl lg:text-7xl font-headline font-black tracking-tighter uppercase leading-none mb-4">
+<h1  id="nome" class="text-5xl lg:text-7xl font-headline font-black tracking-tighter uppercase leading-none mb-4">
                         TITAN X-5000 <br/>
-<span class="text-primary">Excavator</span>
 </h1>
 <div class="flex items-center gap-6">
 <div class="flex items-center gap-2">
@@ -129,13 +124,13 @@
 </div>
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-outline">location_on</span>
-<span class="text-sm font-medium">Houston Industrial Park, TX</span>
+<span id="estado" class="text-sm font-medium">Houston Industrial Park, TX</span>
 </div>
 </div>
 </div>
 <div class="text-right">
 <p class="text-xs uppercase tracking-widest text-outline mb-1">Starting At</p>
-<p class="text-4xl font-headline font-bold text-on-surface">$1,240 <span class="text-lg font-medium text-outline">/ DAY</span></p>
+<p id="preco" class="text-4xl font-headline font-bold text-on-surface">$1,240 <span class="text-lg font-medium text-outline">/ DAY</span></p>
 </div>
 </div>
 </section>
@@ -270,8 +265,8 @@
 </div>
 <div class="space-y-4 mb-8">
 <div class="flex justify-between text-sm">
-<span class="text-on-surface-variant">$1,240 x 7 Days</span>
-<span class="font-bold">$8,680</span>
+<span class="text-on-surface-variant" id="resumo">$1,240 x 7 Days</span>
+<span class="font-bold" id="subtotal">$8,680</span>
 </div>
 <div class="flex justify-between text-sm">
 <span class="text-on-surface-variant">Insurance &amp; Safety Fee</span>
@@ -284,7 +279,7 @@
 <div class="h-[1px] bg-surface-container-highest w-full"></div>
 <div class="flex justify-between text-xl font-headline font-black uppercase">
 <span>Total Price</span>
-<span>$9,100</span>
+<span id="total">$9,100</span>
 </div>
 </div>
 <button class="signature-gradient w-full py-5 rounded-md text-white font-headline font-bold uppercase tracking-widest text-sm active:scale-95 transition-all mb-4">
@@ -332,4 +327,71 @@
 </div>
 </div>
 </footer>
+<script>
+
+
+function fillData() {
+const itemSalvo = localStorage.getItem("item");
+
+if (!itemSalvo) {
+    console.warn("Nenhum item encontrado no localStorage");
+    return;
+}
+
+const item = JSON.parse(itemSalvo);
+
+// Nome
+if (item.nome) {
+    document.getElementById("nome").textContent = item.nome;
+}
+
+// Preço
+if (item.preco) {
+    document.getElementById("preco").textContent = item.preco;
+}
+
+// Estado / Local
+if (item.estado) {
+    document.getElementById("estado").textContent = item.estado;
+}
+}
+
+// Executa quando carregar a página
+window.addEventListener("DOMContentLoaded", () => {
+  fillData();
+  rentCalc(7);
+});
+
+function rentCalc(dias = 7) {
+  const itemSalvo = localStorage.getItem("item");
+
+  if (!itemSalvo) return;
+
+  const item = JSON.parse(itemSalvo);
+
+  if (!item.preco) return;
+
+  // Extrai número do preço (remove R$, $, /h, etc)
+  const precoNumero = parseFloat(
+    item.preco.replace(/[^\d,.-]/g, "").replace(",", ".")
+  );
+
+  if (isNaN(precoNumero)) return;
+
+  const subtotal = precoNumero * dias;
+  const taxa = 420; 
+  const total = subtotal + taxa;
+
+  // Atualiza UI
+  document.getElementById("resumo").textContent =
+    `R$ ${precoNumero} x ${dias} dias`;
+
+  document.getElementById("subtotal").textContent =
+    `R$ ${subtotal.toLocaleString("pt-BR")}`;
+
+  document.getElementById("total").textContent =
+    `R$ ${total.toLocaleString("pt-BR")}`;
+}
+
+</script>
 </body></html>

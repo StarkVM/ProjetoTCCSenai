@@ -185,96 +185,8 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                         View Full Catalog <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<!-- Machine Card 1 -->
-<div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Side profile of a massive yellow excavator on soft dirt background, high detail of metal textures and hydraulic systems" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9g0uDW7jGhHadDJ0uWd-nmJ-LdiERqxS-jTKbc3nTExf6wEz9GK9-dmsoiowW-LktsTSoninTrYjORvc_iF2mffDUuet1xHrCNVJBXwFK0kjlGKUg2PQOzyL4aIPkeXEw4g8OSQ-srEjnae8mlNO3X5ajxQqWFGXsQ3Tl521s3zs3mmlg8WC1vR20_0K3u720AsOYIwHrxCiN4WB5YEVMz7zZbVZ7gw_5wN51l7dAmK3hlV7s8v3amdhiMcNoauysaceOANGQARF2"/>
-<div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Available</div>
-</div>
-<div class="p-8">
-<div class="flex justify-between items-start mb-4">
-<h3 class="font-headline text-xl font-bold uppercase tracking-tight">TITAN X-2000 EXCAVATOR</h3>
-<div class="flex items-center gap-1 bg-tertiary-container/20 text-on-tertiary-container px-2 py-1 rounded-sm">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
-<span class="font-label text-xs font-black">9.8</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Price/Hour</p>
-<p class="font-headline font-bold text-primary">R$ 450,00</p>
-</div>
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Location</p>
-<p class="font-headline font-bold text-on-surface truncate">São Paulo, SP</p>
-</div>
-</div>
-<button class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
-                                Request Rental
-                            </button>
-</div>
-</div>
-<!-- Machine Card 2 -->
-<div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Wide shot of a heavy duty crane at a harbor against a blue sky, demonstrating scale and precision engineering" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs9J2pd45tGI3_6Wwe4WWI84pJWaEq2_9jE0kOn1Nv7ifwPgpU7ynwYDDiyoA_xTiXJu2gNX0JAxU2mTXaKxPkJYWfk01vdeGlye9p15zAUrIs_9fQTtflI22m3_EJJqBqnM4ZCkP_z8xNi81ZENBh0et1Zsn6pLiTFed2b0WStBLgTltB2yxDnsEvzuP4yVri7_9U9fTJu0QZDS1TmHoxcfz1uxoiLcMhsPkepuIzk3sWvczMyAtVxr0ITTeuWIbZXAH6vUsihUlp"/>
-<div class="absolute top-4 left-4 bg-tertiary text-on-tertiary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Featured</div>
-</div>
-<div class="p-8">
-<div class="flex justify-between items-start mb-4">
-<h3 class="font-headline text-xl font-bold uppercase tracking-tight">ATLAS C-500 CARGO CRANE</h3>
-<div class="flex items-center gap-1 bg-tertiary-container/20 text-on-tertiary-container px-2 py-1 rounded-sm">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
-<span class="font-label text-xs font-black">9.5</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Price/Hour</p>
-<p class="font-headline font-bold text-primary">R$ 1.200,00</p>
-</div>
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Location</p>
-<p class="font-headline font-bold text-on-surface truncate">Santos, SP</p>
-</div>
-</div>
-<button class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
-                                Request Rental
-                            </button>
-</div>
-</div>
-<!-- Machine Card 3 -->
-<div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
-<div class="relative h-64 overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Industrial bulldozer moving earth at a mining site, high contrast photo with professional finish and detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqBM1eU0dizfiSw_B7_bejHy0Xxu3SJmscJQksIBnLcS5tSEzRFOXIFd5q19BhMieWWKVNW0fXFyiQHvKpoMgcfjoWjF-eiGr7tYEQ6UWP2eKDewH8r-7PJbY3OwBNKSw3LfGvP0b2pR_8DXP5DGTNWbKRtzmTklvbTz7zjnu-vftHOaiAWEaXjaD5P9651zbzNNF05X2Db9P1JUv-2PtAsEeFmo3zVYixyyJuPcRmyeY0VUoeiYPAxuYlBP0z6r-wUp932SbG5mM3"/>
-<div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Available</div>
-</div>
-<div class="p-8">
-<div class="flex justify-between items-start mb-4">
-<h3 class="font-headline text-xl font-bold uppercase tracking-tight">IRONCLAD D-9 DOZER</h3>
-<div class="flex items-center gap-1 bg-tertiary-container/20 text-on-tertiary-container px-2 py-1 rounded-sm">
-<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
-<span class="font-label text-xs font-black">9.2</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Price/Hour</p>
-<p class="font-headline font-bold text-primary">R$ 680,00</p>
-</div>
-<div class="bg-surface-container px-3 py-2 rounded-sm">
-<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Location</p>
-<p class="font-headline font-bold text-on-surface truncate">Belo Horizonte, MG</p>
-</div>
-</div>
-<button class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
-                                Request Rental
-                            </button>
-</div>
-</div>
-</div>
-</div>
+<!-- CONTAINER DE CARDS -->
+<div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 </section>
 <!-- Why Us Section (Bento Grid) -->
 <section class="py-32 bg-surface">
@@ -372,4 +284,5 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 TITAN RENTALS INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
 </div>
 </footer>
+<script src="homefiller.js"></script>
 </body></html>
