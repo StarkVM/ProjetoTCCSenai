@@ -110,24 +110,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopAppBar -->
-<header class="bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md docked full-width top-0 sticky z-50">
-<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
-<div class="text-2xl font-black tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8] uppercase font-headline">
-                TITAN RENTALS
-            </div>
-<nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
-<a class="text-[#835400] dark:text-[#f9a825] border-b-2 border-[#835400] dark:border-[#f9a825] pb-1" href="#">Home</a>
-<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Catalog</a>
-<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Rentals</a>
-<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Support</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="text-[#4a4949] font-['Space_Grotesk'] text-sm font-bold uppercase hover:opacity-80 transition-opacity px-4 py-2">Login</button>
-<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-['Space_Grotesk'] text-sm font-bold uppercase px-6 py-2 rounded-md hover:opacity-90 active:scale-95 transition-all duration-100 shadow-sm">Sign Up</button>
-</div>
-</div>
-<div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
-</header>
+<header id="header"></header>
 <main>
 <!-- Hero Section -->
 <section class="relative min-h-[870px] flex items-center overflow-hidden bg-surface">
@@ -252,37 +235,6 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 </div>
 </section>
 </main>
-<!-- Footer -->
-<footer class="bg-[#f6f3f2] dark:bg-[#121212] full-width bottom-0">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-12 py-16 border-t border-[#e5e2e1] dark:border-[#2d2c2c] max-w-[1920px] mx-auto">
-<div class="space-y-6">
-<div class="text-lg font-bold text-[#1c1b1b] dark:text-[#fcf9f8] font-headline uppercase">TITAN RENTALS</div>
-<p class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] max-w-sm">
-                    PRECISION ENGINEERING FOR THE HEAVY INDUSTRY. THE MOST RELIABLE NETWORK OF MACHINERY IN LATIN AMERICA.
-                </p>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">language</span>
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">shield</span>
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">workspace_premium</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="flex flex-col gap-3">
-<h4 class="font-headline text-xs font-black uppercase text-on-surface mb-2">Operations</h4>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Fleet Solutions</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Safety Standards</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Contact Engineering</a>
-</div>
-<div class="flex flex-col gap-3">
-<h4 class="font-headline text-xs font-black uppercase text-on-surface mb-2">Legal</h4>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Terms of Service</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Privacy Policy</a>
-</div>
-</div>
-</div>
-<div class="w-full px-12 py-6 bg-surface-container-highest text-center">
-<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 TITAN RENTALS INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
-</div>
-</footer>
+<footer id="footer"></footer>
 <script src="homefiller.js"></script>
-</body></html>
+<script src="../generico/jsgenerico/frame.js"></script>

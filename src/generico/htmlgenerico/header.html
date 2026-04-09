@@ -1,91 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCC Máquinas</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-
-    <link rel="stylesheet" href="cssgenerico/style.css">
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "on-background": "#1c1b1b",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#d7c3ae",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ffddb5",
+                        "surface-container-high": "#ebe7e7",
+                        "outline": "#857462",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#2ac6ff",
+                        "primary": "#835400",
+                        "secondary-container": "#d7e4ec",
+                        "tertiary-fixed": "#c0e8ff",
+                        "on-secondary-fixed-variant": "#3c494f",
+                        "primary-fixed-dim": "#ffb957",
+                        "surface-dim": "#dcd9d9",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed-dim": "#71d2ff",
+                        "on-secondary-container": "#5a666d",
+                        "on-secondary-fixed": "#111d23",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-surface-variant": "#524434",
+                        "error": "#ba1a1a",
+                        "secondary": "#546067",
+                        "surface-container": "#f0edec",
+                        "secondary-fixed-dim": "#bbc8d0",
+                        "on-tertiary-fixed": "#001e2b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#643f00",
+                        "on-primary-fixed": "#2a1800",
+                        "inverse-surface": "#313030",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#004d66",
+                        "primary-container": "#f9a825",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#835400",
+                        "on-tertiary-container": "#004f69",
+                        "surface-container-highest": "#e5e2e1",
+                        "tertiary": "#006687",
+                        "inverse-primary": "#ffb957",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1b1b",
+                        "secondary-fixed": "#d7e4ec",
+                        "on-primary-container": "#674100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+    </style>
 </head>
-<body>
-
-<header class="navbar">
-  <nav class="nav-container container-fluid">
-
-    <!-- LOGO -->
-    <div class="logo">
-      <img src="../img/Heavyrentlogo.png" style="width: 105px;" alt="Logo">
-    </div>
-
-    <!-- BARRA DE PESQUISA (só aparece na home) -->
-    <div class="search-header">
-      <input type="text" placeholder="Buscar máquinas...">
-      <button></button>
-    </div>
-
-    <!-- BOTÃO HAMBURGUER -->
-    <button class="menu-toggle" onclick="toggleMenu()">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
-
-    <!-- MENU -->
-    <ul class="nav-links m-0 p-0" id="navMenu">
-
-      <li>
-        <a href="../home/home.php">
-          <span class="material-symbols-outlined">home</span>
-          <span class="menu-text">Home</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="../login/login.php">
-          <span class="material-symbols-outlined">account_circle</span>
-          <span class="menu-text">Login</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="../info/info.php">
-          <span class="material-symbols-outlined">info</span>
-          <span class="menu-text">Informações</span>
-        </a>
-      </li>
-
-    </ul>
-
-  </nav>
-</header>
-
-<!-- LINKS ABAIXO DO HEADER -->
-<div class="sub-header border-top shadow-sm">
-  <nav class="container d-flex justify-content-around py-2">
-
-    <a href="../categorias/categorias.php" class="text-decoration-none text-dark fw-semibold">
-      Categorias
-    </a>
-
-    <a href="../ofertas/ofertas.php" class="text-decoration-none text-dark fw-semibold">
-      Ofertas
-    </a>
-
-    <a href="../cupons/cupons.php" class="text-decoration-none text-dark fw-semibold">
-      Cupons
-    </a>
-
-    <a href="../novidades/novidades.php" class="text-decoration-none text-dark fw-semibold">
-      Novidades
-    </a>
-
-    <a href="../contato/contato.php" class="text-decoration-none text-dark fw-semibold">
-      Contato
-    </a>
-
-  </nav>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8] uppercase font-headline">
+                TITAN RENTALS
+            </div>
+<nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
+<a class="text-[#835400] dark:text-[#f9a825] border-b-2 border-[#835400] dark:border-[#f9a825] pb-1" href="../home/code.php">Home</a>
+<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Catalog</a>
+<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Rentals</a>
+<a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Support</a>
+</nav>
+<div class="flex items-center gap-4">
+<button onclick='window.location.href="../login/code.html"' class="text-[#4a4949] font-['Space_Grotesk'] text-sm font-bold uppercase hover:opacity-80 transition-opacity px-4 py-2">Login</button>
+<button onclick='window.location.href="../cadastro/code.php"' class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-['Space_Grotesk'] text-sm font-bold uppercase px-6 py-2 rounded-md hover:opacity-90 active:scale-95 transition-all duration-100 shadow-sm">Sign Up</button>
 </div>
-
+</div>
+<div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
+</header>
 </body>
 </html>
