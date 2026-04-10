@@ -147,66 +147,45 @@ session_start();
 <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CREATE ACCOUNT</h2>
 <div class="h-1 w-12 bg-primary"></div>
 </div>
-<form class="space-y-6">
-<!-- User Type Selector (Industrial Switch Style) -->
-<div class="space-y-3">
-<label class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant">Account Type</label>
+<form method="POST" class="space-y-6">
+
 <div class="grid grid-cols-2 gap-4">
-<label class="relative cursor-pointer">
-<input checked="" class="peer sr-only" name="user_type" type="radio" value="consumer"/>
-<div class="p-4 text-center border-2 border-surface-container-highest bg-surface peer-checked:bg-secondary-container peer-checked:border-tertiary-container transition-all">
-<span class="font-headline text-sm font-bold uppercase tracking-tight text-on-background">Consumer</span>
+    <input type="text" name="nome" placeholder="Nome" required class="input">
+    <input type="text" name="sobrenome" placeholder="Sobrenome" required class="input">
 </div>
-</label>
-<label class="relative cursor-pointer">
-<input class="peer sr-only" name="user_type" type="radio" value="service_provider"/>
-<div class="p-4 text-center border-2 border-surface-container-highest bg-surface peer-checked:bg-secondary-container peer-checked:border-tertiary-container transition-all">
-<span class="font-headline text-sm font-bold uppercase tracking-tight text-on-background">Service Provider</span>
-</div>
-</label>
-</div>
-</div>
-<!-- Input Fields with "Machine Switch" Precision -->
-<div class="grid grid-cols-1 gap-5">
-<div class="relative">
-<label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Full Name</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="Engineering Lead / Lead Contact" type="text" name="nome"/>
-</div>
-<div class="relative">
-<label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Corporate Email</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="name@titan-rentals.com" type="email" name="email"/>
-</div>
+
+<input type="date" name="data_nascimento" required class="input">
+
 <div class="grid grid-cols-2 gap-4">
-<div class="relative">
-<label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Phone Number</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="+1 (000) 000-0000" type="tel" name=""/>
+    <input type="text" name="cpf" placeholder="CPF" required class="input">
+    <input type="tel" name="telefone" placeholder="Telefone" required class="input">
 </div>
-<div class="relative">
-<label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">CPF / CNPJ</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="Tax Identification" type="text"/>
+
+<input type="email" name="email" placeholder="Email" required class="input">
+
+<div class="grid grid-cols-2 gap-4">
+    <input type="password" name="senha" placeholder="Senha" required class="input">
+    <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required class="input">
 </div>
+
+<input type="text" name="cep" placeholder="CEP" required class="input">
+
+<div class="grid grid-cols-2 gap-4">
+    <input type="text" name="rua" placeholder="Rua" required class="input">
+    <input type="text" name="numero" placeholder="Número" required class="input">
 </div>
-<div class="relative">
-<label class="block font-label text-[10px] font-black uppercase tracking-widest text-on-surface-variant mb-1 ml-1">Secure Password</label>
-<input class="w-full bg-surface-container-low border-none focus:ring-2 focus:ring-primary-container px-4 py-3 font-body text-sm placeholder:text-on-surface-variant/40 rounded-none" placeholder="••••••••••••" type="password" name="senha"/>
+
+<div class="grid grid-cols-2 gap-4">
+    <input type="text" name="bairro" placeholder="Bairro" required class="input">
+    <input type="text" name="cidade" placeholder="Cidade" required class="input">
 </div>
-</div>
-<!-- Terms and Conditions -->
-<div class="flex items-start gap-3 py-2">
-<div class="flex items-center h-5">
-<input class="h-4 w-4 rounded-none border-outline-variant text-primary focus:ring-primary-container" id="terms" name="terms" type="checkbox"/>
-</div>
-<div class="text-xs">
-<label class="font-body text-on-surface-variant leading-relaxed" for="terms">
-                                I AGREE TO THE <a class="text-primary font-bold hover:underline" href="#">SAFETY STANDARDS</a>, <a class="text-primary font-bold hover:underline" href="#">TERMS OF SERVICE</a> AND <a class="text-primary font-bold hover:underline" href="#">PRIVACY POLICY</a> OF TITAN RENTALS INDUSTRIAL GROUP.
-                            </label>
-</div>
-</div>
-<!-- Signup Button (Metallic Precision) -->
-<button class="w-full signature-gradient text-on-primary font-headline text-sm font-black uppercase tracking-[0.2em] py-4 shadow-xl active:scale-95 transition-all flex items-center justify-center gap-2 group" type="submit">
-                        INITIALIZE REGISTRATION
-                        <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+
+<input type="text" name="estado" placeholder="Estado" required class="input">
+
+<button type="submit" class="w-full signature-gradient text-white py-4">
+    FINALIZAR CADASTRO
 </button>
+
 </form>
 <div class="mt-8 text-center">
 <p class="font-body text-xs text-on-surface-variant uppercase tracking-widest">
