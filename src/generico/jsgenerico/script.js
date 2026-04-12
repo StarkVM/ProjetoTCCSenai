@@ -7,11 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // CAMPOS
-let cepField = document.getElementById("cep");
-let button = document.getElementById("submitbutton");
-let senha1 = document.getElementById("senha1");
-let senha2 = document.getElementById("senha2");
-let cpfField = document.getElementById("cpf");
+const cepField = document.getElementById("cep");
+const button = document.getElementById("submitbutton");
+const senha1 = document.getElementById("senha1");
+const senha2 = document.getElementById("senha2");
+const cpfField = document.getElementById("cpf");
+
+let cepcondition = false;
+let passwordcondition = false;
+let cpfcondition = false;
 
 // botão começa desativado
 if (button) button.disabled = true;
@@ -24,7 +28,8 @@ if (cepField) {
     const cep = cepField.value.replace(/\D/g, "");
 
     if (cep.length < 8) {
-      button.disabled = true;
+      cepcondition = false;
+      atualizarBotao();
       return;
     }
 
@@ -34,14 +39,16 @@ if (cepField) {
 
         if (data.erro) {
           document.getElementById("cepErro").innerText = "CEP não encontrado!";
-          button.disabled = true;
+          cepcondition = false;
+          atualizarBotao();
         } else {
           document.getElementById('rua').value = data.logradouro;
           document.getElementById('bairro').value = data.bairro;
           document.getElementById('cidade').value = data.localidade;
           document.getElementById('estado').value = data.uf;
-
-          button.disabled = false;
+          cepcondition = true;
+          console.log("CEP CONFIRMADO")
+          atualizarBotao();
         }
 
       })
@@ -54,21 +61,17 @@ if (cepField) {
 // =========================
 // MOSTRAR SENHA (OLHINHO)
 // =========================
-function mostrarSenha(idSenha, idIcon) {
-  const senha = document.getElementById(idSenha);
-  const icon = document.getElementById(idIcon);
+function toggleSenha(id, element) {
+  const input = document.getElementById(id);
 
-  if (senha.type === "password") {
-    senha.type = "text";
-    icon.classList.remove("bi-eye-slash");
-    icon.classList.add("bi-eye");
+  if (input.type === "password") {
+    input.type = "text";
+    element.textContent = "visibility_off";
   } else {
-    senha.type = "password";
-    icon.classList.remove("bi-eye");
-    icon.classList.add("bi-eye-slash");
+    input.type = "password";
+    element.textContent = "visibility";
   }
 }
-
 // =========================
 // CONFIRMAR SENHA
 // =========================
@@ -80,10 +83,13 @@ if (senha1 && senha2) {
 function confirmarSenha() {
   if (senha1.value === senha2.value) {
     document.getElementById("erroSenha").innerText = "";
-    button.disabled = false;
-  } else {
+    passwordcondition = true;
+    console.log("SENHA CONFIRMADA");
+    atualizarBotao();
+  } else if(senha1.value != senha2.value){
     document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
-    button.disabled = true;
+    passwordcondition = false;
+    atualizarBotao();
   }
 }
 
@@ -95,12 +101,26 @@ if (cpfField) {
     let cpf = cpfField.value.replace(/\D/g, "");
 
     if (TestaCPF(cpf)) {
-      button.disabled = false;
+      cpfcondition = true;
+      console.log("CPF CONFIRMADA")
+      atualizarBotao();
     } else {
-      button.disabled = true;
+      cpfcondition = false;
+      atualizarBotao();
+
     }
   });
 }
+
+function atualizarBotao(){
+  if(cepcondition && cpfcondition && passwordcondition){
+    button.disabled = false;
+  }
+  else{
+    button.disabled = true;
+  }  
+}
+
 
 function TestaCPF(strCPF) {
   let Soma = 0;

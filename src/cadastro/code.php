@@ -13,8 +13,6 @@
         $estado = $_POST['estado'];
         $email = $_POST['email'];
         $senha = $_POST['senha'];
-        
-        echo "Pão de alho é a melhor coisa no churrasco";
         //Trabalhe nesse arquivo misael, por favor.
     }
 
@@ -147,44 +145,84 @@ session_start();
 <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CREATE ACCOUNT</h2>
 <div class="h-1 w-12 bg-primary"></div>
 </div>
-<form method="POST" class="space-y-6">
+<form method="POST" class="space-y-10 max-w-2xl mx-auto">
 
-<div class="grid grid-cols-2 gap-4">
-    <input type="text" name="nome" placeholder="Nome" required class="input">
-    <input type="text" name="sobrenome" placeholder="Sobrenome" required class="input">
+<!-- DADOS PESSOAIS -->
+<div class="space-y-4">
+  <h3 class="text-lg font-bold text-on-surface">Dados Pessoais</h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input type="text" name="nome" placeholder="Nome" required class="input w-full">
+    <input type="text" name="sobrenome" placeholder="Sobrenome" required class="input w-full">
+  </div>
+
+  <input type="date" name="data_nascimento" required class="input w-full">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input id="cpf" type="text" name="cpf" placeholder="CPF" required class="input w-full">
+    <input type="tel" name="telefone" placeholder="Telefone" required class="input w-full">
+  </div>
+
+  <input type="email" name="email" placeholder="Email" required class="input w-full">
 </div>
 
-<input type="date" name="data_nascimento" required class="input">
+<!-- SEGURANÇA -->
+<div class="space-y-4">
+  <h3 class="text-lg font-bold text-on-surface">Segurança</h3>
 
-<div class="grid grid-cols-2 gap-4">
-    <input type="text" name="cpf" placeholder="CPF" required class="input">
-    <input type="tel" name="telefone" placeholder="Telefone" required class="input">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <div class="relative">
+      <input id="senha1" type="password" name="senha" placeholder="Senha" required class="input w-full pr-10">
+    <span onclick="toggleSenha('senha1', this)" 
+    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-on-surface-variant">
+    visibility
+    </span>
+      </span>
+    </div>
+    <p id="erroSenha"></p>
+
+    <div class="relative">
+      <input id="senha2" type="password" name="confirmar_senha" placeholder="Confirmar senha" required class="input w-full pr-10">
+    <span onclick="toggleSenha('senha2', this)" 
+    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-on-surface-variant">
+    visibility
+    </span>
+    </div>
+
+  </div>
 </div>
 
-<input type="email" name="email" placeholder="Email" required class="input">
+<!-- ENDEREÇO -->
+<div class="space-y-4">
+  <h3 class="text-lg font-bold text-on-surface">Endereço</h3>
 
-<div class="grid grid-cols-2 gap-4">
-    <input type="password" name="senha" placeholder="Senha" required class="input">
-    <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required class="input">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input type="text" id="cep" name="cep" placeholder="CEP" required class="input w-full">
+    <input type="text" name="numero" placeholder="Número" required class="input w-full">
+  </div>
+
+  <fieldset disabled class="space-y-4">
+
+    <input id="rua" type="text" name="rua" placeholder="Rua" required class="input w-full">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input id="bairro" type="text" name="bairro" placeholder="Bairro" required class="input w-full">
+      <input id="cidade" type="text" name="cidade" placeholder="Cidade" required class="input w-full">
+    </div>
+
+    <input id="estado" type="text" name="estado" placeholder="Estado" required class="input w-full">
+
+  </fieldset>
 </div>
 
-<input type="text" name="cep" placeholder="CEP" required class="input">
-
-<div class="grid grid-cols-2 gap-4">
-    <input type="text" name="rua" placeholder="Rua" required class="input">
-    <input type="text" name="numero" placeholder="Número" required class="input">
-</div>
-
-<div class="grid grid-cols-2 gap-4">
-    <input type="text" name="bairro" placeholder="Bairro" required class="input">
-    <input type="text" name="cidade" placeholder="Cidade" required class="input">
-</div>
-
-<input type="text" name="estado" placeholder="Estado" required class="input">
-
-<button type="submit" class="w-full signature-gradient text-white py-4">
+<!-- BOTÃO -->
+<div class="pt-6">
+  <button id="submitbutton" type="submit" 
+    class="w-full signature-gradient text-white py-4 rounded-lg font-semibold tracking-wide hover:opacity-90 transition">
     FINALIZAR CADASTRO
-</button>
+  </button>
+</div>
 
 </form>
 <div class="mt-8 text-center">
@@ -206,4 +244,5 @@ session_start();
 </div>
 </div>
 </footer>
+<script src="../generico/jsgenerico/script.js" ></script>
 </body></html>
