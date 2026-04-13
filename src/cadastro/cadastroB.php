@@ -1,18 +1,24 @@
 <?php
-
+    include '../../softwareVerification/querys.php';
+    global $contador;
     try {
-        if(!isset($_SESSION)){
+        if (!isset($_SESSION)) {
             session_start();
-            } // SE O USER NÃO TIVER UMA SESSÃO ATIVA, IRÁ CRIAR UMA SESSÃO.
+        } // SE O USER NÃO TIVER UMA SESSÃO ATIVA, IRÁ CRIAR UMA SESSÃO.
 
         //  RECEBE OS DADOS DO POST REGISTRAR
-        if(isset($_POST['registrar']) == "POST"){
+        if (isset($_POST['registrar']) == "POST") {
 
             // ATRIBUI VALORES DOS CAMPOS POST A SESSÃO DO USUARIO
-            foreach($_POST as $sessao => $value)
-                {
-                    $_SESSION[$sessao] = $value;
-                }
+            foreach ($_POST as $sessao => $value) {
+                $_SESSION[$sessao] = $value;
+            }
+            // VERIFICAÇÃO DE QUANTIDADE DE CARACTERES NA SENHA
+            $senhaF = trim($_SESSION['senha']);
+            if(strlen($senhaF) < 8){
+                header('Location: cadastro.php?er=3');
+                return;
+            }
             // CONVERTE A DATA NASCIMENTO PARA DATE TIME
             $dataFormatada = new DateTime($_SESSION['data_nascimento']);
             $dataFormatada->setTimezone(new DateTimeZone("UTC"));
@@ -20,19 +26,19 @@
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
             $url = "http://localhost:5000/api/v1/user-access/auth/register";
             $dados = ["firstName" => $_SESSION['nome'],
-            "lastName" => $_SESSION['sobrenome'],
-            "birthDate" => $dataFormatada->format("Y-m-d\TH:i:s.v\Z"),
-            "email" => $_SESSION['email'],
-            "cpf" => $_SESSION['cpf'],
-            "password" => $_SESSION['senha'],
-            "address" => [
-                "state" => $_SESSION['estado'],
-                "city" => $_SESSION['cidade'],
-                "district" => $_SESSION['bairro'],
-                "street" => $_SESSION['rua'],
-                "zipCode" => $_SESSION['cep']
-            ]];
-
+                "lastName" => $_SESSION['sobrenome'],
+                "birthDate" => $dataFormatada->format("Y-m-d\TH:i:s.v\Z"),
+                "email" => $_SESSION['email'],
+                "cpf" => $_SESSION['cpf'],
+                "password" => trim($_SESSION['senha']),
+                "address" => [
+                    "state" => $_SESSION['estado'],
+                    "city" => $_SESSION['cidade'],
+                    "district" => $_SESSION['bairro'],
+                    "street" => $_SESSION['rua'],
+                    "zipCode" => $_SESSION['cep']
+                ]];
+            
             $ch = curl_init($url);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
@@ -47,32 +53,31 @@
             $data = json_decode($response, true); // tranforma json em array
             curl_close($ch);
 
+
             // VERIFICA O CODIGO DE RETORNO DA API E TRATA COM OS RESPECTIVOS CODIGOS
-            if($statusCode >= 200 && $statusCode <= 299)
-            {
-                
+            if ($statusCode >= 200 && $statusCode <= 299) {
+
+
+                $contador++;
+                atualizarContadorCadastro();
                 header('Location: ../2fa/2fa.php');
-                
-            }
-            else if ($statusCode == 409 && $data['message'] == 'CPF already exists.') // CPF JÁ EXISTE
+
+            } else if ($statusCode == 409 && $data['message'] == 'CPF already exists.') // CPF JÁ EXISTE
             {
 
 
                 header('Location: cadastro.php?er=1');
-                
-            }
-            else if ($statusCode == 409 && $data['message'] == 'Email already exists.') // CPF JÁ EXISTE
+
+            } else if ($statusCode == 409 && $data['message'] == 'Email already exists.') // CPF JÁ EXISTE
             {
 
                 header('Location: cadastro.php?er=2');
-            }
-            else
-            {
+            } else {
 
-                header('Location: cadastro.php?er=3');
+                header('Location: cadastro.php?er=4');
             }
         }
-    } 
+    }
     catch (\Throwable $th) {
         echo $th;
     }

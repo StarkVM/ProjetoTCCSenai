@@ -1,52 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?php
-
-//  RECEBE OS DADOS DO POST REGISTRAR
-    if(isset($_POST['registrar']) === "POST"){
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $data_nascimento = $_POST['data_nascimento'];
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        
-        echo "Pão de alho é a melhor coisa no churrasco";
-        //Trabalhe nesse arquivo misael, por favor.
-    }
-
-?>
-
-=======
-<?php
-
-//  RECEBE OS DADOS DO POST REGISTRAR
-    if(isset($_POST['registrar']) === "POST"){
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $data_nascimento = $_POST['data_nascimento'];
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        
-        echo "Pão de alho é a melhor coisa no churrasco";
-        //Trabalhe nesse arquivo misael, por favor.
-    }
-
-?>
-
->>>>>>> Sal-DS
-=======
 <?php
 session_start();
 error_reporting(0); // limpa os erros e avisos do header
@@ -57,6 +8,7 @@ if(isset($er))
 {
     if($er == "1") $responseError = "CPF informado já está existente em nosso sistema!";
     else if($er == "2")  $responseError = "Email informado já está existente em nosso sistema! Por favor, digite outro.";
+    else if($er == "3")  $responseError = "Senha informada contém menos de 8 caracteres!";
     else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
 }
 
@@ -236,4 +188,4 @@ if(isset($er))
     <script src="../generico/jsgenerico/script.js"></script>
 </body>
 </html>
->>>>>>> 7c8fbbcda18e2e8d453c2a7a38dea1a78d5b6acf
+
