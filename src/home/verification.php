@@ -11,17 +11,13 @@ try {
 
     $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // pega o status de retorno da requisição
     curl_close($ch);
-
     $data = json_decode($response, true); // tranforma json em array
     error_reporting(0); // REMOVE AS LOGS DE ERROS NO HEADER
-    if($data["connected"] == false)
-    {
 
-        echo "<script>
-            console.log(" . print_r($data) . ");
-            console.log('Erro 2:', " . curl_error($ch) . ");    
-            </script>";
-        echo "<p style='color: red;'>Erro: sem conexão com o servidor!</p>";
+    if($data["connected"] == false || $response == false)
+    {
+        if($response == false || $response == 0) $statusCode = 503;
+        header('Location: ../error/code.php?er='. $statusCode);
         
     }
 

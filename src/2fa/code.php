@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+
+$er = $_GET['er'] ?? null;
+if(isset($er) && !empty($er))
+{
+    if($er == "1") $responseError = "Não foi possivel verificar o email!";
+    else if($er == "2")  $responseError = "Ocorreu um erro ao verificar o email, verifique os dados novamente.";
+    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+}
+?>
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -127,28 +140,29 @@
 </div>
 <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2 uppercase">Authorization Required</h2>
 <p class="text-on-surface-variant text-sm font-medium">
-                        We've dispatched a 6-digit verification code to your registered device ending in <span class="text-primary font-bold">8492</span>.
+                        Digite o código para verificação de 6 dígitos que foi enviado para o email <?php echo $_SESSION['email'] ?? "<p style='color: red;'> EMAIL NÃO CARREGADO! </p>"; ?></span>.
                     </p>
 </div>
 <!-- 2FA Input Field Grid -->
-<form class="space-y-8" onsubmit="return false;">
+<form class="space-y-8"  method="post" action="2fa.php">
 <div>
 <label class="block font-headline text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-4">
                             Security Token
                         </label>
 <div class="flex gap-2 sm:gap-3">
 <!-- Input pattern using the "Sturdy Card" rule for inputs -->
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="5"/>
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="2"/>
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
-<input class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
+<input name="codigoChar1" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="5"/>
+<input name="codigoChar2" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="2"/>
+<input name="codigoChar3" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
+<input name="codigoChar4" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
+<input name="codigoChar5" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
+<input name="codigoChar6" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
 </div>
 </div>
 <!-- Actions -->
 <div class="space-y-4">
-<button class="w-full signature-gradient text-white py-4 font-headline font-bold uppercase tracking-widest text-sm rounded-md shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+    <p id="erro" style='font-size: 17px; color:red'><?php if(isset($responseError)) echo $responseError?></p>
+<button name="verificar" class="w-full signature-gradient text-white py-4 font-headline font-bold uppercase tracking-widest text-sm rounded-md shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
                             Verify Identity
                             <span class="material-symbols-outlined text-lg">verified_user</span>
 </button>

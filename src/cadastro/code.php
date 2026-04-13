@@ -1,25 +1,17 @@
 <?php
 
-//  RECEBE OS DADOS DO POST REGISTRAR
-    if(isset($_POST['registrar']) === "POST"){
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $data_nascimento = $_POST['data_nascimento'];
-        $cep = $_POST['cep'];
-        $rua = $_POST['rua'];
-        $numero = $_POST['numero'];
-        $bairro = $_POST['bairro'];
-        $cidade = $_POST['cidade'];
-        $estado = $_POST['estado'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        //Trabalhe nesse arquivo misael, por favor.
-    }
-
-?>
-
-<?php
 session_start();
+error_reporting(0); // limpa os erros e avisos do header
+
+// SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
+$er = $_GET['er'];
+if(isset($er))
+{
+    if($er == "1") $responseError = "CPF informado já está existente em nosso sistema!";
+    else if($er == "2")  $responseError = "Email informado já está existente em nosso sistema! Por favor, digite outro.";
+    else if($er == "3")  $responseError = "Senha informada contém menos de 8 caracteres!";
+    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+}
 
 
 
@@ -145,7 +137,7 @@ session_start();
 <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CREATE ACCOUNT</h2>
 <div class="h-1 w-12 bg-primary"></div>
 </div>
-<form method="POST" class="space-y-10 max-w-2xl mx-auto">
+<form method="POST" class="space-y-10 max-w-2xl mx-auto" action="cadastroB.php">
 
 <!-- DADOS PESSOAIS -->
 <div class="space-y-4">
@@ -202,7 +194,7 @@ session_start();
     <input type="text" name="numero" placeholder="Número" required class="input w-full">
   </div>
 
-  <fieldset disabled class="space-y-4">
+  <fieldset readonly class="space-y-4">
 
     <input id="rua" type="text" name="rua" placeholder="Rua" required class="input w-full">
 
@@ -217,9 +209,10 @@ session_start();
 </div>
 
 <!-- BOTÃO -->
+    <p id="responseErro" style="color:red;"><?php  if(isset($responseError)) echo $responseError;?></p>
 <div class="pt-6">
   <button id="submitbutton" type="submit" 
-    class="w-full signature-gradient text-white py-4 rounded-lg font-semibold tracking-wide hover:opacity-90 transition">
+    class="w-full signature-gradient text-white py-4 rounded-lg font-semibold tracking-wide hover:opacity-90 transition" name="registrar">
     FINALIZAR CADASTRO
   </button>
 </div>

@@ -1,3 +1,14 @@
+<?php
+$er = $_GET['er'] ?? null;
+if(isset($er) && !empty($er))
+{
+    if($er == "1") $responseError = "Não foi possivel completar o login!";
+    else if($er == "2")  $responseError = "Ocorreu um erro ao efetuar o login, verifique os dados e tente novamente.";
+    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+}
+?>
+
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -126,7 +137,7 @@
 <h2 class="font-headline text-3xl font-bold text-on-surface tracking-tight mb-2">Login</h2>
 <p class="text-on-surface-variant text-sm uppercase tracking-widest font-semibold">Industrial Client Portal</p>
 </div>
-<form class="space-y-6">
+<form class="space-y-6" method="post" action="login.php">
 <!-- Email Field -->
 <div class="space-y-2">
 <label class="font-headline text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2" for="email">
@@ -156,8 +167,9 @@
                             </label>
 </div>
 <!-- Login Button -->
+    <p id="erro" style="font-size: 10px color=red"><?php if(isset($responseError)) echo $responseError?></p>
 <div class="pt-4">
-<button class="group relative w-full bg-primary hover:bg-on-primary-container text-on-primary font-headline font-black text-sm uppercase tracking-[0.2em] py-5 rounded-sm transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden" type="submit">
+<button name="loginEntrar" class="group relative w-full bg-primary hover:bg-on-primary-container text-on-primary font-headline font-black text-sm uppercase tracking-[0.2em] py-5 rounded-sm transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden" type="submit">
 <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-50 group-hover:opacity-100 transition-opacity"></div>
 <span class="relative z-10">Authorize Session</span>
 <span class="material-symbols-outlined relative z-10 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>

@@ -1,3 +1,10 @@
+<?php
+
+$error = $_GET['er'] ?? 404;
+
+?>
+
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -124,7 +131,7 @@
 <span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant">Maintenance Required</span>
 </div>
 <h1 class="font-headline text-8xl md:text-[10rem] font-black text-on-surface leading-[0.8] mb-8 tracking-tighter opacity-10">
-                    404
+                    <?php if(isset($error)) echo $error?>
                 </h1>
 <div class="relative -mt-16 md:-mt-24 mb-12">
 <h2 class="font-headline text-4xl md:text-6xl font-extrabold text-on-surface leading-tight">
