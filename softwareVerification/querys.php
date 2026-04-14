@@ -1,12 +1,7 @@
 <?php
 
-require 'conexao.php';
-
-// EVENTS NAMES - TIPOS
-
-$loginEvento = "login";
-$cadastroEvento = "cadastro";
-$anuncioPostadoEvento = "anuncio_postado";
+include 'config/database.php';
+$conn = getConnection();
 
 function atualizarContador($tipo, $usuario_id, $ip, $user_agent, $origem, $referencia_id, $dados)
 {
@@ -31,7 +26,7 @@ function atualizarContador($tipo, $usuario_id, $ip, $user_agent, $origem, $refer
     );
 
     $stmt->execute();
-
+    $stmt->close();
 }
 
 

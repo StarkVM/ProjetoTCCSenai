@@ -44,6 +44,7 @@ include '../../softwareVerification/querys.php';
 
                     $dadosQ = ["status" => "success"];
                     atualizarContador("cadastro", 0, $ip, $userAgent, "site", 0, $dadosQ);
+                    echo "success";
                     
                 }
                 else if ($statusCode >= 300 || $data['message'] == "Unable to verify email.")
