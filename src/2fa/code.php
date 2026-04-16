@@ -151,8 +151,8 @@ if(isset($er) && !empty($er))
                         </label>
 <div class="flex gap-2 sm:gap-3">
 <!-- Input pattern using the "Sturdy Card" rule for inputs -->
-<input name="codigoChar1" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="5"/>
-<input name="codigoChar2" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" value="2"/>
+<input name="codigoChar1" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" placeholder="0"/>
+<input name="codigoChar2" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" type="text" placeholder="0"/>
 <input name="codigoChar3" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
 <input name="codigoChar4" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
 <input name="codigoChar5" class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-md text-on-surface shadow-inner" maxlength="1" placeholder="0" type="text"/>
