@@ -141,6 +141,7 @@ if(isset($er))
 <script src="../generico/jsgenerico/frame.js"></script>
 
 <script>
+    
         // // VERIFICAÇÃO DE DATA DE NASCIMENTO VALIDA
         // document.addEventListener("DOMContentLoaded", function () {
         //     const nascInput = document.querySelector('input[name="data_nascimento"]');

@@ -17,6 +17,7 @@ let cepcondition = false;
 let passwordcondition = false;
 let cpfcondition = false;
 
+
 // botão começa desativado
 if (button) button.disabled = true;
 

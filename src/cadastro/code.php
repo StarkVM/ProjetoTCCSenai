@@ -151,7 +151,7 @@ if(isset($er))
   <input type="date" name="data_nascimento" required class="input w-full">
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <input id="cpf" type="text" name="cpf" placeholder="CPF" required class="input w-full">
+    <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required class="input w-full">
     <input type="tel" name="telefone" placeholder="Telefone" required class="input w-full">
   </div>
 
@@ -237,5 +237,23 @@ if(isset($er))
 </div>
 </div>
 </footer>
-<script src="../generico/jsgenerico/script.js" ></script>
+<script src="../generico/jsgenerico/script.js">
+</script>
+<script>
+//MASCARA DE CPF
+cpfField.addEventListener("input", (e) => {
+  let value = e.target.value;
+
+  // remove tudo que não é número
+  value = value.replace(/\D/g, "");
+
+  // aplica a máscara
+  value = value.replace(/(\d{3})(\d)/, "$1.$2");
+  value = value.replace(/(\d{3})(\d)/, "$1.$2");
+  value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+  e.target.value = value;
+});
+
+</script>
 </body></html>
