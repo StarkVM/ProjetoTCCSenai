@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#633f00",
+                        "on-primary-fixed-variant": "#643f00",
+                        "primary-container": "#835400",
+                        "tertiary-fixed-dim": "#8ecdff",
+                        "outline": "#837566",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dcd9d8",
+                        "tertiary": "#004a6f",
+                        "secondary-container": "#d8e4ed",
+                        "surface-bright": "#fcf9f8",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#835400",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#2a1800",
+                        "on-tertiary-container": "#b4dcff",
+                        "tertiary-container": "#15638f",
+                        "secondary": "#546067",
+                        "on-primary-container": "#ffd095",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#111d23",
+                        "surface-container-low": "#f6f3f2",
+                        "secondary-fixed-dim": "#bcc8d0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#ebe7e6",
+                        "primary-fixed-dim": "#fabb65",
+                        "on-surface-variant": "#504537",
+                        "on-secondary-fixed-variant": "#3d484f",
+                        "on-secondary-container": "#5a666d",
+                        "inverse-on-surface": "#f3f0ef",
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "surface-variant": "#e5e2e1",
+                        "secondary-fixed": "#d8e4ed",
+                        "primary-fixed": "#ffddb5",
+                        "outline-variant": "#d5c4b2",
+                        "inverse-primary": "#fabb65",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001e30",
+                        "on-background": "#1c1b1b",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container": "#f0edec",
+                        "tertiary-fixed": "#cae6ff",
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed-variant": "#004b70",
+                        "on-surface": "#1c1b1b",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.125rem",
+                        "xl": "0.125rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .industrial-gradient {
+            background: linear-gradient(180deg, #835400 0%, #633f00 100%);
+        }
+
+        .actuator-button {
+            border-bottom: 3px solid #643f00;
+            transition: all 0.1s ease;
+        }
+
+        .actuator-button:active {
+            border-bottom-width: 0px;
+            transform: translateY(2px);
+        }
+
+        .frosted-glass {
+            background: rgba(229, 226, 225, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface">
+    <!-- TopNavBar Component -->
+    <nav class="flex justify-between items-center w-full px-8 h-20 bg-surface dark:bg-surface-dark sticky top-0 z-50">
+        <div class="flex items-center gap-12">
+            <span
+                class="font-['Space_Grotesk'] font-black text-2xl tracking-tighter text-[#1A1A1A] dark:text-white uppercase">HEAVY
+                RENT</span>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="font-['Space_Grotesk'] font-black tracking-tighter uppercase text-lg text-[#835400] border-b-4 border-[#835400] pb-1"
+                    href="#">Home</a>
+                <a class="font-['Space_Grotesk'] font-black tracking-tighter uppercase text-lg text-[#546067] dark:text-[#A0A0A0] hover:bg-[#F6F3F2] dark:hover:bg-[#333333] transition-all px-2"
+                    href="#">Catalog</a>
+                <a class="font-['Space_Grotesk'] font-black tracking-tighter uppercase text-lg text-[#546067] dark:text-[#A0A0A0] hover:bg-[#F6F3F2] dark:hover:bg-[#333333] transition-all px-2"
+                    href="#">Rentals</a>
+                <a class="font-['Space_Grotesk'] font-black tracking-tighter uppercase text-lg text-[#546067] dark:text-[#A0A0A0] hover:bg-[#F6F3F2] dark:hover:bg-[#333333] transition-all px-2"
+                    href="#">Support</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-3 pl-4 border-l-2 border-surface-variant">
+                <div class="text-right">
+                    <p class="text-xs font-bold font-label uppercase tracking-widest leading-none">Arthur Titan</p>
+                </div>
+                <img alt="Arthur Titan Profile"
+                    class="w-10 h-10 rounded-full object-cover border-2 border-primary-container"
+                    data-alt="Close-up portrait of a professional man in his 40s with short hair, wearing a clean industrial uniform, soft studio lighting"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoxsA8TwnO3lIO2AQTER37ExZMKrOz1loUS3eSsRLS3xBGKb5gnqtKpgvk0_GC2zXd-7ST8i7TkldpiPDR_FK7imICuyzGfsLW5zNtkRNVC3Dqhetw_0eq0Z0lwEKYMm-ExHpvAVh0lrG1uLtFEEltggD8yDPkAvqpo55cFSKYFnj1EKZTWbVeKFDC7eMIiZ6Lp5zz8AFaJ5-qFiXwzwvjXgvsAVb88wQdSgPon9fgTSSOwUn2py_OqxIRzgIbZ3ZyExFhXwTZMBQ" />
+            </div>
+        </div>
+    </nav>
+    <main class="min-h-screen">
+        <!-- Hero Section -->
+        <section class="relative h-[600px] w-full overflow-hidden">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img alt="Excavator" class="absolute inset-0 w-full h-full object-cover"
+                data-alt="Massive yellow hydraulic excavator working in a deep construction pit at dusk, dramatic lighting and dust particles in the air"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7VzpBTTUXaCfY3g2Kxq2WWhV8seASX7qXjkdC6GNSxxVr6Mwccvng5bdNPGETT0Bhb6zE8s_bOwVCW9Pv1PLhb-J4yN0EfBS4AhVdwS87e_Mv1clKKj0pPIuVjSURJnzEpKJVaaFcCIiNXUcFbyaVJ2bu1kLJt2Lwuv9nZ3gkTHgkMSPU1zZkp3-H_BanTv2lPEb4hKuVJSq6pn97hretBOZbNXWz_hTKyQZMrphe2WueF-wO6mq_MWDuV9KmbYUJV5LSRuSaaEY" />
+            <div class="relative z-20 h-full max-w-7xl mx-auto px-8 flex items-center justify-between">
+                <div class="max-w-2xl">
+                    <h1
+                        class="font-headline font-black text-[5rem] leading-[0.9] text-white tracking-tighter uppercase mb-8">
+                        OLÁ,<br /><span class="text-primary-fixed">USUÁRIO</span>
+                    </h1>
+                </div>
+                <!-- Quick Search Card -->
+                <div class="bg-white/10 backdrop-blur-md p-8 w-[400px] border-l-4 border-primary shadow-2xl">
+                    <h2 class="font-headline font-bold text-xl text-white uppercase mb-6 tracking-tight">Busca Rápida de
+                        Equipamento</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label
+                                class="block text-[10px] font-bold text-primary-fixed uppercase tracking-widest mb-2">Categoria</label>
+                            <select
+                                class="w-full bg-surface-container-low border-b-2 border-on-surface-variant p-3 focus:border-primary outline-none font-bold uppercase text-xs">
+                                <option>Escavadeiras Pesadas</option>
+                                <option>Manipuladores de Carga</option>
+                                <option>Compactadores</option>
+                            </select>
+                        </div>
+                        <div class="pt-4">
+                            <button
+                                class="w-full industrial-gradient text-white font-headline font-bold py-4 uppercase tracking-tighter text-lg actuator-button">
+                                Localizar Agora
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Quick Actions -->
+        <section class="max-w-7xl mx-auto px-8 -translate-y-12 relative z-30">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div
+                    class="bg-surface-container-lowest p-8 flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer group">
+                    <div>
+                        <h3 class="font-headline font-black text-2xl uppercase leading-none mb-2">Listar Minha Frota
+                        </h3>
+                        <p class="text-secondary text-sm font-medium">Gerenciar equipamentos em uso</p>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary group-hover:translate-x-2 transition-transform"
+                        data-icon="precision_manufacturing">precision_manufacturing</span>
+                </div>
+                <div
+                    class="bg-surface-container-lowest p-8 flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer group">
+                    <div>
+                        <h3 class="font-headline font-black text-2xl uppercase leading-none mb-2">Ver Meus Contratos
+                        </h3>
+                        <p class="text-secondary text-sm font-medium">Documentação e faturas</p>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary group-hover:translate-x-2 transition-transform"
+                        data-icon="receipt_long">receipt_long</span>
+                </div>
+                <div
+                    class="bg-surface-container-lowest p-8 flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer group">
+                    <div>
+                        <h3 class="font-headline font-black text-2xl uppercase leading-none mb-2">Suporte Titan</h3>
+                        <p class="text-secondary text-sm font-medium">Atendimento técnico 24h</p>
+                    </div>
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary group-hover:translate-x-2 transition-transform"
+                        data-icon="support_agent">support_agent</span>
+                </div>
+            </div>
+        </section>
+        <!-- Suggestions Grid -->
+        <section class="max-w-7xl mx-auto px-8 py-16">
+            <div class="flex items-end justify-between mb-12">
+                <div>
+                    <div class="h-1 w-24 bg-primary mb-4"></div>
+                    <h2 class="font-headline font-black text-5xl uppercase tracking-tighter">Sugestões para Você</h2>
+                </div>
+                <a class="text-primary font-bold uppercase text-xs tracking-widest hover:underline" href="#">Ver
+                    catálogo completo →</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Item 1 -->
+                <div class="group">
+                    <div class="aspect-[4/5] bg-surface-container-highest overflow-hidden relative mb-4">
+                        <img alt="Crawler Excavator X-900"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            data-alt="Detailed studio shot of a heavy duty crawler excavator with grayscale finish, spotlighting industrial textures and joints"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAilUvYT9YfWbgH65MhBLG_SUuY9-KTEygR2S6QKs6nsmNbYtA1gyMmNUlAFm4FSFj7NrijGpd3_Xbj8GU1cKvOfegi1URr86mu9Ig4fCxQMt-HNal289HchPCk2OzEjfRcvPrEXFWpsl5EsctPzvVguj2lumimrmQrt2QhWZtRG1xPnm1h6DnPXH_zaroXOpP_hmT9xULsR8rM2WYmM1E31gXY-9-JhzeuJWLElXJSb1zoidfg0kgBbipZcqkv9h0-KjAulufJH0A" />
+                        <div class="absolute top-4 right-4 bg-primary text-white p-2">
+                            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-headline font-extrabold text-xl uppercase tracking-tight">Crawler Excavator
+                                X-900</h4>
+                            <p class="text-secondary text-[10px] font-bold uppercase tracking-widest">Extra-Heavy Duty •
+                                Terrain Pro</p>
+                        </div>
+                        <p class="font-headline font-black text-xl text-primary">R$ 4.200<span
+                                class="text-xs text-secondary font-medium">/dia</span></p>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="group">
+                    <div class="aspect-[4/5] bg-surface-container-highest overflow-hidden relative mb-4">
+                        <img alt="Titan Lifter 500-T"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            data-alt="Modern telescopic handler crane standing against a neutral grey background, high-contrast industrial photography"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkFv07qVMXhD9-DA-m5Z-MmiJ7dS5mYsvrxKMbTIpTfrKEUa-EslUC_eqYOiDXa7WE2FUzeC5Nc5wvZO546AqITi-Y5Ykb4q1cJHoBydwpknNraXN172lvL1VgRuXJMfWc3Pm44x3SdTLsO9Nwqk4XsaNiT5gjogKfn5kDWHXF_yAA4irC9R1Fji-AGBcqEZQZjOFCwHC4nB3hiZBw-uPMwzlAMm79QFF_dQD4GS4tDOvx8a665RVVSbuhXgZnDhJeXyIfBnL2jZI" />
+                        <div class="absolute top-4 right-4 bg-primary text-white p-2">
+                            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-headline font-extrabold text-xl uppercase tracking-tight">Titan Lifter 500-T
+                            </h4>
+                            <p class="text-secondary text-[10px] font-bold uppercase tracking-widest">Logistic Core •
+                                Precision</p>
+                        </div>
+                        <p class="font-headline font-black text-xl text-primary">R$ 2.850<span
+                                class="text-xs text-secondary font-medium">/dia</span></p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="group">
+                    <div class="aspect-[4/5] bg-surface-container-highest overflow-hidden relative mb-4">
+                        <img alt="Iron Mover L-40"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            data-alt="Heavy duty wheel loader side profile, matte steel finish, aggressive tire tread detail, dramatic studio lighting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0sjveEV1RDSaturVkZU8068AKFF9o1eqkk-AzGRHVIYTmX6mlHI9ZaJAmevv8WmUW1mcuPwASTZ6rZbnVkIMItZLq8UH8wOHmLqY_rYFvhYFBmsvycgX8-6AIYy6egTeXli9BCZL67iE3Hbgoy3GD9MzDHsBU0UshbH6OxfUYm5bSdjz9wErivJon__CQDzeP9RHhYuvYY_cwPvNbrp9lcmwvW78N97W74uFR_lmgSR28DXIiutTLcsZIJb3QrOz01JexHyNlgS4" />
+                        <div class="absolute top-4 right-4 bg-primary text-white p-2">
+                            <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-headline font-extrabold text-xl uppercase tracking-tight">Iron Mover L-40
+                            </h4>
+                            <p class="text-secondary text-[10px] font-bold uppercase tracking-widest">Bulk Material •
+                                High Vol</p>
+                        </div>
+                        <p class="font-headline font-black text-xl text-primary">R$ 3.100<span
+                                class="text-xs text-secondary font-medium">/dia</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- Footer -->
+    <footer id="footer"></footer>
+    <script src="../generico/jsgenerico/frame.js"></script>
+</body>
+
+</html>

@@ -14,12 +14,13 @@ try {
     $data = json_decode($response, true); // tranforma json em array
     error_reporting(0); // REMOVE AS LOGS DE ERROS NO HEADER
 
-    if($data["connected"] == false || $response == false)
-    {
-        if($response == false || $response == 0) $statusCode = 503;
-        header('Location: ../error/code.php?er='. $statusCode);
+
+    // if($data["connected"] == false || $response == false)
+    // {
+    //     if($response == false || $response == 0) $statusCode = 503;
+    //     header('Location: ../error/code.php?er='. $statusCode);
         
-    }
+    // }
 
     
     
