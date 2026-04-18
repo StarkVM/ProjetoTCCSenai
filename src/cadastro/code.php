@@ -152,7 +152,7 @@ if(isset($er))
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required class="input w-full">
-    <input type="tel" name="telefone" placeholder="Telefone" required class="input w-full">
+    <input id="telefone" type="tel" name="telefone" placeholder="Telefone" required class="input w-full">
   </div>
 
   <input type="email" name="email" placeholder="Email" required class="input w-full">
@@ -194,16 +194,16 @@ if(isset($er))
     <input type="text" name="numero" placeholder="Número" required class="input w-full">
   </div>
 
-  <fieldset readonly class="space-y-4">
+  <fieldset class="space-y-4">
 
-    <input id="rua" type="text" name="rua" placeholder="Rua" required class="input w-full">
+    <input id="rua" type="text" name="rua" placeholder="Rua" required class="input w-full" readonly>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input id="bairro" type="text" name="bairro" placeholder="Bairro" required class="input w-full">
-      <input id="cidade" type="text" name="cidade" placeholder="Cidade" required class="input w-full">
+      <input id="bairro" type="text" name="bairro" placeholder="Bairro" required class="input w-full" readonly>
+      <input id="cidade" type="text" name="cidade" placeholder="Cidade" required class="input w-full" readonly>
     </div>
 
-    <input id="estado" type="text" name="estado" placeholder="Estado" required class="input w-full">
+    <input id="estado" type="text" name="estado" placeholder="Estado" required class="input w-full" readonly>
 
   </fieldset>
 </div>
@@ -237,8 +237,7 @@ if(isset($er))
 </div>
 </div>
 </footer>
-<script src="../generico/jsgenerico/script.js">
-</script>
+<script src="../generico/jsgenerico/script.js"></script>
 <script>
 //MASCARA DE CPF
 cpfField.addEventListener("input", (e) => {
@@ -255,5 +254,46 @@ cpfField.addEventListener("input", (e) => {
   e.target.value = value;
 });
 
+//MÁSCARA DE TELEFONE
+telefoneField.addEventListener("input", (e) => {
+  let value = e.target.value;
+
+  value = value.replace(/\D/g, "");
+
+  // limita a 11 dígitos
+  value = value.substring(0, 11);
+
+  // aplica máscara
+  value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+  value = value.replace(/(\d{5})(\d)/, "$1-$2");
+
+  e.target.value = value;
+});
+
+// MASCARA DE CEP
+cepField.addEventListener("input", (e) => {
+  let value = e.target.value;
+
+  value = value.replace(/\D/g, "");
+
+  // limita a 8 dígitos
+  value = value.substring(0, 8);
+
+  // aplica máscara
+  value = value.replace(/(\d{5})(\d)/, "$1-$2");
+
+  e.target.value = value;
+});
+
+//REMOVER ESPAÇOS DA SENHA
+senha1.addEventListener("keydown", (e) => {
+  if (e.key === " ") {
+    e.preventDefault();
+  }
+});
+
+senha1.addEventListener("input", (e) => {
+  e.target.value = e.target.value.replace(/\s/g, "");
+});
 </script>
 </body></html>

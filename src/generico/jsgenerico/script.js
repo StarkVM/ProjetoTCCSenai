@@ -12,11 +12,11 @@ const button = document.getElementById("submitbutton");
 const senha1 = document.getElementById("senha1");
 const senha2 = document.getElementById("senha2");
 const cpfField = document.getElementById("cpf");
+const telefoneField = document.getElementById("telefone");
 
 let cepcondition = false;
 let passwordcondition = false;
 let cpfcondition = false;
-
 
 // botão começa desativado
 if (button) button.disabled = true;
@@ -82,16 +82,30 @@ if (senha1 && senha2) {
 }
 
 function confirmarSenha() {
-  if (senha1.value === senha2.value) {
-    document.getElementById("erroSenha").innerText = "";
-    passwordcondition = true;
-    console.log("SENHA CONFIRMADA");
-    atualizarBotao();
-  } else if(senha1.value != senha2.value){
-    document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
-    passwordcondition = false;
+
+  function validar() {
+    if (senha1.value === senha2.value) {
+
+      if (senha1.value.length < 8) {
+        document.getElementById("erroSenha").innerText = "A senha deve ter pelo menos 8 caracteres!";
+        passwordcondition = false;
+      } else {
+        document.getElementById("erroSenha").innerText = "";
+        console.log("SENHA CONFIRMADA");
+        passwordcondition = true;
+      }
+
+    } else {
+      document.getElementById("erroSenha").innerText = "As senhas não coincidem!";
+      passwordcondition = false;
+    }
+
     atualizarBotao();
   }
+
+  // escuta os DOIS campos
+  senha1.addEventListener("input", validar);
+  senha2.addEventListener("input", validar);
 }
 
 // =========================
