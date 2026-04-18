@@ -16,7 +16,7 @@ if(isset($er) && !empty($er))
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Titan Rentals | Secure Access</title>
+<title>Titan Rentals | Acesso Seguro</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -105,7 +105,7 @@ if(isset($er) && !empty($er))
 <!-- Left Column: Branding & Immersive Visual -->
 <section class="hidden md:flex relative items-end p-12 bg-on-surface">
 <div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover opacity-40 grayscale-[0.5]" data-alt="dramatic low-angle shot of a massive yellow excavator on a construction site at dusk with harsh industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppiWBJ-lBvlHyHKoqGHS9i5kKmagZeh-Qo27kwfQSeOzfx0hUL3NADEgqXwqbM-Snj2dh5yuvfU6j7RBYm14EIuO-2yQVG3nzET45M42JIHw3zev1hf5tKoKC84b0-eaWOLNiCvYeNExsgTKd2ce6uAMPG4Levxo2vpaEZVrvnr3c7q-whX4v0wd_AP2dp0fuhjjEsCOLYG6uFCaqb8cXv2KF-Fv-gYCLAtih2Bt402kAJtGqUarLUYeI2TqzJP3jMsqZBbVB6AeM"/>
+<img class="w-full h-full object-cover opacity-40 grayscale-[0.5]" data-alt="foto dramática em contrapicado de uma enorme escavadeira amarela em um canteiro de obras ao anoitecer com iluminação industrial intensa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppiWBJ-lBvlHyHKoqGHS9i5kKmagZeh-Qo27kwfQSeOzfx0hUL3NADEgqXwqbM-Snj2dh5yuvfU6j7RBYm14EIuO-2yQVG3nzET45M42JIHw3zev1hf5tKoKC84b0-eaWOLNiCvYeNExsgTKd2ce6uAMPG4Levxo2vpaEZVrvnr3c7q-whX4v0fuhjjEsCOLYG6uFCaqb8cXv2KF-Fv-gYCLAtih2Bt402kAJtGqUarLUYeI2TqzJP3jMsqZBbVB6AeM"/>
 <div class="absolute inset-0 bg-gradient-to-t from-on-surface via-on-surface/40 to-transparent"></div>
 </div>
 <div class="relative z-10 max-w-lg">
@@ -138,7 +138,7 @@ if(isset($er) && !empty($er))
 <div class="inline-flex items-center justify-center w-16 h-16 bg-surface-container-highest mb-6 rounded-lg">
 <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">shield_person</span>
 </div>
-<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2 uppercase">Authorization Required</h2>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2 uppercase">Autorização Necessária</h2>
 <p class="text-on-surface-variant text-sm font-medium">
                         Digite o código para verificação de 6 dígitos que foi enviado para o email <?php echo $_SESSION['email'] ?? "<p style='color: red;'> EMAIL NÃO CARREGADO! </p>"; ?></span>.
                     </p>
@@ -147,7 +147,7 @@ if(isset($er) && !empty($er))
 <form class="space-y-8"  method="post" action="2fa.php">
 <div>
 <label class="block font-headline text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-4">
-                            Security Token
+                            Token de Segurança
                         </label>
 <div class="flex gap-2 sm:gap-3">
 <!-- Input pattern using the "Sturdy Card" rule for inputs -->
@@ -163,16 +163,16 @@ if(isset($er) && !empty($er))
 <div class="space-y-4">
     <p id="erro" style='font-size: 17px; color:red'><?php if(isset($responseError)) echo $responseError?></p>
 <button name="verificar" class="w-full signature-gradient text-white py-4 font-headline font-bold uppercase tracking-widest text-sm rounded-md shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
-                            Verify Identity
+                            Verificar Identidade
                             <span class="material-symbols-outlined text-lg">verified_user</span>
 </button>
 <div class="flex items-center justify-between pt-4">
 <button class="text-on-surface-variant font-label text-[10px] uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
 <span class="material-symbols-outlined text-sm">refresh</span>
-                                Resend Token
+                                Reenviar Token
                             </button>
 <a class="text-primary font-label text-[10px] uppercase tracking-widest font-bold border-b-2 border-primary/20 hover:border-primary transition-all" href="#">
-                                Support Terminal
+                                Terminal de Suporte
                             </a>
 </div>
 </div>
@@ -182,12 +182,12 @@ if(isset($er) && !empty($er))
 <div class="h-[1px] w-full bg-surface-container-highest"></div>
 <div class="flex items-center gap-4 text-on-surface-variant/40">
 <div class="flex flex-col">
-<span class="font-headline text-[9px] uppercase font-bold tracking-widest">Protocol</span>
-<span class="font-body text-[11px]">AES-256 Industrial Grade</span>
+<span class="font-headline text-[9px] uppercase font-bold tracking-widest">Protocolo</span>
+<span class="font-body text-[11px]">AES-256 de Grau Industrial</span>
 </div>
 <div class="w-1 h-1 bg-surface-container-highest rounded-full"></div>
 <div class="flex flex-col">
-<span class="font-headline text-[9px] uppercase font-bold tracking-widest">Instance</span>
+<span class="font-headline text-[9px] uppercase font-bold tracking-widest">Instância</span>
 <span class="font-body text-[11px]">TITAN-SEC-442</span>
 </div>
 </div>

@@ -7,7 +7,7 @@ $error = $_GET['er'] ?? 404;
 
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
@@ -106,15 +106,15 @@ $error = $_GET['er'] ?? 404;
 <div class="flex items-center gap-8">
 <a class="text-2xl font-black italic tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8]" href="#">HEAVY_EQUIP</a>
 <div class="hidden lg:flex gap-6">
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Fleet</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Projects</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">About</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Support</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Frota</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Projetos</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Sobre</a>
+<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Suporte</a>
 </div>
 </div>
 <div class="flex items-center gap-4">
-<button class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] hover:text-[#835400] transition-all">Contact</button>
-<button class="bg-[#835400] text-white px-6 py-2 font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold hover:scale-95 duration-75">Login</button>
+<button class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] hover:text-[#835400] transition-all">Contato</button>
+<button class="bg-[#835400] text-white px-6 py-2 font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold hover:scale-95 duration-75">Entrar</button>
 </div>
 </nav>
 <div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
@@ -128,37 +128,37 @@ $error = $_GET['er'] ?? 404;
 <div class="w-full lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
 <div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-sm mb-6">
 <span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">warning</span>
-<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant">Maintenance Required</span>
+<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant">Manutenção Necessária</span>
 </div>
 <h1 class="font-headline text-8xl md:text-[10rem] font-black text-on-surface leading-[0.8] mb-8 tracking-tighter opacity-10">
                     <?php if(isset($error)) echo $error?>
                 </h1>
 <div class="relative -mt-16 md:-mt-24 mb-12">
 <h2 class="font-headline text-4xl md:text-6xl font-extrabold text-on-surface leading-tight">
-                        System <span class="text-primary italic">Anomaly</span> Detected
+                        Anomalia do <span class="text-primary italic">Sistema</span> Detectada
                     </h2>
 <p class="font-body text-xl text-on-surface-variant mt-6 max-w-lg mx-auto lg:mx-0">
-                        The resource you are attempting to retrieve is currently unavailable or has been decommissioned from the fleet.
+                        O recurso que você está tentando acessar está atualmente indisponível ou foi retirado da frota.
                     </p>
 </div>
 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
 <a class="btn-gradient px-8 py-4 text-on-primary font-headline font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 active:scale-95 transition-all brutal-shadow" href="#">
 <span class="material-symbols-outlined">home_work</span>
-                        Return to Headquarters
+                        Retornar à Base
                     </a>
 <a class="bg-surface-container-highest px-8 py-4 text-on-surface font-headline font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all" href="#">
 <span class="material-symbols-outlined">support_agent</span>
-                        Contact Terminal
+                        Contatar Terminal
                     </a>
 </div>
 <!-- Technical Specs Display -->
 <div class="mt-16 grid grid-cols-2 gap-8 border-t border-outline-variant/20 pt-8 opacity-60">
 <div>
-<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">Error Protocol</p>
+<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">Protocolo de Erro</p>
 <p class="font-headline text-lg font-bold">X-J88-MISSING</p>
 </div>
 <div>
-<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">Terminal ID</p>
+<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">ID do Terminal</p>
 <p class="font-headline text-lg font-bold">SITE-04-A</p>
 </div>
 </div>
@@ -195,10 +195,10 @@ $error = $_GET['er'] ?? 404;
                 </p>
 </div>
 <div class="flex flex-wrap justify-center gap-8">
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Terms of Service</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Machine Ethics</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Safety Protocols</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Contact Terminal</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Termos de Serviço</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Ética de Máquina</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Protocolos de Segurança</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Contatar Terminal</a>
 </div>
 </div>
 </footer>

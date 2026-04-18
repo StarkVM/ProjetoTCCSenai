@@ -19,7 +19,7 @@ if(isset($er))
 
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -113,7 +113,7 @@ if(isset($er))
 <!-- Left Column: Branding and Imagery (Asymmetric Layout) -->
 <div class="relative w-full md:w-1/2 lg:w-[60%] h-64 md:h-auto overflow-hidden bg-on-background">
 <div class="absolute inset-0 z-0">
-<img alt="Heavy industrial excavator" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Cinematic shot of a massive yellow excavator on a construction site during blue hour with sharp mechanical details and industrial atmospheric haze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6ev4WxiieivgIb66SpWY2arkN2yITvwjeuHuUSuk5VAxB3tno5_EoJIpRYVY62MXErOdcUf5gJlblc0WMV5Mn5tSkJ6dJihHUfjD8MLbYYMb-cBWz5YvTvOyZqP7UMJDC17qOgAQgKKmCIfPlmHKGck9WbsgeZ7GcPmoODX76RJUNnFMJwt6Ml6k-_SldReVycHGjVsN0hWoQCKbEfOgA83ZKWHlac_iucCSpIjtdwFdJQbfGgYv6qvWSrdTTYK1Zmj932-NbVYO"/>
+<img alt="Escavadeira industrial pesada" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Cena cinematográfica de uma enorme escavadeira amarela em um canteiro de obras durante a hora azul, com detalhes mecânicos nítidos e névoa atmosférica industrial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6ev4WxiieivgIb66SpWY2arkN2yITvwjeuHuUSuk5VAxB3tno5_EoJIpRYVY62MXErOdcUf5gJlblc0WMV5Mn5tSkJ6dJihHUfjD8MLbYYMb-cBWz5YvTvOyZqP7UMJDC17qOgAQgKKmCIfPlmHKGck9WbsgeZ7GcPmoODX76RJUNnFMJwt6Ml6k-_SldReVycHGjVsN0hWoQCKbEfOgA83ZKWHlac_iucCSpIjtdwFdJQbfGgYv6qvWSrdTTYK1Zmj932-NbVYO"/>
 </div>
 <div class="absolute inset-0 bg-gradient-to-t from-on-background via-transparent to-transparent opacity-80"></div>
 <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-16">
@@ -122,10 +122,10 @@ if(isset($er))
 </div>
 <div class="max-w-xl">
 <h1 class="font-headline text-5xl md:text-7xl font-bold text-surface tracking-tighter leading-none mb-6">
-                        BUILD THE <span class="text-primary-container">FUTURE</span> WITH US.
+                        CONSTRUA O <span class="text-primary-container">FUTURO</span> COM A GENTE.
                     </h1>
 <p class="font-label text-surface/70 uppercase tracking-widest text-sm max-w-md">
-                        Join the global network of precision engineering and industrial logistics. Secure your access to the world's most powerful fleet.
+                        Junte-se à rede global de engenharia de precisão e logística industrial. Garanta seu acesso à frota mais poderosa do mundo.
                     </p>
 </div>
 </div>
@@ -134,7 +134,7 @@ if(isset($er))
 <div class="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center p-6 md:p-12 lg:p-20 bg-surface">
 <div class="w-full max-w-md">
 <div class="mb-10">
-<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CREATE ACCOUNT</h2>
+<h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CRIAR CONTA</h2>
 <div class="h-1 w-12 bg-primary"></div>
 </div>
 <form method="POST" class="space-y-10 max-w-2xl mx-auto" action="cadastroB.php">
@@ -220,7 +220,7 @@ if(isset($er))
 </form>
 <div class="mt-8 text-center">
 <p class="font-body text-xs text-on-surface-variant uppercase tracking-widest">
-                        Already part of the fleet? <a class="text-primary font-bold hover:underline" href="#">Login Access</a>
+                        Já faz parte da frota? <a class="text-primary font-bold hover:underline" href="#">Acesso de Login</a>
 </p>
 </div>
 </div>
@@ -231,9 +231,9 @@ if(isset($er))
 <div class="flex justify-between items-center text-[10px] font-label text-on-background/40 uppercase tracking-[0.3em] font-bold">
 <div>© 2024 TITAN RENTALS INDUSTRIAL GROUP.</div>
 <div class="flex gap-8">
-<a class="hover:text-primary transition-colors" href="#">FLEET SOLUTIONS</a>
-<a class="hover:text-primary transition-colors" href="#">SAFETY STANDARDS</a>
-<a class="hover:text-primary transition-colors" href="#">CONTACT ENGINEERING</a>
+<a class="hover:text-primary transition-colors" href="#">SOLUÇÕES DE FROTA</a>
+<a class="hover:text-primary transition-colors" href="#">NORMAS DE SEGURANÇA</a>
+<a class="hover:text-primary transition-colors" href="#">CONTATO DE ENGENHARIA</a>
 </div>
 </div>
 </footer>

@@ -120,7 +120,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 </div>
 <div class="container mx-auto px-8 relative z-10">
 <div class="max-w-4xl">
-<span class="font-headline font-bold uppercase tracking-[0.3em] text-primary mb-6 block text-sm">Industrial Precision</span>
+<span class="font-headline font-bold uppercase tracking-[0.3em] text-primary mb-6 block text-sm">Precisão Industrial</span>
 <h1 class="font-headline text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter text-on-surface mb-8">
                         A MAIOR FROTA <br/> <span class="text-primary-container">AO SEU ALCANCE.</span>
 </h1>
@@ -137,16 +137,16 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <!-- Category Chips -->
 <div class="flex flex-wrap gap-3 mt-8">
 <button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">construction</span> Excavators
+<span class="material-symbols-outlined text-sm">construction</span> Escavadeiras
                         </button>
 <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">precision_manufacturing</span> Cranes
+<span class="material-symbols-outlined text-sm">precision_manufacturing</span> Guindastes
                         </button>
 <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">agriculture</span> Backhoes
+<span class="material-symbols-outlined text-sm">agriculture</span> Retroescavadeiras
                         </button>
 <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">forklift</span> Tractors
+<span class="material-symbols-outlined text-sm">forklift</span> Tratores
                         </button>
 </div>
 </div>
@@ -161,11 +161,11 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <div class="container mx-auto px-8">
 <div class="flex justify-between items-end mb-16">
 <div>
-<h2 class="font-headline text-5xl font-black uppercase tracking-tighter">Featured Machinery</h2>
+<h2 class="font-headline text-5xl font-black uppercase tracking-tighter">Máquinas em Destaque</h2>
 <div class="h-1 w-24 bg-primary mt-4"></div>
 </div>
 <a class="text-primary font-headline font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all" href="#">
-                        View Full Catalog <span class="material-symbols-outlined">arrow_forward</span>
+                        Ver Catálogo Completo <span class="material-symbols-outlined">arrow_forward</span>
 </a>
 </div>
 <!-- CONTAINER DE CARDS -->
@@ -176,9 +176,9 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <div class="container mx-auto px-8">
 <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
 <div class="flex-1">
-<h2 class="font-headline text-6xl font-black uppercase tracking-tighter leading-none mb-6">WHY CHOOSE <br/><span class="text-primary">TITAN RENTALS?</span></h2>
+<h2 class="font-headline text-6xl font-black uppercase tracking-tighter leading-none mb-6">POR QUE ESCOLHER <br/><span class="text-primary">TITAN RENTALS?</span></h2>
 <p class="font-body text-on-surface-variant text-lg max-w-xl leading-relaxed">
-                            We've engineered a platform that bridges the gap between massive construction demands and elite machinery providers. Efficiency is in our gears.
+                            Criamos uma plataforma que reduz a distância entre demandas gigantes de construção e fornecedores de maquinário de elite. Eficiência está em nossas engrenagens.
                         </p>
 </div>
 <div class="flex-none hidden md:block">
@@ -190,8 +190,8 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <div class="col-span-12 md:col-span-8 bg-surface-container-high rounded-md p-10 flex flex-col justify-between group overflow-hidden relative">
 <div class="relative z-10">
 <span class="material-symbols-outlined text-primary text-5xl mb-6">security</span>
-<h3 class="font-headline text-3xl font-black uppercase mb-4">Total Security</h3>
-<p class="font-body text-on-surface-variant max-w-md">Every contract is backed by Titan-Grade insurance. Our escrow payment system ensures your funds are only released upon machine delivery and site confirmation.</p>
+<h3 class="font-headline text-3xl font-black uppercase mb-4">Segurança Total</h3>
+<p class="font-body text-on-surface-variant max-w-md">Cada contrato é garantido por seguro de nível Titan. Nosso sistema escrow libera seus recursos somente após entrega da máquina e confirmação no local.</p>
 </div>
 <div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity">
 <span class="material-symbols-outlined text-[20rem]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
@@ -200,21 +200,21 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <!-- Provider Benefit 1 -->
 <div class="col-span-12 md:col-span-4 bg-primary text-on-primary rounded-md p-10 flex flex-col justify-center">
 <span class="material-symbols-outlined text-4xl mb-4">analytics</span>
-<h3 class="font-headline text-2xl font-black uppercase mb-3">Provider Growth</h3>
-<p class="font-body text-primary-fixed text-sm">Scale your business with real-time fleet analytics and automated billing. Increase your machine utilization by 40%.</p>
+<h3 class="font-headline text-2xl font-black uppercase mb-3">Crescimento do Fornecedor</h3>
+<p class="font-body text-primary-fixed text-sm">Escalone seu negócio com análises de frota em tempo real e faturamento automatizado. Aumente a utilização das suas máquinas em 40%.</p>
 </div>
 <!-- Consumer Benefit 2 -->
 <div class="col-span-12 md:col-span-4 bg-tertiary text-on-tertiary rounded-md p-10 flex flex-col justify-center">
 <span class="material-symbols-outlined text-4xl mb-4">compare_arrows</span>
-<h3 class="font-headline text-2xl font-black uppercase mb-3">Price Control</h3>
-<p class="font-body text-tertiary-fixed text-sm">Compare live quotes from top-tier providers across the country. Find the perfect balance between tech specs and rental cost.</p>
+<h3 class="font-headline text-2xl font-black uppercase mb-3">Controle de Preço</h3>
+<p class="font-body text-tertiary-fixed text-sm">Compare cotações em tempo real de fornecedores de ponta em todo o país. Ache o equilíbrio perfeito entre especificações técnicas e custo de locação.</p>
 </div>
 <!-- Provider Benefit 2 -->
 <div class="col-span-12 md:col-span-8 bg-surface-container-low rounded-md p-10 flex items-center justify-between group">
 <div class="max-w-sm">
 <span class="material-symbols-outlined text-primary text-5xl mb-6">visibility</span>
-<h3 class="font-headline text-3xl font-black uppercase mb-4">Global Visibility</h3>
-<p class="font-body text-on-surface-variant">List your fleet in our nationwide network. Our algorithm places your machines in front of the projects that need them most.</p>
+<h3 class="font-headline text-3xl font-black uppercase mb-4">Visibilidade Global</h3>
+<p class="font-body text-on-surface-variant">Liste sua frota em nossa rede nacional. Nosso algoritmo coloca suas máquinas na frente dos projetos que mais precisam delas.</p>
 </div>
 <div class="hidden lg:block w-48 h-48 rounded-full border-[20px] border-surface-container-highest animate-pulse"></div>
 </div>
@@ -227,10 +227,10 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
 <div class="absolute inset-0 bg-primary opacity-5 mix-blend-overlay"></div>
 </div>
 <div class="container mx-auto px-8 relative z-10 text-center">
-<h2 class="font-headline text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10">READY TO BUILD?</h2>
+<h2 class="font-headline text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10">PRONTO PARA CONSTRUIR?</h2>
 <div class="flex flex-col md:flex-row justify-center gap-6">
-<button class="bg-primary text-on-primary font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-primary-container transition-all hover:scale-105">Find a Machine</button>
-<button class="border-2 border-surface text-surface font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-surface hover:text-on-background transition-all hover:scale-105">List Your Fleet</button>
+<button class="bg-primary text-on-primary font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-primary-container transition-all hover:scale-105">Encontre uma Máquina</button>
+<button class="border-2 border-surface text-surface font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-surface hover:text-on-background transition-all hover:scale-105">Liste sua Frota</button>
 </div>
 </div>
 </section>

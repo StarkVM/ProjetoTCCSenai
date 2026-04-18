@@ -11,7 +11,7 @@ if(isset($er) && !empty($er))
 
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -114,8 +114,8 @@ if(isset($er) && !empty($er))
                     </h1>
 <div class="h-1 w-12 bg-primary mb-8"></div>
 <p class="font-headline text-2xl font-light text-surface-container tracking-tight leading-snug">
-                        PRECISION ENGINEERING. <br/>
-                        UNYIELDING POWER.
+                        ENGENHARIA DE PRECISÃO. <br/>
+                        PODER INQUEBRÁVEL.
                     </p>
 </div>
 <div class="mt-20">
@@ -124,8 +124,8 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
 </div>
 <div>
-<p class="font-headline text-xs font-bold text-surface-variant uppercase tracking-widest">Fleet Authority</p>
-<p class="text-surface-container-low text-sm font-light">Access professional-grade machinery specs and rental scheduling.</p>
+<p class="font-headline text-xs font-bold text-surface-variant uppercase tracking-widest">Autoridade da Frota</p>
+<p class="text-surface-container-low text-sm font-light">Acesse especificações de maquinário profissional e agendamento de locações.</p>
 </div>
 </div>
 </div>
@@ -134,8 +134,8 @@ if(isset($er) && !empty($er))
 <div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-16 rounded-r-lg lg:rounded-l-none border-y lg:border-y-0 lg:border-r border-surface-container-highest">
 <div class="max-w-md mx-auto">
 <div class="mb-12">
-<h2 class="font-headline text-3xl font-bold text-on-surface tracking-tight mb-2">Login</h2>
-<p class="text-on-surface-variant text-sm uppercase tracking-widest font-semibold">Industrial Client Portal</p>
+<h2 class="font-headline text-3xl font-bold text-on-surface tracking-tight mb-2">Entrar</h2>
+<p class="text-on-surface-variant text-sm uppercase tracking-widest font-semibold">Portal de Clientes Industriais</p>
 </div>
 <form class="space-y-6" method="post" action="login.php">
 <!-- Email Field -->
@@ -151,10 +151,10 @@ if(isset($er) && !empty($er))
 <div class="flex justify-between items-end">
 <label class="font-headline text-xs font-bold text-on-surface uppercase tracking-widest flex items-center gap-2" for="password">
 <span class="material-symbols-outlined text-[16px]">lock_open</span>
-                                    Password
+                                    Senha
                                 </label>
 <a class="font-headline text-[10px] font-bold text-primary uppercase tracking-widest hover:text-on-primary-container transition-colors" href="#">
-                                    Forgot Password?
+                                    Esqueceu a senha?
                                 </a>
 </div>
 <input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="password" name="senha" placeholder="••••••••••••" required="" type="password"/>
@@ -163,7 +163,7 @@ if(isset($er) && !empty($er))
 <div class="flex items-center">
 <input class="w-4 h-4 text-primary border-outline-variant rounded-none focus:ring-primary focus:ring-offset-0 bg-surface-container-low" id="remember" name="remember" type="checkbox"/>
 <label class="ml-3 font-label text-xs font-medium text-on-surface-variant uppercase tracking-wider" for="remember">
-                                Remember this terminal
+                                Lembrar deste terminal
                             </label>
 </div>
 <!-- Login Button -->
@@ -171,7 +171,7 @@ if(isset($er) && !empty($er))
 <div class="pt-4">
 <button name="loginEntrar" class="group relative w-full bg-primary hover:bg-on-primary-container text-on-primary font-headline font-black text-sm uppercase tracking-[0.2em] py-5 rounded-sm transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden" type="submit">
 <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-50 group-hover:opacity-100 transition-opacity"></div>
-<span class="relative z-10">Authorize Session</span>
+<span class="relative z-10">Autorizar Sessão</span>
 <span class="material-symbols-outlined relative z-10 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
 </div>
@@ -179,10 +179,10 @@ if(isset($er) && !empty($er))
 <!-- Footer / Signup -->
 <div class="mt-12 pt-8 border-t border-surface-container-highest flex flex-col sm:flex-row justify-between items-center gap-4">
 <p class="font-label text-xs text-on-surface-variant uppercase tracking-widest">
-                            New operator?
+                            Novo operador?
                         </p>
 <a class="font-headline text-xs font-bold text-on-surface uppercase tracking-[0.1em] px-6 py-2 border border-outline-variant hover:bg-surface-container-high transition-colors rounded-sm" href="#">
-                            Create Account
+                            Criar Conta
                         </a>
 </div>
 </div>
@@ -206,9 +206,9 @@ if(isset($er) && !empty($er))
 <p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 TITAN RENTALS INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
 </div>
 <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end items-center">
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Fleet Solutions</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Safety Standards</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Soluções de Frota</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Normas de Segurança</a>
+<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Termos de Serviço</a>
 </div>
 </footer>
 </body></html>
