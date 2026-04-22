@@ -18,6 +18,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 

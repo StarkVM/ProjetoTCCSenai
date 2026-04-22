@@ -5,12 +5,33 @@ error_reporting(0); // limpa os erros e avisos do header
 
 // SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
 $er = $_GET['er'];
-if(isset($er))
+if(isset($er) && !empty($er))
 {
-    if($er == "1") $responseError = "CPF informado já está existente em nosso sistema!";
-    else if($er == "2")  $responseError = "Email informado já está existente em nosso sistema! Por favor, digite outro.";
-    else if($er == "3")  $responseError = "Senha informada contém menos de 8 caracteres!";
-    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+    switch ($er)
+    {
+        case "Email and Cpf conflict.":
+            $responseError = "Email e Cpf já estão cadastrados.";
+            break;
+        case "Email or Cpf conflict.":
+            $responseError = "Email ou Cpf já estão cadastrados.";
+            break;
+        case "Registration in progress.":
+            $responseError = "Registro em progresso com este Email ou Cpf.";
+            break;
+        case "Database save failed.":
+            $responseError = "Ocorreu um erro ao processar os dados, por favor, tente novamente.";
+            break;
+        case "Send verification code failed.":
+            $responseError = "Falha ao enviar o código de verificação para o email!";
+            break;
+        case "0":
+            $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
+            break;
+        default:
+            $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
+            break;
+    }
+
 }
 
 

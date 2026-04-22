@@ -2,6 +2,11 @@
 include '../../softwareVerification/querys.php';
 
     try {
+        $tempo = 60 * 60 * 24 * 7; // expiracao de 7 dias
+
+        ini_set('session.gc_maxlifetime', $tempo);
+        session_set_cookie_params($tempo);
+
         $ip = $_SERVER['REMOTE_ADDR']; // pega o ip do usuario
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         session_start();
@@ -35,7 +40,7 @@ include '../../softwareVerification/querys.php';
                 curl_close($ch);
                 if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']))
                 {
-
+                    session_unset(); // LIMPA A SESSAO
                     $_SESSION["accessToken"] =  $data['accessToken'];
                     $_SESSION["refreshToken"] = $data['refreshToken'];
                     $_SESSION["accessTokenExpiresAtUtc"] = $data['accessTokenExpiresAtUtc'];
@@ -44,20 +49,22 @@ include '../../softwareVerification/querys.php';
 
                     $dadosQ = ["status" => "success"];
                     atualizarContador("cadastro", 0, $ip, $userAgent, "site", 0, $dadosQ);
-                    echo "success";
+                    header("Location: ../home/me.php");
+                    return;
                     
                 }
+
                 else if ($statusCode >= 300 || $data['message'] == "Unable to verify email.")
                 {
-                    
+
                     header("location: code.php?er=1");
-                    
-                    
+
+
                 }
                 else{
                     header("location: code.php?er=2");
                 }
-            
+
             }
     } catch (\Throwable $th) {
         //throw $th;

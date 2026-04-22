@@ -140,7 +140,7 @@ if(isset($er) && !empty($er))
 </div>
 <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2 uppercase">Autorização Necessária</h2>
 <p class="text-on-surface-variant text-sm font-medium">
-                        Digite o código para verificação de 6 dígitos que foi enviado para o email <?php echo $_SESSION['email'] ?? "<p style='color: red;'> EMAIL NÃO CARREGADO! </p>"; ?></span>.
+                        Digite o código para verificação de 6 dígitos que foi enviado para o email <b><?php echo $_SESSION['email'] ?? "<p style='color: red;'> EMAIL NÃO CARREGADO! </p>"; ?></b></span>.
                     </p>
 </div>
 <!-- 2FA Input Field Grid -->

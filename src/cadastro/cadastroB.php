@@ -58,20 +58,40 @@
 
                 header('Location: ../2fa/code.php');
 
-            } else if ($statusCode == 409 && $data['message'] == 'CPF already exists.') // CPF JÁ EXISTE
-            {
+            }
+            else if ($statusCode >= 300)
+                {
+
+                    switch ($data['message'])
+                    {
+
+                        case "Email and Cpf conflict.":
+                            header("location: code.php?er=" . $data['message']);
+                            break;
+                        case "Email or Cpf conflict.": //CPF CADASTRADO OU EMAIL CADASTRADO EM UMA CONTA
+                            header("location: code.php?er=" . $data['message']);
+                            break;
+                        case "Registration in progress.": // CPF OU EMAIL ESTA EM UM REGISTRO EM PROGRESSO
+                            header("location: code.php?er=". $data['message']);
+                            break;
+                        case "Database save failed.": // FALHA AO SALVAR NO BANCO
+                            header("location: code.php?er=". $data['message']);
+                            break;
+                        case "Send verification code failed.": // FALHA AO ENVIAR O CODIGO PARA O EMAIL
+                            header("location: code.php?er=". $data['message']);
+                            break;
+
+                        default:
+                            header("location: code.php?er=0");
+                            break;
+                    }
 
 
-                header('Location: code.php?er=1');
-
-            } else if ($statusCode == 409 && $data['message'] == 'Email already exists.') // CPF JÁ EXISTE
-            {
-
-                header('Location: code.php?er=2');
-            } else {
+                }
+            else {
 
 
-                header('Location: code.php?er=4');
+                header('Location: code.php?er=0');
             }
         }
     }
