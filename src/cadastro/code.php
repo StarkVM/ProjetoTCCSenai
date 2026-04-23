@@ -207,7 +207,20 @@ if(isset($er))
 
   </fieldset>
 </div>
-
+<!-- TERMOS DE USO -->
+<div class="flex items-start gap-2 text-sm">
+  <input type="checkbox" id="termbox" required class="mt-1">
+  <label for="termos" class="text-on-surface-variant">
+    Eu li e concordo com os 
+    <a href="#" class="text-primary font-semibold hover:underline">
+      Termos de Uso
+    </a> 
+    e 
+    <a href="#" class="text-primary font-semibold hover:underline">
+      Política de Privacidade
+    </a>.
+  </label>
+</div>
 <!-- BOTÃO -->
     <p id="responseErro" style="color:red;"><?php  if(isset($responseError)) echo $responseError;?></p>
 <div class="pt-6">
@@ -227,17 +240,9 @@ if(isset($er))
 </div>
 </div>
 <!-- Footer Segment (Floating Style) -->
-<footer class="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-7xl px-8 hidden md:block">
-<div class="flex justify-between items-center text-[10px] font-label text-on-background/40 uppercase tracking-[0.3em] font-bold">
-<div>© 2024 TITAN RENTALS INDUSTRIAL GROUP.</div>
-<div class="flex gap-8">
-<a class="hover:text-primary transition-colors" href="#">SOLUÇÕES DE FROTA</a>
-<a class="hover:text-primary transition-colors" href="#">NORMAS DE SEGURANÇA</a>
-<a class="hover:text-primary transition-colors" href="#">CONTATO DE ENGENHARIA</a>
-</div>
-</div>
-</footer>
+<footer id="footer"></footer>
 <script src="../generico/jsgenerico/script.js"></script>
+<script src="../generico/jsgenerico/frame.js"></script>
 <script>
 //MASCARA DE CPF
 cpfField.addEventListener("input", (e) => {

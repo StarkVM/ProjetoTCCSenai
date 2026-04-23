@@ -13,10 +13,12 @@ const senha1 = document.getElementById("senha1");
 const senha2 = document.getElementById("senha2");
 const cpfField = document.getElementById("cpf");
 const telefoneField = document.getElementById("telefone");
+const termbox = document.getElementById("termbox");
 
 let cepcondition = false;
 let passwordcondition = false;
 let cpfcondition = false;
+let termboxcondition = false;
 
 // botão começa desativado
 if (button) button.disabled = true;
@@ -80,7 +82,17 @@ if (senha1 && senha2) {
   senha1.addEventListener("input", confirmarSenha);
   senha2.addEventListener("input", confirmarSenha);
 }
-
+//CAIXA DE TERMOS
+if (termbox) {
+  termbox.addEventListener("change", (e) => {
+    if (e.target.checked) {
+      termboxcondition = true;
+    } else {
+      termboxcondition = false;
+    }
+    atualizarBotao();
+  });
+}
 function confirmarSenha() {
 
   function validar() {
