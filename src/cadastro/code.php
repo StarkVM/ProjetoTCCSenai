@@ -27,6 +27,9 @@ if(isset($er) && !empty($er))
         case "0":
             $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
             break;
+        case "3":
+            $responseError = "A senha informada precisa ter entre 8 e 50 caracteres.";
+            break;
         default:
             $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
             break;

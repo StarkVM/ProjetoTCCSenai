@@ -34,8 +34,8 @@ try {
             $_SESSION[$sessao] = $value;
         }
         $_SESSION['logado'] = true;
-        var_dump($_SESSION);
-        //header("Location: code.php"); redirecionar para o home logado
+
+        header("Location: code.php"); //redirecionar para o home logado
     }
     else
     {
