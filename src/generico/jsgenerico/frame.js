@@ -1,7 +1,23 @@
 // carregar header
-fetch("../generico/htmlgenerico/header.html")
+fetch("/ProjetoTCCSenai/src/controllers/statusUsuario.php")
+  .then(r => r.json())
+  .then(data => {
+    let headerPath;
+
+    if (data.status === "guest") { //VISITANTE
+      headerPath = "../generico/htmlgenerico/header_guest.html";
+    } else if (data.status === "logged") { //LOGADO
+      headerPath = "../generico/htmlgenerico/headerLogado.html";
+    } else if (data.status === "super") { //SUPERAUTENTICADO
+      headerPath = "../generico/htmlgenerico/headersuperautenticado.html";
+    }
+
+    return fetch(headerPath);
+  })
   .then(r => r.text())
-  .then(html => document.getElementById("header").innerHTML = html);
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
+  });
 
 // carregar footer
 fetch("../generico/htmlgenerico/footer.html")
