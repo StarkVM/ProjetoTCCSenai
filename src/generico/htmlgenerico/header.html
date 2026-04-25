@@ -98,7 +98,7 @@
 
 <a class="nav-link text-[#835400] dark:text-[#f9a825] border-b-2 border-[#835400] dark:border-[#f9a825] pb-1" href="../home/code.php">Home</a>
 
-<a class="nav-link text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="../../src/catalogoAnuncios/code.html">Catalog</a>
+<a class="nav-link text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="../../catalogoAnuncios/code.html">Catalog</a>
 
 <a class="nav-link text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] hover:opacity-80 transition-opacity duration-200" href="#">Rentals</a>
 
@@ -114,34 +114,6 @@
 </header>
 
 </body>
-<script>
-  const links = document.querySelectorAll(".nav-link");
-
-  links.forEach(link => {
-    link.addEventListener("click", function () {
-
-      // remove o ativo de todos
-      links.forEach(l => {
-        l.classList.remove(
-          "text-[#835400]",
-          "dark:text-[#f9a825]",
-          "border-b-2",
-          "border-[#835400]",
-          "dark:border-[#f9a825]",
-          "pb-1"
-        );
-      });
-
-      // adiciona no clicado
-      this.classList.add(
-        "text-[#835400]",
-        "dark:text-[#f9a825]",
-        "border-b-2",
-        "border-[#835400]",
-        "dark:border-[#f9a825]",
-        "pb-1"
-      );
-    });
-  });
+<script src="../jsgenerico/headerFont.js">
 </script>
 </html>
