@@ -1,6 +1,6 @@
 const container = document.getElementById('cards-container');
 const items_limit = 10;
-let items_index = 1;
+let currentPage = 1;
 
 //OBJETO RETORNADO PELO HP
 const dados = [
@@ -130,12 +130,17 @@ function saveData(obj){
   }
 }
 
-// chama a função
-spareData(dados);
 
 //FUNÇÃO QUE GERA OS CARDS. O OBJECTS DEVE SER A LISTA RETORNADA PELO SELECT
-function spareData(objects) {
-  objects.forEach((object, index) => {
+function renderCards() {
+  container.innerHTML = "";
+
+  const start = (currentPage - 1) * items_limit;
+  const end = start + items_limit
+
+  const pageItems = dados.slice(start, end)
+
+  pageItems.forEach((object) => {
    
     container.innerHTML += `
         <div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
@@ -167,8 +172,7 @@ function spareData(objects) {
         </div>
         </div>
         `;
-        console.log(`${index}: ${object.nome}`);
-        items_index++;
+        console.log(`${object.nome}`);
     }
   );
 }
@@ -186,7 +190,7 @@ function renderPagination() {
   ${i}</button>
             <button`;
 
-    if (i === items_index) {
+    if (i === currentPage) {
       btn.style.fontWeight = "bold";
     }
 
@@ -199,4 +203,5 @@ function renderPagination() {
     pagination.appendChild(btn);
   }
 }
+renderCards();
 renderPagination();
