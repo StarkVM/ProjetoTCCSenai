@@ -14,7 +14,7 @@
             }
             // VERIFICAÇÃO DE QUANTIDADE DE CARACTERES NA SENHA
             $senhaF = trim($_SESSION['senha']);
-            if(strlen($senhaF) < 8){
+            if(strlen($senhaF) < 8 || strlen($senhaF) > 50) {
                 header('Location: code.php?er=3');
                 return;
             }
@@ -26,7 +26,7 @@
             $url = "http://localhost:5000/api/v1/user-access/auth/register";
             $dados = ["firstName" => $_SESSION['nome'],
                 "lastName" => $_SESSION['sobrenome'],
-                "birthDate" => $dataFormatada->format("Y-m-d\TH:i:s.v\Z"),
+                "birthDate" => $dataFormatada->format("Y-m-d"),
                 "email" => $_SESSION['email'],
                 "cpf" => $_SESSION['cpf'],
                 "password" => trim($_SESSION['senha']),

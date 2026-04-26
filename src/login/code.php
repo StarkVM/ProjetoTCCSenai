@@ -4,6 +4,7 @@ if(isset($er) && !empty($er))
 {
     if($er == "1") $responseError = "Não foi possivel completar o login!";
     else if($er == "2")  $responseError = "Ocorreu um erro ao efetuar o login, verifique os dados e tente novamente.";
+    else if($er == "3")  $responseError = "A senha informada precisa ter no mínimo 8 caracteres!";
     else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
 }
 ?>
@@ -144,7 +145,7 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-[16px]">alternate_email</span>
                                 Email
                             </label>
-<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="engineering@titan-rentals.com" required="" type="email"/>
+<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="engineering@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
 </div>
 <!-- Password Field -->
 <div class="space-y-2">

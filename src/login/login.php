@@ -5,6 +5,13 @@
             $email = $_POST['email'];
             $senha = $_POST['senha'];
 
+            // VERIFICA SE A SENHA TEM O MINIMO DE 8 CARACTERES
+            if(strlen($senha) < 8)
+            {
+                header('Location: code.php?er=3');
+                return;
+            }
+
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
             $url = "http://localhost:5000/api/v1/user-access/auth/login";
             $dados = ["email" => $email,
