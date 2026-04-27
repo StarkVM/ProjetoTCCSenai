@@ -95,52 +95,40 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <!-- Frente da Identidade -->
-            <div onclick="document.getElementById('FrenteIdentidadeInput').click()" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
+            <a href="../Scanner/code.php?tipo=frente" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
                 <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
                     <span class="material-symbols-outlined text-4xl text-primary" data-icon="badge">badge</span>
                 </div>
                 <h3 class="text-lg font-headline font-black tracking-tight mb-2">Frente da Identidade</h3>
                 <p class="text-on-surface-variant text-xs mb-6">JPG ou PNG</p>
                 <div class="btn-industrial text-white px-6 py-3 rounded-md font-headline font-bold uppercase tracking-tight text-xs shadow-lg shadow-primary/10 transition-all group-hover:scale-105 active:scale-95">
-                    Selecionar
+                    Escanear
                 </div>
-                <input type="file" id="FrenteIdentidadeInput" name="frente_identidade" accept="image/*" capture="environment" class="hidden" required />
-                <div id="previewFrente" class="mt-4 hidden">
-                    <img class="w-24 h-24 object-cover rounded mx-auto border-2 border-primary" />
-                </div>
-            </div>
+            </a>
 
             <!-- Verso da Identidade -->
-            <div onclick="document.getElementById('VersoIdentidadeInput').click()" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
+            <a href="../Scanner/code.php?tipo=verso" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
                 <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
                     <span class="material-symbols-outlined text-4xl text-primary" data-icon="credit_card">credit_card</span>
                 </div>
                 <h3 class="text-lg font-headline font-black tracking-tight mb-2">Verso da Identidade</h3>
                 <p class="text-on-surface-variant text-xs mb-6">JPG ou PNG</p>
                 <div class="btn-industrial text-white px-6 py-3 rounded-md font-headline font-bold uppercase tracking-tight text-xs shadow-lg shadow-primary/10 transition-all group-hover:scale-105 active:scale-95">
-                    Selecionar
+                    Escanear
                 </div>
-                <input type="file" id="VersoIdentidadeInput" name="verso_identidade" accept="image/*" capture="environment" class="hidden" required />
-                <div id="previewVerso" class="mt-4 hidden">
-                    <img class="w-24 h-24 object-cover rounded mx-auto border-2 border-primary" />
-                </div>
-            </div>
+            </a>
 
             <!-- Foto do Rosto -->
-            <div onclick="document.getElementById('FotoRostoInput').click()" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
+            <a href="../Scanner/facial-analysis.php?tipo=facial" class="bg-surface-container-lowest rounded-xl border-dashed border-2 border-outline-variant/50 p-8 flex flex-col items-center justify-center text-center shadow-sm hover:border-primary transition-colors group cursor-pointer relative">
                 <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors">
                     <span class="material-symbols-outlined text-4xl text-primary" data-icon="face">face</span>
                 </div>
-                <h3 class="text-lg font-headline font-black tracking-tight mb-2">Foto do Rosto</h3>
-                <p class="text-on-surface-variant text-xs mb-6">JPG ou PNG</p>
+                <h3 class="text-lg font-headline font-black tracking-tight mb-2">Escaneamento Facial</h3>
+                <p class="text-on-surface-variant text-xs mb-6">Clique aqui para escanear seu rosto</p>
                 <div class="btn-industrial text-white px-6 py-3 rounded-md font-headline font-bold uppercase tracking-tight text-xs shadow-lg shadow-primary/10 transition-all group-hover:scale-105 active:scale-95">
-                    Selecionar
+                    Escanear
                 </div>
-                <input type="file" id="FotoRostoInput" name="foto_rosto" accept="image/*" capture="user" class="hidden" required/>
-                <div id="previewRosto" class="mt-4 hidden">
-                    <img class="w-24 h-24 object-cover rounded mx-auto border-2 border-primary" />
-                </div>
-            </div>
+            </a>
         </div>
 
         <div class="mt-12 text-center flex flex-col items-center gap-6">
@@ -162,28 +150,7 @@
 </div>
 
 <script>
-function setupPreview(inputId, previewId) {
-  const input = document.getElementById(inputId);
-  const previewContainer = document.getElementById(previewId);
-  const img = previewContainer.querySelector("img");
-  
-  input.addEventListener("change", () => {
-    const file = input.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            img.src = e.target.result;
-            previewContainer.classList.remove("hidden");
-        };
-        reader.readAsDataURL(file);
-    }
-  });
-}
-
-// ativa para cada campo
-setupPreview("FrenteIdentidadeInput", "previewFrente");
-setupPreview("VersoIdentidadeInput", "previewVerso");
-setupPreview("FotoRostoInput", "previewRosto");
+// Script removido - Documentos agora são capturados via Scanner
 </script>
 </body>
 </html>
