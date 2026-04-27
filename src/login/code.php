@@ -182,7 +182,7 @@ if(isset($er) && !empty($er))
 <p class="font-label text-xs text-on-surface-variant uppercase tracking-widest">
                             Novo operador?
                         </p>
-<a class="font-headline text-xs font-bold text-on-surface uppercase tracking-[0.1em] px-6 py-2 border border-outline-variant hover:bg-surface-container-high transition-colors rounded-sm" href="#">
+<a class="font-headline text-xs font-bold text-on-surface uppercase tracking-[0.1em] px-6 py-2 border border-outline-variant hover:bg-surface-container-high transition-colors rounded-sm" href="../cadastro/code.php">
                             Criar Conta
                         </a>
 </div>
