@@ -74,14 +74,14 @@ $nomeCompleto = $userData['firstName'] . ' ' . $userData['lastName'];
 <div class="absolute inset-0 bg-gradient-to-t from-on-background via-transparent to-transparent opacity-80"></div>
 <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-16">
 <div class="flex items-center gap-2">
-<span class="font-headline text-3xl font-black tracking-tighter text-surface uppercase">TITAN RENTALS</span>
+<span class="font-headline text-3xl font-black tracking-tighter text-surface uppercase">Heavy Rent</span>
 </div>
 <div class="max-w-xl">
 <h1 class="font-headline text-5xl md:text-7xl font-bold text-surface tracking-tighter leading-none mb-6">
                         TORNE-SE UM <span class="text-primary-container">VENDEDOR</span> AGORA.
                     </h1>
 <p class="font-label text-surface/70 uppercase tracking-widest text-sm max-w-md">
-                        Expanda seus negócios e chegue a mais clientes na plataforma TITAN RENTALS.
+                        Expanda seus negócios e chegue a mais clientes na plataforma Heavy Rent.
                     </p>
 </div>
 </div>

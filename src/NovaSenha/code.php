@@ -3,7 +3,7 @@
 <html lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Definir Nova Senha | Titan Rentals</title>
+<title>Definir Nova Senha | Heavy Rent</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -100,7 +100,7 @@
 <div class="relative z-10 w-full">
 <!-- Brand Anchor -->
 <div class="mb-24">
-<span class="font-headline text-2xl font-bold tracking-tighter uppercase text-surface-bright">HEAVY_SPEC</span>
+<span class="font-headline text-2xl font-bold tracking-tighter uppercase text-surface-bright">Heavy Rent</span>
 <div class="h-1 w-12 bg-primary mt-2"></div>
 </div>
 <!-- Slogan -->
@@ -128,7 +128,7 @@
 <div class="w-full max-w-lg">
 <!-- Mobile Branding (Hidden on MD) -->
 <div class="md:hidden mb-12 flex flex-col items-center">
-<span class="font-headline text-xl font-black tracking-tighter uppercase text-primary">HEAVY_SPEC</span>
+<span class="font-headline text-xl font-black tracking-tighter uppercase text-primary">Heavy Rent</span>
 <div class="h-[1px] w-full bg-surface-container-highest mt-6"></div>
 </div>
 <!-- Form Header -->
@@ -197,7 +197,7 @@
                         SISTEMA_V.4.2 // CRYPTO_SEC
                     </div>
 <div class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
-                        © 2024 HEAVY_SPEC
+                        © 2024 Heavy Rent
                     </div>
 </footer>
 </div>

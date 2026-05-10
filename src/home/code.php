@@ -181,7 +181,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
             <div class="container mx-auto px-8">
                 <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
                     <div class="flex-1">
-                        <h2 class="font-headline text-6xl font-black uppercase tracking-tighter leading-none mb-6">POR QUE ESCOLHER <br /><span class="text-primary">TITAN RENTALS?</span></h2>
+                        <h2 class="font-headline text-6xl font-black uppercase tracking-tighter leading-none mb-6">POR QUE ESCOLHER <br /><span class="text-primary">Heavy Rent?</span></h2>
                         <p class="font-body text-on-surface-variant text-lg max-w-xl leading-relaxed">
                             Criamos uma plataforma que reduz a distância entre demandas gigantes de construção e fornecedores de maquinário de elite. Eficiência está em nossas engrenagens.
                         </p>

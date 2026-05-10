@@ -94,7 +94,7 @@
 <!-- SideNavBar -->
 <aside class="h-screen w-72 fixed left-0 top-0 bg-[#e5e2e1] dark:bg-zinc-900 flex flex-col py-8 px-6 z-50">
 <div class="mb-12">
-<h1 class="text-2xl font-black tracking-tighter text-[#1c1b1b] dark:text-zinc-100 font-headline uppercase">HEAVYGEAR</h1>
+<h1 class="text-2xl font-black tracking-tighter text-[#1c1b1b] dark:text-zinc-100 font-headline uppercase">Heavy Rent</h1>
 <p class="font-['Space_Grotesk'] uppercase tracking-tighter font-bold text-xs opacity-60 text-[#1c1b1b] dark:text-zinc-400">Portal do Vendedor</p>
 </div>
 <nav class="flex flex-col gap-2 flex-grow">
@@ -117,7 +117,7 @@
 <img alt="Foto de perfil do vendedor" class="w-10 h-10 rounded-md object-cover" data-alt="close-up headshot of a middle-aged professional man in a workshop setting with industrial equipment in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJqzNJk-MSaItidzw63eNTviRk-w62P5J8VFXeuyLREFx3vS9uP2fiF3UCGgJJTaGGE5cNX0kw0y4M27h0A2TKceORvPuXL7osgMtSNpI5fPShciRU2eUoxP675DbAmHz7y0wFMXT29yD4BxFKifwpgntNe9UsVarnfa6wsI3EUiuNDJwrz9EM2ieU7ZloT1tZG2e8S4Tb4bhaNcjp0RixCLQNvRLmJjbFxTUbYPmQfhE2STcllyKOp8NsxZJ_-MmOifSCbFefyziS"/>
 <div>
 <p class="text-sm font-bold font-headline">Arthur Titan</p>
-<p class="text-xs opacity-60">Titan Rentals Ltda.</p>
+<p class="text-xs opacity-60">Heavy Rent Ltda.</p>
 </div>
 </div>
 </aside>

@@ -16,7 +16,7 @@ if(isset($er) && !empty($er))
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Titan Rentals | Acesso Seguro</title>
+<title>Heavy Rent | Acesso Seguro</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -110,7 +110,7 @@ if(isset($er) && !empty($er))
 </div>
 <div class="relative z-10 max-w-lg">
 <div class="mb-8">
-<span class="text-primary-container font-headline font-black italic tracking-tighter text-4xl block mb-2">TITAN RENTALS</span>
+<span class="text-primary-container font-headline font-black italic tracking-tighter text-4xl block mb-2">Heavy Rent</span>
 <div class="h-1 w-24 bg-primary-container"></div>
 </div>
 <h1 class="font-headline text-5xl font-bold text-white leading-none tracking-tight mb-6">
@@ -130,7 +130,7 @@ if(isset($er) && !empty($er))
 <section class="bg-surface flex items-center justify-center p-8 md:p-16 relative">
 <!-- Mobile Brand Header (Visible only on small screens) -->
 <div class="absolute top-8 left-8 md:hidden">
-<span class="text-on-surface font-headline font-black italic tracking-tighter text-xl">TITAN RENTALS</span>
+<span class="text-on-surface font-headline font-black italic tracking-tighter text-xl">Heavy Rent</span>
 </div>
 <div class="w-full max-w-md">
 <!-- Header Icon & Title -->
@@ -202,7 +202,7 @@ if(isset($er) && !empty($er))
 <!-- Global Footer Fragment (Partial Injection) -->
 <footer class="bg-on-surface w-full py-6 px-12 flex flex-col md:flex-row justify-between items-center fixed bottom-0 left-0 right-0 z-50 mix-blend-difference md:mix-blend-normal md:bg-transparent">
 <p class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">
-            ©2024 HEAVY INDUSTRIES. PRECISION BRUTALISM SYSTEMS.
+            ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
         </p>
 <div class="hidden md:flex gap-8">
 <span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Safety Protocols</span>

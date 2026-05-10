@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login/code.php");
+    exit;
+}
+$profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_SESSION['profile_image'] : 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzUDQZl-HKLn1hbcibYx6YX5VTq7eAMYn1QPM01CHamypkVTJOl1k5xkmZRrCKE-ImYbQZtSuZH3P6pUs7BEJHyMRe4bsZl0_qURze9GcGIKaRSSPfIf5zXzOCA8DhWsYs8xPVpIiNgE5LUSzcubC5-IkZqoDQCJZRMQADhQ4LpjwSTl3ZBTeYidDzGISOrBCMdLjg9iFRCe5G5IWGasKNnq3PYVEoBbLPXg0QibzdcOkLRb6MvF_nRLGZOixdrrCjf9-I0Fzb2N8E';
+?>
 <!DOCTYPE html>
 
 <html lang="pt-BR"><head>
@@ -100,7 +108,7 @@
 <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
 <span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">settings</span>
 <div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
-<img alt="User operator profile" data-alt="Close-up portrait of a professional site manager wearing a white hard hat with a confident expression, soft outdoor industrial lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzUDQZl-HKLn1hbcibYx6YX5VTq7eAMYn1QPM01CHamypkVTJOl1k5xkmZRrCKE-ImYbQZtSuZH3P6pUs7BEJHyMRe4bsZl0_qURze9GcGIKaRSSPfIf5zXzOCA8DhWsYs8xPVpIiNgE5LUSzcubC5-IkZqoDQCJZRMQADhQ4LpjwSTl3ZBTeYidDzGISOrBCMdLjg9iFRCe5G5IWGasKNnq3PYVEoBbLPXg0QibzdcOkLRb6MvF_nRLGZOixdrrCjf9-I0Fzb2N8E"/>
+<img alt="User operator profile" data-alt="Close-up portrait of a professional site manager wearing a white hard hat with a confident expression, soft outdoor industrial lighting." src="<?php echo $profile_image; ?>"/>
 </div>
 </div>
 </div>
@@ -177,7 +185,7 @@
 <div class="p-8 md:p-10 bg-surface-container-low border-b border-stone-100 flex flex-col md:flex-row items-center gap-8">
 <div class="relative group">
 <div class="h-32 w-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
-<img alt="Ricardo Mendes Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzUDQZl-HKLn1hbcibYx6YX5VTq7eAMYn1QPM01CHamypkVTJOl1k5xkmZRrCKE-ImYbQZtSuZH3P6pUs7BEJHyMRe4bsZl0_qURze9GcGIKaRSSPfIf5zXzOCA8DhWsYs8xPVpIiNgE5LUSzcubC5-IkZqoDQCJZRMQADhQ4LpjwSTl3ZBTeYidDzGISOrBCMdLjg9iFRCe5G5IWGasKNnq3PYVEoBbLPXg0QibzdcOkLRb6MvF_nRLGZOixdrrCjf9-I0Fzb2N8E"/>
+<img alt="Ricardo Mendes Profile" class="w-full h-full object-cover" src="<?php echo $profile_image; ?>"/>
 </div>
 <button id="camera-btn" class="absolute bottom-0 right-0 bg-primary text-on-primary h-8 w-8 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
 <span class="material-symbols-outlined text-sm">photo_camera</span>

@@ -104,7 +104,7 @@ $error = $_GET['er'] ?? 404;
 <header class="fixed top-0 w-full z-50 bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md">
 <nav class="flex justify-between items-center px-8 py-4 w-full max-w-full mx-auto">
 <div class="flex items-center gap-8">
-<a class="text-2xl font-black italic tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8]" href="#">HEAVY_EQUIP</a>
+<a class="text-2xl font-black italic tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8]" href="#">Heavy Rent</a>
 <div class="hidden lg:flex gap-6">
 <a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Frota</a>
 <a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Projetos</a>
@@ -191,7 +191,7 @@ $error = $_GET['er'] ?? 404;
 <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
 <div class="mb-6 md:mb-0">
 <p class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40">
-                    ©2024 HEAVY INDUSTRIES. PRECISION BRUTALISM SYSTEMS.
+                    ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
                 </p>
 </div>
 <div class="flex flex-wrap justify-center gap-8">
