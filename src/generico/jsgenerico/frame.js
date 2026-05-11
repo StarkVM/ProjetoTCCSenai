@@ -1,15 +1,17 @@
 // carregar header
-fetch("/ProjetoTCCSenai/src/controllers/statusUsuario.php")
+fetch("http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
   .then(r => r.json())
   .then(data => {
     let headerPath;
 
-    if (data.status === "guest") { //VISITANTE
-      headerPath = "../generico/htmlgenerico/header_guest.html";
-    } else if (data.status === "logged") { //LOGADO
-      headerPath = "../generico/htmlgenerico/headerLogado.html";
-    } else if (data.status === "super") { //SUPERAUTENTICADO
-      headerPath = "../generico/htmlgenerico/headersuperautenticado.html";
+    if (data.status === "logged") {
+      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.html";
+
+    } else if (data.status === "super") {
+      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.html";
+
+    } else {
+      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/header.html";
     }
 
     return fetch(headerPath);
@@ -23,6 +25,7 @@ fetch("/ProjetoTCCSenai/src/controllers/statusUsuario.php")
 fetch("../generico/htmlgenerico/footer.html")
   .then(r => r.text())
   .then(html => document.getElementById("footer").innerHTML = html);
+
 
 // menu mobile
 function toggleMenu() {
