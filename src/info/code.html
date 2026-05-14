@@ -90,47 +90,8 @@
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md">
-<div class="flex justify-between items-center px-8 py-4 w-full max-w-full mx-auto">
-<div class="flex items-center gap-12">
-<span class="text-2xl font-black italic tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8]">Heavy Rent</span>
-<div class="hidden md:flex gap-8 font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold">
-<a class="text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Frota</a>
-<a class="text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Projetos</a>
-<a class="text-[#835400] dark:text-[#f9a825] border-b-2 border-[#835400] dark:border-[#f9a825] pb-1" href="#">Sobre</a>
-<a class="text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Suporte</a>
-</div>
-</div>
-<div class="flex items-center gap-4 font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold">
-<button class="text-[#1c1b1b] dark:text-[#fcf9f8] hover:text-[#835400] transition-all px-4">Contato</button>
-<button class="bg-[#835400] text-white px-6 py-2 hover:scale-95 duration-75">Entrar</button>
-</div>
-</div>
-<div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
-</nav>
-<main class="pt-24">
 <!-- Hero Section -->
-<header class="relative px-8 py-20 md:py-32 overflow-hidden bg-surface">
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
-<div class="md:col-span-8">
-<h1 class="font-headline text-5xl md:text-[7rem] leading-[0.9] font-black tracking-tighter mb-8 uppercase text-on-surface">
-                        TITAN<br/><span class="text-primary italic">RENTALS</span>
-</h1>
-<p class="font-body text-xl md:text-2xl font-light text-on-surface-variant max-w-2xl leading-relaxed">
-                        Projetando a próxima geração de infraestrutura para a indústria pesada. Somos a ponte entre a demanda e a implementação.
-                    </p>
-</div>
-<div class="md:col-span-4 flex flex-col items-start md:items-end gap-4">
-<div class="w-full h-64 bg-surface-container-highest overflow-hidden">
-<img class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-700" data-alt="Monochromatic side view of a massive industrial excavator arm against a clean white sky, emphasizing architectural lines and mechanical precision" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4wNsttaaAA9tv6AbAPRi7rYNxnIQ0UOjtFaIaoECeX4RpRrVdUo5SK613v3BHf4It_mvylvwEVoUo0Rz6Cp5csma3JWxwPe4-zD5Os1wvKNB9zBcw8JuJFfJlGofZBjMKjxHlozl0bBIO11r9-r5wO3Zc1sd85Ix_zRBOLyNonv3uoYBFyNb7Sr_XCWBaykvEHsZ1Joc2OU86e5EeliqDzT3MqLOQEMm7LcJHA499wMgLaULo1VcyiGMiUf0kGPDsGzu_bxUo-QtG"/>
-</div>
-<div class="flex flex-col md:text-right font-headline text-xs uppercase tracking-widest text-primary font-bold">
-<span>Terminal ID: 88-XJ</span>
-<span>Est. 2024 Heavy Rent</span>
-</div>
-</div>
-</div>
-</header>
+<header id="header"></header>
 <!-- Our Mission Section -->
 <section class="bg-surface-container-low py-32 px-8">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-24">
@@ -310,21 +271,7 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-[#1c1b1b] dark:bg-[#000000] w-full border-t border-[#f9a825]/20">
-<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full max-w-full mx-auto">
-<div class="flex flex-col md:flex-row gap-12 items-center">
-<span class="text-white font-headline text-lg font-black tracking-tighter opacity-100">Heavy Rent.</span>
-<div class="flex flex-wrap justify-center gap-8 font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40">
-<a class="hover:text-[#fcf9f8] transition-colors" href="#">Termos de Serviço</a>
-<a class="hover:text-[#fcf9f8] transition-colors" href="#">Ética de Máquina</a>
-<a class="hover:text-[#fcf9f8] transition-colors" href="#">Protocolos de Segurança</a>
-<a class="hover:text-[#fcf9f8] transition-colors" href="#">Contatar Terminal</a>
-</div>
-</div>
-<div class="mt-8 md:mt-0 font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#f9a825]">
-                ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
-            </div>
-</div>
-</footer>
+<footer id="footer"></footer>
+<script src="../generico/jsgenerico/frame.js"></script>
 <!-- SideNavBar - Suppressed on About Page focus unless explicit side navigation was requested. Since long-form editorial, TopNav handles global movement. -->
 </body></html>
