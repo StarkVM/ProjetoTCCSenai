@@ -1,17 +1,18 @@
 // carregar header
-fetch("http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
+fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
   .then(r => r.json())
   .then(data => {
     let headerPath;
 
     if (data.status === "logged") {
-      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.html";
+
+      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.html";
 
     } else if (data.status === "super") {
-      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.html";
+      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.html";
 
     } else {
-      headerPath = "http://localhost/TCCSENAI/ProjetoTCCSenai-Lorran/ProjetoTCCSenai/src/generico/htmlgenerico/header.html";
+      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/header.html";
     }
 
     return fetch(headerPath);

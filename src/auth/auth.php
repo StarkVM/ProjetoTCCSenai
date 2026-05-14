@@ -1,4 +1,7 @@
 <?php
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
 try {
     if(!isset($_SESSION))
     {
@@ -7,7 +10,7 @@ try {
     }
     session_start();
     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
-        $url = "http://localhost:5000/api/v1/user-access/auth/refresh-tokens";
+        $url = $endpoints->urlRefreshToken;
         $dados = ["refreshToken" => $_SESSION['refreshToken']];
 
         $ch = curl_init($url);

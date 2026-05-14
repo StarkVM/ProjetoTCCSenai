@@ -24,6 +24,9 @@ if(isset($er) && !empty($er))
         case "Send verification code failed.":
             $responseError = "Falha ao enviar o código de verificação para o email!";
             break;
+        case "User cpf validation failed.":
+            $responseError = "Falha ao validar o CPF, verifique as informações fornecidas e tente novamente.";
+            break;
         case "0":
             $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
             break;

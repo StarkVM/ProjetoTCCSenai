@@ -1,5 +1,8 @@
 
 <?php
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
     try {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['loginEntrar'])){
             $email = $_POST['email'];
@@ -13,7 +16,7 @@
             }
 
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
-            $url = "http://localhost:5000/api/v1/user-access/auth/login";
+            $url = $endpoints->urlLogin;
             $dados = ["email" => $email,
                 "password" => $senha];
 

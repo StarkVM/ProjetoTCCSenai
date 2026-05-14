@@ -1,4 +1,8 @@
 <?php
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
+
 $tempo = 60 * 60 * 24 * 7; // 7 dias para expirar a sessao
 
 ini_set('session.gc_maxlifetime', $tempo);
@@ -13,7 +17,7 @@ if(!isset($_SESSION))
 }
 
 try {
-    $url = "http://localhost:5000/api/v1/user-access/user/me";
+    $url = $endpoints->urlME;
 
 
     $ch = curl_init($url);

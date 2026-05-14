@@ -1,5 +1,7 @@
 <?php
-include '../../softwareVerification/querys.php';
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
 
     try {
         $tempo = 60 * 60 * 24 * 7; // expiracao de 7 dias
@@ -7,8 +9,6 @@ include '../../softwareVerification/querys.php';
         ini_set('session.gc_maxlifetime', $tempo);
         session_set_cookie_params($tempo);
 
-        $ip = $_SERVER['REMOTE_ADDR']; // pega o ip do usuario
-        $userAgent = $_SERVER['HTTP_USER_AGENT'];
         session_start();
         if(isset($_POST['verificar']) == "post")
             {
@@ -21,7 +21,7 @@ include '../../softwareVerification/querys.php';
 
 
                 // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
-                $url = "http://localhost:5000/api/v1/user-access/auth/email-verification/verify-email";
+                $url = $endpoints->urlVerifyEmail;
                 $dados = ["email" => $_SESSION['email'],
                         "code" => $codigo];
 
@@ -48,7 +48,6 @@ include '../../softwareVerification/querys.php';
                     $_SESSION["requestId"] = $data['requestId'];
 
                     $dadosQ = ["status" => "success"];
-                    atualizarContador("cadastro", 0, $ip, $userAgent, "site", 0, $dadosQ);
                     header("Location: ../home/me.php");
                     return;
                     
@@ -68,7 +67,7 @@ include '../../softwareVerification/querys.php';
             }
     } catch (\Throwable $th) {
         //throw $th;
-        echo "erro $th";
+
     }
    
     

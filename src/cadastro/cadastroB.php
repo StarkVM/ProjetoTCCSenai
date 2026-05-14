@@ -1,4 +1,7 @@
 <?php
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
     try {
 
         if (!isset($_SESSION)) {
@@ -23,7 +26,7 @@
             $dataFormatada->setTimezone(new DateTimeZone("UTC"));
 
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
-            $url = "http://localhost:5000/api/v1/user-access/auth/register";
+            $url = $endpoints->Cadastro;
             $dados = ["firstName" => $_SESSION['nome'],
                 "lastName" => $_SESSION['sobrenome'],
                 "birthDate" => $dataFormatada->format("Y-m-d"),
@@ -80,7 +83,9 @@
                         case "Send verification code failed.": // FALHA AO ENVIAR O CODIGO PARA O EMAIL
                             header("location: code.php?er=". $data['message']);
                             break;
-
+                        case "User cpf validation failed.": // FALHA VALIDAR CPF
+                            header("location: code.php?er=". $data['message']);
+                            break;
                         default:
                             header("location: code.php?er=0");
                             break;

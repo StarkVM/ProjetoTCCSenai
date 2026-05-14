@@ -1,12 +1,10 @@
 <?php
 session_start();
 
-// força guest
-unset($_SESSION['user']);
-
-if (!isset($_SESSION['user'])) {
+header('Content-Type: application/json');
+if (!isset($_SESSION['logado']) || $_SESSION['logado'] == false) {
     echo json_encode(["status" => "guest"]);
-} elseif ($_SESSION['user']['role'] === 'admin') {
+} else if ($_SESSION['user']['role'] === 'admin') {
     echo json_encode(["status" => "super"]);
 } else {
     echo json_encode(["status" => "logged"]);

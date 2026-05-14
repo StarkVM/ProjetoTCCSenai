@@ -1,6 +1,6 @@
 <?php
 
-//require "verification.php";
+require "verification.php";
 
 session_start();
 

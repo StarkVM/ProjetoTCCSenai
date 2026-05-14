@@ -1,7 +1,10 @@
 <?php 
+require_once("../endpoints.php");
+
+$endpoints = new Endpoints();
 
 try {
-    $url = "http://localhost:5000/api/v1/user-access/health/db"; // END POINT PARA VERIFICAR OS STATUS DA API DB
+    $url = $endpoints->urlVerificarBanco; // END POINT PARA VERIFICAR OS STATUS DA API DB
 
     $ch = curl_init($url); // INICIA A REQUISIÇÃO
 
