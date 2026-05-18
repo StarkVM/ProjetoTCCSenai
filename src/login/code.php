@@ -146,7 +146,7 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-[16px]">alternate_email</span>
                                 Email
                             </label>
-<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="usuario@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
+<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="engineering@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
 </div>
 <!-- Password Field -->
 <div class="space-y-2">
@@ -193,7 +193,7 @@ if(isset($er) && !empty($er))
 <!-- Floating Hardware Details -->
 <div class="absolute bottom-10 right-10 hidden xl:block">
 <div class="flex flex-col items-end gap-2 opacity-30">
-    <p class="font-headline text-[10px] font-black tracking-[0.3em] uppercase">Nível de Segurança 4-A</p>
+<p class="font-headline text-[10px] font-black tracking-[0.3em] uppercase">Security Level 4-A</p>
 <div class="flex gap-1">
 <div class="h-1 w-8 bg-on-surface"></div>
 <div class="h-1 w-2 bg-primary"></div>
@@ -205,7 +205,7 @@ if(isset($er) && !empty($er))
 <footer class="w-full bg-[#f6f3f2] grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-8 border-t border-[#e5e2e1]">
 <div class="flex flex-col gap-2">
 <span class="text-lg font-bold text-[#1c1b1b] tracking-tighter uppercase font-headline">Heavy Rent</span>
-<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP. ENGENHARIA DE PRECISÃO.</p>
+<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
 </div>
 <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end items-center">
 <a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Soluções de Frota</a>

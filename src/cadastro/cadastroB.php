@@ -23,13 +23,13 @@ $endpoints = new Endpoints();
             }
             // CONVERTE A DATA NASCIMENTO PARA DATE TIME
             $dataFormatada = new DateTime($_SESSION['data_nascimento']);
-            $dataFormatada->setTimezone(new DateTimeZone("UTC"));
+
 
             // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
             $url = $endpoints->Cadastro;
             $dados = ["firstName" => $_SESSION['nome'],
                 "lastName" => $_SESSION['sobrenome'],
-                "birthDate" => $dataFormatada->format("Y-m-d"),
+                "birthDate" => $dataFormatada->format('Y-m-d'),
                 "email" => $_SESSION['email'],
                 "cpf" => $_SESSION['cpf'],
                 "password" => trim($_SESSION['senha']),
@@ -40,7 +40,8 @@ $endpoints = new Endpoints();
                     "street" => $_SESSION['rua'],
                     "zipCode" => $_SESSION['cep']
                 ]];
-            
+
+
             $ch = curl_init($url);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
