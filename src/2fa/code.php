@@ -5,7 +5,7 @@ session_start();
 $er = $_GET['er'] ?? null;
 if(isset($er) && !empty($er))
 {
-    if($er == "1") $responseError = "Não foi possivel verificar o email!";
+    if($er == "1") $responseError = "Não foi possivel verificar o email, revise o código informado!";
     else if($er == "2")  $responseError = "Ocorreu um erro ao verificar o email, verifique os dados novamente.";
     else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
 }

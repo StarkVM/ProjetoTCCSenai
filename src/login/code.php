@@ -146,7 +146,7 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-[16px]">alternate_email</span>
                                 Email
                             </label>
-<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="usuario@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
+<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="engineering@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
 </div>
 <!-- Password Field -->
 <div class="space-y-2">
@@ -155,19 +155,32 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-[16px]">lock_open</span>
                                     Senha
                                 </label>
-<a class="font-headline text-[10px] font-bold text-primary uppercase tracking-widest hover:text-on-primary-container transition-colors" href="#">
+<a class="font-headline text-[10px] font-bold text-primary uppercase tracking-widest hover:text-on-primary-container transition-colors" href="../NovaSenha/code.php">
                                     Esqueceu a senha?
                                 </a>
 </div>
-<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="password" name="senha" placeholder="••••••••••••" required="" type="password"/>
+<div class="relative">
+    <input
+        class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 pr-14 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50"
+        id="password"
+        name="senha"
+        placeholder="••••••••••••"
+        required
+        type="password"
+    />
+
+    <button
+        type="button"
+        onclick="togglePassword()"
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
+    >
+        <span id="eyeIcon" class="material-symbols-outlined">
+            visibility
+        </span>
+    </button>
 </div>
-<!-- Options -->
-<div class="flex items-center">
-<input class="w-4 h-4 text-primary border-outline-variant rounded-none focus:ring-primary focus:ring-offset-0 bg-surface-container-low" id="remember" name="remember" type="checkbox"/>
-<label class="ml-3 font-label text-xs font-medium text-on-surface-variant uppercase tracking-wider" for="remember">
-                                Lembrar deste terminal
-                            </label>
 </div>
+
 <!-- Login Button -->
     <p id="erro" style="font-size: 10px color=red"><?php if(isset($responseError)) echo $responseError?></p>
 <div class="pt-4">
@@ -190,22 +203,14 @@ if(isset($er) && !empty($er))
 </div>
 </div>
 </div>
-<!-- Floating Hardware Details -->
-<div class="absolute bottom-10 right-10 hidden xl:block">
-<div class="flex flex-col items-end gap-2 opacity-30">
-    <p class="font-headline text-[10px] font-black tracking-[0.3em] uppercase">Nível de Segurança 4-A</p>
-<div class="flex gap-1">
-<div class="h-1 w-8 bg-on-surface"></div>
-<div class="h-1 w-2 bg-primary"></div>
-</div>
-</div>
+
 </div>
 </main>
 <!-- Simple Footer (using style tokens from JSON) -->
 <footer class="w-full bg-[#f6f3f2] grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-8 border-t border-[#e5e2e1]">
 <div class="flex flex-col gap-2">
 <span class="text-lg font-bold text-[#1c1b1b] tracking-tighter uppercase font-headline">Heavy Rent</span>
-<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP. ENGENHARIA DE PRECISÃO.</p>
+<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
 </div>
 <div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end items-center">
 <a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Soluções de Frota</a>
@@ -213,4 +218,18 @@ if(isset($er) && !empty($er))
 <a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Termos de Serviço</a>
 </div>
 </footer>
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.textContent = 'visibility_off';
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.textContent = 'visibility';
+    }
+}
+</script>
 </body></html>
