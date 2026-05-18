@@ -135,6 +135,7 @@ if(isset($er) && !empty($er))
         }
     </style>
 </head>
+<header id="header"></header>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
 <div class="min-h-screen flex flex-col md:flex-row">
 <!-- Left Column: Branding and Imagery (Asymmetric Layout) -->
@@ -177,9 +178,8 @@ if(isset($er) && !empty($er))
 
   <input type="date" name="data_nascimento" required class="input w-full">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
     <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required class="input w-full">
-    <input id="telefone" type="tel" name="telefone" placeholder="Telefone" required class="input w-full">
   </div>
 
   <input type="email" name="email" placeholder="Email" required class="input w-full">
