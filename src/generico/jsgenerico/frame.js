@@ -1,18 +1,18 @@
-// carregar header
+// carregar header com detecção de idioma (pt-BR ou en)
+const userLang = navigator.language || navigator.userLanguage || 'pt-BR';
+const lang = userLang.startsWith('en') ? 'en' : 'pt-BR';
+
 fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
   .then(r => r.json())
   .then(data => {
     let headerPath;
 
     if (data.status === "logged") {
-
-      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.html";
-
+      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.${lang}.html`;
     } else if (data.status === "super") {
-      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.html";
-
+      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.${lang}.html`;
     } else {
-      headerPath = "/ProjetoTCCSenai/src/generico/htmlgenerico/header.html";
+      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/header.${lang}.html`;
     }
 
     return fetch(headerPath);
@@ -22,8 +22,8 @@ fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
     document.getElementById("header").innerHTML = html;
   });
 
-// carregar footer
-fetch("../generico/htmlgenerico/footer.html")
+// carregar footer com idioma
+fetch(`../generico/htmlgenerico/footer.${lang}.html`)
   .then(r => r.text())
   .then(html => document.getElementById("footer").innerHTML = html);
 

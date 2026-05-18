@@ -124,7 +124,7 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 <div class="space-y-1">
 <a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
 <span class="material-symbols-outlined">dashboard</span>
-<span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Dashboard</span>
+<span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Painel</span>
 </a>
 <a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
 <span class="material-symbols-outlined">construction</span>
@@ -156,7 +156,7 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
                 </a>
 <a class="text-error px-8 py-3 flex items-center gap-4 hover:bg-red-50 transition-all text-xs font-semibold" href="../auth/logout.php" onclick="return confirm('Tem certeza que deseja sair?')">
 <span class="material-symbols-outlined text-sm">logout</span>
-                    Logout
+                    Sair
                 </a>
 </div>
 </nav>

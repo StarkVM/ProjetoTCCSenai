@@ -13,7 +13,7 @@ if(isset($er) && !empty($er))
 
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="light" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Heavy Rent | Acesso Seguro</title>
@@ -114,10 +114,10 @@ if(isset($er) && !empty($er))
 <div class="h-1 w-24 bg-primary-container"></div>
 </div>
 <h1 class="font-headline text-5xl font-bold text-white leading-none tracking-tight mb-6">
-                    PRECISION<br/>SECURED.
+                    PRECISÃO<br/>SEGURA.
                 </h1>
 <p class="text-surface-variant font-body text-lg leading-relaxed max-w-sm">
-                    Accessing high-capacity inventory requires verified clearance. Enter your authorization token to proceed to the terminal.
+                    O acesso ao inventário de alta capacidade requer autorização verificada. Digite seu token de autorização para prosseguir ao terminal.
                 </p>
 </div>
 <!-- Absolute Top Left Logo for Branding Consistency -->
@@ -205,8 +205,8 @@ if(isset($er) && !empty($er))
             ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
         </p>
 <div class="hidden md:flex gap-8">
-<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Safety Protocols</span>
-<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Machine Ethics</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Protocolos de Segurança</span>
+<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Ética de Máquina</span>
 </div>
 </footer>
 </body></html>

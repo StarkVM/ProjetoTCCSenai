@@ -145,7 +145,7 @@ $nomeCompleto = $userData['firstName'] . ' ' . $userData['lastName'];
 </form>
 <div class="mt-8 text-center">
 <p class="font-body text-xs text-on-surface-variant uppercase tracking-widest">
-                        Voltar para <a class="text-primary font-bold hover:underline" href="../home/code.php">Home</a>
+                        Voltar para <a class="text-primary font-bold hover:underline" href="../home/code.php">Início</a>
 </p>
 </div>
 </div>

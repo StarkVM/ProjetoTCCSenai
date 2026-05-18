@@ -169,7 +169,7 @@ $error = $_GET['er'] ?? 404;
 <!-- Layered Image Effect -->
 <div class="absolute inset-0 bg-surface-container-low translate-x-4 translate-y-4"></div>
 <div class="absolute inset-0 overflow-hidden brutal-shadow">
-<img alt="Broken heavy machinery" class="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply opacity-80" data-alt="Close-up of industrial heavy machinery with visible hydraulic failure, oil leaks, and metal distress in a brutalist warehouse setting with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdhCcHQT71GOtmAx7XZbeu9aNAmgphla2b-slo2AgkIbj-HCkCo0YP_rvygptEEBZ-nHyKKZqyrzEblVuefZyaNBQUlw7qwfuC3lfZ_NcXeMyWzbvF0np_HP4Trh4J6K6D9wTrV4NrKVddkvT0kRVPgIonESnEEkrkoxA8ntlEmN9A6FyfKNneSXX5MR9GsdSbG9HzzJo-s2AbgMcomVX7uR8eBS4VSgmOTUyJzsGikRmIvyTJE-3xetMFgnAuQw925iLJg1slo07w"/>
+<img alt="Maquinário pesado danificado" class="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply opacity-80" data-alt="Close-up de maquinário industrial pesado com falha hidráulica visível, vazamentos de óleo e distúrbio de metal em um ambiente de armazém brutalista com iluminação dramática" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdhCcHQT71GOtmAx7XZbeu9aNAmgphla2b-slo2AgkIbj-HCkCo0YP_rvygptEEBZ-nHyKKZqyrzEblVuefZyaNBQUlw7qwfuC3lfZ_NcXeMyWzbvF0np_HP4Trh4J6K6D9wTrV4NrKVddkvT0kRVPgIonESnEEkrkoxA8ntlEmN9A6FyfKNneSXX5MR9GsdSbG9HzzJo-s2AbgMcomVX7uR8eBS4VSgmOTUyJzsGikRmIvyTJE-3xetMFgnAuQw925iLJg1slo07w"/>
 <!-- Caution Overlay -->
 <div class="absolute top-0 left-0 w-full h-full bg-primary/20 pointer-events-none"></div>
 <!-- Diagonal Stripes -->
@@ -180,7 +180,7 @@ $error = $_GET['er'] ?? 404;
 <!-- Floating Indicator -->
 <div class="absolute -top-6 -left-6 bg-surface-container-lowest p-6 brutal-shadow border-l-4 border-primary">
 <span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">construction</span>
-<p class="font-headline text-xs font-black uppercase mt-2">Link Breached</p>
+<p class="font-headline text-xs font-black uppercase mt-2">Link Quebrado</p>
 </div>
 </div>
 </div>
