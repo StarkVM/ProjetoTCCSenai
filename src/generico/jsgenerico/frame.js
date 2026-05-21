@@ -2,17 +2,17 @@
 const userLang = navigator.language || navigator.userLanguage || 'pt-BR';
 const lang = userLang.startsWith('en') ? 'en' : 'pt-BR';
 
-fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
+fetch("../generico/phpgenerico/statusUsuario.php")
   .then(r => r.json())
   .then(data => {
     let headerPath;
 
     if (data.status === "logged") {
-      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.${lang}.html`;
+      headerPath = `../generico/htmlgenerico/headerLogado.${lang}.html`;
     } else if (data.status === "super") {
-      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.${lang}.html`;
+      headerPath = `../generico/htmlgenerico/headersuperautenticado.${lang}.html`;
     } else {
-      headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/header.${lang}.html`;
+      headerPath = `../generico/htmlgenerico/header.${lang}.html`;
     }
 
     return fetch(headerPath);
