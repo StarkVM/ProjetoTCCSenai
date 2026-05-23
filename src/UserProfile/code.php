@@ -95,24 +95,7 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopAppBar -->
-<header class="bg-[#fcf9f8] dark:bg-[#1c1b1b] flex justify-between items-center w-full px-8 h-20 fixed top-0 z-50 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-<div class="text-2xl font-black tracking-tighter text-stone-900 dark:text-stone-100 uppercase font-['Space_Grotesk']">
-            HEAVY RENT
-        </div>
-<div class="flex items-center gap-6">
-<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-lg">
-<span class="material-symbols-outlined text-stone-400 mr-2">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm font-label w-64" placeholder="Buscar equipamentos..." type="text"/>
-</div>
-<div class="flex items-center gap-4 text-stone-500">
-<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
-<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">settings</span>
-<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
-<img alt="User operator profile" data-alt="Close-up portrait of a professional site manager wearing a white hard hat with a confident expression, soft outdoor industrial lighting." src="<?php echo $profile_image; ?>"/>
-</div>
-</div>
-</div>
-</header>
+<header id="header"></header>
 <!-- SideNavBar -->
 <aside class="bg-[#f6f3f2] dark:bg-[#252423] h-screen w-72 flex flex-col fixed left-0 top-0 pt-20 hidden md:flex">
 <nav class="flex flex-col h-full py-8">
@@ -282,6 +265,7 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 <form id="upload-form" action="upload_profile.php" method="post" enctype="multipart/form-data" style="display: none;">
 <input type="file" name="profile_image" id="profile-image-input" accept="image/*">
 </form>
+<footer id="footer"></footer>
 <script>
 document.getElementById('camera-btn').addEventListener('click', function() {
     document.getElementById('profile-image-input').click();
@@ -290,4 +274,5 @@ document.getElementById('profile-image-input').addEventListener('change', functi
     document.getElementById('upload-form').submit();
 });
 </script>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

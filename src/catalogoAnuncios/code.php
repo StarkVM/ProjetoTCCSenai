@@ -129,6 +129,7 @@
 <body class="bg-surface text-on-surface">
     <header id="header"></header>
     <main class="pt-28 pb-xl px-gutter max-w-screen-2xl mx-auto">
+        
         <!-- Search & Filter Section -->
         <section class="mb-lg">
             <div class="flex flex-col gap-6">

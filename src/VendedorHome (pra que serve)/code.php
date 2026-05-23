@@ -91,6 +91,7 @@
     </style>
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container">
+    <header id="header"></header>
 <!-- SideNavBar -->
 <aside class="h-screen w-72 fixed left-0 top-0 bg-[#e5e2e1] dark:bg-zinc-900 flex flex-col py-8 px-6 z-50">
 <div class="mb-12">
@@ -330,4 +331,6 @@
 </div>
 </div>
 </main>
+<footer id="footer"></footer>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

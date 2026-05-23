@@ -149,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['documento'])) {
     </style>
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container min-h-screen flex items-center justify-center p-6">
+    <header id="header"></header>
     <div class="w-full max-w-2xl animate-in fade-in zoom-in duration-500">
         <form id="faceForm" method="POST" enctype="multipart/form-data">
             <div class="text-center mb-12">
@@ -246,7 +247,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['documento'])) {
             </a>
         </div>
     </div>
-
+    <footer id="footer"></footer>
+    <script src="../generico/jsgenerico/frame.js"></script>
     <script>
         let stream = null;
         let capturedImage = null;

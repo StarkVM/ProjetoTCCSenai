@@ -132,14 +132,7 @@
 <div class="h-[1px] w-full bg-surface-container-highest mt-6"></div>
 </div>
 <!-- Form Header -->
-<header class="mb-12">
-<h1 class="font-headline text-4xl md:text-5xl font-bold tracking-tighter text-on-surface mb-4">
-                        REDEFINIR ACESSO
-                    </h1>
-<p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
-                        Insira seu e-mail e escolha sua nova senha de acesso ao terminal.
-                    </p>
-</header>
+<header id="header"></header>
 <!-- Form Body -->
 <form class="space-y-8">
 <!-- Email Field -->
@@ -192,14 +185,7 @@
 </div>
 </form>
 <!-- Status Footer -->
-<footer class="mt-24 pt-8 border-t border-surface-container-highest flex justify-between items-center opacity-40">
-<div class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
-                        SISTEMA_V.4.2 // CRYPTO_SEC
-                    </div>
-<div class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
-                        © 2024 Heavy Rent
-                    </div>
-</footer>
+<footer id="footer"></footer>
 </div>
 </section>
 </main>
@@ -211,4 +197,5 @@
 <path d="M80 0H100V120H80V0Z" fill="currentColor"></path>
 </svg>
 </div>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

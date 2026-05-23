@@ -101,24 +101,7 @@ $error = $_GET['er'] ?? 404;
 <body class="bg-background font-body text-on-surface overflow-x-hidden min-h-screen flex flex-col">
 <!-- TopNavBar: Execution of Shared Component JSON -->
 <!-- Shell Visibility & Relevance: TopNavBar included as standard global anchor -->
-<header class="fixed top-0 w-full z-50 bg-[#fcf9f8]/80 dark:bg-[#1c1b1b]/80 backdrop-blur-md">
-<nav class="flex justify-between items-center px-8 py-4 w-full max-w-full mx-auto">
-<div class="flex items-center gap-8">
-<a class="text-2xl font-black italic tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8]" href="#">Heavy Rent</a>
-<div class="hidden lg:flex gap-6">
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Frota</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Projetos</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Sobre</a>
-<a class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] opacity-60 hover:opacity-100 hover:text-[#835400] transition-all duration-300" href="#">Suporte</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold text-[#1c1b1b] dark:text-[#fcf9f8] hover:text-[#835400] transition-all">Contato</button>
-<button class="bg-[#835400] text-white px-6 py-2 font-['Space_Grotesk'] tracking-tight text-sm uppercase font-bold hover:scale-95 duration-75">Entrar</button>
-</div>
-</nav>
-<div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
-</header>
+<header id="header"></header>
 <main class="flex-grow flex items-center justify-center pt-24 px-6 md:px-12 relative overflow-hidden">
 <!-- Background Elements: Asymmetric Layers -->
 <div class="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-primary-container opacity-5 rounded-full blur-[120px]"></div>
@@ -187,19 +170,6 @@ $error = $_GET['er'] ?? 404;
 </div>
 </main>
 <!-- Footer: Execution of Shared Component JSON -->
-<footer class="w-full border-t border-[#f9a825]/20 bg-[#1c1b1b] dark:bg-[#000000]">
-<div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
-<div class="mb-6 md:mb-0">
-<p class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40">
-                    ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
-                </p>
-</div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Termos de Serviço</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Ética de Máquina</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Protocolos de Segurança</a>
-<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#fcf9f8]/40 hover:text-[#fcf9f8] transition-colors" href="#">Contatar Terminal</a>
-</div>
-</div>
-</footer>
+<footer id="footer"></footer>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

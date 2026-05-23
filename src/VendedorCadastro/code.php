@@ -65,6 +65,7 @@ $nomeCompleto = $userData['firstName'] . ' ' . $userData['lastName'];
     </style>
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header id="header"></header>
 <div class="min-h-screen flex flex-col md:flex-row">
 <!-- Left Column: Branding and Imagery -->
 <div class="relative w-full md:w-1/2 lg:w-[60%] h-64 md:h-auto overflow-hidden bg-on-background">
