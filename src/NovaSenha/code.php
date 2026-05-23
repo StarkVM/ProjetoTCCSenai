@@ -94,6 +94,7 @@
     }</style>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <header id="header"></header>
 <main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
 <!-- Left Side: Dark Visual / Brand Slogan -->
 <section class="hidden md:flex md:w-[45%] lg:w-[40%] bg-inverse-surface relative overflow-hidden items-center justify-center p-12 bg-industrial-texture" data-alt="close-up of industrial hydraulic machinery with yellow steel beams and heavy pistons in a construction site during sunset">
@@ -132,7 +133,7 @@
 <div class="h-[1px] w-full bg-surface-container-highest mt-6"></div>
 </div>
 <!-- Form Header -->
-<header id="header"></header>
+
 <!-- Form Body -->
 <form class="space-y-8">
 <!-- Email Field -->
@@ -185,7 +186,7 @@
 </div>
 </form>
 <!-- Status Footer -->
-<footer id="footer"></footer>
+
 </div>
 </section>
 </main>
@@ -197,5 +198,6 @@
 <path d="M80 0H100V120H80V0Z" fill="currentColor"></path>
 </svg>
 </div>
+<footer id="footer"></footer>
 <script src="../generico/jsgenerico/frame.js"></script>
 </body></html>
