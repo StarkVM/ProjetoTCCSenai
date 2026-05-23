@@ -100,6 +100,7 @@ if(isset($er) && !empty($er))
     </style>
 </head>
 <body class="bg-background font-body text-on-background antialiased overflow-hidden">
+<header id="header"></header>
 <!-- Suppression of Nav Shells as per "The Destination Rule" for Transactional Flow -->
 <main class="min-h-screen grid grid-cols-1 md:grid-cols-2">
 <!-- Left Column: Branding & Immersive Visual -->
@@ -199,14 +200,5 @@ if(isset($er) && !empty($er))
 </div>
 </section>
 </main>
-<!-- Global Footer Fragment (Partial Injection) -->
-<footer class="bg-on-surface w-full py-6 px-12 flex flex-col md:flex-row justify-between items-center fixed bottom-0 left-0 right-0 z-50 mix-blend-difference md:mix-blend-normal md:bg-transparent">
-<p class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">
-            ©2024 Heavy Rent. PRECISION BRUTALISM SYSTEMS.
-        </p>
-<div class="hidden md:flex gap-8">
-<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Protocolos de Segurança</span>
-<span class="font-body text-[10px] uppercase tracking-[0.2em] text-surface-container/30">Ética de Máquina</span>
-</div>
-</footer>
+<footer id="footer"></footer>
 </body></html>
