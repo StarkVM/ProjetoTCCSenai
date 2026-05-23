@@ -98,9 +98,9 @@ if(isset($er) && !empty($er))
             background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
         }
     </style>
-</head>
-<body class="bg-background font-body text-on-background antialiased overflow-hidden">
-<header id="header"></header>
+</head><header id="header"></header>
+<body class="bg-background font-body text-on-background antialiasedgi">
+
 <!-- Suppression of Nav Shells as per "The Destination Rule" for Transactional Flow -->
 <main class="min-h-screen grid grid-cols-1 md:grid-cols-2">
 <!-- Left Column: Branding & Immersive Visual -->
@@ -201,4 +201,5 @@ if(isset($er) && !empty($er))
 </section>
 </main>
 <footer id="footer"></footer>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>
