@@ -100,6 +100,7 @@ if(isset($er) && !empty($er))
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+    <header id="header"></header>
 <main class="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
 <!-- Background Decorative Elements -->
 <div class="absolute inset-0 industrial-grid opacity-40 pointer-events-none"></div>
@@ -207,17 +208,7 @@ if(isset($er) && !empty($er))
 </div>
 </main>
 <!-- Simple Footer (using style tokens from JSON) -->
-<footer class="w-full bg-[#f6f3f2] grid grid-cols-1 md:grid-cols-2 gap-8 px-12 py-8 border-t border-[#e5e2e1]">
-<div class="flex flex-col gap-2">
-<span class="text-lg font-bold text-[#1c1b1b] tracking-tighter uppercase font-headline">Heavy Rent</span>
-<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP. PRECISION ENGINEERING.</p>
-</div>
-<div class="flex flex-wrap gap-x-6 gap-y-2 md:justify-end items-center">
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Soluções de Frota</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Normas de Segurança</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] hover:text-[#835400] transition-colors" href="#">Termos de Serviço</a>
-</div>
-</footer>
+<footer id="footer"></footer>
 <script>
 function togglePassword() {
     const passwordInput = document.getElementById('password');
@@ -232,4 +223,5 @@ function togglePassword() {
     }
 }
 </script>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

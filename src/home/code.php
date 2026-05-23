@@ -141,7 +141,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                     </div>
                     <!-- Category Chips -->
                     <div class="flex flex-wrap gap-3 mt-8">
-                        <button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
+                        <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
                             <span class="material-symbols-outlined text-sm">construction</span> Escavadeiras
                         </button>
                         <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
