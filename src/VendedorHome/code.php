@@ -267,7 +267,7 @@
                 <span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="add_circle">add_circle</span>
                 </div>
                 <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Adicionar novo equipamento</h3>
-                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.html'git" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
+                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.html'" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
                 </div>
                 `;
             }
