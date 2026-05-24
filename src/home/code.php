@@ -182,7 +182,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                     <div class="flex-1">
                         <h2 class="font-headline text-6xl font-black uppercase tracking-tighter leading-none mb-6">POR QUE ESCOLHER <br /><span class="text-primary">Heavy Rent?</span></h2>
                         <p class="font-body text-on-surface-variant text-lg max-w-xl leading-relaxed">
-                            Criamos uma plataforma que reduz a distância entre demandas gigantes de construção e fornecedores de maquinário de elite. Eficiência está em nossas engrenagens.
+                            Criamos uma plataforma que reduz a distância entre demandas gigantes de construção e fornecedores de maquinário de elite.
                         </p>
                     </div>
                     <div class="flex-none hidden md:block">
@@ -195,7 +195,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                         <div class="relative z-10">
                             <span class="material-symbols-outlined text-primary text-5xl mb-6">security</span>
                             <h3 class="font-headline text-3xl font-black uppercase mb-4">Segurança Total</h3>
-                            <p class="font-body text-on-surface-variant max-w-md">Cada contrato é garantido por seguro de nível Titan. Nosso sistema escrow libera seus recursos somente após entrega da máquina e confirmação no local.</p>
+                            <p class="font-body text-on-surface-variant max-w-md">Cada contrato é garantido por seguro de nível HEAVY. Nosso sistema libera seus recursos somente após entrega da máquina e confirmação no local.</p>
                         </div>
                         <div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity">
                             <span class="material-symbols-outlined text-[20rem]" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
@@ -204,8 +204,8 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                     <!-- Provider Benefit 1 -->
                     <div class="col-span-12 md:col-span-4 bg-primary text-on-primary rounded-md p-10 flex flex-col justify-center">
                         <span class="material-symbols-outlined text-4xl mb-4">analytics</span>
-                        <h3 class="font-headline text-2xl font-black uppercase mb-3">Crescimento do Fornecedor</h3>
-                        <p class="font-body text-primary-fixed text-sm">Escalone seu negócio com análises de frota em tempo real e faturamento automatizado. Aumente a utilização das suas máquinas em 40%.</p>
+                        <h3 class="font-headline text-2xl font-black uppercase mb-3">Crescimento!</h3>
+                        <p class="font-body text-primary-fixed text-sm">Escalone seu negócio com nosso sistema de locação!</p>
                     </div>
                     <!-- Consumer Benefit 2 -->
                     <div class="col-span-12 md:col-span-4 bg-tertiary text-on-tertiary rounded-md p-10 flex flex-col justify-center">
