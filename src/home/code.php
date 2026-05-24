@@ -125,9 +125,8 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
             </div>
             <div class="container mx-auto px-8 relative z-10">
                 <div class="max-w-4xl">
-                    <span class="font-headline font-bold uppercase tracking-[0.3em] text-primary mb-6 block text-sm">Precisão Industrial</span>
                     <h1 class="font-headline text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter text-on-surface mb-8">
-                        A MAIOR FROTA <br /> <span class="text-primary-container">AO SEU ALCANCE.</span>
+                        MAQUINÁRIO INDUSTRIAL <br /> <span class="text-primary-container">AO SEU ALCANCE.</span>
                     </h1>
                     <!-- Search & Filter Bar -->
                     <div class="bg-surface-container-lowest/80 backdrop-blur-xl p-2 rounded-md shadow-2xl flex flex-col md:flex-row gap-2 max-w-3xl mt-12">
