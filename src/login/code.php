@@ -117,8 +117,8 @@ if(isset($er) && !empty($er))
                     </h1>
 <div class="h-1 w-12 bg-primary mb-8"></div>
 <p class="font-headline text-2xl font-light text-surface-container tracking-tight leading-snug">
-                        ENGENHARIA DE PRECISÃO. <br/>
-                        PODER INQUEBRÁVEL.
+                        JUNTE-SE AO HEAVYTEAM! <br/>
+                    
                     </p>
 </div>
 <div class="mt-20">
@@ -127,7 +127,7 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
 </div>
 <div>
-<p class="font-headline text-xs font-bold text-surface-variant uppercase tracking-widest">Autoridade da Frota</p>
+<p class="font-headline text-xs font-bold text-surface-variant uppercase tracking-widest">Locação de máquinas pesadas</p>
 <p class="text-surface-container-low text-sm font-light">Acesse especificações de maquinário profissional e agendamento de locações.</p>
 </div>
 </div>

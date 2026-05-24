@@ -4,172 +4,216 @@ $error = $_GET['er'] ?? 404;
 
 ?>
 
-
 <!DOCTYPE html>
 
-<html class="light" lang="pt-BR"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "outline-variant": "#d7c3ae",
-                    "on-surface": "#1c1b1b",
-                    "on-tertiary-container": "#004f69",
-                    "background": "#fcf9f8",
-                    "tertiary-fixed": "#c0e8ff",
-                    "surface-container": "#f0edec",
-                    "on-primary-fixed-variant": "#643f00",
-                    "on-primary-container": "#674100",
-                    "on-tertiary": "#ffffff",
-                    "surface-variant": "#e5e2e1",
-                    "secondary-fixed-dim": "#bbc8d0",
-                    "on-primary-fixed": "#2a1800",
-                    "surface-dim": "#dcd9d9",
-                    "tertiary-fixed-dim": "#71d2ff",
-                    "on-tertiary-fixed-variant": "#004d66",
-                    "inverse-surface": "#313030",
-                    "secondary-container": "#d7e4ec",
-                    "on-tertiary-fixed": "#001e2b",
-                    "on-surface-variant": "#524434",
-                    "surface-container-lowest": "#ffffff",
-                    "on-secondary": "#ffffff",
-                    "on-error": "#ffffff",
-                    "primary-container": "#f9a825",
-                    "on-secondary-container": "#5a666d",
-                    "primary-fixed-dim": "#ffb957",
-                    "inverse-primary": "#ffb957",
-                    "error": "#ba1a1a",
-                    "outline": "#857462",
-                    "secondary-fixed": "#d7e4ec",
-                    "surface-tint": "#835400",
-                    "on-secondary-fixed": "#111d23",
-                    "on-primary": "#ffffff",
-                    "secondary": "#546067",
-                    "primary-fixed": "#ffddb5",
-                    "surface-container-low": "#f6f3f2",
-                    "tertiary": "#006687",
-                    "surface-bright": "#fcf9f8",
-                    "tertiary-container": "#2ac6ff",
-                    "on-background": "#1c1b1b",
-                    "primary": "#835400",
-                    "on-secondary-fixed-variant": "#3c494f",
-                    "inverse-on-surface": "#f3f0ef",
-                    "error-container": "#ffdad6",
-                    "surface": "#fcf9f8",
-                    "surface-container-highest": "#e5e2e1",
-                    "on-error-container": "#93000a",
-                    "surface-container-high": "#ebe7e7"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "fontFamily": {
-                    "headline": ["Space Grotesk"],
-                    "body": ["Inter"],
-                    "label": ["Inter"]
-            }
+<html class="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "outline-variant": "#d7c3ae",
+            "on-surface": "#1c1b1b",
+            "background": "#fcf9f8",
+            "surface-container": "#f0edec",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e5e2e1",
+            "surface-container-high": "#ebe7e7",
+            "surface-container-low": "#f6f3f2",
+            "primary-container": "#f9a825",
+            "primary": "#835400",
+            "on-primary": "#ffffff",
+            "outline": "#857462",
+            "surface": "#fcf9f8",
+            "on-surface-variant": "#524434",
+            "tertiary": "#006687"
           },
-        },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "999px"
+          },
+          fontFamily: {
+            headline: ["Space Grotesk"],
+            body: ["Inter"]
+          }
+        }
       }
-    </script>
-<style>
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        vertical-align: middle;
-      }
-      .brutal-shadow {
-        box-shadow: 12px 12px 0px 0px rgba(28, 27, 27, 0.05);
-      }
-      .btn-gradient {
-        background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
-      }
-    </style>
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    }
+
+    .soft-shadow {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-gradient {
+      background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+    }
+
+    .grid-pattern {
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
 </head>
+
 <body class="bg-background font-body text-on-surface overflow-x-hidden min-h-screen flex flex-col">
-<!-- TopNavBar: Execution of Shared Component JSON -->
-<!-- Shell Visibility & Relevance: TopNavBar included as standard global anchor -->
-<header id="header"></header>
-<main class="flex-grow flex items-center justify-center pt-24 px-6 md:px-12 relative overflow-hidden">
-<!-- Background Elements: Asymmetric Layers -->
-<div class="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-primary-container opacity-5 rounded-full blur-[120px]"></div>
-<div class="absolute bottom-1/4 -left-20 w-[300px] h-[300px] bg-tertiary opacity-5 rounded-full blur-[80px]"></div>
-<div class="container max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 relative z-10">
-<!-- Content Column -->
-<div class="w-full lg:w-1/2 text-center lg:text-left order-2 lg:order-1">
-<div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-sm mb-6">
-<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">warning</span>
-<span class="font-headline font-bold text-xs uppercase tracking-widest text-on-surface-variant">Manutenção Necessária</span>
-</div>
-<h1 class="font-headline text-8xl md:text-[10rem] font-black text-on-surface leading-[0.8] mb-8 tracking-tighter opacity-10">
-                    <?php if(isset($error)) echo $error?>
-                </h1>
-<div class="relative -mt-16 md:-mt-24 mb-12">
-<h2 class="font-headline text-4xl md:text-6xl font-extrabold text-on-surface leading-tight">
-                        Anomalia do <span class="text-primary italic">Sistema</span> Detectada
-                    </h2>
-<p class="font-body text-xl text-on-surface-variant mt-6 max-w-lg mx-auto lg:mx-0">
-                        O recurso que você está tentando acessar está atualmente indisponível ou foi retirado da frota.
-                    </p>
-</div>
-<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-<a class="btn-gradient px-8 py-4 text-on-primary font-headline font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 active:scale-95 transition-all brutal-shadow" href="#">
-<span class="material-symbols-outlined">home_work</span>
-                        Retornar à Base
-                    </a>
-<a class="bg-surface-container-highest px-8 py-4 text-on-surface font-headline font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 hover:bg-surface-container-high transition-all" href="#">
-<span class="material-symbols-outlined">support_agent</span>
-                        Contatar Terminal
-                    </a>
-</div>
-<!-- Technical Specs Display -->
-<div class="mt-16 grid grid-cols-2 gap-8 border-t border-outline-variant/20 pt-8 opacity-60">
-<div>
-<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">Protocolo de Erro</p>
-<p class="font-headline text-lg font-bold">X-J88-MISSING</p>
-</div>
-<div>
-<p class="font-headline text-[10px] uppercase tracking-widest text-primary font-bold">ID do Terminal</p>
-<p class="font-headline text-lg font-bold">SITE-04-A</p>
-</div>
-</div>
-</div>
-<!-- Graphic Column -->
-<div class="w-full lg:w-1/2 order-1 lg:order-2">
-<div class="relative aspect-square max-w-[500px] mx-auto">
-<!-- Layered Image Effect -->
-<div class="absolute inset-0 bg-surface-container-low translate-x-4 translate-y-4"></div>
-<div class="absolute inset-0 overflow-hidden brutal-shadow">
-<img alt="Maquinário pesado danificado" class="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply opacity-80" data-alt="Close-up de maquinário industrial pesado com falha hidráulica visível, vazamentos de óleo e distúrbio de metal em um ambiente de armazém brutalista com iluminação dramática" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdhCcHQT71GOtmAx7XZbeu9aNAmgphla2b-slo2AgkIbj-HCkCo0YP_rvygptEEBZ-nHyKKZqyrzEblVuefZyaNBQUlw7qwfuC3lfZ_NcXeMyWzbvF0np_HP4Trh4J6K6D9wTrV4NrKVddkvT0kRVPgIonESnEEkrkoxA8ntlEmN9A6FyfKNneSXX5MR9GsdSbG9HzzJo-s2AbgMcomVX7uR8eBS4VSgmOTUyJzsGikRmIvyTJE-3xetMFgnAuQw925iLJg1slo07w"/>
-<!-- Caution Overlay -->
-<div class="absolute top-0 left-0 w-full h-full bg-primary/20 pointer-events-none"></div>
-<!-- Diagonal Stripes -->
-<div class="absolute -bottom-10 -right-10 w-48 h-12 bg-primary-container -rotate-45 flex items-center justify-center overflow-hidden">
-<div class="w-full h-full bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#000_10px,#000_20px)] opacity-20"></div>
-</div>
-</div>
-<!-- Floating Indicator -->
-<div class="absolute -top-6 -left-6 bg-surface-container-lowest p-6 brutal-shadow border-l-4 border-primary">
-<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">construction</span>
-<p class="font-headline text-xs font-black uppercase mt-2">Link Quebrado</p>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer: Execution of Shared Component JSON -->
-<footer id="footer"></footer>
-<script src="../generico/jsgenerico/frame.js"></script>
-</body></html>
+
+  <!-- Header -->
+  <header id="header"></header>
+
+  <main class="flex-grow flex items-center justify-center pt-20 pb-20 px-6 md:px-12 relative overflow-hidden grid-pattern">
+
+    <!-- Glow Background -->
+    <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-primary-container/20 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-[350px] h-[350px] bg-tertiary/10 rounded-full blur-[120px]"></div>
+
+    <div class="container max-w-7xl mx-auto relative z-10">
+
+      <div class="bg-surface-container-lowest soft-shadow overflow-hidden border border-outline-variant/20">
+
+        <div class="grid lg:grid-cols-2 gap-0 items-center">
+
+          <!-- IMAGE -->
+          <div class="relative h-full min-h-[400px] lg:min-h-[700px] overflow-hidden order-1">
+
+            <img
+              alt="Máquina pesada em manutenção"
+              class="absolute inset-0 w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdhCcHQT71GOtmAx7XZbeu9aNAmgphla2b-slo2AgkIbj-HCkCo0YP_rvygptEEBZ-nHyKKZqyrzEblVuefZyaNBQUlw7qwfuC3lfZ_NcXeMyWzbvF0np_HP4Trh4J6K6D9wTrV4NrKVddkvT0kRVPgIonESnEEkrkoxA8ntlEmN9A6FyfKNneSXX5MR9GsdSbG9HzzJo-s2AbgMcomVX7uR8eBS4VSgmOTUyJzsGikRmIvyTJE-3xetMFgnAuQw925iLJg1slo07w" />
+
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+
+            <!-- Floating Card -->
+            <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md rounded-2xl p-6 soft-shadow">
+
+              <div class="flex items-center gap-4">
+
+                <div class="w-14 h-14 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-primary text-3xl">
+                    construction
+                  </span>
+                </div>
+
+                <div>
+                  <p class="font-headline font-bold text-lg">
+                    Página indisponível
+                  </p>
+
+                  <p class="text-sm text-on-surface-variant mt-1">
+                    Você está diante de uma irregularidade técnica.
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- CONTENT -->
+          <div class="p-8 md:p-14 lg:p-16 order-2">
+
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full mb-8">
+
+              <span
+                class="material-symbols-outlined text-primary"
+                style="font-variation-settings: 'FILL' 1;">
+                warning
+              </span>
+
+              <span class="font-headline font-bold text-xs uppercase tracking-widest">
+                Erro do Sistema
+              </span>
+
+            </div>
+
+            <!-- Error -->
+            <div class="flex items-end gap-4 mb-6">
+
+              <h1 class="font-headline text-7xl md:text-8xl font-black text-primary leading-none">
+                <?php if (isset($error)) echo $error ?>
+              </h1>
+
+              <div class="pb-3">
+                <div class="w-3 h-3 rounded-full bg-primary animate-pulse"></div>
+              </div>
+
+            </div>
+
+            <!-- Title -->
+            <h2 class="font-headline text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+              Ops...
+            </h2>
+
+            <!-- Description -->
+            <p class="text-lg text-on-surface-variant leading-relaxed max-w-xl">
+              O endereço acessado pode ter sido removido, alterado ou está temporariamente fora de serviço.
+              Você pode retornar para a página inicial ou entrar em contato com o suporte da operação.
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-10">
+
+              <a
+                class="btn-gradient px-8 py-4 rounded-xl text-on-primary font-headline font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all soft-shadow"
+                href="../home/code.php">
+
+                <span class="material-symbols-outlined">
+                  home
+                </span>
+
+                Voltar ao início
+
+              </a>
+            </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer"></footer>
+
+  <script src="../generico/jsgenerico/frame.js"></script>
+
+</body>
+
+</html>
