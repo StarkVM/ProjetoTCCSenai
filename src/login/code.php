@@ -118,7 +118,7 @@ if (isset($er) && !empty($er)) {
                     <h1 class="font-headline font-black text-4xl tracking-tighter text-surface uppercase leading-none mb-4">
                         <img src="../img/Heavyrentlogo.png" width="285px" alt="">
                     </h1>
-                    <div class="h-1 w-12 bg-primary mb-8"></div>
+                    <div class="h-1 w-19 bg-primary mb-8"></div>
                     <p class="font-headline text-2xl font-light text-surface-container tracking-tight leading-snug">
                         JUNTE-SE AO HEAVYTEAM! <br />
 
