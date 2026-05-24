@@ -233,35 +233,7 @@
     </main>
     <footer id="footer"></footer>
     <script>
-        const dados = [{
-                nome: "Escavadeira Caterpillar 336",
-                descricao: "Ideal para projetos de grande escala, com tecnologia de ponta.",
-                precoDia: "R$ 3.200",
-                status: "Disponível",
-                imagem: "https://lh3.googleusercontent.com/aida-public/AB6AXuDW2ZTCt-AR9CcGjtEu3VVm9QAsL8bKSiF6gWCSEqGB3dd7pX9Dn8Ef9kJ8ttWuZtoKBBSViYvw6EKhl9A9naG3XeOOL_DzLdcz0c7OEJSWhdjWTJslirBrm7W-w60t8VbbhLF3ABdGMtLHKC7j12-p7MK2NgVbw677asjWtwVbdWExo57SiCC4sUbthqTFniqjYRZuiYjchdD4uipBX_c8fi23qtPRTSkoUJMm83jD_GiPlwIX9NWoPQO5THl1veUlTqWyRFMx1OgF"
-            },
-            {
-                nome: "Retroescavadeira JCB 3CX",
-                descricao: "Versátil e eficiente para obras urbanas e escavações.",
-                precoDia: "R$ 1.400",
-                status: "Disponível",
-                imagem: "https://images.unsplash.com/photo-1599707254554-027aeb4deacd?q=80&w=800"
-            },
-            {
-                nome: "Mini Escavadeira Bobcat E20",
-                descricao: "Design compacto para acesso a espaços confinados.",
-                precoDia: "R$ 950",
-                status: "Em Operação",
-                imagem: "https://images.unsplash.com/photo-1531871239247-493390c5874c?q=80&w=800"
-            },
-            {
-                nome: "Rolo Compactador Dynapac CA250",
-                descricao: "Alta produtividade para compactação de solos e asfalto.",
-                precoDia: "R$ 2.100",
-                status: "Disponível",
-                imagem: "https://images.unsplash.com/photo-1579412691525-42f883626315?q=80&w=800"
-            }
-        ];
+        const dados = [];
 
         function renderInventory() {
             const container = document.getElementById('container-card');
@@ -287,6 +259,18 @@
                     </div>
                 </div>
             `).join('');
+
+            if (dados.length <= 0) {
+                container.innerHTML = `
+                <div id="adicionar-anuncio" class="group bg-surface-container-lowest rounded-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 border-dashed border-2 border-outline-variant/30 flex flex-col items-center justify-center p-8 text-center min-h-[500px]">
+                <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-fixed transition-colors">
+                <span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="add_circle">add_circle</span>
+                </div>
+                <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Adicionar novo equipamento</h3>
+                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.html'git" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
+                </div>
+                `;
+            }
         }
 
         function switchTab(tab) {
