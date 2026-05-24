@@ -173,75 +173,31 @@
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="2024" type="number" />
           </div>
-        </div>
-      </div>
-      <!-- Section 2: Technical Specs (Right Column) -->
-      <div class="lg:col-span-5 bg-surface-container-highest p-8 rounded-md flex flex-col justify-between">
-        <div>
-          <div class="flex items-center gap-3 mb-8">
-            <span class="material-symbols-outlined text-primary"
-              style="font-variation-settings: 'FILL' 1;">settings_input_component</span>
-            <h2 class="font-headline text-xl font-bold uppercase tracking-tight">02. Especificações Técnicas</h2>
+          <div class="md:col-span-2 flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Descrição</label>
+            <textarea rows="4" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Descreva o equipamento, condições e observações relevantes"></textarea>
           </div>
-          <div class="space-y-6">
-            <div class="flex flex-col gap-2">
-              <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Peso
-                Operacional (Toneladas)</label>
-              <input
-                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-                placeholder="00.0" type="text" />
-            </div>
-            <div class="flex flex-col gap-2">
-              <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Potência
-                Líquida (HP/kW)</label>
-              <input
-                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-                placeholder="Potência do Motor" type="text" />
-            </div>
-            <div class="flex flex-col gap-2">
-              <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Capacidade de
-                Garra / Elevação</label>
-              <input
-                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-                placeholder="Carga Máxima" type="text" />
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 pt-8 border-t border-outline-variant/20">
-          <p class="font-body text-xs text-on-surface-variant leading-relaxed">
-            O brutalismo de precisão exige métricas exatas. Erros nas especificações podem resultar em incompatibilidade
-            técnica durante a aquisição.
-          </p>
-        </div>
-      </div>
-      <!-- Section 3: Pricing & Availability (Asymmetric Layout) -->
-      <div class="lg:col-span-4 bg-surface-container-low p-8 rounded-md">
-        <div class="flex items-center gap-3 mb-8">
-          <span class="material-symbols-outlined text-primary"
-            style="font-variation-settings: 'FILL' 1;">payments</span>
-          <h2 class="font-headline text-xl font-bold uppercase tracking-tight">03. Tarifas de Locação</h2>
-        </div>
-        <div class="space-y-6">
-          <div class="bg-surface-container-lowest p-6 rounded-sm border-l-4 border-primary-container">
-            <label
-              class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary mb-2 block">Tarifa por
-              Dia</label>
-            <div class="flex items-center gap-2">
-              <span class="font-headline text-2xl font-black">R$</span>
-              <input class="bg-transparent border-none focus:ring-0 p-0 font-headline text-3xl font-black w-full"
-                placeholder="0,00" type="text" />
-            </div>
+          <div class="md:col-span-2 flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
+              <span class="material-symbols-outlined text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">location_on</span>
+              Local para Retirada da Máquina
+            </label>
+            <input
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="Ex: Canteiro Norte, São Paulo - SP" type="text" />
           </div>
         </div>
       </div>
-      <!-- Section 4: Photo Upload Area -->
+      <!-- Section 2 removed: Especificações Técnicas (user requested removal) -->
+      <!-- Section 3 removed: Tarifas de Locação (user requested removal of tariff) -->
+      <!-- Section 4: Photo Upload Area (expanded with extra slot) -->
       <div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-md shadow-sm">
         <div class="flex items-center gap-3 mb-6">
           <span class="material-symbols-outlined text-primary"
             style="font-variation-settings: 'FILL' 1;">add_a_photo</span>
           <h2 class="font-headline text-xl font-bold uppercase tracking-tight">04. Evidência Visual</h2>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
           <div
             class="aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
             <span class="material-symbols-outlined text-primary text-3xl mb-2">upload_file</span>
@@ -266,6 +222,11 @@
             <span class="material-symbols-outlined text-outline text-3xl mb-2">add</span>
             <span class="font-headline text-[10px] font-bold uppercase tracking-widest">Adicionar Especificações</span>
           </div>
+          <div
+            class="aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer">
+            <span class="material-symbols-outlined text-outline text-3xl mb-2">add</span>
+            <span class="font-headline text-[10px] font-bold uppercase tracking-widest">Adicionar Foto Extra</span>
+          </div>
         </div>
       </div>
       <!-- Footer Action Button -->
@@ -289,6 +250,49 @@
     </form>
   </main>
   <footer id="footer"></footer>
+
+  <script>
+    // Capturar e processar os dados do formulário
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector("form");
+
+      if (form) {
+        form.addEventListener("submit", function(e) {
+          e.preventDefault();
+
+          // Coletar valores dos inputs
+          const inputs = form.querySelectorAll("input, select, textarea");
+          
+          // Estrutura dos dados da máquina
+          const dadosMaquina = {
+            nome: inputs[0]?.value || "", // Nome do Ativo
+            tipo: inputs[1]?.value || "", // Tipo de Máquina
+            marca: inputs[2]?.value || "", // Marca/Fabricante
+            modelo: inputs[3]?.value || "", // Número do Modelo
+            ano: inputs[4]?.value || "", // Ano de Fabricação
+            descricao: inputs[5]?.value || "", // Descrição
+            localRetirada: inputs[6]?.value || "", // Local para Retirada
+            preco: "R$ 0/h", // Preço padrão (pode ser alterado depois)
+            estado: inputs[6]?.value || "" // Usando local de retirada como estado para compatibilidade
+          };
+
+          // Armazenar no localStorage
+          localStorage.setItem("maquinaCadastrada", JSON.stringify(dadosMaquina));
+
+          // Log para debug
+          console.log("Dados da máquina cadastrados:", dadosMaquina);
+
+          // Aqui você pode adicionar o envio para o servidor
+          // Por enquanto, apenas mostramos uma mensagem de sucesso
+          alert("Máquina registrada com sucesso!");
+
+          // Opcional: redirecionar para outra página
+          // window.location.href = "../home/code.php";
+        });
+      }
+    });
+  </script>
+
   <script src="../generico/jsgenerico/frame.js"></script>
 </body>
 

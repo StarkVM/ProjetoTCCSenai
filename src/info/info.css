@@ -85,3 +85,41 @@
     font-size: 16px;
   }
 }
+
+/* Skip link (accessible keyboard navigation) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: transparent;
+  color: inherit;
+  z-index: 1000;
+}
+.skip-link:focus,
+.skip-link:active {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: var(--laranja-principal, #f9a825);
+  color: #ffffff;
+}
+
+/* Button helper for consistent clickable controls */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn:focus-visible {
+  outline: 3px solid rgba(131,84,0,0.35);
+  outline-offset: 2px;
+}

@@ -89,19 +89,21 @@
     </style>
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar -->
-<!-- Hero Section -->
-<header id="header"></header>
-<!-- Our Mission Section -->
-<section class="bg-surface-container-low py-32 px-8">
+    <a class="skip-link" href="#main">Pular para o conteúdo</a>
+    <!-- TopNavBar -->
+    <!-- Hero Section -->
+    <header id="header"></header>
+    <main id="main" role="main">
+    <!-- Our Mission Section -->
+    <section class="bg-surface-container-low py-32 px-8" role="region" aria-labelledby="mission-title">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-24">
-<div class="md:w-1/3 flex flex-col gap-6">
-<span class="font-headline text-primary text-sm font-black uppercase tracking-widest flex items-center gap-4">
-<span class="w-12 h-[2px] bg-primary"></span> 01 / Missão
-                    </span>
-<h2 class="font-headline text-4xl md:text-6xl font-bold leading-none uppercase tracking-tighter">
-                        Conectando a<br/>Lacuna de Equipamentos.
-                    </h2>
+</div>
+                    <div class="md:w-1/3 flex flex-col gap-6">
+                        <span class="font-headline text-primary text-sm font-black uppercase tracking-widest flex items-center gap-4">
+                            <span class="w-12 h-[2px] bg-primary" aria-hidden="true"></span>
+                            01 / Missão
+                        </span>
+                        <h1 id="mission-title" class="font-headline text-4xl md:text-6xl font-bold leading-none uppercase tracking-tighter">Conectando a<br/>Lacuna de Equipamentos.</h1>
 </div>
 <div class="md:w-2/3">
 <p class="font-body text-lg md:text-2xl text-on-surface-variant leading-relaxed mb-8">
@@ -124,7 +126,7 @@
 <section class="py-32 px-8 bg-surface">
 <div class="max-w-7xl mx-auto">
 <div class="relative w-full h-[500px] mb-20 overflow-hidden">
-<img class="w-full h-full object-cover brightness-50" data-alt="Wide shot of a dark, moody construction site at night with glowing amber lights and heavy machinery silhouettes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGybNMhr7rZfqHQKQjqs4ZmBj4idxH27Q_i_bkrGX8uOyYNm7-ae0gzluCdnCxDMVKE3eyZ23Y8q-MKauObxrlPTRvpnYsOFLoMqk5cIk9Qnc5am0VfiPBbxhke4lVd9KQBMAwdN6CgNkcjmCE50yHDxnksiPIvW9Gi6-Xw_dY9Ec6vehAYAgFjmkWNSCzWOGOVeuxPcz71QYTbISDzXXKuUOnqlXFjDYVCa-kK25FAA3MV_KykBlXUBHuWvlx43oVKsunPMX0fCXD"/>
+<img class="w-full h-full object-cover brightness-50" alt="Wide shot of a dark, moody construction site at night with glowing amber lights and heavy machinery silhouettes" data-alt="Wide shot of a dark, moody construction site at night with glowing amber lights and heavy machinery silhouettes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGybNMhr7rZfqHQKQjqs4ZmBj4idxH27Q_i_bkrGX8uOyYNm7-ae0gzluCdnCxDMVKE3eyZ23Y8q-MKauObxrlPTRvpnYsOFLoMqk5cIk9Qnc5am0VfiPBbxhke4lVd9KQBMAwdN6CgNkcjmCE50yHDxnksiPIvW9Gi6-Xw_dY9Ec6vehAYAgFjmkWNSCzWOGOVeuxPcz71QYTbISDzXXKuUOnqlXFjDYVCa-kK25FAA3MV_KykBlXUBHuWvlx43oVKsunPMX0fCXD"/>
 <div class="absolute inset-0 flex items-center justify-center p-8">
 <h2 class="font-headline text-4xl md:text-8xl text-white font-black uppercase text-center leading-none mix-blend-overlay">
                             O déficit de confiança<br/>no metal pesado.
@@ -227,7 +229,7 @@
                                 Seguro integrado e proteção contra danos
                             </li>
 </ul>
-<button class="mt-16 font-headline font-bold text-primary uppercase border-b-2 border-primary pb-1 group-hover:pr-4 transition-all">Explorar Frota →</button>
+<button type="button" class="mt-16 font-headline font-bold text-primary uppercase border-b-2 border-primary pb-1 group-hover:pr-4 transition-all" aria-label="Explorar Frota" onclick="window.location.href='../catalogoAnuncios/code.html'">Explorar Frota →</button>
 </div>
 <!-- Providers -->
 <div class="bg-surface-container-low p-16 md:p-24 hover:bg-surface-container-lowest transition-colors group">
@@ -247,7 +249,7 @@
                                 Avaliação robusta de operadores e registros de conformidade
                             </li>
 </ul>
-<button class="mt-16 font-headline font-bold text-primary uppercase border-b-2 border-primary pb-1 group-hover:pr-4 transition-all">Listar Inventário →</button>
+<button type="button" class="mt-16 font-headline font-bold text-primary uppercase border-b-2 border-primary pb-1 group-hover:pr-4 transition-all" aria-label="Listar Inventário" onclick="window.location.href='../CadMaquinas/code.html'">Listar Inventário →</button>
 </div>
 </div>
 </div>
@@ -260,12 +262,8 @@
 <div class="relative z-10 text-center px-8">
 <h2 class="font-headline text-5xl md:text-8xl font-black uppercase mb-8 tracking-tighter text-on-surface">Pronto para construir?</h2>
 <div class="flex flex-col md:flex-row gap-6 justify-center">
-<button class="signature-gradient text-white px-12 py-5 font-headline font-bold text-xl uppercase tracking-tighter hover:scale-95 transition-all">
-                        Solicitar Orçamento
-                    </button>
-<button class="bg-on-surface text-surface px-12 py-5 font-headline font-bold text-xl uppercase tracking-tighter hover:bg-surface-container-highest hover:text-on-surface transition-all">
-                        Contatar Vendas
-                    </button>
+<button type="button" class="signature-gradient btn text-white px-12 py-5 font-headline font-bold text-xl uppercase tracking-tighter hover:scale-95 transition-all" aria-label="Solicitar Orçamento" onclick="alert('Funcionalidade de orçamento em desenvolvimento')">Solicitar Orçamento</button>
+<button type="button" class="bg-on-surface btn text-surface px-12 py-5 font-headline font-bold text-xl uppercase tracking-tighter hover:bg-surface-container-highest hover:text-on-surface transition-all" aria-label="Contatar Vendas" onclick="alert('Email de contato: vendas@heavyrent.com.br')">Contatar Vendas</button>
 </div>
 </div>
 </section>

@@ -169,7 +169,7 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
                         <h2 class="font-headline text-5xl font-black uppercase tracking-tighter">Máquinas em Destaque</h2>
                         <div class="h-1 w-24 bg-primary mt-4"></div>
                     </div>
-                    <a class="text-primary font-headline font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all" href="#">
+                    <a class="text-primary font-headline font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:gap-4 transition-all" href="../catalogoAnuncios/code.html">
                         Ver Catálogo Completo <span class="material-symbols-outlined">arrow_forward</span>
                     </a>
                 </div>
@@ -234,8 +234,8 @@ if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
             <div class="container mx-auto px-8 relative z-10 text-center">
                 <h2 class="font-headline text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10">PRONTO PARA CONSTRUIR?</h2>
                 <div class="flex flex-col md:flex-row justify-center gap-6">
-                    <button class="bg-primary text-on-primary font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-primary-container transition-all hover:scale-105">Encontre uma Máquina</button>
-                    <button class="border-2 border-surface text-surface font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-surface hover:text-on-background transition-all hover:scale-105">Liste sua Frota</button>
+                    <button class="bg-primary text-on-primary font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-primary-container transition-all hover:scale-105" onclick="window.location.href='../catalogoAnuncios/code.html'">Encontre uma Máquina</button>
+                    <button class="border-2 border-surface text-surface font-headline font-bold uppercase px-12 py-5 text-lg rounded-sm hover:bg-surface hover:text-on-background transition-all hover:scale-105" onclick="window.location.href='../CadMaquinas/code.html'">Liste sua Frota</button>
                 </div>
             </div>
         </section>

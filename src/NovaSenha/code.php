@@ -96,7 +96,7 @@
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
     <header id="header"></header>
 <main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
-<!-- Left Side: Dark Visual / Brand Slogan -->
+<!-- Left Side: Dark Visual / Brand -->
 <section class="hidden md:flex md:w-[45%] lg:w-[40%] bg-inverse-surface relative overflow-hidden items-center justify-center p-12 bg-industrial-texture" data-alt="close-up of industrial hydraulic machinery with yellow steel beams and heavy pistons in a construction site during sunset">
 <div class="relative z-10 w-full">
 <!-- Brand Anchor -->
@@ -104,23 +104,14 @@
 <span class="font-headline text-2xl font-bold tracking-tighter uppercase text-surface-bright">Heavy Rent</span>
 <div class="h-1 w-12 bg-primary mt-2"></div>
 </div>
-<!-- Slogan -->
+<!-- Brand Message -->
 <div class="max-w-md">
-<h2 class="font-headline text-5xl lg:text-7xl font-bold text-surface-bright leading-[0.9] tracking-tighter mb-6">
-                        Engenharia de <span class="text-primary-container">Precisão.</span>
+<h2 class="font-headline text-4xl lg:text-6xl font-bold text-surface-bright leading-[1] tracking-tighter mb-4">
+                        Segurança<br />de Primeira
 </h2>
-<p class="font-headline text-3xl lg:text-5xl font-light text-surface-variant/60 leading-[1.1] tracking-tight">
-                        Poder Inabalável.
+<p class="font-body text-lg text-surface-variant/80 leading-relaxed">
+                        Proteja sua conta e acesse seus equipamentos com segurança.
                     </p>
-</div>
-<!-- Engineering Detail Element -->
-<div class="absolute bottom-0 right-0 p-8 opacity-20">
-<div class="grid grid-cols-2 gap-2 text-[10px] font-mono text-surface-bright uppercase tracking-widest">
-<span>LOAD_CAP: 250T</span>
-<span>HYD_PSI: 4500</span>
-<span>SPEC: H-882</span>
-<span>UNIT: RENT_04</span>
-</div>
 </div>
 </div>
 </section>
@@ -154,7 +145,10 @@
                             Nova Senha
                         </label>
 <div class="relative group">
-<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="password" placeholder="••••••••••••" required="" type="password"/>
+<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 pr-12 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="password" placeholder="Mínimo 8 caracteres" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" id="togglePassword" type="button" aria-label="Mostrar/Ocultar senha">
+<span class="material-symbols-outlined">visibility</span>
+</button>
 <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-focus-within:w-full transition-all duration-500"></div>
 </div>
 </div>
@@ -165,20 +159,28 @@
                             Confirmar Nova Senha
                         </label>
 <div class="relative group">
-<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="confirm-password" placeholder="••••••••••••" required="" type="password"/>
+<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 pr-12 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="confirm-password" placeholder="Confirme a senha" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" id="toggleConfirmPassword" type="button" aria-label="Mostrar/Ocultar confirmação de senha">
+<span class="material-symbols-outlined">visibility</span>
+</button>
 <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-focus-within:w-full transition-all duration-500"></div>
+</div>
+<!-- Password Match Indicator -->
+<div id="passwordMatchIndicator" class="hidden mt-2 flex items-center gap-2 text-xs font-medium">
+<span class="material-symbols-outlined text-sm">close</span>
+<span id="matchText">As senhas não coincidem</span>
 </div>
 </div>
 <!-- Action Area -->
 <div class="pt-6 space-y-6">
 <!-- Primary Button -->
-<button class="signature-gradient w-full py-5 rounded-md flex items-center justify-center gap-3 text-white font-headline font-bold uppercase tracking-widest group hover:opacity-90 active:scale-[0.98] transition-all ambient-occlusion" type="submit">
-                            ATUALIZAR CREDENCIAIS
+<button class="signature-gradient w-full py-5 rounded-md flex items-center justify-center gap-3 text-white font-headline font-bold uppercase tracking-widest group hover:opacity-90 active:scale-[0.98] transition-all ambient-occlusion disabled:opacity-50 disabled:cursor-not-allowed" id="submitBtn" type="submit" disabled>
+                            ATUALIZAR SENHA
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
 <!-- Secondary Link -->
 <div class="flex justify-center">
-<a class="font-label text-sm font-semibold uppercase tracking-widest text-on-surface-variant hover:text-primary flex items-center gap-2 group transition-colors" href="#">
+<a class="font-label text-sm font-semibold uppercase tracking-widest text-on-surface-variant hover:text-primary flex items-center gap-2 group transition-colors" href="../login/code.php">
 <span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
                                 Voltar ao login
                             </a>
@@ -199,5 +201,97 @@
 </svg>
 </div>
 <footer id="footer"></footer>
+
+<script>
+// Toggle password visibility
+function setupPasswordToggle(inputId, buttonId) {
+  const input = document.getElementById(inputId);
+  const button = document.getElementById(buttonId);
+  
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    const icon = button.querySelector('.material-symbols-outlined');
+    
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      input.type = 'password';
+      icon.textContent = 'visibility';
+    }
+  });
+}
+
+// Validate password match
+function validatePasswords() {
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
+  const indicator = document.getElementById('passwordMatchIndicator');
+  const matchText = document.getElementById('matchText');
+  const submitBtn = document.getElementById('submitBtn');
+  const icon = indicator.querySelector('.material-symbols-outlined');
+  
+  if (password && confirmPassword) {
+    if (password === confirmPassword) {
+      indicator.classList.remove('hidden');
+      indicator.classList.add('text-tertiary');
+      matchText.textContent = 'Senhas coincidem';
+      icon.textContent = 'check_circle';
+      icon.classList.add('text-tertiary');
+      submitBtn.disabled = false;
+    } else {
+      indicator.classList.remove('hidden');
+      indicator.classList.remove('text-tertiary');
+      indicator.classList.add('text-error');
+      matchText.textContent = 'As senhas não coincidem';
+      icon.textContent = 'close';
+      icon.classList.remove('text-tertiary');
+      icon.classList.add('text-error');
+      submitBtn.disabled = true;
+    }
+  } else {
+    indicator.classList.add('hidden');
+    submitBtn.disabled = true;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Setup password toggle buttons
+  setupPasswordToggle('password', 'togglePassword');
+  setupPasswordToggle('confirm-password', 'toggleConfirmPassword');
+  
+  // Setup password validation
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirm-password');
+  
+  passwordInput.addEventListener('input', validatePasswords);
+  confirmPasswordInput.addEventListener('input', validatePasswords);
+  
+  // Form submission
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    
+    if (password !== confirmPassword) {
+      alert('As senhas não coincidem!');
+      return;
+    }
+    
+    if (password.length < 8) {
+      alert('A senha deve ter no mínimo 8 caracteres!');
+      return;
+    }
+    
+    // Aqui você pode enviar os dados para o servidor
+    console.log('Senha atualizada com sucesso!');
+    alert('Senha atualizada com sucesso!');
+    // window.location.href = '../login/code.php';
+  });
+});
+</script>
+
 <script src="../generico/jsgenerico/frame.js"></script>
 </body></html>
