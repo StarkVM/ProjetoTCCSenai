@@ -146,114 +146,154 @@ if (isset($er) && !empty($er)) {
         <img alt="Escavadeira industrial pesada" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Cena cinematográfica de uma enorme escavadeira amarela em um canteiro de obras durante a hora azul, com detalhes mecânicos nítidos e névoa atmosférica industrial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6ev4WxiieivgIb66SpWY2arkN2yITvwjeuHuUSuk5VAxB3tno5_EoJIpRYVY62MXErOdcUf5gJlblc0WMV5Mn5tSkJ6dJihHUfjD8MLbYYMb-cBWz5YvTvOyZqP7UMJDC17qOgAQgKKmCIfPlmHKGck9WbsgeZ7GcPmoODX76RJUNnFMJwt6Ml6k-_SldReVycHGjVsN0hWoQCKbEfOgA83ZKWHlac_iucCSpIjtdwFdJQbfGgYv6qvWSrdTTYK1Zmj932-NbVYO" />
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-on-background via-transparent to-transparent opacity-80"></div>
-      <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-16">
+      <div class="relative z-10 h-full flex flex-col justify-between p-20 md:p-20">
         <div class="max-w-xl">
           <h1 class="font-headline text-5xl md:text-7xl font-bold text-surface tracking-tighter leading-none mb-6">
             CONSTRUA O <span class="text-primary-container">FUTURO</span> COM A GENTE.
           </h1>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="font-headline text-3xl font-black tracking-tighter text-surface uppercase"><img src="../img/Heavyrentlogo.png" alt=""></span>
-        </div>
       </div>
     </div>
     <!-- Right Column: Registration Form -->
     <div class="w-full md:w-1/2 lg:w-[40%] flex items-center justify-center p-6 md:p-12 lg:p-20 bg-surface">
-      <div class="w-full max-w-md">
+      <div class="w-full max-w-lg">
         <div class="mb-10">
           <h2 class="font-headline text-3xl font-bold tracking-tight text-on-surface mb-2">CRIAR CONTA</h2>
-          <div class="h-1 w-12 bg-primary"></div>
+          <div class="h-1 w-19 bg-primary"></div>
         </div>
         <form method="POST" class="space-y-10 max-w-2xl mx-auto" action="cadastroB.php">
 
           <!-- DADOS PESSOAIS -->
-          <div class="space-y-4">
-            <h3 class="text-lg font-bold text-on-surface">Dados Pessoais</h3>
+          <div class="space-y-5">
+            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+              Dados Pessoais
+            </h3>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" name="nome" placeholder="Nome" required class="input w-full">
-              <input type="text" name="sobrenome" placeholder="Sobrenome" required class="input w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+              <input type="text" name="nome" placeholder="Nome" required
+                class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
+              <input type="text" name="sobrenome" placeholder="Sobrenome" required
+                class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
             </div>
 
-            <input type="date" name="data_nascimento" required class="input w-full">
+            <input type="date" name="data_nascimento" required
+              class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
 
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
-              <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required class="input w-full">
-            </div>
+            <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required
+              class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
 
-            <input type="email" name="email" placeholder="Email" required class="input w-full">
+            <input type="email" name="email" placeholder="Email" required
+              class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
           </div>
 
           <!-- SEGURANÇA -->
-          <div class="space-y-4">
-            <h3 class="text-lg font-bold text-on-surface">Segurança</h3>
+          <div class="space-y-5">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+              Segurança
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
               <div class="relative">
-                <input id="senha1" type="password" name="senha" placeholder="Senha" required class="input w-full pr-10">
+                <input id="senha1" type="password" name="senha" placeholder="Senha" required
+                  class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 pr-14 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
                 <span onclick="toggleSenha('senha1', this)"
-                  class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-on-surface-variant">
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-[#8A8A8A] hover:text-[#C58B18] transition">
                   visibility
                 </span>
-                </span>
               </div>
-              <p id="erroSenha"></p>
 
               <div class="relative">
-                <input id="senha2" type="password" name="confirmar_senha" placeholder="Confirmar senha" required class="input w-full pr-10">
+                <input id="senha2" type="password" name="confirmar_senha" placeholder="Confirmar senha" required
+                  class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 pr-14 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
                 <span onclick="toggleSenha('senha2', this)"
-                  class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-on-surface-variant">
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-[#8A8A8A] hover:text-[#C58B18] transition">
                   visibility
                 </span>
               </div>
 
             </div>
+
+            <p id="erroSenha" class="text-sm text-red-500 font-medium"></p>
+
           </div>
 
           <!-- ENDEREÇO -->
-          <div class="space-y-4">
-            <h3 class="text-lg font-bold text-on-surface">Endereço</h3>
+          <div class="space-y-5">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" id="cep" name="cep" placeholder="CEP" required class="input w-full">
-              <input type="text" name="numero" placeholder="Número" required class="input w-full">
+            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+              Endereço
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+              <input type="text" id="cep" name="cep" placeholder="CEP" required
+                class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
+              <input type="text" name="numero" placeholder="Número" required
+                class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
+
             </div>
 
-            <fieldset class="space-y-4">
+            <fieldset class="space-y-5">
 
-              <input id="rua" type="text" name="rua" placeholder="Rua" required class="input w-full" readonly>
+              <input id="rua" type="text" name="rua" placeholder="Rua" required readonly
+                class="w-full bg-[#F5F3EE] border border-[#DDD7CB] rounded-xl px-5 py-4 text-[#5C5C5C] placeholder:text-[#9A9A9A] outline-none">
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input id="bairro" type="text" name="bairro" placeholder="Bairro" required class="input w-full" readonly>
-                <input id="cidade" type="text" name="cidade" placeholder="Cidade" required class="input w-full" readonly>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <input id="bairro" type="text" name="bairro" placeholder="Bairro" required readonly
+                  class="w-full bg-[#F5F3EE] border border-[#DDD7CB] rounded-xl px-5 py-4 text-[#5C5C5C] placeholder:text-[#9A9A9A] outline-none">
+
+                <input id="cidade" type="text" name="cidade" placeholder="Cidade" required readonly
+                  class="w-full bg-[#F5F3EE] border border-[#DDD7CB] rounded-xl px-5 py-4 text-[#5C5C5C] placeholder:text-[#9A9A9A] outline-none">
+
               </div>
 
-              <input id="estado" type="text" name="estado" placeholder="Estado" required class="input w-full" readonly>
+              <input id="estado" type="text" name="estado" placeholder="Estado" required readonly
+                class="w-full bg-[#F5F3EE] border border-[#DDD7CB] rounded-xl px-5 py-4 text-[#5C5C5C] placeholder:text-[#9A9A9A] outline-none">
 
             </fieldset>
           </div>
-          <!-- TERMOS DE USO -->
-          <div class="flex items-start gap-2 text-sm">
-            <input type="checkbox" id="termbox" required class="mt-1">
-            <label for="termos" class="text-on-surface-variant">
+
+          <!-- TERMOS -->
+          <div class="flex items-start gap-3 bg-[#F8F6F2] border border-[#DDD7CB] rounded-xl p-5">
+
+            <input type="checkbox" id="termbox" required
+              class="mt-1 w-5 h-5 accent-[#C58B18] cursor-pointer">
+
+            <label for="termbox" class="text-sm text-[#555555] leading-relaxed">
               Eu li e concordo com os
-              <a href="#" class="text-primary font-semibold hover:underline">
+              <a href="#" class="text-[#C58B18] font-semibold hover:underline">
                 Termos de Uso
               </a>
               e
-              <a href="#" class="text-primary font-semibold hover:underline">
+              <a href="#" class="text-[#C58B18] font-semibold hover:underline">
                 Política de Privacidade
               </a>.
             </label>
+
           </div>
+
+          <!-- ERRO -->
+          <p id="responseErro" class="text-red-500 text-sm font-medium">
+            <?php if (isset($responseError)) echo $responseError; ?>
+          </p>
+
           <!-- BOTÃO -->
-          <p id="responseErro" style="color:red;"><?php if (isset($responseError)) echo $responseError; ?></p>
-          <div class="pt-6">
-            <button id="submitbutton" type="submit"
-              class="w-full signature-gradient text-white py-4 rounded-lg font-semibold tracking-wide hover:opacity-90 transition" name="registrar">
+          <div class="pt-4">
+
+            <button id="submitbutton" type="submit" name="registrar"
+              class="w-full bg-[#C58B18] hover:bg-[#B27B10] text-white py-4 rounded-xl font-black tracking-[0.18em] shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-1">
               FINALIZAR CADASTRO
             </button>
+
           </div>
 
         </form>
