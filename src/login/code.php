@@ -104,8 +104,8 @@ if(isset($er) && !empty($er))
 <main class="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
 <!-- Background Decorative Elements -->
 <div class="absolute inset-0 industrial-grid opacity-40 pointer-events-none"></div>
-<div class="absolute top-0 right-0 w-1/2 h-full hidden lg:block opacity-10 pointer-events-none grayscale contrast-125">
-<img class="w-full h-full object-cover" data-alt="high-contrast monochromatic close-up of heavy duty construction crane gears and hydraulic pistons with clean industrial lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEsC6amGXv6pFd4VpTR3Cq3Pr2Rm21kYtmmavrIaScfMESq9aiBGfPg4MHJL_925YZVOY93lJxmRrrBYQ0knD8_XP2gtkV8uEpIJHhF4ukTCC6XrvA9VkvpKjd5iBKrCVShRatUq5PwolCTe-A3a6c82SqBkC0HBgPfPzcNnu3X4b_k5mjecL3wCVH5Zk8HNKApQLrMHZUPPM4aHuMQEsJNLTh1kT0rjhq3algKVeS9limikHhxMFaTo-wkV-PynhpU5in66BgElW5"/>
+<div class="absolute top-0 right-0 w-full h-full hidden lg:block opacity-10 pointer-events-none grayscale contrast-125">
+<img class="w-full h-full " data-alt="high-contrast monochromatic close-up of heavy duty construction crane gears and hydraulic pistons with clean industrial lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEsC6amGXv6pFd4VpTR3Cq3Pr2Rm21kYtmmavrIaScfMESq9aiBGfPg4MHJL_925YZVOY93lJxmRrrBYQ0knD8_XP2gtkV8uEpIJHhF4ukTCC6XrvA9VkvpKjd5iBKrCVShRatUq5PwolCTe-A3a6c82SqBkC0HBgPfPzcNnu3X4b_k5mjecL3wCVH5Zk8HNKApQLrMHZUPPM4aHuMQEsJNLTh1kT0rjhq3algKVeS9limikHhxMFaTo-wkV-PynhpU5in66BgElW5"/>
 </div>
 <!-- Login Container -->
 <div class="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-12 gap-0 relative z-10">
@@ -113,7 +113,7 @@ if(isset($er) && !empty($er))
 <div class="lg:col-span-5 bg-on-surface p-12 flex flex-col justify-between rounded-l-lg lg:rounded-r-none">
 <div>
 <h1 class="font-headline font-black text-4xl tracking-tighter text-surface uppercase leading-none mb-4">
-                        Heavy Rent
+                        <img src="../img/Heavyrentlogo.png" alt="">
                     </h1>
 <div class="h-1 w-12 bg-primary mb-8"></div>
 <p class="font-headline text-2xl font-light text-surface-container tracking-tight leading-snug">
@@ -147,7 +147,7 @@ if(isset($er) && !empty($er))
 <span class="material-symbols-outlined text-[16px]">alternate_email</span>
                                 Email
                             </label>
-<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="engineering@titan-rentals.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
+<input class="w-full bg-surface-container-low border-none rounded-sm px-4 py-4 font-headline text-base focus:ring-2 focus:ring-primary transition-all placeholder:text-outline/50" id="email" name="email" placeholder="lorranbobo@heavyteam.com" required="" type="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"/>
 </div>
 <!-- Password Field -->
 <div class="space-y-2">

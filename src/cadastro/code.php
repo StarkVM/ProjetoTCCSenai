@@ -147,13 +147,13 @@ if (isset($er) && !empty($er)) {
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-on-background via-transparent to-transparent opacity-80"></div>
       <div class="relative z-10 h-full flex flex-col justify-between p-8 md:p-16">
-        <div class="flex items-center gap-2">
-          <span class="font-headline text-3xl font-black tracking-tighter text-surface uppercase">Heavy Rent</span>
-        </div>
         <div class="max-w-xl">
           <h1 class="font-headline text-5xl md:text-7xl font-bold text-surface tracking-tighter leading-none mb-6">
             CONSTRUA O <span class="text-primary-container">FUTURO</span> COM A GENTE.
           </h1>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-headline text-3xl font-black tracking-tighter text-surface uppercase"><img src="../img/Heavyrentlogo.png" alt=""></span>
         </div>
       </div>
     </div>
