@@ -1,18 +1,24 @@
 <?php
-
-//require "verification.php";
-
-session_start();
+require "verification.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 // verifica sessão primeiro
-if (isset($_SESSION['ultima_url'], $_SESSION['tempo_saida'])) {
+$currentPage = $_SERVER['REQUEST_URI'];
 
-    if (time() - $_SESSION['tempo_saida'] > 5 && time() - $_SESSION['tempo_saida'] <= 900) { // 15 min
+if (
+        isset($_SESSION['ultima_url'], $_SESSION['tempo_saida']) &&
+        $_SESSION['ultima_url'] !== $currentPage
+) {
+
+    if (
+            time() - $_SESSION['tempo_saida'] > 5 &&
+            time() - $_SESSION['tempo_saida'] <= 900
+    ) {
 
         $url = $_SESSION['ultima_url'];
 
-        // verifica a url
         if (preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $url)) {
+
             header("Location: $url");
             exit;
         }

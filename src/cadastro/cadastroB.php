@@ -1,11 +1,11 @@
 <?php
 require_once("../endpoints.php");
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 $endpoints = new Endpoints();
     try {
 
         if (!isset($_SESSION)) {
-            session_start();
+
         } // SE O USER NÃO TIVER UMA SESSÃO ATIVA, IRÁ CRIAR UMA SESSÃO.
 
         //  RECEBE OS DADOS DO POST REGISTRAR

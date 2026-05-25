@@ -1,6 +1,5 @@
 <?php
-
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 $er = $_GET['er'] ?? null;
 
@@ -8,8 +7,10 @@ if(isset($er) && !empty($er))
 {
     if($er == "1") $responseError = "Não foi possível verificar o código informado.";
     else if($er == "2") $responseError = "Erro ao validar os dados.";
+    else if($er == "3") $responseError = "Email ou CPF já registrados!";
     else $responseError = "Ocorreu um erro. Tente novamente.";
 }
+
 ?>
 
 <!DOCTYPE html>

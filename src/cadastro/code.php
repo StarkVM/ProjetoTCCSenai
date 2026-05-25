@@ -1,40 +1,40 @@
 <?php
 
-session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 error_reporting(0); // limpa os erros e avisos do header
 
 // SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
 $er = $_GET['er'];
 if (isset($er) && !empty($er)) {
-  switch ($er) {
-    case "Email and Cpf conflict.":
-      $responseError = "Email e Cpf já estão cadastrados.";
-      break;
-    case "Email or Cpf conflict.":
-      $responseError = "Email ou Cpf já estão cadastrados.";
-      break;
-    case "Registration in progress.":
-      $responseError = "Registro em progresso com este Email ou Cpf.";
-      break;
-    case "Database save failed.":
-      $responseError = "Ocorreu um erro ao processar os dados, por favor, tente novamente.";
-      break;
-    case "Send verification code failed.":
-      $responseError = "Falha ao enviar o código de verificação para o email!";
-      break;
-    case "User cpf validation failed.":
-      $responseError = "Falha ao validar o CPF, verifique as informações fornecidas e tente novamente.";
-      break;
-    case "0":
-      $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
-      break;
-    case "3":
-      $responseError = "A senha informada precisa ter entre 8 e 50 caracteres.";
-      break;
-    default:
-      $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
-      break;
-  }
+    switch ($er) {
+        case "Email and Cpf conflict.":
+            $responseError = "Email e Cpf já estão cadastrados.";
+            break;
+        case "Email or Cpf conflict.":
+            $responseError = "Email ou Cpf já estão cadastrados.";
+            break;
+        case "Registration in progress.":
+            $responseError = "Registro em progresso com este Email ou Cpf.";
+            break;
+        case "Database save failed.":
+            $responseError = "Ocorreu um erro ao processar os dados, por favor, tente novamente.";
+            break;
+        case "Send verification code failed.":
+            $responseError = "Falha ao enviar o código de verificação para o email!";
+            break;
+        case "User cpf validation failed.":
+            $responseError = "Falha ao validar o CPF, verifique as informações fornecidas e tente novamente.";
+            break;
+        case "0":
+            $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
+            break;
+        case "3":
+            $responseError = "A senha informada precisa ter entre 8 e 50 caracteres.";
+            break;
+        default:
+            $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
+            break;
+    }
 }
 
 

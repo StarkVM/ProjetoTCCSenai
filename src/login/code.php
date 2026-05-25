@@ -1,5 +1,10 @@
 <?php
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
+if(isset($_SESSION["logado"]) && $_SESSION["logado"] == true){
+    header("Location: /ProjetoTCCSenai/src/home/code.php");
+    exit();
+}
 $er = $_GET['er'] ?? null;
 if (isset($er) && !empty($er)) {
     if ($er == "1") $responseError = "Não foi possivel completar o login!";

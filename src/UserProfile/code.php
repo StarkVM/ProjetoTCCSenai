@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: ../login/code.php");
-    exit;
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/config/session.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/auth/auth.php';
 $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_SESSION['profile_image'] : 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzUDQZl-HKLn1hbcibYx6YX5VTq7eAMYn1QPM01CHamypkVTJOl1k5xkmZRrCKE-ImYbQZtSuZH3P6pUs7BEJHyMRe4bsZl0_qURze9GcGIKaRSSPfIf5zXzOCA8DhWsYs8xPVpIiNgE5LUSzcubC5-IkZqoDQCJZRMQADhQ4LpjwSTl3ZBTeYidDzGISOrBCMdLjg9iFRCe5G5IWGasKNnq3PYVEoBbLPXg0QibzdcOkLRb6MvF_nRLGZOixdrrCjf9-I0Fzb2N8E';
 ?>
 <!DOCTYPE html>

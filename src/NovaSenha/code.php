@@ -126,7 +126,7 @@
 <!-- Form Header -->
 
 <!-- Form Body -->
-<form class="space-y-8">
+<form class="space-y-8" method="POST" action="novasenha.php">
 <!-- Email Field -->
 <div class="space-y-2">
 <label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2" for="email">
@@ -134,7 +134,7 @@
                             E-mail do Usuario
                         </label>
 <div class="relative group">
-<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="email" placeholder="usuario@titan-rentals.com.br" required="" type="email"/>
+<input name="email" class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="email" placeholder="usuario@titan-rentals.com.br" required="" type="email"/>
 <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-focus-within:w-full transition-all duration-500"></div>
 </div>
 </div>
@@ -154,12 +154,12 @@
 </div>
 <!-- Confirm Password Field -->
 <div class="space-y-2">
-<label class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2" for="confirm-password">
+<label  class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface-variant flex items-center gap-2" for="confirm-password">
 <span class="material-symbols-outlined text-[16px]">verified_user</span>
                             Confirmar Nova Senha
                         </label>
 <div class="relative group">
-<input class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 pr-12 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="confirm-password" placeholder="Confirme a senha" required="" type="password"/>
+<input name="senha" class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 pr-12 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="confirm-password" placeholder="Confirme a senha" required="" type="password"/>
 <button class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" id="toggleConfirmPassword" type="button" aria-label="Mostrar/Ocultar confirmação de senha">
 <span class="material-symbols-outlined">visibility</span>
 </button>
@@ -174,7 +174,7 @@
 <!-- Action Area -->
 <div class="pt-6 space-y-6">
 <!-- Primary Button -->
-<button class="signature-gradient w-full py-5 rounded-md flex items-center justify-center gap-3 text-white font-headline font-bold uppercase tracking-widest group hover:opacity-90 active:scale-[0.98] transition-all ambient-occlusion disabled:opacity-50 disabled:cursor-not-allowed" id="submitBtn" type="submit" disabled>
+<button name="atualizar" class="signature-gradient w-full py-5 rounded-md flex items-center justify-center gap-3 text-white font-headline font-bold uppercase tracking-widest group hover:opacity-90 active:scale-[0.98] transition-all ambient-occlusion disabled:opacity-50 disabled:cursor-not-allowed" id="submitBtn" type="submit" disabled>
                             ATUALIZAR SENHA
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
@@ -269,27 +269,22 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Form submission
   const form = document.querySelector('form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
-    
-    if (password !== confirmPassword) {
-      alert('As senhas não coincidem!');
-      return;
-    }
-    
-    if (password.length < 8) {
-      alert('A senha deve ter no mínimo 8 caracteres!');
-      return;
-    }
-    
-    // Aqui você pode enviar os dados para o servidor
-    console.log('Senha atualizada com sucesso!');
-    alert('Senha atualizada com sucesso!');
-    // window.location.href = '../login/code.php';
-  });
+    form.addEventListener('submit', (e) => {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('As senhas não coincidem!');
+            return;
+        }
+
+        if (password.length < 8) {
+            e.preventDefault();
+            alert('A senha deve ter no mínimo 8 caracteres!');
+            return;
+        }
+    });
 });
 </script>
 

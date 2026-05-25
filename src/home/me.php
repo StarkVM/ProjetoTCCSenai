@@ -3,18 +3,7 @@ require_once("../endpoints.php");
 
 $endpoints = new Endpoints();
 
-$tempo = 60 * 60 * 24 * 7; // 7 dias para expirar a sessao
-
-ini_set('session.gc_maxlifetime', $tempo);
-session_set_cookie_params($tempo);
-
-
-if(!isset($_SESSION))
-{
-    ini_set('session.gc_maxlifetime', $tempo);
-    session_set_cookie_params($tempo);
-    session_start();
-}
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 try {
     $url = $endpoints->urlME;

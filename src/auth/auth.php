@@ -1,14 +1,14 @@
 <?php
 require_once("../endpoints.php");
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 $endpoints = new Endpoints();
 try {
-    if(!isset($_SESSION))
+    if(!isset($_SESSION) || $_SESSION['logado'] == false)
     {
         header("Location: ../login/code.php");
         return;
     }
-    session_start();
+
     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
         $url = $endpoints->urlRefreshToken;
         $dados = ["refreshToken" => $_SESSION['refreshToken']];

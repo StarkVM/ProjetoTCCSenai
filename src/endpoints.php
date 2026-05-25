@@ -2,12 +2,31 @@
 
 class endpoints
 {
-    public string $urlVerificarBanco = "http://localhost:5000/api/v1/user-access/health/db";
-    public string $urlME = "http://localhost:5000/api/v1/user-access/user/me";
-    public string $urlVerifyEmail = "http://localhost:5000/api/v1/user-access/auth/email-verification/verify-email";
-    public string $urlRefreshToken = "http://localhost:5000/api/v1/user-access/auth/refresh-tokens";
-    public string $Cadastro = "http://localhost:5000/api/v1/user-access/auth/register";
-    public string $urlLogin = "http://localhost:5000/api/v1/user-access/auth/login";
+    public string $UrlPadrao;
+    public string $urlVerificarBanco;
+    public string $urlME;
+    public string $urlVerifyEmail;
+    public string $urlRefreshToken;
+    public string $Cadastro;
+    public string $urlLogin;
+    public string $urlEsqueceuSenha;
+    public string $urlResetSenha;
+    public string $urlLoginVerify;
+    public function __construct()
+    {
+        $this->UrlPadrao = "http://localhost:5000";
+
+        $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
+        $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";
+        $this->urlVerifyEmail  = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/verify-email";
+        $this->urlRefreshToken = $this->UrlPadrao . "/api/v1/user-access/auth/refresh-tokens";
+        $this->Cadastro = $this->UrlPadrao . "/api/v1/user-access/auth/register";
+        $this->urlLogin = $this->UrlPadrao . "/api/v1/user-access/auth/login";
+        $this->urlEsqueceuSenha = $this->UrlPadrao . "/api/v1/user-access/auth/forgot-password";
+        $this->urlResetSenha = $this->UrlPadrao . "/api/v1/user-access/auth/reset-password";
+        $this->urlLoginVerify = $this->UrlPadrao . "/api/v1/user-access/auth/login/verify";
+
+    }
 }
 
 ?>

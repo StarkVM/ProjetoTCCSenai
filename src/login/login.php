@@ -1,6 +1,15 @@
 
 <?php
 require_once("../endpoints.php");
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+if($_SESSION["logado"] == true){
+    header("Location: /ProjetoTCCSenai/src/home/code.php");
+    exit();
+}
+
+session_destroy();
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
 
 $endpoints = new Endpoints();
     try {
@@ -36,8 +45,10 @@ $endpoints = new Endpoints();
             // VERIFICA O CODIGO DE RETORNO DA API E TRATA COM OS RESPECTIVOS CODIGOS
             if ($statusCode >= 200 && $statusCode <= 299 && $data['success'] == 'true') {
 
-
-                // REDIRECIONAR O USER PARA A PAGINA DE CODIGO LOGIN
+                $_SESSION["LoginVerify"] = false;
+                $_SESSION["email"] = $email;
+                header("Location: /ProjetoTCCSenai/src/2fa/code.php");
+                exit();
 
             }
             else {

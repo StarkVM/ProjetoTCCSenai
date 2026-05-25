@@ -129,7 +129,7 @@
 <body class="bg-surface text-on-surface">
     <header id="header"></header>
     <main class="pt-28 pb-xl px-gutter max-w-screen-2xl mx-auto">
-        
+
         <!-- Search & Filter Section -->
         <section class="mb-lg">
             <div class="flex flex-col gap-6">
@@ -142,41 +142,136 @@
                             class="w-full pl-12 pr-4 py-4 bg-white border-2 border-zinc-300 focus:border-secondary outline-none font-body-md transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,0.05)]"
                             placeholder="Pesquisar equipamentos industriais (ex: Escavadeira 20t)..." type="text" />
                     </div>
-                    <button
+                    <button id="filter-toggle-btn"
                         class="bg-secondary-container text-on-secondary-container px-8 py-4 font-h3 text-base flex items-center justify-center gap-2 border-2 border-zinc-900 active:scale-95 transition-transform">
                         <span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
                         FILTRAR
                     </button>
                 </div>
-                <!-- Quick Filters (Chips) -->
-                <div class="flex gap-sm overflow-x-auto pb-2 scrollbar-hide"><button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-zinc-900 text-white font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-900">Tudo</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Escavação
-                        e movimentação de terra</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Transporte
-                        de materiais</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Elevação
-                        e içamento</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Nivelamento
-                        e preparação do solo</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Compactação</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Máquinas
-                        agrícolas</button>
-                    <button
-                        class="filter-btn whitespace-nowrap px-6 py-2 bg-white text-zinc-600 font-label-sm uppercase tracking-widest rounded-lg border-2 border-zinc-200 hover:border-secondary transition-colors">Máquinas
-                        de mineração</button>
+
+                <div id="filters-panel"
+                    class="hidden mt-6 bg-[#F8F8F7] border border-[#DDD7CB] p-7 rounded-2xl shadow-sm">
+
+                    <!-- HEADER -->
+                    <div class="flex items-center justify-between mb-6">
+
+                        <div>
+                            <h3 class="text-2xl font-black text-[#1E1E1E] uppercase tracking-wide">
+                                Filtrar Equipamentos
+                            </h3>
+
+                            <p class="text-sm text-[#6B7280] mt-1">
+                                Selecione os tipos de máquinas desejados
+                            </p>
+                        </div>
+
+                        <div class="w-14 h-1 bg-[#C58B18] rounded-full"></div>
+
+                    </div>
+
+                    <!-- CHECKBOXES -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Escavadeiras
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Tratores
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                                                        <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Retroescavadeiras
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Guindastes
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Rolos
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Carregadeiras
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Mineração
+                            </span>
+                        </label>
+
+                        <!-- ITEM -->
+                        <label
+                            class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input type="checkbox"
+                                class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Asfalto
+                            </span>
+                        </label>
+
+                    </div>
                 </div>
             </div>
         </section>
         <!-- Equipment Grid -->
         <section id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
-            
+
         </section>
         <!-- Pagination -->
         <div id="pagination" class="mt-xl flex justify-center items-center gap-4">
@@ -201,22 +296,33 @@
     <script src="../generico/jsgenerico/frame.js"></script>
     <script src="catalogFiller.js"></script>
     <script>
+
+
+        const filterToggleBtn = document.getElementById("filter-toggle-btn");
+        const filtersPanel = document.getElementById("filters-panel");
+
+        filterToggleBtn.addEventListener("click", () => {
+            filtersPanel.classList.toggle("hidden");
+        });
+
+
         const filterButtons = document.querySelectorAll(".filter-btn");
 
         filterButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            
+            btn.addEventListener("click", () => {
+
                 // remove estilo ativo de todos
                 filterButtons.forEach(b => {
-                b.classList.remove("bg-zinc-900", "text-white", "border-zinc-900");
-                b.classList.add("bg-white", "text-zinc-600", "border-zinc-200");
+                    b.classList.remove("bg-zinc-900", "text-white", "border-zinc-900");
+                    b.classList.add("bg-white", "text-zinc-600", "border-zinc-200");
                 });
 
                 // adiciona no clicado
                 btn.classList.remove("bg-white", "text-zinc-600", "border-zinc-200");
                 btn.classList.add("bg-zinc-900", "text-white", "border-zinc-900");
             });
-});
+        });
     </script>
 </body>
+
 </html>

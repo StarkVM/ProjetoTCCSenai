@@ -1,29 +1,42 @@
 <?php
 require_once("../endpoints.php");
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 $endpoints = new Endpoints();
 
     try {
-        $tempo = 60 * 60 * 24 * 7; // expiracao de 7 dias
 
-        ini_set('session.gc_maxlifetime', $tempo);
-        session_set_cookie_params($tempo);
-
-        session_start();
         if(isset($_POST['verificar']) == "post")
             {
-                global $codigo;
+
                 foreach($_POST as $valor => $value)
                 {
                     $codigo = $codigo . $value;
 
                 }
 
-
-                // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
-                $url = $endpoints->urlVerifyEmail;
-                $dados = ["email" => $_SESSION['email'],
+                if($_SESSION["esqueceusenha"] == true)
+                {
+                    // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
+                    $url = $endpoints->urlResetSenha;
+                    $dados = ["email" => $_SESSION['email'],
+                        "newPassword" => $_SESSION['newPassword'],
                         "code" => $codigo];
+                }
+                else if($_SESSION["LoginVerify"] == false)
+                {
+                    // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
+                    $url = $endpoints->urlLoginVerify;
+                    $dados = ["email" => $_SESSION['email'],
+                        "code" => $codigo];
+                }
+                else
+                {
+                    // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
+                    $url = $endpoints->urlVerifyEmail;
+                    $dados = ["email" => $_SESSION['email'],
+                        "code" => $codigo];
+                }
+
 
                 $ch = curl_init($url); 
 
@@ -38,18 +51,31 @@ $endpoints = new Endpoints();
                 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 $data = json_decode($response, true); // tranforma json em array
                 curl_close($ch);
-                if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']))
-                {
-                    session_unset(); // LIMPA A SESSAO
-                    $_SESSION["accessToken"] =  $data['accessToken'];
-                    $_SESSION["refreshToken"] = $data['refreshToken'];
-                    $_SESSION["accessTokenExpiresAtUtc"] = $data['accessTokenExpiresAtUtc'];
-                    $_SESSION["refreshTokenExpiresAtUtc"] = $data['refreshTokenExpiresAtUtc'];
-                    $_SESSION["requestId"] = $data['requestId'];
 
-                    $dadosQ = ["status" => "success"];
-                    header("Location: ../home/me.php");
-                    return;
+                if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']) && !isset($data['success']))
+                {
+                    if($_SESSION["esqueceusenha"] == true && isset($_SESSION["esqueceusenha"]))
+                    {
+
+                        header("Location:/ProjetoTCCSenai/src/login/code.php"); //redirecionar para o login
+                        exit();
+                    }
+                    else
+                    {
+                        session_unset(); // LIMPA A SESSAO
+                        $_SESSION["accessToken"] =  $data['accessToken'];
+                        $_SESSION["refreshToken"] = $data['refreshToken'];
+                        $_SESSION["accessTokenExpiresAtUtc"] = $data['accessTokenExpiresAtUtc'];
+                        $_SESSION["refreshTokenExpiresAtUtc"] = $data['refreshTokenExpiresAtUtc'];
+                        $_SESSION["requestId"] = $data['requestId'];
+                        $_SESSION["logado"] = true;
+                        $_SESSION["LoginVerify"] = true;
+                        $dadosQ = ["status" => "success"];
+                        session_regenerate_id(true);
+                        header("Location: ../home/me.php");
+                        exit();
+                    }
+
                     
                 }
 
@@ -57,6 +83,13 @@ $endpoints = new Endpoints();
                 {
 
                     header("location: code.php?er=1");
+
+
+                }
+                else if ($statusCode >= 300 || $data['message'] == "Email or CPF already registered.")
+                {
+
+                    header("location: code.php?er=3");
 
 
                 }
