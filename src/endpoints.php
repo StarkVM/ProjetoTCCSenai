@@ -12,6 +12,8 @@ class endpoints
     public string $urlEsqueceuSenha;
     public string $urlResetSenha;
     public string $urlLoginVerify;
+    public string $urlVerificationSession;
+
     public function __construct()
     {
         $this->UrlPadrao = "http://localhost:5000";
@@ -25,6 +27,7 @@ class endpoints
         $this->urlEsqueceuSenha = $this->UrlPadrao . "/api/v1/user-access/auth/forgot-password";
         $this->urlResetSenha = $this->UrlPadrao . "/api/v1/user-access/auth/reset-password";
         $this->urlLoginVerify = $this->UrlPadrao . "/api/v1/user-access/auth/login/verify";
+        $this->urlVerificationSession = $this->UrlPadrao . "/api/v1/user-access/identity-verification/session";
 
     }
 }

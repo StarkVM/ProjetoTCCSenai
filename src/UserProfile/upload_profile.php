@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_image'])) {
         if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $target_file)) {
             // Salvar na sessão
             $_SESSION['profile_image'] = $file_name;
-            header("Location: code.html");
+            header("Location: code.php");
             exit;
         }
     }

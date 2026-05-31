@@ -28,7 +28,7 @@ try {
         }
         $_SESSION['logado'] = true;
 
-        header("Location: code.php"); //redirecionar para o home logado
+
     }
     else
     {

@@ -14,7 +14,7 @@ $endpoints = new Endpoints();
 
                 }
 
-                if($_SESSION["esqueceusenha"] == true)
+                if(isset($_SESSION["esqueceusenha"]) && $_SESSION["esqueceusenha"] == true)
                 {
                     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
                     $url = $endpoints->urlResetSenha;
@@ -22,7 +22,7 @@ $endpoints = new Endpoints();
                         "newPassword" => $_SESSION['newPassword'],
                         "code" => $codigo];
                 }
-                else if($_SESSION["LoginVerify"] == false)
+                else if(isset($_SESSION["LoginVerify"]) && $_SESSION["LoginVerify"] == false)
                 {
                     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
                     $url = $endpoints->urlLoginVerify;
@@ -72,7 +72,8 @@ $endpoints = new Endpoints();
                         $_SESSION["LoginVerify"] = true;
                         $dadosQ = ["status" => "success"];
                         session_regenerate_id(true);
-                        header("Location: ../home/me.php");
+                        include("../home/me.php");
+                        header("Location: ../home/code.php");
                         exit();
                     }
 

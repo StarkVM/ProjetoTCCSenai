@@ -1,3 +1,42 @@
+<?php
+error_reporting(0);
+require_once("../endpoints.php");
+require("../auth/auth.php");
+
+$endpoints = new Endpoints();
+
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
+$url = $endpoints->urlVerificationSession;
+
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+curl_setopt($ch, CURLOPT_POST, true); //  define que é post
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $_SESSION['accessToken']
+]); // tipo do envio
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$data = json_decode($response, true); // tranforma json em array
+curl_close($ch);
+
+
+if($statusCode >= 200 && $statusCode <= 299 && empty($data['message'])) {
+
+    $urlVerificar = $data["verificationUrl"];
+
+
+}
+else
+{
+    include ("../auth/auth.php");
+}
+?>
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -115,7 +154,7 @@
 <div class="relative w-full max-w-2xl h-[700px] bg-surface-container-lowest border-2 border-outline-variant shadow-xl overflow-hidden rounded-lg">
 
     <iframe
-        src="https://www.wikipedia.com"
+        src="<?php if(isset($urlVerificar)){echo $urlVerificar;} ?>"
         class="w-full h-full"
         frameborder="0">
     </iframe>

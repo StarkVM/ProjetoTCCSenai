@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
 
 $er = $_GET['er'] ?? null;
 
-if(isset($er) && !empty($er))
+if(isset($er))
 {
     if($er == "1") $responseError = "Não foi possível verificar o código informado.";
     else if($er == "2") $responseError = "Erro ao validar os dados.";
