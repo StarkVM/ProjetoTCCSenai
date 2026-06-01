@@ -184,6 +184,8 @@ tailwind.config = {
                             name="codigoChar1"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
@@ -192,6 +194,8 @@ tailwind.config = {
                             name="codigoChar2"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
@@ -200,6 +204,8 @@ tailwind.config = {
                             name="codigoChar3"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
@@ -208,6 +214,8 @@ tailwind.config = {
                             name="codigoChar4"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
@@ -216,6 +224,8 @@ tailwind.config = {
                             name="codigoChar5"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
@@ -224,6 +234,8 @@ tailwind.config = {
                             name="codigoChar6"
                             maxlength="1"
                             type="text"
+                            inputmode="numeric"
+                            autocomplete="one-time-code"
                             placeholder="0"
                             class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />

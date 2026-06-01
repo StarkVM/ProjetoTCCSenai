@@ -97,44 +97,22 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 <aside class="bg-[#f6f3f2] dark:bg-[#252423] h-screen w-72 flex flex-col fixed left-0 top-0 pt-20 hidden md:flex">
 <nav class="flex flex-col h-full py-8">
 <div class="px-8 mb-10">
-<p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-1">Operador</p>
+<p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-1">Conta</p>
 <h3 class="text-lg font-bold text-on-surface">Ricardo Mendes</h3>
 <p class="text-xs text-stone-500">Membro desde Out 2022</p>
 </div>
 <div class="space-y-1">
-<a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Painel</span>
-</a>
-<a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
+<a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="../VendedorHome/code.php">
 <span class="material-symbols-outlined">construction</span>
 <span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Minhas Locações</span>
 </a>
-<a class="text-[#835400] dark:text-[#f9a825] bg-[#ffffff] dark:bg-[#1c1b1b] border-l-4 border-[#835400] dark:border-[#f9a825] px-8 py-4 flex items-center gap-4 transition-all duration-150 group" href="#">
+<a class="text-[#835400] dark:text-[#f9a825] bg-[#ffffff] dark:bg-[#1c1b1b] border-l-4 border-[#835400] dark:border-[#f9a825] px-8 py-4 flex items-center gap-4 transition-all duration-150 group" href="../UserProfile/code.php">
 <span class="material-symbols-outlined">person</span>
 <span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Meu Perfil</span>
 </a>
-<a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Configurações</span>
-</a>
-<a class="text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group" href="#">
-<span class="material-symbols-outlined">support_agent</span>
-<span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Suporte</span>
-</a>
-</div>
-<div class="mt-auto px-8 py-6">
-<button class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-lg flex items-center justify-center gap-2 hover:brightness-110 transition-all active:scale-95">
-<span class="material-symbols-outlined">add_circle</span>
-                    Alugar Equipamento
-                </button>
 </div>
 <div class="border-t border-stone-200 mt-4 pt-4">
-<a class="text-stone-600 dark:text-stone-400 px-8 py-3 flex items-center gap-4 hover:bg-stone-200 transition-all text-xs font-semibold" href="#">
-<span class="material-symbols-outlined text-sm">verified_user</span>
-                    Protocolos de Segurança
-                </a>
-<a class="text-error px-8 py-3 flex items-center gap-4 hover:bg-red-50 transition-all text-xs font-semibold" href="../auth/logout.php" onclick="return confirm('Tem certeza que deseja sair?')">
+<a class="text-error px-8 py-3 flex items-center gap-4 hover:bg-red-50 transition-all text-xs font-semibold" href="../auth/logout.php">
 <span class="material-symbols-outlined text-sm">logout</span>
                     Sair
                 </a>
@@ -167,20 +145,22 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 <div class="h-32 w-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
 <img alt="Ricardo Mendes Profile" class="w-full h-full object-cover" src="<?php echo $profile_image; ?>"/>
 </div>
-<button id="camera-btn" class="absolute bottom-0 right-0 bg-primary text-on-primary h-8 w-8 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-sm">photo_camera</span>
-</button>
+
 </div>
 <div class="text-center md:text-left">
 <h2 class="text-3xl font-black uppercase tracking-tighter">Ricardo Mendes</h2>
 <p class="text-primary font-bold uppercase text-sm tracking-widest mt-1">Gestor de Canteiro / Alpha-7</p>
 <p class="text-stone-400 text-xs mt-2 uppercase font-semibold">Membro desde Outubro 2022</p>
 </div>
-<div class="md:ml-auto">
-<button class="bg-on-surface text-white px-6 py-3 rounded-md font-bold text-sm flex items-center gap-2 hover:bg-primary transition-colors">
-<span class="material-symbols-outlined text-sm">edit</span>
-                            Editar Perfil
-                        </button>
+<div class="md:ml-auto flex gap-3">
+<a href="../home/code.php" class="bg-primary text-white px-5 py-3 rounded-md font-bold text-sm flex items-center gap-2 hover:bg-[#6d4200] transition-colors">
+<span class="material-symbols-outlined text-sm">home</span>
+                            Voltar ao Home
+                        </a>
+<a href="../VendedorHome/code.php" class="border border-[#835400] text-[#835400] px-5 py-3 rounded-md font-bold text-sm flex items-center gap-2 hover:bg-[#ffedd6] transition-colors">
+<span class="material-symbols-outlined text-sm">work</span>
+                            Minhas Propostas
+                        </a>
 </div>
 </div>
 <!-- Info Grid -->
@@ -194,24 +174,10 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 </div>
 </div>
 <div>
-<label class="text-[10px] font-black uppercase text-stone-400 tracking-widest block mb-1">Telefone / WhatsApp</label>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-stone-300">call</span>
-<span class="text-on-surface font-semibold">+55 11 99872-4421</span>
-</div>
-</div>
-<div>
 <label class="text-[10px] font-black uppercase text-stone-400 tracking-widest block mb-1">Localização Principal</label>
 <div class="flex items-center gap-3">
 <span class="material-symbols-outlined text-stone-300">location_on</span>
 <span class="text-on-surface font-semibold">Canteiro Norte, São Paulo - SP</span>
-</div>
-</div>
-<div>
-<label class="text-[10px] font-black uppercase text-stone-400 tracking-widest block mb-1">Documento / CPF</label>
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-stone-300">badge</span>
-<span class="text-on-surface font-semibold">432.***.***-09</span>
 </div>
 </div>
 <div>
@@ -230,10 +196,10 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 </div>
 </div>
 <div class="mt-12 pt-8 border-t border-stone-100">
-<h4 class="text-xs font-black uppercase tracking-widest text-stone-400 mb-6">Segurança e Acesso</h4>
+<h4 class="text-xs font-black uppercase tracking-widest text-stone-400 mb-6">Ações da Conta</h4>
 <div class="flex flex-col sm:flex-row gap-4">
-<button class="border-2 border-stone-200 text-stone-600 px-4 py-2 rounded-md font-bold text-xs hover:bg-stone-50 transition-colors uppercase">Alterar Senha</button>
-<button class="border-2 border-stone-200 text-stone-600 px-4 py-2 rounded-md font-bold text-xs hover:bg-stone-50 transition-colors uppercase">Ativar MFA (2FA)</button>
+<a href="../VendedorHome/code.php" class="inline-flex items-center justify-center border-2 border-[#835400] text-[#835400] px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#fff1d7] transition-colors">Minhas Propostas</a>
+<button class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors" onclick="window.location.href='../auth/logout.php'">Deletar Conta</button>
 </div>
 </div>
 </div>
@@ -242,34 +208,19 @@ $profile_image = isset($_SESSION['profile_image']) ? '../uploads/profile/' . $_S
 </main>
 <!-- Mobile Bottom Nav -->
 <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-stone-100 flex justify-around items-center py-4 px-6 z-50">
-<a class="text-stone-400 flex flex-col items-center" href="#">
+<a class="text-stone-400 flex flex-col items-center" href="../home/code.php">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="text-[10px] font-bold mt-1 uppercase">Início</span>
 </a>
-<a class="text-stone-400 flex flex-col items-center" href="#">
+<a class="text-stone-400 flex flex-col items-center" href="../VendedorHome/code.php">
 <span class="material-symbols-outlined">construction</span>
 <span class="text-[10px] font-bold mt-1 uppercase">Locações</span>
-</a>
-<a class="text-stone-400 flex flex-col items-center" href="#">
-<span class="material-symbols-outlined">support_agent</span>
-<span class="text-[10px] font-bold mt-1 uppercase">Suporte</span>
 </a>
 <a class="text-primary flex flex-col items-center" href="#">
 <span class="material-symbols-outlined">person</span>
 <span class="text-[10px] font-bold mt-1 uppercase">Perfil</span>
 </a>
 </nav>
-<form id="upload-form" action="upload_profile.php" method="post" enctype="multipart/form-data" style="display: none;">
-<input type="file" name="profile_image" id="profile-image-input" accept="image/*">
-</form>
 <footer id="footer"></footer>
-<script>
-document.getElementById('camera-btn').addEventListener('click', function() {
-    document.getElementById('profile-image-input').click();
-});
-document.getElementById('profile-image-input').addEventListener('change', function() {
-    document.getElementById('upload-form').submit();
-});
-</script>
 <script src="../generico/jsgenerico/frame.js"></script>
 </body></html>

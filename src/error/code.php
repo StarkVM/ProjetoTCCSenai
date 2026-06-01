@@ -178,9 +178,7 @@ $error = $_GET['er'] ?? 404;
             <!-- Description -->
             <p class="text-lg text-on-surface-variant leading-relaxed max-w-xl">
               O endereço acessado pode ter sido removido, alterado ou está temporariamente fora de serviço.
-              Você pode retornar para a página inicial ou entrar em contato com o suporte da operação.
-            </p>
-
+              Você pode retornar para a página inicial para continuar navegando.
             <!-- Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mt-10">
 

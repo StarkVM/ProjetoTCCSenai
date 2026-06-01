@@ -182,7 +182,7 @@ if (isset($er) && !empty($er)) {
             <input type="date" name="data_nascimento" required
               class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
 
-            <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="CPF" required
+            <input id="cpf" maxlength="14" type="text" name="cpf" placeholder="Documento" required
               class="w-full bg-[#FFFFFF] border border-[#D6D1C7] rounded-xl px-5 py-4 text-[#1E1E1E] placeholder:text-[#7B7B7B] shadow-sm outline-none transition duration-300 focus:border-[#C58B18] focus:ring-4 focus:ring-[#C58B18]/20 hover:border-[#B8B0A3]">
 
             <input type="email" name="email" placeholder="Email" required
@@ -321,22 +321,6 @@ if (isset($er) && !empty($er)) {
       value = value.replace(/(\d{3})(\d)/, "$1.$2");
       value = value.replace(/(\d{3})(\d)/, "$1.$2");
       value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-
-      e.target.value = value;
-    });
-
-    //MÁSCARA DE TELEFONE
-    telefoneField.addEventListener("input", (e) => {
-      let value = e.target.value;
-
-      value = value.replace(/\D/g, "");
-
-      // limita a 11 dígitos
-      value = value.substring(0, 11);
-
-      // aplica máscara
-      value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
-      value = value.replace(/(\d{5})(\d)/, "$1-$2");
 
       e.target.value = value;
     });

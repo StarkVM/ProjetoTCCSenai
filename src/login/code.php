@@ -201,7 +201,7 @@ if (isset($er) && !empty($er)) {
                     <!-- Footer / Signup -->
                     <div class="mt-12 pt-8 border-t border-surface-container-highest flex flex-col sm:flex-row justify-between items-center gap-4">
                         <p class="font-label text-xs text-on-surface-variant uppercase tracking-widest">
-                            Novo operador?
+                            Ainda não possui conta?
                         </p>
                         <a class="font-headline text-xs font-bold text-on-surface uppercase tracking-[0.1em] px-6 py-2 border border-outline-variant hover:bg-surface-container-high transition-colors rounded-sm" href="../cadastro/code.php">
                             Criar Conta

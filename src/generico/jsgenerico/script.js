@@ -12,7 +12,6 @@ const button = document.getElementById("submitbutton");
 const senha1 = document.getElementById("senha1");
 const senha2 = document.getElementById("senha2");
 const cpfField = document.getElementById("cpf");
-const telefoneField = document.getElementById("telefone");
 const termbox = document.getElementById("termbox");
 
 let cepcondition = false;

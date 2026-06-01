@@ -606,13 +606,13 @@ function iniciarAluguel() {
   const total = document.getElementById("total").textContent;
   
   if (!dataInicio || !dataFim) {
-    alert("Por favor, selecione as datas de início e fim da locação.");
+    console.warn("Por favor, selecione as datas de início e fim da locação.");
     return;
   }
   
   const itemSalvo = localStorage.getItem("item");
   if (!itemSalvo) {
-    alert("Erro: Máquina não carregada. Tente novamente.");
+    console.warn("Erro: Máquina não carregada. Tente novamente.");
     return;
   }
   

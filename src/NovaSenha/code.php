@@ -275,13 +275,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (password !== confirmPassword) {
             e.preventDefault();
-            alert('As senhas não coincidem!');
+            matchText.textContent = 'As senhas não coincidem!';
             return;
         }
 
         if (password.length < 8) {
             e.preventDefault();
-            alert('A senha deve ter no mínimo 8 caracteres!');
+            matchText.textContent = 'A senha deve ter no mínimo 8 caracteres!';
             return;
         }
     });
