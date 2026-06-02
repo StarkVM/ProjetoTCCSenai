@@ -127,6 +127,10 @@
                     <span class="material-symbols-outlined">engineering</span>
                     <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Aluguéis</span>
                 </button>
+                <button class="tab-btn p-4 w-full flex items-center justify-center md:justify-start gap-4 opacity-60 hover:opacity-100 transition-all group" id="btn-history" onclick="switchTab('history')">
+                    <span class="material-symbols-outlined">history</span>
+                    <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Histórico</span>
+                </button>
             </nav>
         </aside>
         <!-- Tab Content Area -->
@@ -166,6 +170,11 @@
                     </div>
                     <p class="font-headline font-bold uppercase tracking-tighter text-lg">Sem aluguéis ativos</p>
                     <p class="text-sm opacity-60 max-w-xs mx-auto">Sua frota está pronta para o trabalho. Comece a fechar negócios hoje.</p>
+                </div>
+            </div>
+            <div class="tab-content hidden" id="history-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="history-list">
+                    <!-- Histórico de aluguéis injetado por JS -->
                 </div>
             </div>
             <div class="tab-content hidden" id="stats-content">
@@ -273,6 +282,74 @@
             }
         }
 
+        const historico = [
+            {
+                id: '1',
+                titulo: 'Retroescavadeira CAT 320',
+                periodo: '12 fev 2026 – 18 fev 2026',
+                cliente: 'Obras & Concretos S/A',
+                local: 'Zona Sul, São Paulo',
+                valor: 'R$ 8.400',
+                status: 'Concluído',
+                link: '../VendedorHome/historico.php?id=1'
+            },
+            {
+                id: '2',
+                titulo: 'Perfuratriz DTH 20',
+                periodo: '02 mar 2026 – 10 mar 2026',
+                cliente: 'Engenharia Nova Era',
+                local: 'Guarulhos, SP',
+                valor: 'R$ 11.200',
+                status: 'Concluído',
+                link: '../VendedorHome/historico.php?id=2'
+            },
+            {
+                id: '3',
+                titulo: 'Vibroacabadora Volvo ABG 2820',
+                periodo: '20 abr 2026 – 30 abr 2026',
+                cliente: 'Estradas Brasil',
+                local: 'Campinas, SP',
+                valor: 'R$ 9.750',
+                status: 'Concluído',
+                link: '../VendedorHome/historico.php?id=3'
+            }
+        ];
+
+        function renderHistory() {
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = historico.map(item => `
+                <a href="${item.link}" class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between gap-4 mb-4">
+                            <div>
+                                <p class="text-[10px] uppercase font-bold opacity-40 mb-1 tracking-widest">${item.status}</p>
+                                <h3 class="text-xl font-headline font-black uppercase leading-tight">${item.titulo}</h3>
+                            </div>
+                            <span class="text-xs uppercase font-bold text-primary">Ver</span>
+                        </div>
+                        <p class="text-sm opacity-70 mb-4">${item.cliente}</p>
+                        <div class="grid grid-cols-1 gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface/80">
+                            <div class="flex justify-between"><span>Período</span><span>${item.periodo}</span></div>
+                            <div class="flex justify-between"><span>Local</span><span>${item.local}</span></div>
+                            <div class="flex justify-between"><span>Valor</span><span>${item.valor}</span></div>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+
+            if (historico.length === 0) {
+                historyList.innerHTML = `
+                    <div class="col-span-full p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
+                            <span class="material-symbols-outlined text-3xl opacity-40">history</span>
+                        </div>
+                        <p class="font-headline font-bold uppercase tracking-tighter text-lg">Ainda não há histórico</p>
+                        <p class="text-sm opacity-60 max-w-xs mx-auto">Quando seus aluguéis forem concluídos, o histórico aparecerá aqui.</p>
+                    </div>
+                `;
+            }
+        }
+
         function switchTab(tab) {
             // Content
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -282,17 +359,19 @@
 
             // Show inventory action only on inventory tab
             const actionBtn = document.getElementById('inventory-actions');
-            if (tab === 'inventory') actionBtn.classList.remove('hidden');
+            if (actionBtn) actionBtn.classList.toggle('hidden', tab !== 'inventory');
 
             // Buttons
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById('btn-' + tab).classList.add('active');
+            const activeButton = document.getElementById('btn-' + tab);
+            if (activeButton) activeButton.classList.add('active');
 
             // Header titles
             const titles = {
                 'inventory': ['Meus anúncios', 'Frota Ativa'],
                 'proposals': ['Propostas', 'Negociações em curso'],
                 'rentals': ['Aluguéis', 'Máquinas em operação'],
+                'history': ['Histórico', 'Aluguéis concluídos'],
                 'stats': ['Relatórios', 'Performance da frota']
             };
             document.getElementById('tab-title').textContent = titles[tab][0];
@@ -300,6 +379,7 @@
         }
 
         renderInventory();
+        renderHistory();
     </script>
     <script src="../generico/jsgenerico/frame.js"></script>
 </body>
