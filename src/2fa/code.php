@@ -267,7 +267,7 @@ tailwind.config = {
                 <div class="flex items-center justify-between pt-2">
 
                     <button
-                        type="button"
+                        type="button" name="reenviarCodigo"
                         class="text-on-surface-variant font-label text-[11px] uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2"
                     >
 

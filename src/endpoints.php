@@ -13,10 +13,14 @@ class endpoints
     public string $urlResetSenha;
     public string $urlLoginVerify;
     public string $urlVerificationSession;
+    public string $urlLogoutSession;
+    public string $urlLogoutAllSession;
+    public string $urlLoginNewCode;
+    public string $urlEmailVerifyNewCode;
 
     public function __construct()
     {
-        $this->UrlPadrao = "http://localhost:5000";
+        $this->UrlPadrao = "https://markers-stewart-leo-middle.trycloudflare.com";
 
         $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
         $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";
@@ -28,6 +32,11 @@ class endpoints
         $this->urlResetSenha = $this->UrlPadrao . "/api/v1/user-access/auth/reset-password";
         $this->urlLoginVerify = $this->UrlPadrao . "/api/v1/user-access/auth/login/verify";
         $this->urlVerificationSession = $this->UrlPadrao . "/api/v1/user-access/identity-verification/session";
+        $this->urlLogoutSession = $this->UrlPadrao . "/api/v1/user-access/auth/logout-current-session";
+        $this->urlLogoutAllSession = $this->UrlPadrao . "/api/v1/user-access/auth/logout-all-sessions";
+        $this->urlLoginNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/login/request-new-code";
+        $this->urlEmailVerifyNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/request-new-code";
+
 
     }
 }

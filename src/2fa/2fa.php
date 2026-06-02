@@ -5,7 +5,7 @@ $endpoints = new Endpoints();
 
     try {
 
-        if(isset($_POST['verificar']) == "post")
+        if(isset($_POST['verificar']) == "post" || isset($_POST['reenviarCodigo']) == "post")
             {
 
                 foreach($_POST as $valor => $value)
@@ -18,6 +18,7 @@ $endpoints = new Endpoints();
                 {
                     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
                     $url = $endpoints->urlResetSenha;
+                    if(isset($_POST['reenviarCodigo']) == "post") $url = $endpoints->urlEsqueceuSenha;
                     $dados = ["email" => $_SESSION['email'],
                         "newPassword" => $_SESSION['newPassword'],
                         "code" => $codigo];
@@ -26,6 +27,7 @@ $endpoints = new Endpoints();
                 {
                     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
                     $url = $endpoints->urlLoginVerify;
+                    if(isset($_POST['reenviarCodigo']) == "post") $url = $endpoints->urlLoginNewCode;
                     $dados = ["email" => $_SESSION['email'],
                         "code" => $codigo];
                 }
@@ -33,6 +35,7 @@ $endpoints = new Endpoints();
                 {
                     // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
                     $url = $endpoints->urlVerifyEmail;
+                    if(isset($_POST['reenviarCodigo']) == "post") $url = $endpoints->urlEmailVerifyNewCode;
                     $dados = ["email" => $_SESSION['email'],
                         "code" => $codigo];
                 }
@@ -51,9 +54,15 @@ $endpoints = new Endpoints();
                 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 $data = json_decode($response, true); // tranforma json em array
                 curl_close($ch);
-
+                var_dump($statusCode, $data, $url);
+                return;
                 if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']) && !isset($data['success']))
                 {
+                    if(isset($_POST['reenviarCodigo']) == "post")
+                        {
+                            return;
+                            
+                        }
                     if($_SESSION["esqueceusenha"] == true && isset($_SESSION["esqueceusenha"]))
                     {
 
@@ -99,6 +108,7 @@ $endpoints = new Endpoints();
                 }
 
             }
+            
     } catch (\Throwable $th) {
         //throw $th;
 

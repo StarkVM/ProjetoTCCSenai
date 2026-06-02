@@ -39,8 +39,7 @@ try {
         }
         else
         {
-            var_dump($data);
-            echo $statusCode;
+            
         }
     }
 
