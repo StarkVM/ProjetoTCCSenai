@@ -183,9 +183,6 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
 </div>
 <div class="md:ml-auto flex gap-3">
 <a href="../home/code.php" class="bg-primary text-white px-5 py-3 rounded-md font-bold text-sm flex items-center gap-2 hover:bg-[#6d4200] transition-colors">
-<span class="material-symbols-outlined text-sm">home</span>
-                            Voltar ao Home
-                        </a>
 </div>
 </div>
 <!-- Info Grid -->
