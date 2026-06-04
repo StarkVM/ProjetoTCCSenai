@@ -284,7 +284,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
                 <div class="flex flex-row sm:flex-row gap-4">
                   <button
                     class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors"
-                    onclick="window.location.href='../auth/logout.php'">Desativar Conta</button>
+                    onclick="openDisableAccountModal()">Desativar Conta</button>
                   <button
                     class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors"
                     onclick="window.location.href='../auth/logout.php'">Mudar Senha</button>
@@ -374,8 +374,53 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
       </a>
     </nav>
     <footer id="footer"></footer>
+    
+    <!-- Modal de Confirmação Desativar Conta -->
+    <div id="disableAccountModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-[#1c1b1b] rounded-lg shadow-xl max-w-sm w-full mx-4">
+        <div class="p-6 border-b border-stone-200 dark:border-stone-700">
+          <h2 class="text-lg font-bold text-on-surface">Desativar Conta</h2>
+        </div>
+        <div class="p-6 space-y-4">
+          <p class="text-stone-600 dark:text-stone-400">Tem certeza que deseja desativar sua conta?</p>
+          <div class="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded p-4">
+            <p class="text-xs font-semibold text-red-800 dark:text-red-300 uppercase tracking-widest mb-2">⚠ Atenção</p>
+            <p class="text-sm text-red-700 dark:text-red-300">Essa ação desativará sua conta e você não conseguirá acessar o sistema. Seus dados serão preservados, mas você precisará entrar em contato com o suporte para reativar.</p>
+          </div>
+        </div>
+        <div class="p-6 border-t border-stone-200 dark:border-stone-700 flex gap-3">
+          <button onclick="closeDisableAccountModal()" class="flex-1 px-4 py-2 border-2 border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-400 rounded-md font-bold text-xs uppercase hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors">Cancelar</button>
+          <button onclick="confirmDisableAccount()" class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md font-bold text-xs uppercase transition-colors">Confirmar Desativação</button>
+        </div>
+      </div>
+    </div>
+    
     <script src="../generico/jsgenerico/frame.js"></script>
     <script>
+      // Funções para gerenciar modal de desativar conta
+      function openDisableAccountModal() {
+        document.getElementById('disableAccountModal').classList.remove('hidden');
+        document.getElementById('disableAccountModal').classList.add('flex');
+      }
+      
+      function closeDisableAccountModal() {
+        document.getElementById('disableAccountModal').classList.add('hidden');
+        document.getElementById('disableAccountModal').classList.remove('flex');
+      }
+      
+      function confirmDisableAccount() {
+        // Redireciona para logout (desativa a conta)
+        window.location.href = '../auth/logout.php';
+      }
+      
+      // Fechar modal ao clicar fora dele
+      document.addEventListener('click', function(e) {
+        const modal = document.getElementById('disableAccountModal');
+        if (modal && e.target === modal) {
+          closeDisableAccountModal();
+        }
+      });
+      
       document.addEventListener('DOMContentLoaded', function () {
         const tabBtns = document.querySelectorAll('.tab-btn');
         const contentBtns = document.querySelectorAll('.tab-content-btn');
