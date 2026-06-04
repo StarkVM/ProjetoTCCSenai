@@ -54,14 +54,14 @@ $endpoints = new Endpoints();
                 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 $data = json_decode($response, true); // tranforma json em array
                 curl_close($ch);
-                var_dump($statusCode, $data, $url);
-                return;
-                if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']) && !isset($data['success']))
+
+                if($statusCode >= 200 && $statusCode <= 299 && !isset($data['message']) || (isset($data['success']) && $data['success'] === true))
                 {
                     if(isset($_POST['reenviarCodigo']) == "post")
                         {
-                            return;
-                            
+                            header("Location: code.php?er=4");
+                            exit();
+
                         }
                     if($_SESSION["esqueceusenha"] == true && isset($_SESSION["esqueceusenha"]))
                     {
@@ -88,7 +88,11 @@ $endpoints = new Endpoints();
 
                     
                 }
-
+                else if ($statusCode >= 300 && $data['success'] == false)
+                {
+                    header("location: code.php?er=5");
+                    exit();
+                }
                 else if ($statusCode >= 300 || $data['message'] == "Unable to verify email.")
                 {
 

@@ -8,6 +8,8 @@ if(isset($er))
     if($er == "1") $responseError = "Não foi possível verificar o código informado.";
     else if($er == "2") $responseError = "Erro ao validar os dados.";
     else if($er == "3") $responseError = "Email ou CPF já registrados!";
+    else if($er == "4") $responseError = "Código reenviado com sucesso.";
+    else if($er == "5") $responseError = "Falha ao reenviar codigo, tente novamente em alguns minutos ou refaça o procedimento.";
     else $responseError = "Ocorreu um erro. Tente novamente.";
 }
 
@@ -267,7 +269,7 @@ tailwind.config = {
                 <div class="flex items-center justify-between pt-2">
 
                     <button
-                        type="button" name="reenviarCodigo"
+                        type="submit" name="reenviarCodigo"
                         class="text-on-surface-variant font-label text-[11px] uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2"
                     >
 
