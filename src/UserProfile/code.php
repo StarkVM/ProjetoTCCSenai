@@ -223,8 +223,9 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
 </div>
 <div class="mt-12 pt-8 border-t border-stone-100" >
 <h4 class="text-xs font-black uppercase tracking-widest text-stone-400 mb-6">Ações da Conta</h4>
-<div class="flex flex-col sm:flex-row gap-4">
+<div class="flex flex-row sm:flex-row gap-4">
     <button class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors" onclick="window.location.href='../auth/logout.php'">Desativar Conta</button>
+    <button class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors" onclick="window.location.href='../auth/logout.php'">Mudar Senha</button>
 <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<a href="../VendedorHome/code.php" class="inline-flex items-center justify-center border-2 border-[#2ac6ff] text-[#2ac6ff] px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#c0e8ff] transition-colors">Virar vendedor</a>'?>
 </div>
 </div>
