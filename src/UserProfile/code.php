@@ -3,7 +3,7 @@
 // TYPE 0 USUARIO COMUM E 1 VENDEDOR
 
 error_reporting(0);
-require("../auth/auth.php");
+//require("../auth/auth.php");
 
 $semDados = "Dados não carregados!";
 
@@ -106,12 +106,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopAppBar -->
-<header class="bg-[#fcf9f8] dark:bg-[#1c1b1b] flex justify-between items-center w-full px-8 h-20 fixed top-0 z-50 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-<a href="../home/code.php" class="text-2xl font-black tracking-tighter text-stone-900 dark:text-stone-100 uppercase font-['Space_Grotesk']">
-            HEAVY RENT
-        </a>
-</div>
-</header>
+<header id="header"></header>
 <!-- SideNavBar -->
 <aside class="bg-[#f6f3f2] dark:bg-[#252423] h-screen w-72 flex flex-col fixed left-0 top-0 pt-20 hidden md:flex">
 <nav class="flex flex-col h-full py-8">
@@ -251,5 +246,6 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
 <span class="text-[10px] font-bold mt-1 uppercase">Perfil</span>
 </a>
 </nav>
-
+<footer id="footer"></footer>
+<script src="../generico/jsgenerico/frame.js"></script>
 </body></html>
