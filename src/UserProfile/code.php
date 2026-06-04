@@ -153,7 +153,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
 </nav>
 </aside>
 <!-- Main Content -->
-<main class="w-full flex-1 min-h-screen pt-20">
+<main class="w-full flex-1 min-h-screen ">
 <div class="p-8 lg:p-12 max-w-4xl mx-auto space-y-10">
 <!-- Page Header -->
 <header>
