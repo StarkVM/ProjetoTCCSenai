@@ -6,15 +6,19 @@ $endpoints = new Endpoints();
 
 try {
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['atualizar'])){
-        $email = $_POST["email"];
+        if(!isset($_SESSION["email"])){
+            $email = $_POST["email"];
+            $_SESSION["email"] = $email;
+        }
+
         $senha = $_POST["senha"];
         $_SESSION["newPassword"] = $senha;
-        $_SESSION["email"] = $email;
+
         $_SESSION["esqueceusenha"] = true;
 
         // FAZ A CONEXÃO COM A API PARA ENVIO DOS DADOS
         $url = $endpoints->urlEsqueceuSenha;
-        $dados = ["email" => $email];
+        $dados = ["email" => $_SESSION["email"]];
 
 
         $ch = curl_init($url);
@@ -31,7 +35,7 @@ try {
         $data = json_decode($response, true); // tranforma json em array
         curl_close($ch);
 
-        if($statusCode >= 200 && $statusCode <= 299) {
+        if($statusCode >= 200 && $statusCode <= 299 && $data["success"] == true) {
 
 
             header("Location: /ProjetoTCCSenai/src/2fa/code.php");
@@ -39,7 +43,8 @@ try {
         }
         else
         {
-            
+            header("Location: /ProjetoTCCSenai/src/NovaSenha/code.php?er=1");
+            exit;
         }
     }
 

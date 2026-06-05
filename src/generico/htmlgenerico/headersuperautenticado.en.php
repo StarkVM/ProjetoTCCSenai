@@ -1,3 +1,8 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
+?>
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -19,10 +24,10 @@
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-opacity duration-200" href="../VendedorHome/code.php">Locações</a>
     </nav>
     <div class="flex items-center gap-4">
-      <button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
+        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
         Ser Vendedor
-      </button>
+      </button>';?>
       <div class="relative group flex items-center gap-3 cursor-pointer">
         <span class="hidden md:block font-['Space_Grotesk'] text-sm font-bold text-[#1c1b1b] dark:text-[#fcf9f8]">Olá, Fulano</span>
         <img src="https://i.pravatar.cc/40" alt="User avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary">

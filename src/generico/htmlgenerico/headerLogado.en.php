@@ -1,3 +1,9 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
+?>
+
+
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -40,10 +46,11 @@ tailwind.config = {
     </nav>
 
     <div class="flex items-center gap-4">
-      <button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
+        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
         Ser Vendedor
-      </button>
+      </button>';?>
+
 
       <button onclick="window.location.href='../../modal/code.php'" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#2ac6ff] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">verified_user</span>

@@ -9,10 +9,10 @@ fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
         let headerPath;
 
         if (data.status === "logged") {
-            headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.html`;
+            headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headerLogado.php`;
 
         } else if (data.status === "super") {
-            headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.html`;
+            headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/headersuperautenticado.php`;
 
         } else {
             headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/header.html`;

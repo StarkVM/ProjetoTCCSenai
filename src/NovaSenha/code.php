@@ -1,3 +1,14 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
+$er = $_GET['er'] ?? null;
+if (isset($er) && !empty($er)) {
+    if ($er == "1") $responseError = "Não foi enviar o código para o email, por favor, revise os dados e tente novamente!";
+    else $responseError = "Houve um erro ao processar os dados! Por favor, tente novamente.";
+}
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="pt-BR"><head>
@@ -134,7 +145,8 @@
                             E-mail do Usuario
                         </label>
 <div class="relative group">
-<input name="email" class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="email" placeholder="usuario@titan-rentals.com.br" required="" type="email"/>
+<input name="email" class="w-full bg-surface-container-lowest border-none rounded-md px-4 py-4 text-on-surface font-medium placeholder:text-outline/40 focus:ring-2 focus:ring-primary/20 transition-all duration-200" id="email" placeholder="usuario@titan-rentals.com.br" required="" type="email"
+        <?php if(isset($_SESSION["email"]))  echo"value=" .$_SESSION["email"];  ?> <?php if(isset($_SESSION["email"])) echo 'disabled' ?>>
 <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-primary group-focus-within:w-full transition-all duration-500"></div>
 </div>
 </div>
@@ -178,6 +190,7 @@
                             ATUALIZAR SENHA
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
+    <p id="erro" style="color: red"><?php if (isset($responseError)) echo $responseError ?></p>
 <!-- Secondary Link -->
 <div class="flex justify-center">
 <a class="font-label text-sm font-semibold uppercase tracking-widest text-on-surface-variant hover:text-primary flex items-center gap-2 group transition-colors" href="../login/code.php">

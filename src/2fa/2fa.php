@@ -88,8 +88,10 @@ $endpoints = new Endpoints();
 
                     
                 }
+
                 else if ($statusCode >= 300 && $data['success'] == false)
                 {
+
                     header("location: code.php?er=5");
                     exit();
                 }
