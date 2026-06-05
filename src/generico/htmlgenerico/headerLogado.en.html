@@ -22,7 +22,7 @@
     </nav>
 
     <div class="flex items-center gap-4">
-      <button onclick="window.location.href='../VendedorCadastro/code.php'" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
+      <button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
         Ser Vendedor
       </button>
@@ -46,5 +46,65 @@
   </div>
   <div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
 </header>
-</body>
-</html>
+
+<!-- MODAL DE CONFIRMAÇÃO PARA SER VENDEDOR -->
+<div id="vendorModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+  <div class="bg-white dark:bg-[#2d2c2c] rounded-lg shadow-xl w-96 p-6 animate-in fade-in duration-300">
+    <!-- Cabeçalho -->
+    <div class="flex items-center gap-3 mb-4">
+      <div class="bg-primary/10 p-3 rounded-full">
+        <span class="material-symbols-outlined text-primary text-2xl">info</span>
+      </div>
+      <h2 class="text-xl font-bold text-on-surface">Deseja se tornar vendedor?</h2>
+    </div>
+
+    <!-- Descrição -->
+    <p class="text-sm text-on-surface/70 mb-6">
+      Ao ativar o modo vendedor, você poderá criar anúncios e gerenciar suas locações. Tem certeza que deseja continuar?
+    </p>
+
+    <!-- Botões -->
+    <div class="flex gap-3 justify-end">
+      <button 
+        onclick="closeVendorModal()"
+        class="px-4 py-2 rounded-md bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold transition-colors"
+      >
+        Cancelar
+      </button>
+      <button 
+        onclick="confirmVendor()"
+        class="px-4 py-2 rounded-md bg-primary hover:bg-primary-container text-on-primary font-semibold transition-colors"
+      >
+        Continuar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openVendorModal() {
+    document.getElementById('vendorModal').classList.remove('hidden');
+  }
+
+  function closeVendorModal() {
+    document.getElementById('vendorModal').classList.add('hidden');
+  }
+
+  function confirmVendor() {
+    window.location.href = '../VendedorCadastro/code.php';
+  }
+
+  // Fechar modal ao clicar fora
+  document.getElementById('vendorModal')?.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('vendorModal')) {
+      closeVendorModal();
+    }
+  });
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeVendorModal();
+    }
+  });
+</script>
