@@ -11,6 +11,7 @@ try {
 
     $ch = curl_init($url);
 
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE"); //  define que é delete
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "Content-Type: application/json",
@@ -23,17 +24,14 @@ try {
     curl_close($ch);
 
     if($statusCode >= 200 && $statusCode <= 299 && empty($data['message'])) {
-        foreach ($data as $sessao => $value) {
-            $_SESSION[$sessao] = $value;
-        }
-        $_SESSION['logado'] = true;
+        session_destroy();
+        header("Location: ../home/code.php");
 
 
     }
     else
     {
-        $_SESSION['logado'] = false;
-        header("Location: ../error/code.php?er=". $statusCode);
+        header("Location: code.php");
     }
 
 }
@@ -41,3 +39,4 @@ catch (Exception $e) {
 
 }
 ?>
+

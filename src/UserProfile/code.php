@@ -287,7 +287,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
                     onclick="openDisableAccountModal()">Desativar Conta</button>
                   <button
                     class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors"
-                    onclick="window.location.href='../auth/logout.php'">Mudar Senha</button>
+                    onclick="window.location.href='../NovaSenha/code.php'">Mudar Senha</button>
                 <?php if (isset($_SESSION["type"]) && $_SESSION["type"] == 0)
               echo '<a href="../VendedorHome/code.php" class="inline-flex items-center justify-center border-2 border-[#2ac6ff] text-[#2ac6ff] px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#c0e8ff] transition-colors">Virar vendedor</a>' ?>
                 </div>
@@ -395,7 +395,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
       </div>
     </div>
     
-    <script src="../generico/jsgenerico/frame.js"></script>
+    <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
     <script>
       // Funções para gerenciar modal de desativar conta
       function openDisableAccountModal() {
@@ -410,7 +410,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
       
       function confirmDisableAccount() {
         // Redireciona para logout (desativa a conta)
-        window.location.href = '../auth/logout.php';
+        window.location.href = 'desativarConta.php';
       }
       
       // Fechar modal ao clicar fora dele

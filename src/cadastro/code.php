@@ -308,7 +308,7 @@ if (isset($er) && !empty($er)) {
   <!-- Footer Segment (Floating Style) -->
   <footer id="footer"></footer>
   <script src="../generico/jsgenerico/script.js"></script>
-  <script src="../generico/jsgenerico/frame.js"></script>
+  <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
   <script>
     //MASCARA DE CPF
     cpfField.addEventListener("input", (e) => {
