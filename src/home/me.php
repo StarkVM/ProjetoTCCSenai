@@ -33,11 +33,18 @@ try {
     else
     {
         $_SESSION['logado'] = false;
-        header("Location: ../error/code.php?er=". $statusCode);
+        if (!defined('NO_REDIRECT')) {
+            header("Location: ../error/code.php?er=". $statusCode);
+            exit();
+        }
     }
 
 }
 catch (Exception $e) {
-
+    $_SESSION['logado'] = false;
+    if (!defined('NO_REDIRECT')) {
+        header("Location: ../error/code.php?er=500");
+        exit();
+    }
 }
 ?>
