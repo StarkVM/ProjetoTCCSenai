@@ -410,7 +410,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
       
       function confirmDisableAccount() {
         // Redireciona para logout (desativa a conta)
-        window.location.href = '../auth/logout.php';
+        window.location.href = 'desativarConta.php';
       }
       
       // Fechar modal ao clicar fora dele
