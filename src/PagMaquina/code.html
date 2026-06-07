@@ -232,9 +232,7 @@ Sem descrição adicional disponível.
 <div class="flex items-center gap-3 bg-surface-container-low p-4 rounded-md">
 <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
 <div>
-<p id="localRetirada" class="font-medium text-on-surface">
-Localização não especificada
-</p>
+  <p id="diasDisponiveis" class="text-sm text-tertiary mt-1">Calculando disponibilidade...</p>
 <p class="text-xs text-on-surface-variant mt-1">
 Confirme o local com o vendedor antes de alugar
 </p>
@@ -467,7 +465,6 @@ function fillData() {
   // estado
   if (item.estado) {
     document.getElementById("estado").textContent = item.estado;
-    document.getElementById("localRetirada").textContent = item.estado;
   }
 
   // descrição
@@ -600,6 +597,42 @@ function rentCalc() {
     `R$ ${total.toLocaleString("pt-BR")}`;
 }
 
+// Calcula dias da semana disponíveis para esta máquina com base nas locações armazenadas
+function computeDisponibilidade() {
+  const itemSalvo = localStorage.getItem('item');
+  if (!itemSalvo) return;
+  const item = JSON.parse(itemSalvo);
+
+  const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
+  const bookings = locacoes.filter(l => l.item && l.item.nome === item.nome);
+
+  const blocked = new Set();
+  bookings.forEach(b => {
+    const inicio = new Date(b.dataInicio);
+    const fim = new Date(b.dataFim);
+    const cur = new Date(inicio);
+    while (cur <= fim) {
+      blocked.add(cur.getDay());
+      cur.setDate(cur.getDate() + 1);
+    }
+  });
+
+  const weekdays = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+  const available = weekdays.filter((_, idx) => !blocked.has(idx));
+
+  const el = document.getElementById('diasDisponiveis');
+  if (!el) return;
+  if (available.length === 0) {
+    el.textContent = 'Sem disponibilidade registrada (consulte calendário).';
+    el.classList.remove('text-tertiary');
+    el.classList.add('text-red-600');
+  } else {
+    el.textContent = 'Dias geralmente disponíveis: ' + available.join(', ');
+    el.classList.remove('text-red-600');
+    el.classList.add('text-tertiary');
+  }
+}
+
 function iniciarAluguel() {
   const dataInicio = document.getElementById("startDate").value;
   const dataFim = document.getElementById("endDate").value;
@@ -616,16 +649,21 @@ function iniciarAluguel() {
     return;
   }
   
-  // Armazenar dados de locação no localStorage
+  // Armazenar dados de locação no localStorage (array 'locacoes')
   const dadosLocacao = {
     item: JSON.parse(itemSalvo),
     dataInicio: dataInicio,
     dataFim: dataFim,
     total: total
   };
-  
-  localStorage.setItem("locacao", JSON.stringify(dadosLocacao));
-  
+
+  const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
+  locacoes.push(dadosLocacao);
+  localStorage.setItem('locacoes', JSON.stringify(locacoes));
+
+  // Atualizar disponibilidade exibida
+  computeDisponibilidade();
+
   // Redirecionar para página de confirmação/checkout
   window.location.href = "../info/code.html";
 }
@@ -634,6 +672,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   fillData();
   initializeCarousel();
+
+  // calcular disponibilidade inicial
+  computeDisponibilidade();
 
   const hoje = new Date();
 

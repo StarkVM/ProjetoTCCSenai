@@ -132,14 +132,14 @@
           <div class="flex flex-col gap-2">
             <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Nome do
               Ativo</label>
-            <input
+            <input id="nomeAtivo"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Ex: TITAN EX-400" type="text" />
           </div>
           <div class="flex flex-col gap-2">
             <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Tipo de
               Máquina</label>
-            <select
+            <select id="tipoMaquina"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
               <option>Escavadeira</option>
               <option>Guindaste sobre esteiras</option>
@@ -150,36 +150,91 @@
           <div class="flex flex-col gap-2">
             <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Marca /
               Fabricante</label>
-            <input
+            <input id="marca"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Digite a Marca" type="text" />
           </div>
+          <!-- Removido: Número do Modelo e Ano de Fabricação -->
           <div class="flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Número do
-              Modelo</label>
-            <input
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
+            <input id="cep"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-              placeholder="Série/Modelo" type="text" />
+              placeholder="00000-000" type="text" />
           </div>
-          <div class="md:col-span-2 flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Ano de
-              Fabricação</label>
-            <input
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Endereço</label>
+            <input id="logradouro"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-              placeholder="2024" type="number" />
+              placeholder="Rua / Av" type="text" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Bairro</label>
+            <input id="bairro"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="Bairro" type="text" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Cidade</label>
+            <input id="localCidade"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="Cidade" type="text" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">UF</label>
+            <input id="localUF"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="SP" type="text" />
           </div>
           <div class="md:col-span-2 flex flex-col gap-2">
             <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Descrição</label>
-            <textarea rows="4" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Descreva o equipamento, condições e observações relevantes"></textarea>
+            <textarea id="descricao" rows="4" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Descreva o equipamento, condições e observações relevantes"></textarea>
+          </div>
+          <!-- Campo 'Local para Retirada' removido conforme solicitado -->
+          <div class="md:col-span-2 flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço Diária da Máquina (R$)</label>
+            <input id="precoDiariaMaquina" step="0.01"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="0.00" type="number" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Disponibiliza Operador?</label>
+            <select id="disponibilizaOperador" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+              <option value="no">Não</option>
+              <option value="yes">Sim</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2" id="container-preco-mao-de-obra" style="display:none;">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço Diária da mão de obra (R$)</label>
+            <input id="precoDiariaMaoObra" step="0.01"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="0.00" type="number" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Disponibiliza Frete (Entrega)?</label>
+            <select id="disponibilizaFrete" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+              <option value="no">Não</option>
+              <option value="yes">Sim</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2" id="container-preco-frete" style="display:none;">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço do Frete (R$)</label>
+            <input id="precoFrete" step="0.01"
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="0.00" type="number" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Máquina Única ou Frota</label>
+            <select id="tipoUnidade" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+              <option value="unica">Única</option>
+              <option value="frota">Frota</option>
+            </select>
           </div>
           <div class="md:col-span-2 flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
-              <span class="material-symbols-outlined text-primary" style="font-size: 16px; vertical-align: middle; margin-right: 4px;">location_on</span>
-              Local para Retirada da Máquina
-            </label>
-            <input
-              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-              placeholder="Ex: Canteiro Norte, São Paulo - SP" type="text" />
+            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Período de Disponibilidade (opcional)</label>
+            <div class="flex gap-2">
+              <input id="disponibilidadeInicio" type="date" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
+              <input id="disponibilidadeFim" type="date" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
+            </div>
           </div>
         </div>
       </div>
@@ -236,42 +291,105 @@
   <footer id="footer"></footer>
 
   <script>
-    // Capturar e processar os dados do formulário
+    // Capturar e processar os dados do formulário, preencher endereço via CEP e controlar campos condicionais
     document.addEventListener("DOMContentLoaded", function() {
       const form = document.querySelector("form");
 
+      const cepEl = document.getElementById('cep');
+      const logradouroEl = document.getElementById('logradouro');
+      const bairroEl = document.getElementById('bairro');
+      const cidadeEl = document.getElementById('localCidade');
+      const ufEl = document.getElementById('localUF');
+      const descricaoEl = document.getElementById('descricao');
+      // const localRetiradaEl removed (campo de retirada removido)
+      const precoDiariaMaquinaEl = document.getElementById('precoDiariaMaquina');
+
+      const disponibilizaOperadorEl = document.getElementById('disponibilizaOperador');
+      const containerPrecoMaoObra = document.getElementById('container-preco-mao-de-obra');
+      const precoDiariaMaoObraEl = document.getElementById('precoDiariaMaoObra');
+
+      const disponibilizaFreteEl = document.getElementById('disponibilizaFrete');
+      const containerPrecoFrete = document.getElementById('container-preco-frete');
+      const precoFreteEl = document.getElementById('precoFrete');
+
+      const tipoUnidadeEl = document.getElementById('tipoUnidade');
+
+      const disponibilidadeInicioEl = document.getElementById('disponibilidadeInicio');
+      const disponibilidadeFimEl = document.getElementById('disponibilidadeFim');
+
+      // Função para buscar CEP via ViaCEP
+      async function buscarCEP(cep) {
+        const apenasDigitos = cep.replace(/\D/g, '');
+        if (apenasDigitos.length !== 8) return;
+        try {
+          const res = await fetch(`https://viacep.com.br/ws/${apenasDigitos}/json/`);
+          if (!res.ok) return;
+          const data = await res.json();
+          if (data.erro) return;
+          logradouroEl.value = data.logradouro || '';
+          bairroEl.value = data.bairro || '';
+          cidadeEl.value = data.localidade || '';
+          ufEl.value = data.uf || '';
+        } catch (err) {
+          console.warn('Erro ao buscar CEP:', err);
+        }
+      }
+
+      if (cepEl) {
+        cepEl.addEventListener('blur', function() {
+          buscarCEP(cepEl.value || '');
+        });
+      }
+
+      // Mostrar/ocultar campos condicionais
+      if (disponibilizaOperadorEl) {
+        disponibilizaOperadorEl.addEventListener('change', function() {
+          containerPrecoMaoObra.style.display = this.value === 'yes' ? 'block' : 'none';
+        });
+      }
+
+      if (disponibilizaFreteEl) {
+        disponibilizaFreteEl.addEventListener('change', function() {
+          containerPrecoFrete.style.display = this.value === 'yes' ? 'block' : 'none';
+        });
+      }
+
+      // tipoUnidadeEl left as option selector; no quantidade input required
+
       if (form) {
-        form.addEventListener("submit", function(e) {
+        form.addEventListener('submit', function(e) {
           e.preventDefault();
 
-          // Coletar valores dos inputs
-          const inputs = form.querySelectorAll("input, select, textarea");
-          
-          // Estrutura dos dados da máquina
           const dadosMaquina = {
-            nome: inputs[0]?.value || "", // Nome do Ativo
-            tipo: inputs[1]?.value || "", // Tipo de Máquina
-            marca: inputs[2]?.value || "", // Marca/Fabricante
-            modelo: inputs[3]?.value || "", // Número do Modelo
-            ano: inputs[4]?.value || "", // Ano de Fabricação
-            descricao: inputs[5]?.value || "", // Descrição
-            localRetirada: inputs[6]?.value || "", // Local para Retirada
-            preco: "R$ 0/h", // Preço padrão (pode ser alterado depois)
-            estado: inputs[6]?.value || "" // Usando local de retirada como estado para compatibilidade
+            nome: (document.getElementById('nomeAtivo')?.value || '').trim(),
+            tipo: (document.getElementById('tipoMaquina')?.value || '').trim(),
+            marca: (document.getElementById('marca')?.value || '').trim(),
+            cep: cepEl?.value || '',
+            endereco: {
+              logradouro: logradouroEl?.value || '',
+              bairro: bairroEl?.value || '',
+              cidade: cidadeEl?.value || '',
+              uf: ufEl?.value || ''
+            },
+            descricao: descricaoEl?.value || '',
+            precoDiariaMaquina: precoDiariaMaquinaEl?.value || '',
+            disponibilizaOperador: disponibilizaOperadorEl?.value === 'yes',
+            precoDiariaMaoObra: precoDiariaMaoObraEl?.value || '',
+            disponibilizaFrete: disponibilizaFreteEl?.value === 'yes',
+            precoFrete: precoFreteEl?.value || '',
+            tipoUnidade: tipoUnidadeEl?.value || 'unica',
+            diasDisponiveis: [],
+            disponibilidadeInicio: disponibilidadeInicioEl?.value || '',
+            disponibilidadeFim: disponibilidadeFimEl?.value || ''
           };
 
           // Armazenar no localStorage
-          localStorage.setItem("maquinaCadastrada", JSON.stringify(dadosMaquina));
+          localStorage.setItem('maquinaCadastrada', JSON.stringify(dadosMaquina));
 
-          // Log para debug
-          console.log("Dados da máquina cadastrados:", dadosMaquina);
+          console.log('Dados da máquina cadastrados:', dadosMaquina);
+          console.info('Máquina registrada com sucesso!');
 
-          // Aqui você pode adicionar o envio para o servidor
-          // Por enquanto, apenas registramos a ação localmente
-          console.info("Máquina registrada com sucesso!");
-
-          // Opcional: redirecionar para outra página
-          // window.location.href = "../home/code.php";
+          // Aqui você pode enviar os dados ao servidor via fetch/POST
         });
       }
     });
