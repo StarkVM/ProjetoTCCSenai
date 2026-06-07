@@ -2,6 +2,58 @@
 const userLang = navigator.language || navigator.userLanguage || 'pt-BR';
 const lang = userLang.startsWith('en') ? 'en' : 'pt-BR';
 
+function openVendorModal() {
+    const vendorModal = document.getElementById("vendorModal");
+
+    if (vendorModal) {
+        vendorModal.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+    }
+}
+
+function closeVendorModal() {
+    const vendorModal = document.getElementById("vendorModal");
+
+    if (vendorModal) {
+        vendorModal.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+    }
+}
+
+function confirmVendor() {
+    fetch(`/ProjetoTCCSenai/src/UserProfile/provider.php` )
+        .then(resposta => {
+            if (resposta.status === "failed") {
+                throw new Error(`Erro HTTP: ${resposta.status}`)
+            }
+
+        })
+        .then(dados => {
+            console.log('')
+        })
+        .catch(erro => {
+            console.error('Erro na requisição:', erro.message)
+        });
+
+}
+
+function initVendorModal() {
+    const openButton = document.getElementById("openVendorModalButton");
+    const overlay = document.getElementById("vendorModalOverlay");
+
+    if (openButton) {
+        openButton.addEventListener("click", openVendorModal);
+    }
+
+    if (overlay) {
+        overlay.addEventListener("click", closeVendorModal);
+    }
+}
+
+window.openVendorModal = openVendorModal;
+window.closeVendorModal = closeVendorModal;
+window.confirmVendor = confirmVendor;
+
 fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
     .then(r => r.json())
     .then(data => {
@@ -18,11 +70,12 @@ fetch("/ProjetoTCCSenai/src/generico/phpgenerico/statusUsuario.php")
             headerPath = `/ProjetoTCCSenai/src/generico/htmlgenerico/header.html`;
         }
 
-        return fetch(headerPath);
+        return fetch(`${headerPath}?v=vendor-modal-4`);
     })
     .then(r => r.text())
     .then(html => {
         document.getElementById("header").innerHTML = html;
+        initVendorModal();
     });
 
 fetch(`/ProjetoTCCSenai/src/generico/htmlgenerico/footer.html`)
@@ -55,3 +108,10 @@ function salvarUltimaPagina() {
 window.addEventListener("beforeunload", () => {
     salvarUltimaPagina();
 });
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeVendorModal();
+    }
+});
+

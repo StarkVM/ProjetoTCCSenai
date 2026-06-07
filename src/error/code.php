@@ -210,7 +210,7 @@ $error = $_GET['er'] ?? 404;
   <!-- Footer -->
   <footer id="footer"></footer>
 
-  <script src="../generico/jsgenerico/frame.js"></script>
+  <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
 
 </body>
 

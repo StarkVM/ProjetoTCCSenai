@@ -395,7 +395,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
       </div>
     </div>
     
-    <script src="../generico/jsgenerico/frame.js"></script>
+    <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
     <script>
       // Funções para gerenciar modal de desativar conta
       function openDisableAccountModal() {

@@ -107,7 +107,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
     </nav>
 
     <div class="flex items-center gap-4">
-        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button onclick="openVendorModal()" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
+        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button type="button" id="openVendorModalButton" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
         Ser Vendedor
       </button>';?>
@@ -133,9 +133,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
 </header>
 
 <!-- MODAL DE CONFIRMAÇÃO PARA SER VENDEDOR -->
-<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-50 hidden overflow-y-auto" id="vendorModal" role="dialog">
+<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-[9999] hidden overflow-y-auto" id="vendorModal" role="dialog">
 <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
-<div aria-hidden="true" class="fixed inset-0 transition-opacity bg-stone-900/80" onclick="closeVendorModal()"></div>
+<div aria-hidden="true" class="fixed inset-0 transition-opacity bg-stone-900/80" id="vendorModalOverlay"></div>
 <div class="relative inline-block w-full max-w-lg p-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl border border-stone-200 rounded-md">
 <div class="flex flex-col items-center text-center space-y-6">
 <div class="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
@@ -150,10 +150,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
           </p>
 </div>
 <div class="w-full space-y-3 pt-4">
-<button class="w-full px-6 py-4 bg-primary text-white font-black uppercase text-xs tracking-[0.2em] rounded-md hover:brightness-110 transition-all shadow-lg shadow-primary/20" onclick="confirmVendor()">
+<button type="button" class="w-full px-6 py-4 bg-primary text-white font-black uppercase text-xs tracking-[0.2em] rounded-md hover:brightness-110 transition-all shadow-lg shadow-primary/20" onclick="confirmVendor()">
             Confirmar e Prosseguir
           </button>
-<button class="w-full px-6 py-4 bg-stone-100 text-stone-600 font-bold uppercase text-xs tracking-widest rounded-md hover:bg-stone-200 transition-all" onclick="closeVendorModal()">
+<button type="button" class="w-full px-6 py-4 bg-stone-100 text-stone-600 font-bold uppercase text-xs tracking-widest rounded-md hover:bg-stone-200 transition-all" onclick="closeVendorModal()">
             Agora não
           </button>
 </div>
@@ -165,28 +165,47 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
 
 <script>
   function openVendorModal() {
-    document.getElementById('vendorModal').classList.remove('hidden');
+    const vendorModal = document.getElementById('vendorModal');
+
+    if (vendorModal) {
+      vendorModal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
   }
 
   function closeVendorModal() {
-    document.getElementById('vendorModal').classList.add('hidden');
+    const vendorModal = document.getElementById('vendorModal');
+
+    if (vendorModal) {
+      vendorModal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
   }
 
   function confirmVendor() {
     window.location.href = '../VendedorHome/code.php';
   }
 
-  // Fechar modal ao clicar fora
-  document.getElementById('vendorModal')?.addEventListener('click', (e) => {
-    if (e.target === document.getElementById('vendorModal')) {
-      closeVendorModal();
-    }
-  });
+  window.openVendorModal = openVendorModal;
+  window.closeVendorModal = closeVendorModal;
+  window.confirmVendor = confirmVendor;
 
-  // Fechar modal com ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeVendorModal();
-    }
-  });
+  function initVendorModal() {
+    document.getElementById('openVendorModalButton')?.addEventListener('click', openVendorModal);
+    document.getElementById('vendorModalOverlay')?.addEventListener('click', closeVendorModal);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeVendorModal();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVendorModal);
+  } else {
+    initVendorModal();
+  }
 </script>
+</body>
+</html>

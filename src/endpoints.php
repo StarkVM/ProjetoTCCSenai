@@ -17,6 +17,7 @@ class endpoints
     public string $urlLogoutAllSession;
     public string $urlLoginNewCode;
     public string $urlEmailVerifyNewCode;
+    public string $urlProvider;
 
     public function __construct()
     {
@@ -36,7 +37,7 @@ class endpoints
         $this->urlLogoutAllSession = $this->UrlPadrao . "/api/v1/user-access/auth/logout-all-sessions";
         $this->urlLoginNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/login/request-new-code";
         $this->urlEmailVerifyNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/request-new-code";
-
+        $this->urlProvider = $this->UrlPadrao . "/api/v1/user-access/user/me/provider";
 
     }
 }
