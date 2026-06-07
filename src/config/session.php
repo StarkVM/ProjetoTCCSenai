@@ -21,7 +21,6 @@ $isHttps =
 session_name('HEAVYRENT_SESSION');
 
 session_set_cookie_params([
-    'lifetime' => 60 * 60 * 24 * 7, // 7 dias
     'path' => '/',
     'domain' => '',
     'secure' => $isHttps, // TRUE apenas em HTTPS
@@ -83,34 +82,7 @@ if ((time() - $_SESSION['created']) > 1800) {
  * =========================================================
  */
 
-$timeout = 60 * 60 * 24 * 7;
 
-if (isset($_SESSION['last_activity'])) {
-
-    if ((time() - $_SESSION['last_activity']) > $timeout) {
-
-        $_SESSION = [];
-
-        if (ini_get("session.use_cookies")) {
-
-            $params = session_get_cookie_params();
-
-            setcookie(
-                session_name(),
-                '',
-                time() - 60 * 60 * 24 * 7,
-                $params["path"],
-                $params["domain"],
-                $params["secure"],
-                $params["httponly"]
-            );
-        }
-
-        session_destroy();
-    }
-}
-
-$_SESSION['last_activity'] = time();
 
 
 
