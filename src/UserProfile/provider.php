@@ -11,10 +11,12 @@ $url = $endpoints->urlProvider;
 
 if($_SESSION["status"] != 3)
 {
-    header("Location: ../modal/code.php");
+    header('Content-Type: application/json; charset=utf-8');
+    http_response_code(403);
+    echo json_encode(["status" => "failed", "reason" => "forbidden"]);
     exit();
-
 }
+
 $ch = curl_init($url);
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
@@ -32,13 +34,21 @@ curl_close($ch);
 
 if($statusCode >= 200 && $statusCode <= 299) {
 
-    header('Content-Type: application/json');
-    echo json_encode(["status" => "success"]);
+    define('NO_REDIRECT', true);
     include "../home/me.php";
+
+    header('Content-Type: application/json; charset=utf-8');
+    if (!empty($_SESSION['logado']) && $_SESSION['logado'] === true) {
+        echo json_encode(["status" => "success"]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["status" => "failed", "reason" => "session_refresh_failed"]);
+    }
 }
 else
 {
-    header('Content-Type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
+    http_response_code($statusCode ?: 500);
     echo json_encode(["status" => "failed"]);
 }
 

@@ -240,34 +240,229 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 overflow-y-auto">
+        <div class="bg-surface-container-low rounded-xl shadow-2xl max-w-3xl w-full mx-4 my-8">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-outline-variant/20">
+                <h2 class="font-headline text-2xl font-bold uppercase tracking-tight">Editar Máquina</h2>
+                <button onclick="closeEditModal()" class="text-on-surface/60 hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-8 overflow-y-auto max-h-[calc(100vh-200px)]">
+                <form id="editForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nome da Máquina -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Nome do Ativo</label>
+                        <input id="editTitle" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Ex: TITAN EX-400" type="text" />
+                    </div>
+
+                    <!-- Descrição -->
+                    <div class="md:col-span-2 flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Descrição</label>
+                        <textarea id="editDescription" rows="3" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Descreva o equipamento"></textarea>
+                    </div>
+
+                    <!-- Preço Diária -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço Diária (R$)</label>
+                        <input id="editDailyPrice" step="0.01" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="0.00" type="number" />
+                    </div>
+
+                    <!-- CEP -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
+                        <input id="editZipCode" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="00000-000" type="text" />
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Rua/Avenida</label>
+                        <input id="editStreet" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Rua / Av" type="text" />
+                    </div>
+
+                    <!-- Número -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Número</label>
+                        <input id="editNumber" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="123" type="text" />
+                    </div>
+
+                    <!-- Complemento -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Complemento</label>
+                        <input id="editComplement" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Galpão, Apto, etc" type="text" />
+                    </div>
+
+                    <!-- Bairro -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Bairro</label>
+                        <input id="editDistrict" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Bairro" type="text" />
+                    </div>
+
+                    <!-- Cidade -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Cidade</label>
+                        <input id="editCity" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="São Paulo" type="text" />
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Estado</label>
+                        <input id="editState" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="SP" type="text" />
+                    </div>
+
+                    <!-- Operador Disponível -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Operador Disponível?</label>
+                        <select id="editOperatorAvailable" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+                            <option value="false">Não</option>
+                            <option value="true">Sim</option>
+                        </select>
+                    </div>
+
+                    <!-- Preço Operador -->
+                    <div id="editOperatorPriceContainer" class="flex flex-col gap-2 hidden">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço Diária Operador (R$)</label>
+                        <input id="editOperatorDailyPrice" step="0.01" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="0.00" type="number" />
+                    </div>
+
+                    <!-- Frete Disponível -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Frete Disponível?</label>
+                        <select id="editFreightAvailable" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+                            <option value="false">Não</option>
+                            <option value="true">Sim</option>
+                        </select>
+                    </div>
+
+                    <!-- Preço Frete -->
+                    <div id="editFreightPriceContainer" class="flex flex-col gap-2 hidden">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Preço Frete (R$)</label>
+                        <input id="editFreightFixedPrice" step="0.01" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="0.00" type="number" />
+                    </div>
+
+                    <!-- Frota -->
+                    <div class="flex flex-col gap-2">
+                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Máquina única ou Frota?</label>
+                        <select id="editIsFleet" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
+                            <option value="false">Única</option>
+                            <option value="true">Frota</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex gap-4 p-6 border-t border-outline-variant/20 justify-end">
+                <button onclick="closeEditModal()" class="px-6 py-3 border border-outline-variant text-on-surface rounded-md font-headline font-bold uppercase text-xs tracking-wide hover:bg-surface-container-highest transition-colors">
+                    Cancelar
+                </button>
+                <button onclick="saveEdit()" class="px-6 py-3 bg-primary text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+                    Salvar Alterações
+                </button>
+            </div>
+        </div>
+    </div>
+
     <footer id="footer"></footer>
     <script>
-        const dados = [];
+        const dados = [{
+            id: 1,
+  title: "Escavadeira hidráulica CAT 320",
+  description: "Máquina em ótimo estado.\nDisponível para aluguel diário.",
+  dailyPrice: 850.00,
+  images: ["imagem1.jpg", "imagem2.png", "imagem3.webp"],
+  pickupCity: "São Paulo",
+  pickupState: "SP",
+  operatorAvailable: true,
+  freightAvailable: true,
+  isFleet: false,
+  // ... outros campos
+}];
+        
+        // EXEMPLO: Estrutura de dados esperada para cada máquina no inventário
+        // Você pode carregar isso via API ou processá-lo no backend e injetar no HTML
+        /*
+        const dados = [
+            {
+                id: 1,
+                title: "Escavadeira hidráulica CAT 320",
+                description: "Máquina em ótimo estado.\nDisponível para aluguel diário.",
+                dailyPrice: 850.00,
+                images: ["imagem1.jpg", "imagem2.png", "imagem3.webp"],
+                
+                // Informações de localização
+                pickupState: "SP",
+                pickupCity: "São Paulo",
+                pickupDistrict: "Centro",
+                pickupStreet: "Rua Exemplo",
+                pickupNumber: "123",
+                pickupZipCode: "01000-000",
+                pickupComplement: "Galpão 2",
+                
+                // Serviços adicionais
+                operatorAvailable: true,
+                operatorDailyPrice: 250.00,
+                freightAvailable: true,
+                freightFixedPrice: 500.00,
+                
+                // Informações adicionais
+                isFleet: false,
+                category: 0
+            }
+        ];
+        */
 
         function renderInventory() {
             const container = document.getElementById('container-card');
-            container.innerHTML = dados.map(item => `
+            container.innerHTML = dados.map((item, index) => {
+                // Usar primeira imagem do array ou fallback
+                const imagemPrincipal = item.images && item.images.length > 0 ? item.images[0] : item.imagem || 'placeholder.jpg';
+                const priceFormatted = typeof item.dailyPrice === 'number' ? `R$ ${item.dailyPrice.toFixed(2).replace('.', ',')}` : item.precoDia;
+                const localizacao = `${item.pickupCity}, ${item.pickupState}`;
+                const id = item.id;
+                console.log(id);
+                // Badges de serviços adicionais
+                const servicosBadges = `
+                    ${item.operatorAvailable ? `<div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-xs">person</span>Operador</div>` : ''}
+                    ${item.freightAvailable ? `<div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary"><span class="material-symbols-outlined text-xs">local_shipping</span>Frete</div>` : ''}
+                `;
+                
+                return `
                 <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
                     <div class="h-48 relative overflow-hidden">
-                        <img src="${item.imagem}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="${imagemPrincipal}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 machine-card-gradient"></div>
-                        <div class="absolute top-4 right-4 bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">
-                            ${item.status}
+                        <div class="absolute top-4 right-4 flex gap-2 flex-wrap justify-end">
+                            ${item.isFleet ? `<div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Frota</div>` : ''}
+                            <div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Ativo</div>
                         </div>
                     </div>
                     <div class="p-5">
-                        <h3 class="font-headline font-bold text-lg uppercase leading-tight mb-2 min-h-[3rem] line-clamp-2">${item.nome}</h3>
-                        <p class="text-xs opacity-70 mb-6 line-clamp-2 leading-relaxed">${item.descricao}</p>
+                        <h3 class="font-headline font-bold text-lg uppercase leading-tight mb-1 min-h-[2.5rem] line-clamp-2">${item.title}</h3>
+                        <p class="text-[11px] opacity-60 mb-3 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">location_on</span>
+                            ${localizacao}
+                        </p>
+                        <p class="text-xs opacity-70 mb-4 line-clamp-2 leading-relaxed">${item.description}</p>
+                        
+                        ${servicosBadges ? `<div class="flex gap-2 flex-wrap mb-4">${servicosBadges}</div>` : ''}
+                        
                         <div class="flex items-center justify-between pt-4 border-t border-outline-variant/5">
                             <div>
-                                <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Valor Diária</p>
-                                <p class="text-xl font-headline font-black text-on-surface">${item.precoDia}</p>
+                                <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Diária</p>
+                                <p class="text-xl font-headline font-black text-on-surface">${priceFormatted}</p>
                             </div>
-                            <button class="bg-on-surface hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Editar</button>
+                            <button onclick="openEditModal(${id})" class="bg-on-surface hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Editar</button>
                         </div>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             if (dados.length <= 0) {
                 container.innerHTML = `
@@ -377,6 +572,109 @@
             document.getElementById('tab-title').textContent = titles[tab][0];
             document.getElementById('tab-subtitle').textContent = titles[tab][1];
         }
+
+        // Funções para gerenciar o modal de edição
+        let currentMachineId = null;
+
+        function openEditModal(id) {
+            currentMachineId = id;
+            
+                console.log("ID recebido:", id);
+
+    const item = dados.find(d => d.id === id);
+
+    console.log("Item encontrado:", item);
+
+    
+    
+            // Preencher os campos do modal com os dados da máquina
+            document.getElementById('editTitle').value = item.title || '';
+            document.getElementById('editDescription').value = item.description || '';
+            document.getElementById('editDailyPrice').value = item.dailyPrice || '';
+            document.getElementById('editZipCode').value = item.pickupZipCode || '';
+            document.getElementById('editStreet').value = item.pickupStreet || '';
+            document.getElementById('editNumber').value = item.pickupNumber || '';
+            document.getElementById('editComplement').value = item.pickupComplement || '';
+            document.getElementById('editDistrict').value = item.pickupDistrict || '';
+            document.getElementById('editCity').value = item.pickupCity || '';
+            document.getElementById('editState').value = item.pickupState || '';
+            
+            // Setar os selects de serviços adicionais
+            document.getElementById('editOperatorAvailable').value = item.operatorAvailable ? 'true' : 'false';
+            document.getElementById('editFreightAvailable').value = item.freightAvailable ? 'true' : 'false';
+            document.getElementById('editIsFleet').value = item.isFleet ? 'true' : 'false';
+            
+            // Preencher preços adicionais
+            document.getElementById('editOperatorDailyPrice').value = item.operatorDailyPrice || '';
+            document.getElementById('editFreightFixedPrice').value = item.freightFixedPrice || '';
+            
+            // Mostrar/ocultar campos condicionais
+            toggleOperatorField();
+            toggleFreightField();
+            
+            // Exibir modal
+            document.getElementById('editModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            document.body.style.overflow = '';
+            currentMachineId = null;
+        }
+
+        function toggleOperatorField() {
+            const operatorAvailable = document.getElementById('editOperatorAvailable').value === 'true';
+            document.getElementById('editOperatorPriceContainer').classList.toggle('hidden', !operatorAvailable);
+        }
+
+        function toggleFreightField() {
+            const freightAvailable = document.getElementById('editFreightAvailable').value === 'true';
+            document.getElementById('editFreightPriceContainer').classList.toggle('hidden', !freightAvailable);
+        }
+
+        function saveEdit() {
+            if (currentMachineId === null) return;
+            
+            const item = dados.find(d => d.id === currentMachineId);
+            
+            // Atualizar os dados da máquina com os valores do formulário
+            item.title = document.getElementById('editTitle').value;
+            item.description = document.getElementById('editDescription').value;
+            item.dailyPrice = parseFloat(document.getElementById('editDailyPrice').value) || 0;
+            item.pickupZipCode = document.getElementById('editZipCode').value;
+            item.pickupStreet = document.getElementById('editStreet').value;
+            item.pickupNumber = document.getElementById('editNumber').value;
+            item.pickupComplement = document.getElementById('editComplement').value;
+            item.pickupDistrict = document.getElementById('editDistrict').value;
+            item.pickupCity = document.getElementById('editCity').value;
+            item.pickupState = document.getElementById('editState').value;
+            item.operatorAvailable = document.getElementById('editOperatorAvailable').value === 'true';
+            item.freightAvailable = document.getElementById('editFreightAvailable').value === 'true';
+            item.isFleet = document.getElementById('editIsFleet').value === 'true';
+            item.operatorDailyPrice = parseFloat(document.getElementById('editOperatorDailyPrice').value) || 0;
+            item.freightFixedPrice = parseFloat(document.getElementById('editFreightFixedPrice').value) || 0;
+            
+            //IMPLEMENTAR LÓGICA PARA UPDATE NO BACKEND AQUI (EX: CHAMADA AJAX/Fetch para API)
+
+            // Fechar modal e re-renderizar
+            closeEditModal();
+            renderInventory();
+            
+            // Aqui você pode enviar os dados para o servidor via API
+            console.log('Máquina atualizada:', item);
+        }
+
+        // Event listeners para mostrar/ocultar campos condicionais
+        document.getElementById('editOperatorAvailable').addEventListener('change', toggleOperatorField);
+        document.getElementById('editFreightAvailable').addEventListener('change', toggleFreightField);
+
+        // Fechar modal ao clicar fora
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEditModal();
+            }
+        });
 
         renderInventory();
         renderHistory();
