@@ -386,6 +386,25 @@
           // Armazenar no localStorage
           localStorage.setItem('maquinaCadastrada', JSON.stringify(dadosMaquina));
 
+          // Também gravar uma versão compatível com a página de aluguel
+          // A página de aluguel espera um objeto salvo em `localStorage.item` com campos: nome, preco, estado, descricao
+          const itemForRental = {
+            nome: dadosMaquina.nome || '',
+            preco: dadosMaquina.precoDiariaMaquina
+              ? `R$ ${parseFloat(dadosMaquina.precoDiariaMaquina).toLocaleString('pt-BR')}`
+              : 'R$ 0',
+            estado: `${dadosMaquina.endereco.logradouro || ''}${dadosMaquina.endereco.bairro ? ', ' + dadosMaquina.endereco.bairro : ''}${dadosMaquina.endereco.cidade ? ', ' + dadosMaquina.endereco.cidade : ''}${dadosMaquina.endereco.uf ? ' - ' + dadosMaquina.endereco.uf : ''}`,
+            descricao: dadosMaquina.descricao || '',
+            // flags and prices for rental page
+            disponibilizaOperador: !!dadosMaquina.disponibilizaOperador,
+            precoDiariaMaoObra: dadosMaquina.precoDiariaMaoObra || '',
+            disponibilizaFrete: !!dadosMaquina.disponibilizaFrete,
+            precoFrete: dadosMaquina.precoFrete || '',
+            images: []
+          };
+
+          localStorage.setItem('item', JSON.stringify(itemForRental));
+
           console.log('Dados da máquina cadastrados:', dadosMaquina);
           console.info('Máquina registrada com sucesso!');
 
