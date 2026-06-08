@@ -371,6 +371,7 @@
     <footer id="footer"></footer>
     <script>
         const dados = [{
+            id: 1,
   title: "Escavadeira hidráulica CAT 320",
   description: "Máquina em ótimo estado.\nDisponível para aluguel diário.",
   dailyPrice: 850.00,
@@ -388,6 +389,7 @@
         /*
         const dados = [
             {
+                id: 1,
                 title: "Escavadeira hidráulica CAT 320",
                 description: "Máquina em ótimo estado.\nDisponível para aluguel diário.",
                 dailyPrice: 850.00,
@@ -422,7 +424,8 @@
                 const imagemPrincipal = item.images && item.images.length > 0 ? item.images[0] : item.imagem || 'placeholder.jpg';
                 const priceFormatted = typeof item.dailyPrice === 'number' ? `R$ ${item.dailyPrice.toFixed(2).replace('.', ',')}` : item.precoDia;
                 const localizacao = `${item.pickupCity}, ${item.pickupState}`;
-                
+                const id = item.id;
+                console.log(id);
                 // Badges de serviços adicionais
                 const servicosBadges = `
                     ${item.operatorAvailable ? `<div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-xs">person</span>Operador</div>` : ''}
@@ -454,7 +457,7 @@
                                 <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Diária</p>
                                 <p class="text-xl font-headline font-black text-on-surface">${priceFormatted}</p>
                             </div>
-                            <button onclick="openEditModal(${index})" class="bg-on-surface hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Editar</button>
+                            <button onclick="openEditModal(${id})" class="bg-on-surface hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Editar</button>
                         </div>
                     </div>
                 </div>
@@ -571,12 +574,19 @@
         }
 
         // Funções para gerenciar o modal de edição
-        let currentEditIndex = null;
+        let currentMachineId = null;
 
-        function openEditModal(index) {
-            currentEditIndex = index;
-            const item = dados[index];
+        function openEditModal(id) {
+            currentMachineId = id;
             
+                console.log("ID recebido:", id);
+
+    const item = dados.find(d => d.id === id);
+
+    console.log("Item encontrado:", item);
+
+    
+    
             // Preencher os campos do modal com os dados da máquina
             document.getElementById('editTitle').value = item.title || '';
             document.getElementById('editDescription').value = item.description || '';
@@ -610,7 +620,7 @@
         function closeEditModal() {
             document.getElementById('editModal').classList.add('hidden');
             document.body.style.overflow = '';
-            currentEditIndex = null;
+            currentMachineId = null;
         }
 
         function toggleOperatorField() {
@@ -624,9 +634,9 @@
         }
 
         function saveEdit() {
-            if (currentEditIndex === null) return;
+            if (currentMachineId === null) return;
             
-            const item = dados[currentEditIndex];
+            const item = dados.find(d => d.id === currentMachineId);
             
             // Atualizar os dados da máquina com os valores do formulário
             item.title = document.getElementById('editTitle').value;
@@ -645,6 +655,8 @@
             item.operatorDailyPrice = parseFloat(document.getElementById('editOperatorDailyPrice').value) || 0;
             item.freightFixedPrice = parseFloat(document.getElementById('editFreightFixedPrice').value) || 0;
             
+            //IMPLEMENTAR LÓGICA PARA UPDATE NO BACKEND AQUI (EX: CHAMADA AJAX/Fetch para API)
+
             // Fechar modal e re-renderizar
             closeEditModal();
             renderInventory();
