@@ -88,7 +88,7 @@ tailwind.config = {
 }
 
 .signature-gradient {
-    background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+    background: linear-gradient(#f9a825 100%);
 }
 
 </style>
@@ -180,7 +180,7 @@ tailwind.config = {
                         Código de Verificação
                     </label>
 
-                    <div class="flex gap-2 sm:gap-3">
+                    <div class="flex gap-2 sm:gap-3" id="otp-container">
 
                         <input
                             name="codigoChar1"
@@ -189,7 +189,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                         <input
@@ -199,7 +199,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                         <input
@@ -209,7 +209,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                         <input
@@ -219,7 +219,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                         <input
@@ -229,7 +229,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                         <input
@@ -239,7 +239,7 @@ tailwind.config = {
                             inputmode="numeric"
                             autocomplete="one-time-code"
                             placeholder="0"
-                            class="w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
+                            class="otp-input w-full aspect-square text-center font-headline text-2xl font-bold bg-surface-container-lowest border border-surface-container-high rounded-xl text-on-surface focus:ring-2 focus:ring-primary shadow-inner"
                         />
 
                     </div>
@@ -254,7 +254,7 @@ tailwind.config = {
                 <!-- BOTÃO -->
                 <button
                     name="verificar"
-                    class="w-full signature-gradient text-white py-4 font-headline font-bold uppercase tracking-widest text-sm rounded-xl shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+                    class="signature-gradient w-full text-white py-4 font-headline font-bold uppercase tracking-widest text-sm rounded-xl shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
                 >
 
                     Verificar Código
@@ -301,6 +301,50 @@ tailwind.config = {
 </main>
 <footer id="footer"></footer>
 <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
+<script>
+    const inputs = document.querySelectorAll('#otp-container .otp-input');
+    inputs.forEach((input, index) => {
+        // 1. Avança ao digitar um caractere
+        input.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Garante que só aceita números
+            e.target.value = value.replace(/[^0-9]/g, '');
+
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+        });
+
+        // 2. Volta ao pressionar Backspace (Apagar) se o campo estiver vazio
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+
+        // 3. Permite colar o código completo de uma vez (Ex: Ctrl+V)
+        input.addEventListener('paste', (e) => {
+            e.preventDefault();
+            const pasteData = e.clipboardData.getData('text').trim();
+            
+            // Verifica se o conteúdo colado contém apenas números
+            if (/^\d+$/.test(pasteData)) {
+                const digits = pasteData.split('');
+                
+                inputs.forEach((inp, idx) => {
+                    if (digits[idx]) {
+                        inp.value = digits[idx];
+                    }
+                });
+
+                // Foca no último campo preenchido ou no último campo do form
+                const nextFocusIndex = Math.min(digits.length, inputs.length - 1);
+                inputs[nextFocusIndex].focus();
+            }
+        });
+    });
+
+</script>
 </body>
 
 </html>

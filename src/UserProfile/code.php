@@ -143,12 +143,6 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
               <span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Meu
                 Perfil</span>
             </button>
-            <button data-tab="propostas"
-              class="tab-btn text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group w-full text-left cursor-pointer">
-              <span class="material-symbols-outlined">Assignment</span>
-              <span class="font-['Inter'] text-sm font-semibold group-hover:translate-x-1 transition-transform">Minhas
-                Propostas</span>
-            </button>
             <button data-tab="locacoes"
               class="tab-btn text-stone-600 dark:text-stone-400 px-8 py-4 flex items-center gap-4 hover:bg-[#ebe7e7] dark:hover:bg-zinc-800 transition-all duration-150 group w-full text-left cursor-pointer">
               <span class="material-symbols-outlined">request_quote</span>
@@ -200,9 +194,6 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
               <button id="tab-perfil-btn"
                 class="tab-content-btn border-b-4 border-primary pb-4 px-1 text-sm font-black uppercase tracking-tighter text-on-surface"
                 data-content-tab="perfil">Dados Pessoais</button>
-              <button id="tab-propostas-btn"
-                class="tab-content-btn border-b-4 border-transparent pb-4 px-1 text-sm font-black uppercase tracking-tighter text-stone-400 hover:text-on-surface transition-colors"
-                data-content-tab="propostas">Minhas Propostas</button>
               <button id="tab-locacoes-btn"
                 class="tab-content-btn border-b-4 border-transparent pb-4 px-1 text-sm font-black uppercase tracking-tighter text-stone-400 hover:text-on-surface transition-colors"
                 data-content-tab="locacoes">Minhas Locações</button>
@@ -231,8 +222,6 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
                 <?php if (isset($_SESSION["firstName"]) && isset($_SESSION["lastName"]))
               echo $_SESSION["firstName"] . " " . $_SESSION["lastName"] ?? $semDados ?>
                 </h2>
-                <p class="text-primary font-bold uppercase text-sm tracking-widest mt-1">Fulano de tal</p>
-                <p class="text-stone-400 text-xs mt-2 uppercase font-semibold">Membro desde Outubro 2022</p>
               </div>
               <div class="md:ml-auto flex gap-3">
               </div>
@@ -287,24 +276,10 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
                     class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors"
                     onclick="openDisableAccountModal()">Desativar Conta</button>
                   <button
-                    class="inline-flex items-center justify-center border-2 border-red-500 text-red-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-red-50 transition-colors"
+                    class="inline-flex items-center justify-center border-2 border-yellow-500 text-yellow-500 px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-yellow-50 transition-colors"
                     onclick="window.location.href='../NovaSenha/code.php'">Mudar Senha</button>
                 <?php if (isset($_SESSION["type"]) && $_SESSION["type"] == 0)
               echo '<a href="../VendedorHome/code.php" class="inline-flex items-center justify-center border-2 border-[#2ac6ff] text-[#2ac6ff] px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#c0e8ff] transition-colors">Virar vendedor</a>' ?>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Tab Content: Minhas Propostas -->
-          <section id="tab-content-propostas"
-            class="tab-content hidden bg-surface-container-lowest rounded-md shadow-sm overflow-hidden">
-            <div class="p-8 md:p-10">
-              <h2 class="text-2xl font-black uppercase tracking-tighter mb-6">Minhas Propostas</h2>
-              <div class="grid grid-cols-1 gap-6">
-                <div
-                  class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-40">
-                  <p class="text-stone-400 text-center">Nenhuma proposta encontrada.</p>
                 </div>
               </div>
             </div>
@@ -346,6 +321,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
               <div class="grid grid-cols-1 gap-6">
                 <div class="bg-surface-container-low p-6 rounded-md border border-stone-200">
                   <p class="text-stone-400 mb-4">Precisa de ajuda? Entre em contato com nosso time de suporte.</p>
+                  <p class="text-stone-600 dark:text-stone-400 mb-4">heavyrent2026@gmail.com</p>
                   <a href="https://mail.google.com/mail/u/2/#inbox?compose=new"
                     class="bg-primary text-white px-4 py-2 rounded-md font-bold text-sm inline-flex items-center gap-2 hover:bg-[#6d4200] transition-colors">
                     <span class="material-symbols-outlined text-sm">mail</span>
