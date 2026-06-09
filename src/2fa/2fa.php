@@ -89,7 +89,7 @@ $endpoints = new Endpoints();
                     
                 }
 
-                else if ($statusCode >= 300 && $data['success'] == false)
+                else if ($statusCode >= 300 && $data['success'] == false && (isset($_POST['reenviarCodigo']) == "post"))
                 {
 
                     header("location: code.php?er=5");

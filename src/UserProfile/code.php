@@ -3,13 +3,14 @@
 // TYPE 0 USUARIO COMUM E 1 VENDEDOR
 
 error_reporting(0);
-//require("../auth/auth.php");
+require("../auth/auth.php");
 
 $semDados = "Dados não carregados!";
 
 require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 $dataFormatada = new DateTime($_SESSION['birthDate']);
+$createdAt = new DateTime($_SESSION['createdAt']);
 
 $type = $_SESSION['type'] == 0 ? "Cliente" : "Locador";
 $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black text-xs uppercase" >Super Verificado & ' . $type . '</span>' : '<span class="text-on-surface font-black text-xs uppercase" style="color: red">Pendente de Verificação & ' . $type . '</span>';
@@ -133,7 +134,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
             <?php if (isset($_SESSION["firstName"]) && isset($_SESSION["lastName"]))
               echo $_SESSION["firstName"] . " " . $_SESSION["lastName"] ?? $semDados ?>
             </h3>
-            <p class="text-xs text-stone-500">Membro desde Out 2022</p>
+            <p class="text-xs text-stone-500">Membro desde <?php echo $createdAt->format("M") . " de " . $createdAt->format("Y")?? $semDados?></p>
           </div>
           <div class="space-y-1">
             <button data-tab="perfil"
@@ -345,7 +346,7 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
               <div class="grid grid-cols-1 gap-6">
                 <div class="bg-surface-container-low p-6 rounded-md border border-stone-200">
                   <p class="text-stone-400 mb-4">Precisa de ajuda? Entre em contato com nosso time de suporte.</p>
-                  <a href="mailto:suporte@example.com"
+                  <a href="https://mail.google.com/mail/u/2/#inbox?compose=new"
                     class="bg-primary text-white px-4 py-2 rounded-md font-bold text-sm inline-flex items-center gap-2 hover:bg-[#6d4200] transition-colors">
                     <span class="material-symbols-outlined text-sm">mail</span>
                     Enviar Email

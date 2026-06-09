@@ -9,13 +9,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 $url = $endpoints->urlProvider;
 
-if($_SESSION["status"] != 3)
-{
-    header('Content-Type: application/json; charset=utf-8');
-    http_response_code(403);
-    echo json_encode(["status" => "failed", "reason" => "forbidden"]);
-    exit();
-}
+
 
 $ch = curl_init($url);
 
@@ -34,22 +28,20 @@ curl_close($ch);
 
 if($statusCode >= 200 && $statusCode <= 299) {
 
-    define('NO_REDIRECT', true);
-    include "../home/me.php";
 
-    header('Content-Type: application/json; charset=utf-8');
-    if (!empty($_SESSION['logado']) && $_SESSION['logado'] === true) {
-        echo json_encode(["status" => "success"]);
-    } else {
-        http_response_code(500);
-        echo json_encode(["status" => "failed", "reason" => "session_refresh_failed"]);
-    }
+    include "../home/me.php";
+    header("Location: code.php");
+    exit();
+}
+else if($data["code"] == "INVALID_USER" || $data["message"] == "Only active users can become providers")
+{
+    header("Location: /ProjetoTCCSenai/src/modal/code.php");
+    exit();
 }
 else
 {
-    header('Content-Type: application/json; charset=utf-8');
-    http_response_code($statusCode ?: 500);
-    echo json_encode(["status" => "failed"]);
+    header("Location: /ProjetoTCCSenai/src/error/code.php?er=" . $statusCode);
+    exit();
 }
 
 ?>

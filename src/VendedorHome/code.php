@@ -1,3 +1,17 @@
+<?php
+error_reporting(0);
+require("../auth/auth.php");
+require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+
+
+if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
+    header("Location: /ProjetoTCCSenai/src/modal/code.php");
+    exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 
 <html class="light" lang="pt-BR">
@@ -142,7 +156,7 @@
                     <p class="text-xs font-bold text-primary tracking-[0.2em] uppercase mt-1" id="tab-subtitle">Frota Ativa</p>
                 </div>
                 <div class="tab-content" id="inventory-actions">
-                    <button onclick="window.location.href='../CadMaquinas/code.html'" class="btn-industrial px-6 py-3 text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
+                    <button onclick="window.location.href='../CadMaquinas/code.php'" class="btn-industrial px-6 py-3 text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
                         <span class="material-symbols-outlined text-sm">add</span>
                         Cadastrar Máquina
                     </button>
@@ -471,7 +485,7 @@
                 <span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="add_circle">add_circle</span>
                 </div>
                 <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Adicionar novo equipamento</h3>
-                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.html'" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
+                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.php'" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
                 </div>
                 `;
             }

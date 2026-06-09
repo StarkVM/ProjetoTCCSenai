@@ -1,6 +1,10 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
+if($_SESSION["logado"] == true){
+    header("Location: /ProjetoTCCSenai/src/home/code.php");
+    exit();
+}
 error_reporting(0); // limpa os erros e avisos do header
 
 // SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE

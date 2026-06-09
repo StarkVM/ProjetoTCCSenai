@@ -103,7 +103,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
     <nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../home/code.php">Início</a>
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../catalogoAnuncios/code.html">Catálogo</a>
-      <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../VendedorHome/code.php">Locações</a>
+
+        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == "1") echo "<a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>"?>
     </nav>
 
     <div class="flex items-center gap-4">
@@ -118,7 +119,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
       </button>
 
       <div class="relative group flex items-center gap-3 cursor-pointer">
-        <span class="hidden md:block font-['Space_Grotesk'] text-sm font-bold text-[#1c1b1b] dark:text-[#fcf9f8]">Olá, Matt</span>
+        <span class="hidden md:block font-['Space_Grotesk'] text-sm font-bold text-[#1c1b1b] dark:text-[#fcf9f8]">Olá, <?php echo $_SESSION["firstName"]?? "Sem dados" ?></span>
         <img src="https://i.pravatar.cc/40" alt="Foto do usuário" class="w-10 h-10 rounded-md object-cover border-2 border-primary">
         <div class="absolute right-0 top-14 w-48 bg-white dark:bg-[#2d2c2c] shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
           <a href="../UserProfile/code.php" class="block px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-[#3a3939]">Meu Perfil</a>

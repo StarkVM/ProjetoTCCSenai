@@ -18,6 +18,7 @@ class endpoints
     public string $urlLoginNewCode;
     public string $urlEmailVerifyNewCode;
     public string $urlProvider;
+    public string $urlListing;
 
     public function __construct()
     {
@@ -38,6 +39,7 @@ class endpoints
         $this->urlLoginNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/login/request-new-code";
         $this->urlEmailVerifyNewCode = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/request-new-code";
         $this->urlProvider = $this->UrlPadrao . "/api/v1/user-access/user/me/provider";
+        $this->urlListing = $this->UrlPadrao . "/api/v1/listings";
 
     }
 }

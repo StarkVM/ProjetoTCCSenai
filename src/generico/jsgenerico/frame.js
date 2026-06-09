@@ -21,26 +21,7 @@ function closeVendorModal() {
 }
 
 function confirmVendor() {
-    fetch(`/ProjetoTCCSenai/src/UserProfile/provider.php`)
-        .then(resposta => {
-            if (!resposta.ok) {
-                throw new Error(`Erro HTTP: ${resposta.status}`);
-            }
-            return resposta.json();
-        })
-        .then(dados => {
-            if (dados.status === "failed") {
-                throw new Error('Falha ao confirmar o vendedor');
-            }
-
-            // Aqui o fetch foi bem-sucedido e provider.php retornou status success.
-            // Se quiser manter a página atual, atualize o DOM ou feche o modal.
-            closeVendorModal();
-            console.log('Vendor confirmado com sucesso', dados);
-        })
-        .catch(erro => {
-            console.error('Erro na requisição:', erro.message);
-        });
+    window.location.href = "/ProjetoTCCSenai/src/UserProfile/provider.php";
 }
 
 function initVendorModal() {
