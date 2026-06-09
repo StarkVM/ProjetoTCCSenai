@@ -147,13 +147,6 @@
               <option>Carregadeira</option>
             </select>
           </div>
-          <div class="flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Marca /
-              Fabricante</label>
-            <input id="marca"
-              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-              placeholder="Digite a Marca" type="text" />
-          </div>
           <!-- Removido: Número do Modelo e Ano de Fabricação -->
           <div class="flex flex-col gap-2">
             <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
@@ -228,13 +221,6 @@
               <option value="unica">Única</option>
               <option value="frota">Frota</option>
             </select>
-          </div>
-          <div class="md:col-span-2 flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Período de Disponibilidade (opcional)</label>
-            <div class="flex gap-2">
-              <input id="disponibilidadeInicio" type="date" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
-              <input id="disponibilidadeFim" type="date" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
-            </div>
           </div>
         </div>
       </div>
@@ -314,9 +300,6 @@
 
       const tipoUnidadeEl = document.getElementById('tipoUnidade');
 
-      const disponibilidadeInicioEl = document.getElementById('disponibilidadeInicio');
-      const disponibilidadeFimEl = document.getElementById('disponibilidadeFim');
-
       // Função para buscar CEP via ViaCEP
       async function buscarCEP(cep) {
         const apenasDigitos = cep.replace(/\D/g, '');
@@ -363,7 +346,6 @@
           const dadosMaquina = {
             nome: (document.getElementById('nomeAtivo')?.value || '').trim(),
             tipo: (document.getElementById('tipoMaquina')?.value || '').trim(),
-            marca: (document.getElementById('marca')?.value || '').trim(),
             cep: cepEl?.value || '',
             endereco: {
               logradouro: logradouroEl?.value || '',
@@ -378,9 +360,7 @@
             disponibilizaFrete: disponibilizaFreteEl?.value === 'yes',
             precoFrete: precoFreteEl?.value || '',
             tipoUnidade: tipoUnidadeEl?.value || 'unica',
-            diasDisponiveis: [],
-            disponibilidadeInicio: disponibilidadeInicioEl?.value || '',
-            disponibilidadeFim: disponibilidadeFimEl?.value || ''
+            diasDisponiveis: []
           };
 
           // Armazenar no localStorage
