@@ -362,53 +362,64 @@ class="w-full bg-transparent outline-none font-medium"
 <!-- PRICE -->
 <div class="space-y-4 mb-8">
 
-<div class="flex justify-between text-sm">
+  <!-- Extras (operador / frete) - exibidos somente se disponíveis -->
+  <div id="extrasOptions" class="mb-2" style="display:none;">
+    <div id="operadorOption" class="flex items-center gap-3 mb-1" style="display:none;">
+      <input type="checkbox" id="optOperador" />
+      <label for="optOperador" class="text-sm">Adicionar operador (<span id="operadorPriceLabel">R$ 0</span>/dia)</label>
+    </div>
 
-<span class="text-on-surface-variant" id="resumo">
-R$ 0 x 0 dias
-</span>
+    <div id="freteOption" class="flex items-center gap-3" style="display:none;">
+      <input type="checkbox" id="optFrete" />
+      <label for="optFrete" class="text-sm">Adicionar frete (<span id="fretePriceLabel">R$ 0</span>)</label>
+    </div>
+  </div>
 
-<span class="font-bold" id="subtotal">
-R$ 0
-</span>
+  <div class="flex justify-between text-sm">
 
-</div>
+    <span class="text-on-surface-variant" id="resumo">
+      R$ 0 x 0 dias
+    </span>
 
-<div class="flex justify-between text-sm">
+    <span class="font-bold" id="subtotal">
+      R$ 0
+    </span>
 
-<span class="text-on-surface-variant">
-Seguro e Taxa de Segurança
-</span>
+  </div>
 
-<span class="font-bold">
-R$ 420
-</span>
+  <div class="flex justify-between text-sm">
 
-</div>
+    <span class="text-on-surface-variant">
+      Seguro e Taxa de Segurança
+    </span>
 
-<div class="flex justify-between text-sm">
+    <span class="font-bold">
+      R$ 420
+    </span>
 
-<span class="text-on-surface-variant">
-Logística / Entrega
-</span>
+  </div>
 
-<span class="font-bold text-tertiary">
-GRÁTIS
-</span>
+  <div class="flex justify-between text-sm" id="rowOperador" style="display:none;">
+    <span class="text-on-surface-variant">Operador</span>
+    <span class="font-bold" id="operadorAmount">R$ 0</span>
+  </div>
 
-</div>
+  <div class="flex justify-between text-sm" id="rowFrete" style="display:none;">
+    <span class="text-on-surface-variant">Logística / Entrega</span>
+    <span class="font-bold text-tertiary" id="freteAmount">GRÁTIS</span>
+  </div>
 
-<div class="h-[1px] bg-surface-container-highest"></div>
+  <div class="h-[1px] bg-surface-container-highest"></div>
 
-<div class="flex justify-between text-xl font-headline font-black uppercase">
+  <div class="flex justify-between text-xl font-headline font-black uppercase">
 
-<span>Preço Total</span>
+    <span>Preço Total</span>
 
-<span id="total">
-R$ 0
-</span>
+    <span id="total">
+      R$ 0
+    </span>
 
-</div>
+  </div>
 
 </div>
 
@@ -441,36 +452,64 @@ const images = [
 
 let currentImageIndex = 0;
 
+// Retorna um objeto `item` normalizado a partir do localStorage
+function getStoredItem() {
+  const saved = localStorage.getItem('item') || localStorage.getItem('maquinaCadastrada');
+  if (!saved) return null;
+  const obj = JSON.parse(saved);
+
+  // Se veio do formulário de cadastro, normalize campos para a página de aluguel
+  if (obj.precoDiariaMaquina && !obj.preco) {
+    obj.preco = `R$ ${parseFloat(obj.precoDiariaMaquina).toLocaleString('pt-BR')}`;
+  }
+
+  if (obj.endereco && !obj.estado) {
+    obj.estado = `${obj.endereco.logradouro || ''}${obj.endereco.bairro ? ', ' + obj.endereco.bairro : ''}${obj.endereco.cidade ? ', ' + obj.endereco.cidade : ''}${obj.endereco.uf ? ' - ' + obj.endereco.uf : ''}`;
+  }
+
+  return obj;
+}
+
 function fillData() {
-
-  const itemSalvo = localStorage.getItem("item");
-
-  if (!itemSalvo) {
-    console.warn("Nenhum item encontrado");
+  const item = getStoredItem();
+  if (!item) {
+    console.warn('Nenhum item encontrado');
     return;
   }
 
-  const item = JSON.parse(itemSalvo);
+  if (item.nome) document.getElementById('nome').textContent = item.nome;
+  if (item.preco) document.getElementById('preco').textContent = item.preco;
+  if (item.estado) document.getElementById('estado').textContent = item.estado;
+  if (item.descricao) document.getElementById('descricao').textContent = item.descricao;
 
-  // nome
-  if (item.nome) {
-    document.getElementById("nome").textContent = item.nome;
+  // Extras: operador / frete
+  const extrasDiv = document.getElementById('extrasOptions');
+  const operadorOption = document.getElementById('operadorOption');
+  const freteOption = document.getElementById('freteOption');
+  const operadorPriceLabel = document.getElementById('operadorPriceLabel');
+  const fretePriceLabel = document.getElementById('fretePriceLabel');
+  const optOperador = document.getElementById('optOperador');
+  const optFrete = document.getElementById('optFrete');
+
+  if (item.disponibilizaOperador) {
+    extrasDiv.style.display = '';
+    operadorOption.style.display = 'flex';
+    operadorPriceLabel.textContent = item.precoDiariaMaoObra ? `R$ ${parseFloat(item.precoDiariaMaoObra).toLocaleString('pt-BR')}` : 'R$ 0';
+  } else {
+    operadorOption.style.display = 'none';
   }
 
-  // preço
-  if (item.preco) {
-    document.getElementById("preco").textContent = item.preco;
+  if (item.disponibilizaFrete) {
+    extrasDiv.style.display = '';
+    freteOption.style.display = 'flex';
+    fretePriceLabel.textContent = item.precoFrete ? `R$ ${parseFloat(item.precoFrete).toLocaleString('pt-BR')}` : 'R$ 0';
+  } else {
+    freteOption.style.display = 'none';
   }
 
-  // estado
-  if (item.estado) {
-    document.getElementById("estado").textContent = item.estado;
-  }
-
-  // descrição
-  if (item.descricao) {
-    document.getElementById("descricao").textContent = item.descricao;
-  }
+  // ligar recalculo quando usuário alterna opções
+  if (optOperador) optOperador.addEventListener('change', rentCalc);
+  if (optFrete) optFrete.addEventListener('change', rentCalc);
 }
 
 function initializeCarousel() {
@@ -555,12 +594,8 @@ function calcularDias(dataInicio, dataFim) {
 }
 
 function rentCalc() {
-
-  const itemSalvo = localStorage.getItem("item");
-
-  if (!itemSalvo) return;
-
-  const item = JSON.parse(itemSalvo);
+  const item = getStoredItem();
+  if (!item) return;
 
   const startDate =
     document.getElementById("startDate").value;
@@ -583,25 +618,51 @@ function rentCalc() {
 
   if (isNaN(precoNumero)) return;
 
-  const subtotal = precoNumero * dias;
+  const baseSubtotal = precoNumero * dias;
+
+  // Extras
+  const optOperador = document.getElementById('optOperador');
+  const optFrete = document.getElementById('optFrete');
+
+  const operadorUnit = item.precoDiariaMaoObra ? parseFloat(String(item.precoDiariaMaoObra).replace(',','.')) : 0;
+  const freteUnit = item.precoFrete ? parseFloat(String(item.precoFrete).replace(',','.')) : 0;
+
+  const operadorCost = (optOperador && optOperador.checked) ? (operadorUnit * dias) : 0;
+  const freteCost = (optFrete && optFrete.checked) ? freteUnit : 0;
+
   const taxa = 420;
-  const total = subtotal + taxa;
+  const subtotal = baseSubtotal + operadorCost;
+  const total = subtotal + taxa + freteCost;
 
-  document.getElementById("resumo").textContent =
-    `R$ ${precoNumero} x ${dias} dias`;
+  document.getElementById("resumo").textContent = `R$ ${precoNumero} x ${dias} dias`;
+  document.getElementById("subtotal").textContent = `R$ ${baseSubtotal.toLocaleString("pt-BR")}`;
 
-  document.getElementById("subtotal").textContent =
-    `R$ ${subtotal.toLocaleString("pt-BR")}`;
+  // atualizar linhas de operador/frete
+  const rowOperador = document.getElementById('rowOperador');
+  const operadorAmountEl = document.getElementById('operadorAmount');
+  if (item.disponibilizaOperador) {
+    rowOperador.style.display = '';
+    operadorAmountEl.textContent = `R$ ${operadorCost.toLocaleString('pt-BR')}`;
+  } else {
+    rowOperador.style.display = 'none';
+  }
 
-  document.getElementById("total").textContent =
-    `R$ ${total.toLocaleString("pt-BR")}`;
+  const rowFrete = document.getElementById('rowFrete');
+  const freteAmountEl = document.getElementById('freteAmount');
+  if (item.disponibilizaFrete) {
+    rowFrete.style.display = '';
+    freteAmountEl.textContent = freteCost > 0 ? `R$ ${freteCost.toLocaleString('pt-BR')}` : 'GRÁTIS';
+  } else {
+    rowFrete.style.display = 'none';
+  }
+
+  document.getElementById("total").textContent = `R$ ${total.toLocaleString("pt-BR")}`;
 }
 
 // Calcula dias da semana disponíveis para esta máquina com base nas locações armazenadas
 function computeDisponibilidade() {
-  const itemSalvo = localStorage.getItem('item');
-  if (!itemSalvo) return;
-  const item = JSON.parse(itemSalvo);
+  const item = getStoredItem();
+  if (!item) return;
 
   const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
   const bookings = locacoes.filter(l => l.item && l.item.nome === item.nome);
@@ -643,18 +704,22 @@ function iniciarAluguel() {
     return;
   }
   
-  const itemSalvo = localStorage.getItem("item");
-  if (!itemSalvo) {
-    console.warn("Erro: Máquina não carregada. Tente novamente.");
+  const item = getStoredItem();
+  if (!item) {
+    console.warn('Erro: Máquina não carregada. Tente novamente.');
     return;
   }
-  
+
   // Armazenar dados de locação no localStorage (array 'locacoes')
   const dadosLocacao = {
-    item: JSON.parse(itemSalvo),
+    item: item,
     dataInicio: dataInicio,
     dataFim: dataFim,
-    total: total
+    total: total,
+    operador: (document.getElementById('optOperador') && document.getElementById('optOperador').checked) || false,
+    frete: (document.getElementById('optFrete') && document.getElementById('optFrete').checked) || false,
+    operadorAmount: document.getElementById('operadorAmount') ? document.getElementById('operadorAmount').textContent : 'R$ 0',
+    freteAmount: document.getElementById('freteAmount') ? document.getElementById('freteAmount').textContent : 'GRÁTIS'
   };
 
   const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
