@@ -207,7 +207,7 @@ $responseError = $er;
           <div class="flex flex-col gap-2">
             <label for="logradouro"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Endere&ccedil;o</label>
-            <input id="logradouro" name="logradouro"
+            <input id="logradouro" name="logradouro" readonly
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Rua / Av" type="text" />
           </div>
@@ -215,7 +215,7 @@ $responseError = $er;
           <div class="flex flex-col gap-2">
             <label for="bairro"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Bairro</label>
-            <input id="bairro" name="bairro"
+            <input id="bairro" name="bairro" readonly
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Bairro" type="text" />
           </div>
@@ -230,14 +230,14 @@ $responseError = $er;
           <div class="flex flex-col gap-2">
             <label for="localCidade"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Cidade</label>
-            <input id="localCidade" name="localCidade"
+            <input id="localCidade" name="localCidade" readonly
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Cidade" type="text" />
           </div>
 
           <div class="flex flex-col gap-2">
             <label for="localUF" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">UF</label>
-            <input id="localUF" name="localUF" maxlength="2"
+            <input id="localUF" name="localUF" maxlength="2" readonly
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium uppercase"
               placeholder="SP" type="text" />
           </div>
