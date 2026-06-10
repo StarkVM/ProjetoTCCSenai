@@ -172,7 +172,7 @@ function formatarReais(float $valor): string
         }
 
         .btn-industrial {
-            background: linear-gradient(to bottom right, #835400, #f9a825);
+            background: #f9a825;
         }
 
         .tab-btn.active {
@@ -665,7 +665,7 @@ function formatarReais(float $valor): string
             document.getElementById('tab-subtitle').textContent = titles[tab][1];
         }
 
-        // Funções para gerenciar o modal de edição
+        /*
         let currentMachineId = null;
 
         function openEditModal(id) {
@@ -698,12 +698,14 @@ function formatarReais(float $valor): string
             document.getElementById('editModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
+       
 
         function closeEditModal() {
             document.getElementById('editModal').classList.add('hidden');
             document.body.style.overflow = '';
             currentMachineId = null;
         }
+        */
 
         function toggleOperatorField() {
             const operatorAvailable = document.getElementById('editOperatorAvailable').value === 'true';

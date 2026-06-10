@@ -105,7 +105,7 @@ $responseError = $er;
     }
 
     .primary-gradient {
-      background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+      background:  #f9a825;
     }
 
     .image-slot.has-image {

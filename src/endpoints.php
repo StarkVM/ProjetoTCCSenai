@@ -23,7 +23,7 @@ class endpoints
 
     public function __construct()
     {
-        $this->UrlPadrao = "http://localhost:5000";
+        $this->UrlPadrao = "https://programmers-diagram-gamecube-dept.trycloudflare.com";
 
         $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
         $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";

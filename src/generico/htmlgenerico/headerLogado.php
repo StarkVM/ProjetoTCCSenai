@@ -120,7 +120,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
 
       <div class="relative group flex items-center gap-3 cursor-pointer">
         <span class="hidden md:block font-['Space_Grotesk'] text-sm font-bold text-[#1c1b1b] dark:text-[#fcf9f8]">Olá, <?php echo $_SESSION["firstName"]?? "Sem dados" ?></span>
-        <img src="https://i.pravatar.cc/40" alt="Foto do usuário" class="w-10 h-10 rounded-md object-cover border-2 border-primary">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVR3TjkaFI32k7M8OGMye32jOxry45evTmjw&s" alt="Foto do usuário" class="w-10 h-10 rounded-md object-cover border-2 border-primary">
         <div class="absolute right-0 top-14 w-48 bg-white dark:bg-[#2d2c2c] shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
           <a href="../UserProfile/code.php" class="block px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-[#3a3939]">Meu Perfil</a>
           <a href="../UserProfile/code.php" class="block px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-[#3a3939]">Minhas Locações</a>
