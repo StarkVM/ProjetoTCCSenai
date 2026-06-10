@@ -96,7 +96,7 @@ tailwind.config = {
 </head>
 
 <body class="bg-background font-body text-on-surface antialiased">
-<header id="header"></header>
+<header id="header" class="text-background"></header>
 <main class="min-h-screen grid grid-cols-1 md:grid-cols-2">
 
     <!-- ESQUERDA -->

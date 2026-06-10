@@ -85,6 +85,9 @@
             grid-template-columns: repeat(12, 1fr);
             gap: 1.5rem;
         }
+        #cadButton {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
@@ -110,12 +113,12 @@ Entrar
 </button>
 
 <button onclick="window.location.href='../cadastro/code.php'"
-class="bg-primary-container from-primary to-primary-container text-on-primary font-['Space_Grotesk'] text-sm font-bold uppercase px-6 py-2 rounded-md hover:opacity-90 active:scale-95 transition-all duration-100 shadow-sm">
+id="cadButton" class="bg-primary-container from-primary to-primary-container  font-['Space_Grotesk'] text-sm font-bold uppercase px-6 py-2 rounded-md hover:opacity-90 active:scale-95 transition-all duration-100 shadow-sm">
 Cadastrar-se
 </button>
 </div>
 </div>
-<div class="bg-[#e5e2e1] dark:bg-[#2d2c2c] h-[1px] w-full"></div>
+
 </header>
 
 </body>
