@@ -8,6 +8,75 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
     header("Location: /ProjetoTCCSenai/src/modal/code.php");
     exit();
 }
+if($_POST["acao"] == "deletar") deletar($_POST["id"]);
+$dados = [];
+$historico = [];
+
+/// FUNÇÃO PARA DELETAR UM ANUNCIO
+function deletar($lid) : void
+{
+    $endpoints = new Endpoints();
+    $url = $endpoints->urlListing. "/{$lid}";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE"); //  define que é delete
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/json",
+            "Authorization: Bearer " . $_SESSION['accessToken']
+    ]); // tipo do envio
+
+    $response = curl_exec($ch);
+    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    //$data = json_decode($response, true); // tranforma json em array
+    curl_close($ch);
+
+    if($statusCode >= 200 && $statusCode <= 299) {
+
+        header("Refresh:0");
+
+
+    }
+    else
+    {
+        $responseError = "Ocorreu um erro ao deletar o anúncio, por favor tente novamente.";
+    }
+
+}
+
+$endpoints = new Endpoints();
+$url = $endpoints->urlListing. "?mine=true&page=1&pageSize=50&status=Approved";
+
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $_SESSION['accessToken']
+]); // tipo do envio
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$data = json_decode($response, true); // tranforma json em array
+curl_close($ch);
+
+if ($statusCode >= 200 && $statusCode <= 299) {
+    $responseData = json_decode($response, true);
+
+    $dados = $responseData['items'] ?? [];
+
+} else {
+    $dados = [];
+
+}
+
+
+// Função auxiliar para formatar moeda
+function formatarReais(float $valor): string
+{
+    return 'R$ ' . number_format($valor, 2, ',', '.');
+}
+
 
 ?>
 
@@ -155,6 +224,9 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
                     <h2 class="text-3xl lg:text-4xl font-headline font-black tracking-tighter uppercase" id="tab-title">Meus anúncios</h2>
                     <p class="text-xs font-bold text-primary tracking-[0.2em] uppercase mt-1" id="tab-subtitle">Frota Ativa</p>
                 </div>
+                <p id="responseErro" class="text-red-500 text-sm font-medium">
+                    <?php if (isset($responseError)) echo $responseError; ?>
+                </p>
                 <div class="tab-content" id="inventory-actions">
                     <button onclick="window.location.href='../CadMaquinas/code.php'" class="btn-industrial px-6 py-3 text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
                         <span class="material-symbols-outlined text-sm">add</span>
@@ -165,7 +237,87 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
             <!-- Content Container -->
             <div class="tab-content" id="inventory-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="container-card">
-                    <!-- Cards injected by JS -->
+
+                    <?php if (empty($dados)): ?>
+
+                        <div id="adicionar-anuncio" class="group bg-surface-container-lowest rounded-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 border-dashed border-2 border-outline-variant/30 flex flex-col items-center justify-center p-8 text-center min-h-[500px]">
+                            <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-fixed transition-colors">
+                                <span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary">add_circle</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Adicionar novo equipamento</h3>
+                            <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p>
+                            <button onclick="window.location.href='../CadMaquinas/code.php'" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">
+                                Começar agora
+                            </button>
+                        </div>
+
+                    <?php else: ?>
+
+                        <?php foreach ($dados as $item):
+                            $id             = (string) ($item['listingId'] ?? "0");
+                            $title          = htmlspecialchars($item['title'] ?? '');
+                            $description    = htmlspecialchars($item['description'] ?? '');
+                            $dailyPrice     = formatarReais((float) ($item['dailyPrice'] ?? 0));
+                            $images         = $item['images'] ?? [];
+                            $imagemPrincipal = htmlspecialchars(!empty($images) ? ($images[0]['url'] ?? 'placeholder.jpg') : 'placeholder.jpg');
+                            $cidade         = htmlspecialchars($item['pickupCity'] ?? '');
+                            $estado         = htmlspecialchars($item['pickupState'] ?? '');
+                            $localizacao    = "{$cidade}, {$estado}";
+                            $isFleet        = !empty($item['isFleet']);
+                            $operador       = !empty($item['operatorAvailable']);
+                            $frete          = !empty($item['freightAvailable']);
+                            ?>
+
+                            <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
+                                <div class="h-48 relative overflow-hidden">
+                                    <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                    <div class="absolute inset-0 machine-card-gradient"></div>
+                                    <div class="absolute top-4 right-4 flex gap-2 flex-wrap justify-end">
+                                        <?php if ($isFleet): ?>
+                                            <div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Frota</div>
+                                        <?php endif; ?>
+                                        <div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Ativo</div>
+                                    </div>
+                                </div>
+                                <div class="p-5">
+                                    <h3 class="font-headline font-bold text-lg uppercase leading-tight mb-1 min-h-[2.5rem] line-clamp-2"><?= $title ?></h3>
+                                    <p class="text-[11px] opacity-60 mb-3 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">location_on</span>
+                                        <?= $localizacao ?>
+                                    </p>
+                                    <p class="text-xs opacity-70 mb-4 line-clamp-2 leading-relaxed"><?= $description ?></p>
+
+                                    <?php if ($operador || $frete): ?>
+                                        <div class="flex gap-2 flex-wrap mb-4">
+                                            <?php if ($operador): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary">
+                                                    <span class="material-symbols-outlined text-xs">person</span>Operador
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ($frete): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary">
+                                                    <span class="material-symbols-outlined text-xs">local_shipping</span>Frete
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="flex items-center justify-between pt-4 border-t border-outline-variant/5">
+                                        <div>
+                                            <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Diária</p>
+                                            <p class="text-xl font-headline font-black text-on-surface"><?= $dailyPrice ?></p>
+                                        </div>
+                                        <button onclick="openDisableAccountModal('<?= $id ?>')"  class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
+                                            Deletar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
                 </div>
             </div>
             <div class="tab-content hidden" id="proposals-content">
@@ -381,22 +533,74 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
             </div>
         </div>
     </div>
+    <!-- Modal de Confirmação Desativar anuncio -->
+    <div id="disableAccountModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-[#1c1b1b] rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <div class="p-6 border-b border-stone-200 dark:border-stone-700">
+                <h2 class="text-lg font-bold text-on-surface">Deletar Anúncio</h2>
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-stone-600 dark:text-stone-400">Tem certeza que deseja deletar o anúncio?</p>
+                <div class="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded p-4">
+                    <p class="text-xs font-semibold text-red-800 dark:text-red-300 uppercase tracking-widest mb-2">⚠ Atenção</p>
+                    <p class="text-sm text-red-700 dark:text-red-300">Essa ação deletará o anúncio e você não conseguirá acessa-lo novamente. Seus dados serão preservados, mas você precisará entrar em contato com o suporte para reativar.</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-stone-200 dark:border-stone-700 flex gap-3">
+                <button onclick="closeDisableAccountModal()" class="flex-1 px-4 py-2 border-2 border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-400 rounded-md font-bold text-xs uppercase hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors">Cancelar</button>
+                <button onclick="confirmDisableAccount()" class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md font-bold text-xs uppercase transition-colors">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <footer id="footer"></footer>
     <script>
-        const dados = [{
-            id: 1,
-  title: "Escavadeira hidráulica CAT 320",
-  description: "Máquina em ótimo estado.\nDisponível para aluguel diário.",
-  dailyPrice: 850.00,
-  images: ["imagem1.jpg", "imagem2.png", "imagem3.webp"],
-  pickupCity: "São Paulo",
-  pickupState: "SP",
-  operatorAvailable: true,
-  freightAvailable: true,
-  isFleet: false,
-  // ... outros campos
-}];
+        // Funções para gerenciar modal de deletar anuncio
+        let anuncioId = null;
+
+        function openDisableAccountModal(id) {
+            anuncioId = id;
+
+            document.getElementById('disableAccountModal')
+                .classList.remove('hidden');
+
+            document.getElementById('disableAccountModal')
+                .classList.add('flex');
+        }
+
+        function confirmDisableAccount() {
+            closeDisableAccountModal();
+            deletarItem(anuncioId);
+        }
+
+        function closeDisableAccountModal() {
+            document.getElementById('disableAccountModal').classList.add('hidden');
+            document.getElementById('disableAccountModal').classList.remove('flex');
+        }
+
+
+
+        // Fechar modal ao clicar fora dele
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('disableAccountModal');
+            if (modal && e.target === modal) {
+                closeDisableAccountModal();
+            }
+        });
+
+        function deletarItem(id) {
+
+            fetch('code.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'acao=deletar&id=' + id
+            })
+                .then(response => response.text())
+                .then(() => {
+                    location.reload();
+                });
+        }
+        const dados = <?= json_encode($dados, JSON_UNESCAPED_UNICODE) ?>;
         
         // EXEMPLO: Estrutura de dados esperada para cada máquina no inventário
         // Você pode carregar isso via API ou processá-lo no backend e injetar no HTML
@@ -431,133 +635,7 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
         ];
         */
 
-        function renderInventory() {
-            const container = document.getElementById('container-card');
-            container.innerHTML = dados.map((item, index) => {
-                // Usar primeira imagem do array ou fallback
-                const imagemPrincipal = item.images && item.images.length > 0 ? item.images[0] : item.imagem || 'placeholder.jpg';
-                const priceFormatted = typeof item.dailyPrice === 'number' ? `R$ ${item.dailyPrice.toFixed(2).replace('.', ',')}` : item.precoDia;
-                const localizacao = `${item.pickupCity}, ${item.pickupState}`;
-                const id = item.id;
-                console.log(id);
-                // Badges de serviços adicionais
-                const servicosBadges = `
-                    ${item.operatorAvailable ? `<div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-xs">person</span>Operador</div>` : ''}
-                    ${item.freightAvailable ? `<div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary"><span class="material-symbols-outlined text-xs">local_shipping</span>Frete</div>` : ''}
-                `;
-                
-                return `
-                <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
-                    <div class="h-48 relative overflow-hidden">
-                        <img src="${imagemPrincipal}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 machine-card-gradient"></div>
-                        <div class="absolute top-4 right-4 flex gap-2 flex-wrap justify-end">
-                            ${item.isFleet ? `<div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Frota</div>` : ''}
-                            <div class="bg-white/95 px-3 py-1 rounded text-[10px] font-black text-primary uppercase shadow-sm">Ativo</div>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-headline font-bold text-lg uppercase leading-tight mb-1 min-h-[2.5rem] line-clamp-2">${item.title}</h3>
-                        <p class="text-[11px] opacity-60 mb-3 flex items-center gap-1">
-                            <span class="material-symbols-outlined text-sm">location_on</span>
-                            ${localizacao}
-                        </p>
-                        <p class="text-xs opacity-70 mb-4 line-clamp-2 leading-relaxed">${item.description}</p>
-                        
-                        ${servicosBadges ? `<div class="flex gap-2 flex-wrap mb-4">${servicosBadges}</div>` : ''}
-                        
-                        <div class="flex items-center justify-between pt-4 border-t border-outline-variant/5">
-                            <div>
-                                <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Diária</p>
-                                <p class="text-xl font-headline font-black text-on-surface">${priceFormatted}</p>
-                            </div>
-                            <button onclick="openEditModal(${id})" class="bg-on-surface hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">Editar</button>
-                        </div>
-                    </div>
-                </div>
-                `;
-            }).join('');
 
-            if (dados.length <= 0) {
-                container.innerHTML = `
-                <div id="adicionar-anuncio" class="group bg-surface-container-lowest rounded-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 border-dashed border-2 border-outline-variant/30 flex flex-col items-center justify-center p-8 text-center min-h-[500px]">
-                <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-fixed transition-colors">
-                <span class="material-symbols-outlined text-3xl text-outline group-hover:text-primary" data-icon="add_circle">add_circle</span>
-                </div>
-                <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Adicionar novo equipamento</h3>
-                <p class="text-on-surface-variant text-sm mb-8">Amplie sua frota visível e aumente seu faturamento mensal.</p> <button onclick="window.location.href='../CadMaquinas/code.php'" class="bg-on-surface text-surface px-6 py-3 rounded-md font-headline font-bold uppercase text-xs tracking-wider transition-transform active:scale-95">Começar agora</button>
-                </div>
-                `;
-            }
-        }
-
-        const historico = [
-            {
-                id: '1',
-                titulo: 'Retroescavadeira CAT 320',
-                periodo: '12 fev 2026 – 18 fev 2026',
-                cliente: 'Obras & Concretos S/A',
-                local: 'Zona Sul, São Paulo',
-                valor: 'R$ 8.400',
-                status: 'Concluído',
-                link: '../VendedorHome/historico.php?id=1'
-            },
-            {
-                id: '2',
-                titulo: 'Perfuratriz DTH 20',
-                periodo: '02 mar 2026 – 10 mar 2026',
-                cliente: 'Engenharia Nova Era',
-                local: 'Guarulhos, SP',
-                valor: 'R$ 11.200',
-                status: 'Concluído',
-                link: '../VendedorHome/historico.php?id=2'
-            },
-            {
-                id: '3',
-                titulo: 'Vibroacabadora Volvo ABG 2820',
-                periodo: '20 abr 2026 – 30 abr 2026',
-                cliente: 'Estradas Brasil',
-                local: 'Campinas, SP',
-                valor: 'R$ 9.750',
-                status: 'Concluído',
-                link: '../VendedorHome/historico.php?id=3'
-            }
-        ];
-
-        function renderHistory() {
-            const historyList = document.getElementById('history-list');
-            historyList.innerHTML = historico.map(item => `
-                <a href="${item.link}" class="group block bg-surface-container-lowest rounded-2xl border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl overflow-hidden">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between gap-4 mb-4">
-                            <div>
-                                <p class="text-[10px] uppercase font-bold opacity-40 mb-1 tracking-widest">${item.status}</p>
-                                <h3 class="text-xl font-headline font-black uppercase leading-tight">${item.titulo}</h3>
-                            </div>
-                            <span class="text-xs uppercase font-bold text-primary">Ver</span>
-                        </div>
-                        <p class="text-sm opacity-70 mb-4">${item.cliente}</p>
-                        <div class="grid grid-cols-1 gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-on-surface/80">
-                            <div class="flex justify-between"><span>Período</span><span>${item.periodo}</span></div>
-                            <div class="flex justify-between"><span>Local</span><span>${item.local}</span></div>
-                            <div class="flex justify-between"><span>Valor</span><span>${item.valor}</span></div>
-                        </div>
-                    </div>
-                </a>
-            `).join('');
-
-            if (historico.length === 0) {
-                historyList.innerHTML = `
-                    <div class="col-span-full p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
-                            <span class="material-symbols-outlined text-3xl opacity-40">history</span>
-                        </div>
-                        <p class="font-headline font-bold uppercase tracking-tighter text-lg">Ainda não há histórico</p>
-                        <p class="text-sm opacity-60 max-w-xs mx-auto">Quando seus aluguéis forem concluídos, o histórico aparecerá aqui.</p>
-                    </div>
-                `;
-            }
-        }
 
         function switchTab(tab) {
             // Content
@@ -592,16 +670,11 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
 
         function openEditModal(id) {
             currentMachineId = id;
-            
-                console.log("ID recebido:", id);
 
-    const item = dados.find(d => d.id === id);
+            // API usa listingId, não id
+            const item = dados.find(d => d.listingId === id);
+            if (!item) return;
 
-    console.log("Item encontrado:", item);
-
-    
-    
-            // Preencher os campos do modal com os dados da máquina
             document.getElementById('editTitle').value = item.title || '';
             document.getElementById('editDescription').value = item.description || '';
             document.getElementById('editDailyPrice').value = item.dailyPrice || '';
@@ -612,21 +685,16 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
             document.getElementById('editDistrict').value = item.pickupDistrict || '';
             document.getElementById('editCity').value = item.pickupCity || '';
             document.getElementById('editState').value = item.pickupState || '';
-            
-            // Setar os selects de serviços adicionais
+
             document.getElementById('editOperatorAvailable').value = item.operatorAvailable ? 'true' : 'false';
             document.getElementById('editFreightAvailable').value = item.freightAvailable ? 'true' : 'false';
             document.getElementById('editIsFleet').value = item.isFleet ? 'true' : 'false';
-            
-            // Preencher preços adicionais
             document.getElementById('editOperatorDailyPrice').value = item.operatorDailyPrice || '';
             document.getElementById('editFreightFixedPrice').value = item.freightFixedPrice || '';
-            
-            // Mostrar/ocultar campos condicionais
+
             toggleOperatorField();
             toggleFreightField();
-            
-            // Exibir modal
+
             document.getElementById('editModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -647,37 +715,7 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
             document.getElementById('editFreightPriceContainer').classList.toggle('hidden', !freightAvailable);
         }
 
-        function saveEdit() {
-            if (currentMachineId === null) return;
-            
-            const item = dados.find(d => d.id === currentMachineId);
-            
-            // Atualizar os dados da máquina com os valores do formulário
-            item.title = document.getElementById('editTitle').value;
-            item.description = document.getElementById('editDescription').value;
-            item.dailyPrice = parseFloat(document.getElementById('editDailyPrice').value) || 0;
-            item.pickupZipCode = document.getElementById('editZipCode').value;
-            item.pickupStreet = document.getElementById('editStreet').value;
-            item.pickupNumber = document.getElementById('editNumber').value;
-            item.pickupComplement = document.getElementById('editComplement').value;
-            item.pickupDistrict = document.getElementById('editDistrict').value;
-            item.pickupCity = document.getElementById('editCity').value;
-            item.pickupState = document.getElementById('editState').value;
-            item.operatorAvailable = document.getElementById('editOperatorAvailable').value === 'true';
-            item.freightAvailable = document.getElementById('editFreightAvailable').value === 'true';
-            item.isFleet = document.getElementById('editIsFleet').value === 'true';
-            item.operatorDailyPrice = parseFloat(document.getElementById('editOperatorDailyPrice').value) || 0;
-            item.freightFixedPrice = parseFloat(document.getElementById('editFreightFixedPrice').value) || 0;
-            
-            //IMPLEMENTAR LÓGICA PARA UPDATE NO BACKEND AQUI (EX: CHAMADA AJAX/Fetch para API)
 
-            // Fechar modal e re-renderizar
-            closeEditModal();
-            renderInventory();
-            
-            // Aqui você pode enviar os dados para o servidor via API
-            console.log('Máquina atualizada:', item);
-        }
 
         // Event listeners para mostrar/ocultar campos condicionais
         document.getElementById('editOperatorAvailable').addEventListener('change', toggleOperatorField);
@@ -690,8 +728,7 @@ if(isset($_SESSION["type"]) && $_SESSION["type"] != "1"){
             }
         });
 
-        renderInventory();
-        renderHistory();
+
     </script>
     <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
 </body>

@@ -28,7 +28,7 @@ try {
         curl_close($ch);
 
         // VERIFICA O CODIGO DE RETORNO DA API E TRATA COM OS RESPECTIVOS CODIGOS
-        if ($statusCode >= 200 && $statusCode <= 299 && $data['message'] != 'Refresh Token not found.') {
+        if (($statusCode >= 200 && $statusCode <= 299 && $data['message'] != 'Refresh Token not found.') || $statusCode == 429) {
 
             $_SESSION['accessToken'] = $data['accessToken'];
             $_SESSION['refreshToken'] = $data['refreshToken'];

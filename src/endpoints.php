@@ -20,9 +20,10 @@ class endpoints
     public string $urlProvider;
     public string $urlListing;
 
+
     public function __construct()
     {
-        $this->UrlPadrao = "https://yoga-asthma-lamps-impressed.trycloudflare.com";
+        $this->UrlPadrao = "http://localhost:5000";
 
         $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
         $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";
