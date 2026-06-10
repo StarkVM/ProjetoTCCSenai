@@ -192,8 +192,8 @@ if (isset($er) && !empty($er)) {
                         <p id="erro" style="font-size: 10px color=red"><?php if (isset($responseError)) echo $responseError ?></p>
                         <div class="pt-4">
                             <button name="loginEntrar" class="group relative w-full bg-primary hover:bg-on-primary-container text-on-primary font-headline font-black text-sm uppercase tracking-[0.2em] py-5 rounded-sm transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden" type="submit">
-                                <div class="absolute inset-0 bg-gradient-to-r from-primary to-primary-container opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                                <span class="relative z-10">Autorizar Sessão</span>
+                                <div class="absolute inset-0  bg-primary-container opacity-100 group-hover:opacity-50 transition-opacity"></div>
+                                <span class="relative z-10">ENTRAR</span>
                                 <span class="material-symbols-outlined relative z-10 text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
                             </button>
                         </div>
