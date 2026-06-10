@@ -1,11 +1,11 @@
 <?php
-
+error_reporting(0);
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
-if($_SESSION["logado"] == true){
+if(isset($_SESSION["logado"]) && $_SESSION["logado"] == true){
     header("Location: /ProjetoTCCSenai/src/home/code.php");
     exit();
 }
-error_reporting(0); // limpa os erros e avisos do header
+ // limpa os erros e avisos do header
 
 // SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
 $er = $_GET['er'];
@@ -126,12 +126,13 @@ if (isset($er) && !empty($er)) {
     }
   </script>
   <style>
+
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
     .signature-gradient {
-      background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+      background: linear-gradient(135deg,  #f9a825 100%);
     }
 
     .glass-panel {
@@ -169,7 +170,7 @@ if (isset($er) && !empty($er)) {
 
           <!-- DADOS PESSOAIS -->
           <div class="space-y-5">
-            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+            <h3 class="text-2xl font-gray text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
               Dados Pessoais
             </h3>
 
@@ -196,7 +197,7 @@ if (isset($er) && !empty($er)) {
           <!-- SEGURANÇA -->
           <div class="space-y-5">
 
-            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+            <h3 class="text-2xl font-gray text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
               Segurança
             </h3>
 
@@ -231,7 +232,7 @@ if (isset($er) && !empty($er)) {
           <!-- ENDEREÇO -->
           <div class="space-y-5">
 
-            <h3 class="text-2xl font-black text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
+            <h3 class="text-2xl font-gray text-[#1E1E1E] border-l-4 border-[#C58B18] pl-4 uppercase tracking-wide">
               Endereço
             </h3>
 
@@ -294,7 +295,7 @@ if (isset($er) && !empty($er)) {
           <div class="pt-4">
 
             <button id="submitbutton" type="submit" name="registrar"
-              class="w-full bg-[#C58B18] hover:bg-[#B27B10] text-white py-4 rounded-xl font-black tracking-[0.18em] shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-1">
+              class="w-full signature-gradient hover:bg-[#B27B10] text-white py-4 rounded-xl font-black tracking-[0.18em] shadow-lg hover:shadow-xl transition duration-300 hover:-translate-y-1">
               FINALIZAR CADASTRO
             </button>
 
