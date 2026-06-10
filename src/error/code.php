@@ -72,7 +72,7 @@ $error = $_GET['er'] ?? 404;
     }
 
     .btn-gradient {
-      background: linear-gradient(135deg, #835400 0%, #f9a825 100%);
+      background: #f9a825
     }
 
     .grid-pattern {
