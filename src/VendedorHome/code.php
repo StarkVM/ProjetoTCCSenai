@@ -60,6 +60,7 @@ $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 $data = json_decode($response, true); // tranforma json em array
 curl_close($ch);
 
+global $id;
 if ($statusCode >= 200 && $statusCode <= 299) {
     $responseData = json_decode($response, true);
 
@@ -268,8 +269,8 @@ function formatarReais(float $valor): string
                             $frete          = !empty($item['freightAvailable']);
                             ?>
 
-                            <div style="cursor: pointer" onclick="window.location.href='../PagMaquina/code.php?cd=<?= $id?>'" class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
-                                <div class="h-48 relative overflow-hidden">
+                            <div style="cursor: pointer"  class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
+                                <div onclick="window.location.href='../PagMaquina/code.php?cd=<?= $id?>'" class="h-48 relative overflow-hidden">
                                     <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     <div class="absolute inset-0 machine-card-gradient"></div>
                                     <div class="absolute top-4 right-4 flex gap-2 flex-wrap justify-end">
@@ -309,6 +310,9 @@ function formatarReais(float $valor): string
                                         </div>
                                         <button onclick="openDisableAccountModal('<?= $id ?>')"  class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
                                             Deletar
+                                        </button>
+                                        <button onclick='openEditModal(<?=  json_encode($id) ?>)'  class="bg-yellow-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
+                                            Editar
                                         </button>
                                     </div>
                                 </div>
@@ -432,6 +436,28 @@ function formatarReais(float $valor): string
                         <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Descrição</label>
                         <textarea id="editDescription" rows="3" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="Descreva o equipamento"></textarea>
                     </div>
+                    <div class="flex flex-col gap-2">
+                        <label for="tipoMaquina"
+                               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
+                            Tipo de M&aacute;quina
+                        </label>
+                        <select id="tipoMaquina" name="tipoMaquina"
+                                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+                                style="cursor: pointer;">
+                            <option value="0">Desconhecido</option>
+                            <option value="1">Escavadeira</option>
+                            <option value="2">Retroescavadeira</option>
+                            <option value="3">P&aacute; carregadeira</option>
+                            <option value="4">Empilhadeira</option>
+                            <option value="5">Guindaste</option>
+                            <option value="6">Trator de esteira</option>
+                            <option value="7">Rolo compactador</option>
+                            <option value="8">Caminh&atilde;o basculante</option>
+                            <option value="9">Minicarregadeira</option>
+                            <option value="10">M&aacute;quina agr&iacute;cola</option>
+                            <option value="99">Outro</option>
+                        </select>
+                    </div>
 
                     <!-- Preço Diária -->
                     <div class="flex flex-col gap-2">
@@ -511,14 +537,7 @@ function formatarReais(float $valor): string
                         <input id="editFreightFixedPrice" step="0.01" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" placeholder="0.00" type="number" />
                     </div>
 
-                    <!-- Frota -->
-                    <div class="flex flex-col gap-2">
-                        <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Máquina única ou Frota?</label>
-                        <select id="editIsFleet" class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
-                            <option value="false">Única</option>
-                            <option value="true">Frota</option>
-                        </select>
-                    </div>
+
                 </form>
             </div>
 
@@ -530,6 +549,7 @@ function formatarReais(float $valor): string
                 <button onclick="saveEdit()" class="px-6 py-3 bg-primary text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
                     Salvar Alterações
                 </button>
+                <p id="pErro" style="color: red"><?php if(isset($responseError)) echo $responseError;?></p>
             </div>
         </div>
     </div>
@@ -555,6 +575,69 @@ function formatarReais(float $valor): string
 
     <footer id="footer"></footer>
     <script>
+
+        function strB(str) {
+
+
+            switch (str.trim().toLowerCase()) {
+                case 'true':
+                    return true;
+                case 'false':
+                    return false;
+                default:
+                    throw new Error(`Valor inválido para booleano: "${str}"`);
+            }
+        }
+
+
+
+
+
+        let currentMachineId = null;
+        const dados = <?= json_encode($dados, JSON_UNESCAPED_UNICODE) ?>;
+        function saveEdit() {
+            const get = id => document.getElementById(id)?.value ?? "";
+
+            const dadosMaquina = {
+                title: get("editTitle").trim(),
+                category: Number(get("tipoMaquina")),
+                description: get("editDescription").trim(),
+                dailyPrice: parseFloat(get("editDailyPrice") || "0"),
+                pickupAddress: {
+                    zipCode: get("editZipCode").trim(),
+                    street: get("editStreet").trim(),
+                    district: get("editDistrict").trim(),
+                    city: get("editCity").trim(),
+                    state: get("editState").trim(),
+                    number: get("editNumber").trim(),
+                    complement: get("editComplement").trim(),
+                },
+                operatorOption: {
+                    isAvailable: get("editOperatorAvailable") === "true",
+                    additionalDailyPrice: parseFloat(get("editOperatorDailyPrice") || "0"),
+                },
+                freightOption: {
+                    isAvailable: get("editFreightAvailable") === "true",
+                    fixedPrice: parseFloat(get("editFreightFixedPrice") || "0"),
+                },
+            };
+
+            fetch(`/ProjetoTCCSenai/src/VendedorHome/editarAnuncio.php?cd=${currentMachineId}`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({dados: dadosMaquina}),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === "success") {  // ← string, não número
+                        closeEditModal();
+                        window.location.reload();
+                    } else {
+                        document.getElementById("pErro").innerText =
+                            "Erro ao salvar. Código: " + (data.code ?? "?");
+                    }
+                });
+        }
         // Funções para gerenciar modal de deletar anuncio
         let anuncioId = null;
 
@@ -600,7 +683,7 @@ function formatarReais(float $valor): string
                     location.reload();
                 });
         }
-        const dados = <?= json_encode($dados, JSON_UNESCAPED_UNICODE) ?>;
+
         
         // EXEMPLO: Estrutura de dados esperada para cada máquina no inventário
         // Você pode carregar isso via API ou processá-lo no backend e injetar no HTML
@@ -665,14 +748,14 @@ function formatarReais(float $valor): string
             document.getElementById('tab-subtitle').textContent = titles[tab][1];
         }
 
-        /*
-        let currentMachineId = null;
+
+
 
         function openEditModal(id) {
             currentMachineId = id;
 
             // API usa listingId, não id
-            const item = dados.find(d => d.listingId === id);
+            const item = dados.find(d => d.listingId == id);
             if (!item) return;
 
             document.getElementById('editTitle').value = item.title || '';
@@ -688,7 +771,7 @@ function formatarReais(float $valor): string
 
             document.getElementById('editOperatorAvailable').value = item.operatorAvailable ? 'true' : 'false';
             document.getElementById('editFreightAvailable').value = item.freightAvailable ? 'true' : 'false';
-            document.getElementById('editIsFleet').value = item.isFleet ? 'true' : 'false';
+            document.getElementById('tipoMaquina').value = item.pickupState || '';
             document.getElementById('editOperatorDailyPrice').value = item.operatorDailyPrice || '';
             document.getElementById('editFreightFixedPrice').value = item.freightFixedPrice || '';
 
@@ -705,7 +788,7 @@ function formatarReais(float $valor): string
             document.body.style.overflow = '';
             currentMachineId = null;
         }
-        */
+
 
         function toggleOperatorField() {
             const operatorAvailable = document.getElementById('editOperatorAvailable').value === 'true';
