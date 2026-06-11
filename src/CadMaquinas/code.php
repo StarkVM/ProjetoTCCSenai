@@ -4,8 +4,8 @@ require("../auth/auth.php");
 require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
 
 if (isset($_SESSION["type"]) && $_SESSION["type"] != "1") {
-    header("Location: /ProjetoTCCSenai/src/modal/code.php");
-    exit();
+  header("Location: /ProjetoTCCSenai/src/modal/code.php");
+  exit();
 }
 $er = $_GET['er'];
 $responseError = $er;
@@ -105,7 +105,7 @@ $responseError = $er;
     }
 
     .primary-gradient {
-      background:  #f9a825;
+      background: #f9a825;
     }
 
     .image-slot.has-image {
@@ -130,12 +130,13 @@ $responseError = $er;
 
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
   <header id="header"></header>
-    <?php if (isset($responseError)): ?>
-    <div class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
-    <span class="material-symbols-outlined text-sm">error</span>
-    <?= $responseError ?>
+  <?php if (isset($responseError)): ?>
+    <div
+      class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
+      <span class="material-symbols-outlined text-sm">error</span>
+      <?= $responseError ?>
     </div>
-    <?php endif; ?>
+  <?php endif; ?>
   <main class="max-w-[1440px] mx-auto px-8 py-16 md:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-end">
       <div class="lg:col-span-8">
@@ -145,7 +146,8 @@ $responseError = $er;
         </h1>
         <p class="font-body text-lg text-secondary max-w-xl leading-relaxed">
           Registre e gerencie equipamentos pesados com controle total, organiza&ccedil;&atilde;o e agilidade.
-          O HeavyRent simplifica a gest&atilde;o da sua frota para opera&ccedil;&otilde;es mais eficientes e profissionais.
+          O HeavyRent simplifica a gest&atilde;o da sua frota para opera&ccedil;&otilde;es mais eficientes e
+          profissionais.
         </p>
       </div>
       <div class="lg:col-span-4 flex flex-col items-start lg:items-end"></div>
@@ -165,7 +167,7 @@ $responseError = $er;
             <label for="nomeAtivo" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Nome do Ativo
             </label>
-            <input id="nomeAtivo" name="nomeAtivo"
+            <input id="nomeAtivo" name="nomeAtivo" required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Ex: TITAN EX-400" type="text" />
           </div>
@@ -175,7 +177,7 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Tipo de M&aacute;quina
             </label>
-            <select id="tipoMaquina" name="tipoMaquina"
+            <select id="tipoMaquina" name="tipoMaquina" required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               style="cursor: pointer;">
               <option value="0">Desconhecido</option>
@@ -194,8 +196,9 @@ $responseError = $er;
           </div>
 
           <div class="flex flex-col gap-2">
-            <label for="cep" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
-            <input id="cep" name="cep"
+            <label for="cep"
+              class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
+            <input id="cep" name="cep" required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="00000-000" type="text" />
           </div>
@@ -203,7 +206,7 @@ $responseError = $er;
           <div class="flex flex-col gap-2">
             <label for="logradouro"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Endere&ccedil;o</label>
-            <input id="logradouro" name="logradouro" readonly
+            <input id="logradouro" name="logradouro" readonly required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Rua / Av" type="text" />
           </div>
@@ -211,29 +214,31 @@ $responseError = $er;
           <div class="flex flex-col gap-2">
             <label for="bairro"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Bairro</label>
-            <input id="bairro" name="bairro" readonly
+            <input id="bairro" name="bairro" readonly required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Bairro" type="text" />
           </div>
-            <div class="flex flex-col gap-2">
-                <label for="numeroCasa"
-                       class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Número da residência</label>
-                <input id="numeroCasa" name="numeroCasa"
-                       class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-                       placeholder="Número da residência" type="text" />
-            </div>
+          <div class="flex flex-col gap-2">
+            <label for="numeroCasa"
+              class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Número da
+              residência</label>
+            <input id="numeroCasa" name="numeroCasa" required
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              placeholder="Número da residência" type="text" />
+          </div>
 
           <div class="flex flex-col gap-2">
             <label for="localCidade"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Cidade</label>
-            <input id="localCidade" name="localCidade" readonly
+            <input id="localCidade" name="localCidade" readonly required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Cidade" type="text" />
           </div>
 
           <div class="flex flex-col gap-2">
-            <label for="localUF" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">UF</label>
-            <input id="localUF" name="localUF" maxlength="2" readonly
+            <label for="localUF"
+              class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">UF</label>
+            <input id="localUF" name="localUF" maxlength="2" readonly required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium uppercase"
               placeholder="SP" type="text" />
           </div>
@@ -241,7 +246,7 @@ $responseError = $er;
           <div class="md:col-span-2 flex flex-col gap-2">
             <label for="descricao"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">Descri&ccedil;&atilde;o</label>
-            <textarea id="descricao" name="descricao" rows="4"
+            <textarea required id="descricao" name="descricao" rows="4"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="Descreva o equipamento, condi&ccedil;&otilde;es e observa&ccedil;&otilde;es relevantes"></textarea>
           </div>
@@ -251,7 +256,7 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Pre&ccedil;o Di&aacute;ria da M&aacute;quina (R$)
             </label>
-            <input id="precoDiariaMaquina" name="precoDiariaMaquina" step="0.01"
+            <input id="precoDiariaMaquina" name="precoDiariaMaquina" step="0.01" required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="0.00" type="number" />
           </div>
@@ -261,9 +266,16 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Disponibiliza Operador?
             </label>
-            <select id="disponibilizaOperador" name="disponibilizaOperador"
-              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
-              <option value="false">N&atilde;o</option>
+            <select id="disponibilizaOperador" name="disponibilizaOperador" required
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              onchange="
+      const container = document.getElementById('container-preco-mao-de-obra');
+      const input = document.getElementById('precoDiariaMaoObra');
+      const sim = this.value === 'true';
+      container.style.display = sim ? '' : 'none';
+      input.required = sim;
+    ">
+              <option value="false">Não</option>
               <option value="true">Sim</option>
             </select>
           </div>
@@ -271,7 +283,7 @@ $responseError = $er;
           <div class="flex flex-col gap-2" id="container-preco-mao-de-obra" style="display:none;">
             <label for="precoDiariaMaoObra"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
-              Pre&ccedil;o Di&aacute;ria da m&atilde;o de obra (R$)
+              Preço Diária da mão de obra (R$)
             </label>
             <input id="precoDiariaMaoObra" name="precoDiariaMaoObra" step="0.01"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
@@ -283,9 +295,16 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Disponibiliza Frete (Entrega)?
             </label>
-            <select id="disponibilizaFrete" name="disponibilizaFrete"
-              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
-              <option value="false">N&atilde;o</option>
+            <select id="disponibilizaFrete" name="disponibilizaFrete" required
+              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
+              onchange="
+      const container = document.getElementById('container-preco-frete');
+      const input = document.getElementById('precoFrete');
+      const sim = this.value === 'true';
+      container.style.display = sim ? '' : 'none';
+      input.required = sim;
+    ">
+              <option value="false">Não</option>
               <option value="true">Sim</option>
             </select>
           </div>
@@ -293,9 +312,8 @@ $responseError = $er;
           <div class="flex flex-col gap-2" id="container-preco-frete" style="display:none;">
             <label for="precoFrete"
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
-              Pre&ccedil;o do Frete (R$)
+              Preço do Frete (R$)
             </label>
-            <br>
             <input id="precoFrete" name="precoFrete" step="0.01"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="0.00" type="number" />
@@ -306,7 +324,7 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               M&aacute;quina &Uacute;nica ou Frota
             </label>
-            <select id="tipoUnidade" name="tipoUnidade"
+            <select id="tipoUnidade" name="tipoUnidade" required
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium">
               <option value="false">&Uacute;nica</option>
               <option value="true">Frota</option>
@@ -340,14 +358,15 @@ $responseError = $er;
               <label for="imagem<?php echo $i; ?>"
                 class="image-slot aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer overflow-hidden"
                 data-slot="<?php echo $i; ?>">
-                <img class="image-preview absolute inset-0 h-full w-full object-cover" alt="Pr&eacute;via da imagem <?php echo $i; ?>" />
+                <img class="image-preview absolute inset-0 h-full w-full object-cover"
+                  alt="Pr&eacute;via da imagem <?php echo $i; ?>" />
                 <span class="upload-placeholder flex flex-col items-center justify-center gap-2">
                   <span class="material-symbols-outlined text-primary text-3xl">add</span>
                   <span class="font-headline text-[10px] font-bold uppercase tracking-widest">Adicionar imagem</span>
                 </span>
               </label>
               <input id="imagem<?php echo $i; ?>" name="imagens[]" type="file" accept="image/*" class="hidden image-input"
-                data-slot="<?php echo $i; ?>" multiple/>
+                data-slot="<?php echo $i; ?>" multiple />
               <button type="button"
                 class="remove-image hidden absolute top-2 right-2 h-8 w-8 rounded-sm bg-on-background/80 text-white items-center justify-center"
                 data-slot="<?php echo $i; ?>" aria-label="Remover imagem <?php echo $i; ?>">
@@ -356,9 +375,9 @@ $responseError = $er;
             </div>
           <?php } ?>
         </div>
-</div>
+      </div>
 
-<div
+      <div
         class="lg:col-span-12 flex flex-col md:flex-row justify-between items-center gap-8 py-12 border-t border-outline-variant/30 mt-8">
         <button name="registrarMaquina"
           class="w-full md:w-auto px-12 py-6 primary-gradient text-white font-headline text-xl font-black uppercase tracking-tighter rounded-md active:scale-95 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-4"
@@ -374,7 +393,7 @@ $responseError = $er;
   <footer id="footer"></footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       console.log("carregado");
       const form = document.querySelector("form");
       const cepEl = document.getElementById("cep");
@@ -435,18 +454,18 @@ $responseError = $er;
           inputEl.value = "";
         }
       }
-      
+
       if (disponibilizaOperadorEl) {
         console.log("disponibilizaoperador existe")
-        disponibilizaOperadorEl.addEventListener("change", function() {
+        disponibilizaOperadorEl.addEventListener("change", function () {
           atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
         });
         atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
       }
 
       function configurarUploadsDeImagem() {
-        document.querySelectorAll(".image-input").forEach(function(input) {
-          input.addEventListener("change", function() {
+        document.querySelectorAll(".image-input").forEach(function (input) {
+          input.addEventListener("change", function () {
             const slot = input.dataset.slot;
             const file = input.files && input.files[0];
             const label = document.querySelector(`.image-slot[data-slot="${slot}"]`);
@@ -482,8 +501,8 @@ $responseError = $er;
           });
         });
 
-        document.querySelectorAll(".remove-image").forEach(function(button) {
-          button.addEventListener("click", function(event) {
+        document.querySelectorAll(".remove-image").forEach(function (button) {
+          button.addEventListener("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
 
@@ -511,14 +530,14 @@ $responseError = $er;
       }
 
       if (cepEl) {
-        cepEl.addEventListener("blur", function() {
+        cepEl.addEventListener("blur", function () {
           buscarCEP(cepEl.value || "");
         });
       }
 
 
       if (disponibilizaFreteEl) {
-        disponibilizaFreteEl.addEventListener("change", function() {
+        disponibilizaFreteEl.addEventListener("change", function () {
           atualizarCampoCondicional(disponibilizaFreteEl, containerPrecoFrete, precoFreteEl);
         });
         atualizarCampoCondicional(disponibilizaFreteEl, containerPrecoFrete, precoFreteEl);
@@ -527,9 +546,9 @@ $responseError = $er;
       configurarUploadsDeImagem();
 
       if (form) {
-        form.addEventListener("submit", function() {
+        form.addEventListener("submit", function () {
           const imagensSelecionadas = Array.from(document.querySelectorAll(".image-input"))
-            .map(function(input) {
+            .map(function (input) {
               return input.files && input.files[0] ? input.files[0].name : "";
             })
             .filter(Boolean);
