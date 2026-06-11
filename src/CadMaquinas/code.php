@@ -330,18 +330,6 @@ $responseError = $er;
               <option value="true">Frota</option>
             </select>
           </div>
-
-          <div class="md:col-span-2 flex flex-col gap-2">
-            <label class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
-              Per&iacute;odo de Disponibilidade (opcional)
-            </label>
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input id="disponibilidadeInicio" name="disponibilidadeInicio" type="date"
-                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
-              <input id="disponibilidadeFim" name="disponibilidadeFim" type="date"
-                class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium" />
-            </div>
-          </div>
         </div>
       </div>
 
