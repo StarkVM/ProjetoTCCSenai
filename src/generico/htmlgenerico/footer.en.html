@@ -65,10 +65,11 @@
                 Jurídico
             </h4>
 
-            <a href="#"
-               class="inline-block text-xs uppercase tracking-widest text-[#777271] hover:text-primary transition-colors">
-                Termos de Uso
-            </a>
+        <button
+            onclick="openTermsModal()"
+            class="inline-block text-xs uppercase tracking-widest text-[#777271] hover:text-primary transition-colors">
+            Termos de Uso
+        </button>
         </div>
 
     </div>
@@ -84,5 +85,89 @@
     </div>
 </div>
 </footer>
+<script>
+    function openTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+    </script>
+    <!-- Modal Termos de Uso -->
+<div
+    id="termsModal"
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-2xl w-[90%] rounded-lg shadow-xl">
+
+        <!-- Cabeçalho -->
+        <div class="flex justify-between items-center p-6 border-b">
+            <h2 class="font-bold text-xl">Termos de Uso</h2>
+
+            <button
+                onclick="closeTermsModal()"
+                class="text-gray-500 hover:text-black text-2xl">
+                &times;
+            </button>
+        </div>
+
+        <!-- Conteúdo -->
+        <div class="p-6 max-h-[60vh] overflow-y-auto space-y-4 text-sm">
+
+            <p>
+                Bem-vindo à Heavy Rent. Ao utilizar nossa plataforma, você concorda
+                com os presentes Termos de Uso.
+            </p>
+
+            <h3 class="font-semibold">1. Objetivo da Plataforma</h3>
+            <p>
+                A Heavy Rent atua como intermediadora entre locadores e locatários
+                de máquinas e equipamentos.
+            </p>
+
+            <h3 class="font-semibold">2. Responsabilidades</h3>
+            <p>
+                Os usuários são responsáveis pela veracidade das informações
+                fornecidas durante o cadastro e utilização da plataforma.
+            </p>
+
+            <h3 class="font-semibold">3. Disponibilidade</h3>
+            <p>
+                A plataforma poderá passar por manutenções ou interrupções sem
+                aviso prévio quando necessário.
+            </p>
+
+            <h3 class="font-semibold">4. Privacidade</h3>
+            <p>
+                Os dados fornecidos serão tratados de acordo com a legislação
+                vigente e utilizados apenas para fins relacionados ao serviço.
+            </p>
+
+            <h3 class="font-semibold">5. Alterações</h3>
+            <p>
+                Estes termos poderão ser alterados a qualquer momento, entrando
+                em vigor após sua publicação na plataforma.
+            </p>
+
+        </div>
+
+        <!-- Rodapé -->
+        <div class="p-6 border-t flex justify-end">
+            <button
+                onclick="closeTermsModal()"
+                class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
+                Fechar
+            </button>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

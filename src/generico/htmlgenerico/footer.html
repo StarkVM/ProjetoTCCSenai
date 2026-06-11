@@ -87,8 +87,7 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopAppBar -->
+<body>
 <footer class="bg-[#f6f3f2] dark:bg-[#121212] border-t border-[#e5e2e1] dark:border-[#2d2c2c]">
 
 <div class="max-w-6xl mx-auto px-6 md:px-12 py-12">
@@ -145,10 +144,11 @@
                 Jurídico
             </h4>
 
-            <a href="#"
-               class="inline-block text-xs uppercase tracking-widest text-[#777271] hover:text-primary transition-colors">
-                Termos de Uso
-            </a>
+        <button
+            onclick="openTermsModal()"
+            class="inline-block text-xs uppercase tracking-widest text-[#777271] hover:text-primary transition-colors">
+            Termos de Uso
+        </button>
         </div>
 
     </div>
@@ -164,6 +164,54 @@
     </div>
 </div>
 </footer>
+<script>
+    function openTermsModal() {
+        const modal = document.getElementById("termsModal");
 
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+    </script>
+    <!-- Modal Termos de Uso -->
+<div
+    id="termsModal"
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-2xl w-[90%] rounded-lg shadow-xl">
+
+        <!-- Cabeçalho -->
+        <div class="flex justify-between items-center p-6 border-b">
+            <h2 class="font-bold text-xl">Termos de Uso</h2>
+
+            <button
+                onclick="closeTermsModal()"
+                class="text-gray-500 hover:text-black text-2xl">
+                &times;
+            </button>
+        </div>
+
+            <iframe
+            src="termos.html"
+            class="w-full h-[70vh] border-0">
+            </iframe>
+
+        <!-- Rodapé -->
+        <div class="p-6 border-t flex justify-end">
+            <button
+                onclick="closeTermsModal()"
+                class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
+                Fechar
+            </button>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
