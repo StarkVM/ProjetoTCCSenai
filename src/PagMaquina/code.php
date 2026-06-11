@@ -549,10 +549,7 @@ $semDados = "Sem dados";
             document.getElementById("nomeLocador").textContent =
                 dados.providerName ?? "Sem dados";
             const enderecoCompleto = [
-                dados.pickupZipCode,
-                dados.pickupCity,
-                dados.pickupState,
-                dados.pickupNumber
+                dados.pickupZipCode
             ]
                 .filter(Boolean)
                 .join(", ");
