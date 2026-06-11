@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<title>Heavy Rent | Detalhes da Máquina</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+
+  theme: {
+    extend: {
+
+      colors: {
+        background: "#fcf9f8",
+        surface: "#fcf9f8",
+        "on-background": "#1c1b1b",
+        primary: "#835400",
+        "primary-container": "#f9a825",
+        outline: "#857462",
+        "outline-variant": "#d7c3ae",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f6f3f2",
+        "surface-container-highest": "#e5e2e1",
+        "surface-container": "#f0edec",
+        "on-surface": "#1c1b1b",
+        "on-surface-variant": "#524434",
+        tertiary: "#006687"
+      },
+
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+
+      fontFamily: {
+        headline: ["Space Grotesk"],
+        body: ["Inter"]
+      }
+
+    }
+  }
+}
+</script>
+
+<style>
+
+.material-symbols-outlined{
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+
+  vertical-align: middle;
+}
+
+.signature-gradient{
+  background: #f9a825;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+  cursor:pointer;
+}
+
+</style>
+</head>
+
+<body class="bg-surface text-on-surface font-body">
+
+<header id="header"></header>
+
+<main class="max-w-[1440px] mx-auto px-6 lg:px-12 py-12">
+
+<!-- TITLE -->
+<section class="mb-12">
+
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+
+<div>
+
+<h1
+id="nome"
+class="text-5xl lg:text-7xl font-headline font-black tracking-tighter uppercase leading-none mb-4"
+>
+TITAN X-5000
+</h1>
+
+<div class="flex items-center gap-6">
+
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">
+location_on
+</span>
+
+<span id="estado" class="text-sm font-medium">
+Houston Industrial Park, TX
+</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="text-right">
+
+<p class="text-xs uppercase tracking-widest text-outline mb-1">
+A partir de
+</p>
+
+<p
+id="preco"
+class="text-4xl font-headline font-bold text-on-surface"
+>
+R$ 1240
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY - CAROUSEL -->
+<section class="mb-16">
+
+<div class="relative overflow-hidden rounded-md h-[400px] lg:h-[600px] bg-surface-container-low group">
+
+  <!-- Main Image -->
+  <img
+    id="carouselImage"
+    class="w-full h-full object-cover transition-all duration-500"
+    alt="Imagem da máquina"
+  />
+
+  <!-- Overlay escuro -->
+  <div class="absolute inset-0 bg-black/10"></div>
+
+  <!-- Previous Button -->
+  <button
+    id="prevBtn"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all active:scale-95"
+    aria-label="Imagem anterior"
+  >
+    <span class="material-symbols-outlined">
+      chevron_left
+    </span>
+  </button>
+
+  <!-- Next Button -->
+  <button
+    id="nextBtn"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all active:scale-95"
+    aria-label="Próxima imagem"
+  >
+    <span class="material-symbols-outlined">
+      chevron_right
+    </span>
+  </button>
+
+  <!-- Counter -->
+  <div class="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-medium z-20">
+    <span id="imageCounter">1</span> /
+    <span id="totalImages">5</span>
+  </div>
+
+</div>
+
+<!-- Thumbnails -->
+<div class="flex justify-center mt-4">
+  <div
+    id="thumbnailsContainer"
+    class="flex gap-2 overflow-x-auto px-2"
+  >
+  </div>
+</div>
+
+</section>
+
+<!-- CONTENT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+<!-- LEFT -->
+<div class="lg:col-span-8 space-y-16">
+
+<!-- ABOUT -->
+<div>
+
+<h2 class="text-3xl font-headline font-black uppercase tracking-tighter mb-6">
+Sobre esta Máquina
+</h2>
+
+<p class="text-on-surface-variant leading-relaxed text-lg max-w-3xl">
+O TITAN X-5000 é referência do setor para escavação de alto desempenho.
+Projetado para durabilidade extrema em mineração pesada e obras de engenharia civil.
+Ideal para valas profundas, preparação de grandes áreas e movimentação de materiais.
+</p>
+
+</div>
+
+<!-- DESCRIPTION -->
+<div>
+
+<h3 class="text-xl font-headline font-bold uppercase tracking-tight mb-4 text-primary">
+Descrição Detalhada
+</h3>
+
+<p id="descricao" class="text-on-surface-variant leading-relaxed text-base max-w-3xl">
+Sem descrição adicional disponível.
+</p>
+
+</div>
+
+<!-- LOCATION FOR PICKUP -->
+<div>
+
+<h3 class="text-xl font-headline font-bold uppercase tracking-tight mb-4 text-primary">
+📍 Local para Retirada
+</h3>
+
+<div class="flex items-center gap-3 bg-surface-container-low p-4 rounded-md">
+<span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+<div>
+  <p id="diasDisponiveis" class="text-sm text-tertiary mt-1">Calculando disponibilidade...</p>
+<p class="text-xs text-on-surface-variant mt-1">
+Confirme o local com o vendedor antes de alugar
+</p>
+</div>
+</div>
+
+</div>
+
+<!-- SPECS -->
+<div class="bg-gradient-to-br from-surface-container-low to-surface-container p-8 rounded-md">
+
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined">settings</span>
+Especificações Técnicas
+</h3>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Peso Operacional</p>
+<span class="material-symbols-outlined text-primary text-sm">scale</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">52,400 KG</p>
+</div>
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Profundidade Máx.</p>
+<span class="material-symbols-outlined text-primary text-sm">height</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">7.8 M</p>
+</div>
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Potência do Motor</p>
+<span class="material-symbols-outlined text-primary text-sm">electric_bolt</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">385 HP</p>
+</div>
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Capacidade Caçamba</p>
+<span class="material-symbols-outlined text-primary text-sm">inbox</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">3.2 m³</p>
+</div>
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Capacidade Combustível</p>
+<span class="material-symbols-outlined text-primary text-sm">local_gas_station</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">620 L</p>
+</div>
+
+<div class="bg-surface-container-lowest p-4 rounded-md border-l-4 border-primary hover:shadow-md transition-all">
+<div class="flex items-start justify-between mb-2">
+<p class="text-[10px] uppercase tracking-widest text-outline font-semibold">Velocidade Rotação</p>
+<span class="material-symbols-outlined text-primary text-sm">speed</span>
+</div>
+<p class="font-headline text-lg font-bold text-on-surface">10.2 RPM</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+<div class="lg:col-span-4">
+
+<div class="sticky top-24">
+
+<div class="bg-surface-container-lowest p-8 rounded-md shadow-2xl shadow-black/5 border border-outline-variant/20">
+
+<!-- DATE -->
+<div class="mb-8">
+
+<p class="text-xs uppercase tracking-widest text-outline mb-4">
+Período de Locação
+</p>
+
+<div class="grid gap-4">
+
+<!-- START -->
+<div class="relative">
+
+<label class="absolute -top-2 left-3 bg-white px-1 text-[10px] uppercase tracking-widest text-outline font-bold">
+Data Inicial
+</label>
+
+<div class="border-2 border-surface-container-highest rounded p-4">
+<input
+type="date"
+id="startDate"
+class="w-full bg-transparent outline-none font-medium"
+/>
+</div>
+
+</div>
+
+<!-- END -->
+<div class="relative">
+
+<label class="absolute -top-2 left-3 bg-white px-1 text-[10px] uppercase tracking-widest text-outline font-bold">
+Data Final
+</label>
+
+<div class="border-2 border-surface-container-highest rounded p-4">
+<input
+type="date"
+id="endDate"
+class="w-full bg-transparent outline-none font-medium"
+/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PRICE -->
+<div class="space-y-4 mb-8">
+
+  <!-- Extras (operador / frete) - exibidos somente se disponíveis -->
+  <div id="extrasOptions" class="mb-2" style="display:none;">
+    <div id="operadorOption" class="flex items-center gap-3 mb-1" style="display:none;">
+      <input type="checkbox" id="optOperador" />
+      <label for="optOperador" class="text-sm">Adicionar operador (<span id="operadorPriceLabel">R$ 0</span>/dia)</label>
+    </div>
+
+    <div id="freteOption" class="flex items-center gap-3" style="display:none;">
+      <input type="checkbox" id="optFrete" />
+      <label for="optFrete" class="text-sm">Adicionar frete (<span id="fretePriceLabel">R$ 0</span>)</label>
+    </div>
+  </div>
+
+  <div class="flex justify-between text-sm">
+
+    <span class="text-on-surface-variant" id="resumo">
+      R$ 0 x 0 dias
+    </span>
+
+    <span class="font-bold" id="subtotal">
+      R$ 0
+    </span>
+
+  </div>
+
+  <div class="flex justify-between text-sm">
+
+    <span class="text-on-surface-variant">
+      Seguro e Taxa de Segurança
+    </span>
+
+    <span class="font-bold">
+      R$ 420
+    </span>
+
+  </div>
+
+  <div class="flex justify-between text-sm" id="rowOperador" style="display:none;">
+    <span class="text-on-surface-variant">Operador</span>
+    <span class="font-bold" id="operadorAmount">R$ 0</span>
+  </div>
+
+  <div class="flex justify-between text-sm" id="rowFrete" style="display:none;">
+    <span class="text-on-surface-variant">Logística / Entrega</span>
+    <span class="font-bold text-tertiary" id="freteAmount">GRÁTIS</span>
+  </div>
+
+  <div class="h-[1px] bg-surface-container-highest"></div>
+
+  <div class="flex justify-between text-xl font-headline font-black uppercase">
+
+    <span>Preço Total</span>
+
+    <span id="total">
+      R$ 0
+    </span>
+
+  </div>
+
+</div>
+
+<button class="signature-gradient w-full py-5 rounded-md text-white font-headline font-bold uppercase tracking-widest text-sm active:scale-95 transition-all" onclick="iniciarAluguel()">
+Alugar Agora
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<footer id="footer"></footer>
+
+<script>
+
+// Array com as 5 imagens do carrossel
+const images = [
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuALz_WNH_48wYpk8hQGVB_GI5-mt81iAcw4BobXYq8vMHAwm4Gil0Tzx4C36tHJn0wZO81UDShM0g2MkjZhof5NvE61aG-ePHO-iWBP9tiYD5lOzdGl9WxSmiu6r6I-KT8_AZ_1sn4XEvvgHD69osCAWGniBGm_er4xZFaHIOLrVhNlwqymKzhadxkEwG_JT3NRBFVYfnZc5WWLF8kIkrtlGxMfES3DEM-mcn_F_Kaq7GiSdxOjNWs30cfeGlxQtpE-JItUtmfLVtFM",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAsAGoiD-6ubBEMQaMuGKjGvg7A10UUQK6LQywIGMpQpwLgQEF6_3FBtz0kY9On_xc0Sr9BDnV0jXmDkpW1KBkYwQzhO05dvesnbQ4_m3JwLojZA-4sfAOEHM8NP8GyDd3qbGyq6_uR73xVhYiKlbbdng_4pv4BaMSq4wreb5mygjokU78aVDXPmtnenVc1z6SCycFsV-88u7FnDLwznjqR6B3y1m-jWvcIy_WMbwSQLxq-CgN6ckT5PjSwRPTU8JrDhBU9PIA6YUcG",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAG8iHWU2WMQGl4ZhjfSuD_eROGgPbylgMUST-5wS3plEkZoxFo2_RG3btkbqzQc9HmMsevBfGS-uMMgHELuxkLcbbtaVmeX5vRvXzLczoecs-jd0LCY5IPcy05YPQ-s0nkOcLiYg2kytt1XR_DhpH3zT8WqvFmfEwa8w0JLjaRBFUi-C03OECtX9t2K-vfEARqGBFXWxX9_IaVDwOKzdrrFZaVhoOIwV5q4q_4v13buAGiWzRv1KEv91I7EnUWQINEdpeIAH1VKQ73",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuALz_WNH_48wYpk8hQGVB_GI5-mt81iAcw4BobXYq8vMHAwm4Gil0Tzx4C36tHJn0wZO81UDShM0g2MkjZhof5NvE61aG-ePHO-iWBP9tiYD5lOzdGl9WxSmiu6r6I-KT8_AZ_1sn4XEvvgHD69osCAWGniBGm_er4xZFaHIOLrVhNlwqymKzhadxkEwG_JT3NRBFVYfnZc5WWLF8kIkrtlGxMfES3DEM-mcn_F_Kaq7GiSdxOjNWs30cfeGlxQtpE-JItUtmfLVtFM",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAsAGoiD-6ubBEMQaMuGKjGvg7A10UUQK6LQywIGMpQpwLgQEF6_3FBtz0kY9On_xc0Sr9BDnV0jXmDkpW1KBkYwQzhO05dvesnbQ4_m3JwLojZA-4sfAOEHM8NP8GyDd3qbGyq6_uR73xVhYiKlbbdng_4pv4BaMSq4wreb5mygjokU78aVDXPmtnenVc1z6SCycFsV-88u7FnDLwznjqR6B3y1m-jWvcIy_WMbwSQLxq-CgN6ckT5PjSwRPTU8JrDhBU9PIA6YUcG"
+];
+
+let currentImageIndex = 0;
+
+// Retorna um objeto `item` normalizado a partir do localStorage
+function getStoredItem() {
+  const saved = localStorage.getItem('item') || localStorage.getItem('maquinaCadastrada');
+  if (!saved) return null;
+  const obj = JSON.parse(saved);
+
+  // Se veio do formulário de cadastro, normalize campos para a página de aluguel
+  if (obj.precoDiariaMaquina && !obj.preco) {
+    obj.preco = `R$ ${parseFloat(obj.precoDiariaMaquina).toLocaleString('pt-BR')}`;
+  }
+
+  if (obj.endereco && !obj.estado) {
+    obj.estado = `${obj.endereco.logradouro || ''}${obj.endereco.bairro ? ', ' + obj.endereco.bairro : ''}${obj.endereco.cidade ? ', ' + obj.endereco.cidade : ''}${obj.endereco.uf ? ' - ' + obj.endereco.uf : ''}`;
+  }
+
+  return obj;
+}
+
+function fillData() {
+  const item = getStoredItem();
+  if (!item) {
+    console.warn('Nenhum item encontrado');
+    return;
+  }
+
+  if (item.nome) document.getElementById('nome').textContent = item.nome;
+  if (item.preco) document.getElementById('preco').textContent = item.preco;
+  if (item.estado) document.getElementById('estado').textContent = item.estado;
+  if (item.descricao) document.getElementById('descricao').textContent = item.descricao;
+
+  // Extras: operador / frete
+  const extrasDiv = document.getElementById('extrasOptions');
+  const operadorOption = document.getElementById('operadorOption');
+  const freteOption = document.getElementById('freteOption');
+  const operadorPriceLabel = document.getElementById('operadorPriceLabel');
+  const fretePriceLabel = document.getElementById('fretePriceLabel');
+  const optOperador = document.getElementById('optOperador');
+  const optFrete = document.getElementById('optFrete');
+
+  if (item.disponibilizaOperador) {
+    extrasDiv.style.display = '';
+    operadorOption.style.display = 'flex';
+    operadorPriceLabel.textContent = item.precoDiariaMaoObra ? `R$ ${parseFloat(item.precoDiariaMaoObra).toLocaleString('pt-BR')}` : 'R$ 0';
+  } else {
+    operadorOption.style.display = 'none';
+  }
+
+  if (item.disponibilizaFrete) {
+    extrasDiv.style.display = '';
+    freteOption.style.display = 'flex';
+    fretePriceLabel.textContent = item.precoFrete ? `R$ ${parseFloat(item.precoFrete).toLocaleString('pt-BR')}` : 'R$ 0';
+  } else {
+    freteOption.style.display = 'none';
+  }
+
+  // ligar recalculo quando usuário alterna opções
+  if (optOperador) optOperador.addEventListener('change', rentCalc);
+  if (optFrete) optFrete.addEventListener('change', rentCalc);
+}
+
+function initializeCarousel() {
+  const carouselImage = document.getElementById("carouselImage");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const imageCounter = document.getElementById("imageCounter");
+  const totalImages = document.getElementById("totalImages");
+  const thumbnailsContainer = document.getElementById("thumbnailsContainer");
+
+  // Atualizar total de imagens
+  totalImages.textContent = images.length;
+
+  // Criar thumbnails
+  images.forEach((img, index) => {
+    const thumbnail = document.createElement("img");
+    thumbnail.src = img;
+    thumbnail.alt = `Imagem ${index + 1}`;
+    thumbnail.className = `w-16 h-16 object-cover rounded cursor-pointer transition-all ${
+      index === 0 ? "ring-2 ring-primary" : "opacity-70 hover:opacity-100"
+    }`;
+    thumbnail.onclick = () => goToImage(index);
+    thumbnailsContainer.appendChild(thumbnail);
+  });
+
+  // Função para atualizar a imagem
+  function updateImage() {
+    carouselImage.src = images[currentImageIndex];
+    imageCounter.textContent = currentImageIndex + 1;
+
+    // Atualizar thumbnails
+    const thumbnails = thumbnailsContainer.querySelectorAll("img");
+    thumbnails.forEach((thumb, index) => {
+      if (index === currentImageIndex) {
+        thumb.classList.add("ring-2", "ring-primary");
+        thumb.classList.remove("opacity-70");
+      } else {
+        thumb.classList.remove("ring-2", "ring-primary");
+        thumb.classList.add("opacity-70");
+      }
+    });
+  }
+
+  // Função para ir para uma imagem específica
+  function goToImage(index) {
+    currentImageIndex = index;
+    updateImage();
+  }
+
+  // Botão anterior
+  prevBtn.onclick = () => {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateImage();
+  };
+
+  // Botão próximo
+  nextBtn.onclick = () => {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateImage();
+  };
+
+  // Inicializar
+  updateImage();
+
+  // Navegação com teclado
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") prevBtn.click();
+    if (e.key === "ArrowRight") nextBtn.click();
+  });
+}
+
+function calcularDias(dataInicio, dataFim) {
+
+  const inicio = new Date(dataInicio);
+  const fim = new Date(dataFim);
+
+  const diferenca = fim - inicio;
+
+  return Math.ceil(
+    diferenca / (1000 * 60 * 60 * 24)
+  );
+}
+
+function rentCalc() {
+  const item = getStoredItem();
+  if (!item) return;
+
+  const startDate =
+    document.getElementById("startDate").value;
+
+  const endDate =
+    document.getElementById("endDate").value;
+
+  if (!startDate || !endDate) return;
+
+  const dias =
+    calcularDias(startDate, endDate);
+
+  if (dias <= 0) return;
+
+  const precoNumero = parseFloat(
+    item.preco
+      .replace(/[^\d,.-]/g, "")
+      .replace(",", ".")
+  );
+
+  if (isNaN(precoNumero)) return;
+
+  const baseSubtotal = precoNumero * dias;
+
+  // Extras
+  const optOperador = document.getElementById('optOperador');
+  const optFrete = document.getElementById('optFrete');
+
+  const operadorUnit = item.precoDiariaMaoObra ? parseFloat(String(item.precoDiariaMaoObra).replace(',','.')) : 0;
+  const freteUnit = item.precoFrete ? parseFloat(String(item.precoFrete).replace(',','.')) : 0;
+
+  const operadorCost = (optOperador && optOperador.checked) ? (operadorUnit * dias) : 0;
+  const freteCost = (optFrete && optFrete.checked) ? freteUnit : 0;
+
+  const taxa = 420;
+  const subtotal = baseSubtotal + operadorCost;
+  const total = subtotal + taxa + freteCost;
+
+  document.getElementById("resumo").textContent = `R$ ${precoNumero} x ${dias} dias`;
+  document.getElementById("subtotal").textContent = `R$ ${baseSubtotal.toLocaleString("pt-BR")}`;
+
+  // atualizar linhas de operador/frete
+  const rowOperador = document.getElementById('rowOperador');
+  const operadorAmountEl = document.getElementById('operadorAmount');
+  if (item.disponibilizaOperador) {
+    rowOperador.style.display = '';
+    operadorAmountEl.textContent = `R$ ${operadorCost.toLocaleString('pt-BR')}`;
+  } else {
+    rowOperador.style.display = 'none';
+  }
+
+  const rowFrete = document.getElementById('rowFrete');
+  const freteAmountEl = document.getElementById('freteAmount');
+  if (item.disponibilizaFrete) {
+    rowFrete.style.display = '';
+    freteAmountEl.textContent = freteCost > 0 ? `R$ ${freteCost.toLocaleString('pt-BR')}` : 'GRÁTIS';
+  } else {
+    rowFrete.style.display = 'none';
+  }
+
+  document.getElementById("total").textContent = `R$ ${total.toLocaleString("pt-BR")}`;
+}
+
+// Calcula dias da semana disponíveis para esta máquina com base nas locações armazenadas
+function computeDisponibilidade() {
+  const item = getStoredItem();
+  if (!item) return;
+
+  const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
+  const bookings = locacoes.filter(l => l.item && l.item.nome === item.nome);
+
+  const blocked = new Set();
+  bookings.forEach(b => {
+    const inicio = new Date(b.dataInicio);
+    const fim = new Date(b.dataFim);
+    const cur = new Date(inicio);
+    while (cur <= fim) {
+      blocked.add(cur.getDay());
+      cur.setDate(cur.getDate() + 1);
+    }
+  });
+
+  const weekdays = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+  const available = weekdays.filter((_, idx) => !blocked.has(idx));
+
+  const el = document.getElementById('diasDisponiveis');
+  if (!el) return;
+  if (available.length === 0) {
+    el.textContent = 'Sem disponibilidade registrada (consulte calendário).';
+    el.classList.remove('text-tertiary');
+    el.classList.add('text-red-600');
+  } else {
+    el.textContent = 'Dias geralmente disponíveis: ' + available.join(', ');
+    el.classList.remove('text-red-600');
+    el.classList.add('text-tertiary');
+  }
+}
+
+function iniciarAluguel() {
+  const dataInicio = document.getElementById("startDate").value;
+  const dataFim = document.getElementById("endDate").value;
+  const total = document.getElementById("total").textContent;
+  
+  if (!dataInicio || !dataFim) {
+    console.warn("Por favor, selecione as datas de início e fim da locação.");
+    return;
+  }
+  
+  const item = getStoredItem();
+  if (!item) {
+    console.warn('Erro: Máquina não carregada. Tente novamente.');
+    return;
+  }
+
+  // Armazenar dados de locação no localStorage (array 'locacoes')
+  const dadosLocacao = {
+    item: item,
+    dataInicio: dataInicio,
+    dataFim: dataFim,
+    total: total,
+    operador: (document.getElementById('optOperador') && document.getElementById('optOperador').checked) || false,
+    frete: (document.getElementById('optFrete') && document.getElementById('optFrete').checked) || false,
+    operadorAmount: document.getElementById('operadorAmount') ? document.getElementById('operadorAmount').textContent : 'R$ 0',
+    freteAmount: document.getElementById('freteAmount') ? document.getElementById('freteAmount').textContent : 'GRÁTIS'
+  };
+
+  const locacoes = JSON.parse(localStorage.getItem('locacoes') || '[]');
+  locacoes.push(dadosLocacao);
+  localStorage.setItem('locacoes', JSON.stringify(locacoes));
+
+  // Atualizar disponibilidade exibida
+  computeDisponibilidade();
+
+  // Redirecionar para página de confirmação/checkout
+  window.location.href = "../info/code.html";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  fillData();
+  initializeCarousel();
+
+  // calcular disponibilidade inicial
+  computeDisponibilidade();
+
+  const hoje = new Date();
+
+  const amanha = new Date();
+  amanha.setDate(hoje.getDate() + 1);
+
+  function formatar(data) {
+    return data.toISOString().split("T")[0];
+  }
+
+  document.getElementById("startDate").value =
+    formatar(hoje);
+
+  document.getElementById("endDate").value =
+    formatar(amanha);
+
+  rentCalc();
+
+  document
+    .getElementById("startDate")
+    .addEventListener("change", rentCalc);
+
+  document
+    .getElementById("endDate")
+    .addEventListener("change", rentCalc);
+
+});
+
+</script>
+
+<script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
+
+</body>
+</html>

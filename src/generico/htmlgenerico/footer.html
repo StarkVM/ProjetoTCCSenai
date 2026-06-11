@@ -87,38 +87,131 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopAppBar -->
-<footer class="bg-[#f6f3f2] dark:bg-[#121212] full-width bottom-0">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-12 py-16 border-t border-[#e5e2e1] dark:border-[#2d2c2c] max-w-[1920px] mx-auto">
-<div class="space-y-6">
-<div class="text-lg font-bold text-[#1c1b1b] dark:text-[#fcf9f8] font-headline uppercase">Heavy Rent</div>
-<p class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] max-w-sm">
-                    A REDE DE MÁQUINAS MAIS CONFIÁVEL DA AMÉRICA LATINA.
-                </p>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">language</span>
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">shield</span>
-<span class="material-symbols-outlined text-[#835400] dark:text-[#f9a825]">workspace_premium</span>
+<body>
+<footer class="bg-[#f6f3f2] dark:bg-[#121212] border-t border-[#e5e2e1] dark:border-[#2d2c2c]">
+
+<div class="max-w-6xl mx-auto px-6 md:px-12 py-12">
+
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+
+        <!-- Marca -->
+        <div class="space-y-4">
+            <h3 class="font-headline text-xl font-black uppercase tracking-wide">
+                Heavy Rent
+            </h3>
+
+            <p class="text-xs uppercase tracking-widest text-[#777271] max-w-xs mx-auto">
+                A rede de máquinas mais confiável da América Latina.
+            </p>
+
+            <div class="flex justify-center gap-3">
+                <div class="p-2 rounded-full bg-[#ebe7e7]">
+                    <span class="material-symbols-outlined text-primary">language</span>
+                </div>
+
+                <div class="p-2 rounded-full bg-[#ebe7e7]">
+                    <span class="material-symbols-outlined text-primary">shield</span>
+                </div>
+
+                <div class="p-2 rounded-full bg-[#ebe7e7]">
+                    <span class="material-symbols-outlined text-primary">workspace_premium</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <div class="space-y-3">
+            <h4 class="font-headline text-xs font-black uppercase">
+                Contato
+            </h4>
+
+            <p class="text-xs uppercase tracking-widest text-[#777271]">
+                heavyrent@gmail.com
+            </p>
+
+            <p class="text-xs uppercase tracking-widest text-[#777271]">
+                +55 (28) 99914-2609
+            </p>
+
+            <p class="text-xs uppercase tracking-widest text-[#777271]">
+                Atendimento 24 horas
+            </p>
+        </div>
+
+        <!-- Jurídico -->
+        <div class="space-y-3">
+            <h4 class="font-headline text-xs font-black uppercase">
+                Jurídico
+            </h4>
+
+        <button
+            onclick="openTermsModal()"
+            class="inline-block text-xs uppercase tracking-widest text-[#777271] hover:text-primary transition-colors">
+            Termos de Uso
+        </button>
+        </div>
+
+    </div>
+
 </div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div class="flex flex-col gap-3">
-<h4 class="font-headline text-xs font-black uppercase text-on-surface mb-2">Operações</h4>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Soluções de Frota</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Padrões de Segurança</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Contato de Engenharia</a>
-</div>
-<div class="flex flex-col gap-3">
-<h4 class="font-headline text-xs font-black uppercase text-on-surface mb-2">Jurídico</h4>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Termos de Serviço</a>
-<a class="font-['Inter'] text-xs uppercase tracking-widest text-[#777271] dark:text-[#8e8988] hover:text-[#835400] dark:hover:text-[#f9a825] transition-colors" href="#">Política de Privacidade</a>
-</div>
-</div>
-</div>
-<div class="w-full px-12 py-6 bg-surface-container-highest text-center">
-<p class="font-['Inter'] text-[10px] uppercase tracking-widest text-[#777271]">© 2024 Heavy Rent INDUSTRIAL GROUP.</p>
+
+<!-- Barra inferior -->
+<div class="border-t border-[#e5e2e1] dark:border-[#2d2c2c]">
+    <div class="max-w-6xl mx-auto px-6 md:px-12 py-5 text-center">
+        <p class="text-[10px] uppercase tracking-widest text-[#777271]">
+            © 2026 Heavy Rent Industrial Group. Todos os direitos reservados.
+        </p>
+    </div>
 </div>
 </footer>
+<script>
+    function openTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+    </script>
+    <!-- Modal Termos de Uso -->
+<div
+    id="termsModal"
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-2xl w-[90%] rounded-lg shadow-xl">
+
+        <!-- Cabeçalho -->
+        <div class="flex justify-between items-center p-6 border-b">
+            <h2 class="font-bold text-xl">Termos de Uso</h2>
+
+            <button
+                onclick="closeTermsModal()"
+                class="text-gray-500 hover:text-black text-2xl">
+                &times;
+            </button>
+        </div>
+
+            <iframe
+            src="termos.html"
+            class="w-full h-[70vh] border-0">
+            </iframe>
+
+        <!-- Rodapé -->
+        <div class="p-6 border-t flex justify-end">
+            <button
+                onclick="closeTermsModal()"
+                class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
+                Fechar
+            </button>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

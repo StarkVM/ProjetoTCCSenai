@@ -275,9 +275,11 @@ if (isset($er) && !empty($er)) {
 
             <label for="termbox" class="text-sm text-[#555555] leading-relaxed">
               Eu li e concordo com os
-              <a href="#" class="text-[#C58B18] font-semibold hover:underline">
-                Termos de Uso
-              </a>
+              <button
+                  onclick="openTermsModal()"
+                  class="text-[#C58B18] font-semibold hover:underlin">
+                  Termos de Uso
+              </button>
               e
               <a href="#" class="text-[#C58B18] font-semibold hover:underline">
                 Política de Privacidade
@@ -355,7 +357,54 @@ if (isset($er) && !empty($er)) {
     senha1.addEventListener("input", (e) => {
       e.target.value = e.target.value.replace(/\s/g, "");
     });
+
+    //MODAL TERMOS DE USO
+    function openTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+    }
+
+    function closeTermsModal() {
+        const modal = document.getElementById("termsModal");
+
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+    }
+
   </script>
+  <div
+    id="termsModal"
+    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+    <div class="bg-white max-w-2xl w-[90%] rounded-lg shadow-xl">
+
+        <div class="flex justify-between items-center p-6 border-b">
+            <h2 class="font-bold text-xl">Termos de Uso</h2>
+
+            <button
+                onclick="closeTermsModal()"
+                class="text-gray-500 hover:text-black text-2xl">
+                &times;
+            </button>
+        </div>
+
+            <iframe
+            src="termos.html"
+            class="w-full h-[70vh] border-0">
+            </iframe>
+
+        <div class="p-6 border-t flex justify-end">
+            <button
+                onclick="closeTermsModal()"
+                class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
+                Fechar
+            </button>
+        </div>
+
+    </div>
+</div>
 </body>
 
 </html>
