@@ -251,10 +251,6 @@ function formatarReais(float $valor): string
                                 <div class="p-8">
                                     <div class="flex justify-between items-start mb-4">
                                         <h3 class="font-headline text-xl font-bold uppercase tracking-tight"><?= $title ?></h3>
-                                        <div class="flex items-center gap-1 bg-tertiary-container/20 text-on-tertiary-container px-2 py-1 rounded-sm">
-                                            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
-                                            <span class="font-label text-xs font-black">9.8</span>
-                                        </div>
                                     </div>
                                     <div class="grid grid-cols-2 gap-4 mb-6">
                                         <div class="bg-surface-container px-3 py-2 rounded-sm">

@@ -39,14 +39,12 @@ tailwind.config = {
 <a href="../home/code.php" class="text-2xl font-black tracking-tighter text-[#1c1b1b] dark:text-[#fcf9f8] uppercase font-headline">
       HEAVY RENT
     </a>
-    <nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
+    <nav class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-8 md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../home/code.php">Início</a>
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../catalogoAnuncios/code.php">Catálogo</a>
-
+        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == "1") echo "<a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>"?>
     </nav>
-        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == "1") echo `<button onclick="window.location.href='../VendedorHome/code.php'" class="px-4 py-2 border-2 border-primary text-primary font-headline font-bold uppercase tracking-widest text-xs rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
-    Locações
-</button>`?>
+
     <div class="flex items-center gap-4">
         <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button type="button" id="openVendorModalButton" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
