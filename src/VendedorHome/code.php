@@ -268,7 +268,7 @@ function formatarReais(float $valor): string
                             $frete          = !empty($item['freightAvailable']);
                             ?>
 
-                            <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
+                            <div style="cursor: pointer" onclick="window.location.href='../PagMaquina/code.php?cd=<?= $id?>'" class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
                                 <div class="h-48 relative overflow-hidden">
                                     <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     <div class="absolute inset-0 machine-card-gradient"></div>

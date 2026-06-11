@@ -41,7 +41,7 @@ tailwind.config = {
     </a>
     <nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../home/code.php">Início</a>
-      <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../catalogoAnuncios/code.html">Catálogo</a>
+      <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]" href="../catalogoAnuncios/code.php">Catálogo</a>
         <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == "1") echo "<a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>"?>
     </nav>
 

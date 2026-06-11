@@ -4,7 +4,7 @@
 
 error_reporting(0);
 require("../auth/auth.php");
-
+require_once("../endpoints.php");
 $semDados = "Dados não carregados!";
 
 require $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
@@ -15,6 +15,266 @@ $createdAt = new DateTime($_SESSION['createdAt']);
 $type = $_SESSION['type'] == 0 ? "Cliente" : "Locador";
 $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black text-xs uppercase" >Super Verificado & ' . $type . '</span>' : '<span class="text-on-surface font-black text-xs uppercase" style="color: red">Pendente de Verificação & ' . $type . '</span>';
 
+//////////////////////////////////
+$endpoints = new Endpoints();
+$apiBaseUrl = $endpoints->urlRentals;
+
+$accessToken = $_SESSION["accessToken"];
+
+$rentalActionMessage = null;
+$rentalActionError = null;
+
+/**
+ * Escapes values for safe HTML output.
+ * / Escapa valores para saída segura no HTML.
+ */
+function h($value): string
+{
+    return htmlspecialchars((string)($value ?? ""), ENT_QUOTES, "UTF-8");
+}
+
+/**
+ * Calls the HeavyRent API using the authenticated user's access token.
+ * / Chama a API HeavyRent usando o access token do usuário autenticado.
+ */
+function callHeavyRentApi(
+        string $method,
+        string $path,
+        string $accessToken,
+        ?array $body = null
+): array
+{
+    global $apiBaseUrl;
+
+
+
+    $headers = [
+            "Accept: application/json",
+            "Authorization: Bearer " . $accessToken
+    ];
+
+    $curl = curl_init($apiBaseUrl . $path);
+
+    curl_setopt_array($curl, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => strtoupper($method),
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_TIMEOUT => 30
+    ]);
+
+    if ($body !== null) {
+        $jsonBody = json_encode($body);
+
+        $headers[] = "Content-Type: application/json";
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonBody);
+    }
+
+    $responseBody = curl_exec($curl);
+    $curlError = curl_error($curl);
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    curl_close($curl);
+
+    if ($responseBody === false) {
+        return [
+                "success" => false,
+                "statusCode" => 0,
+                "data" => null,
+                "message" => $curlError ?: "Erro ao chamar API."
+        ];
+    }
+
+    $data = json_decode($responseBody, true);
+
+    if ($httpCode < 200 || $httpCode >= 300) {
+        return [
+                "success" => false,
+                "statusCode" => $httpCode,
+                "data" => $data,
+                "message" => $data["message"] ?? "Erro ao chamar API."
+        ];
+    }
+
+    return [
+            "success" => true,
+            "statusCode" => $httpCode,
+            "data" => $data,
+            "message" => null
+    ];
+}
+
+/**
+ * Formats money in Brazilian currency.
+ * / Formata dinheiro em moeda brasileira.
+ */
+function formatMoneyBr($value): string
+{
+    return "R$ " . number_format((float)$value, 2, ",", ".");
+}
+
+/**
+ * Formats DateOnly values from the API.
+ * / Formata valores DateOnly vindos da API.
+ */
+function formatDateBr($date): string
+{
+    if (empty($date)) {
+        return "-";
+    }
+
+    $dateTime = DateTime::createFromFormat("Y-m-d", substr($date, 0, 10));
+
+    if (!$dateTime) {
+        return h($date);
+    }
+
+    return $dateTime->format("d/m/Y");
+}
+
+/**
+ * Formats UTC datetime values from the API.
+ * / Formata valores DateTime UTC vindos da API.
+ */
+function formatDateTimeBr($date): string
+{
+    if (empty($date)) {
+        return "-";
+    }
+
+    try {
+        $dateTime = new DateTime($date);
+        return $dateTime->format("d/m/Y H:i");
+    } catch (Exception) {
+        return h($date);
+    }
+}
+
+/**
+ * Converts rental status to readable text.
+ * / Converte o status do aluguel para texto legível.
+ */
+function getRentalStatusText($status): string
+{
+    return match ((string)$status) {
+        "1", "Approved" => "Aprovado",
+        "2", "InProgress" => "Em andamento",
+        "3", "Completed" => "Concluído",
+        "4", "Cancelled" => "Cancelado",
+        default => (string)$status
+    };
+}
+
+/**
+ * Returns badge classes based on rental status.
+ * / Retorna classes do selo com base no status do aluguel.
+ */
+function getRentalStatusBadgeClass($status): string
+{
+    return match ((string)$status) {
+        "1", "Approved" => "bg-blue-100 text-blue-800 border-blue-200",
+        "2", "InProgress" => "bg-green-100 text-green-800 border-green-200",
+        "3", "Completed" => "bg-stone-100 text-stone-700 border-stone-200",
+        "4", "Cancelled" => "bg-red-100 text-red-800 border-red-200",
+        default => "bg-stone-100 text-stone-700 border-stone-200"
+    };
+}
+
+/**
+ * Checks if the rental can be completed or cancelled.
+ * / Verifica se o aluguel pode ser encerrado ou cancelado.
+ */
+function canManageRental($status): bool
+{
+    return in_array((string)$status, ["1", "2", "Approved", "InProgress"], true);
+}
+
+/**
+ * Handles rental complete/cancel actions.
+ * / Manipula ações de encerrar/cancelar aluguel.
+ */
+if ($_SERVER["REQUEST_METHOD"] === "POST" &&
+        isset($_POST["rental_action"], $_POST["rental_id"])) {
+
+    $rentalId = $_POST["rental_id"];
+    $action = $_POST["rental_action"];
+
+    if (empty($accessToken)) {
+        $rentalActionError = "Token de acesso não encontrado.";
+    } elseif (!in_array($action, ["complete", "cancel"], true)) {
+        $rentalActionError = "Ação inválida.";
+    } else {
+        $result = callHeavyRentApi(
+                "POST",
+                "/" . urlencode($rentalId) . "/" . $action,
+                $accessToken
+        );
+
+        if ($result["success"]) {
+            $rentalActionMessage = $action === "complete"
+                    ? "Locação encerrada com sucesso."
+                    : "Locação cancelada com sucesso.";
+        } else {
+            $rentalActionError = $result["message"];
+        }
+    }
+}
+
+/**
+ * Loads active rentals for the authenticated user as renter.
+ * / Carrega aluguéis ativos do usuário autenticado como locatário.
+ */
+$activeRentals = [];
+$rentalsLoadError = null;
+
+if (empty($accessToken)) {
+    $rentalsLoadError = "Token de acesso não encontrado na sessão.";
+} else {
+    $rentalsResponse = callHeavyRentApi(
+            "GET",
+            "?Role=Renter&status=Active&page=1&pageSize=10",
+            $accessToken
+    );
+
+    if ($rentalsResponse["success"]) {
+        $activeRentals = $rentalsResponse["data"]["items"] ?? [];
+    } else {
+        $rentalsLoadError = $rentalsResponse["message"];
+    }
+}
+////////////
+///
+/**
+ * Loads completed and cancelled rentals for the history tab.
+ */
+$completedRentals = [];
+$cancelledRentals  = [];
+$historyLoadError  = null;
+
+if (!empty($accessToken)) {
+    $completedResponse = callHeavyRentApi(
+            "GET",
+            "?Role=Renter&status=Completed&page=1&pageSize=20",
+            $accessToken
+    );
+    if ($completedResponse["success"]) {
+        $completedRentals = $completedResponse["data"]["items"] ?? [];
+    } else {
+        $historyLoadError = $completedResponse["message"];
+    }
+
+    $cancelledResponse = callHeavyRentApi(
+            "GET",
+            "?Role=Renter&status=Cancelled&page=1&pageSize=20",
+            $accessToken
+    );
+    if ($cancelledResponse["success"]) {
+        $cancelledRentals = $cancelledResponse["data"]["items"] ?? [];
+    } elseif (!$historyLoadError) {
+        $historyLoadError = $cancelledResponse["message"];
+    }
+}
 
 ?>
 
@@ -286,32 +546,337 @@ $status = $_SESSION["status"] == 3 ? '<span class="text-on-surface font-black te
           </section>
 
           <!-- Tab Content: Minhas Locações -->
-          <section id="tab-content-locacoes"
-            class="tab-content hidden bg-surface-container-lowest rounded-md shadow-sm overflow-hidden">
-            <div class="p-8 md:p-10">
-              <h2 class="text-2xl font-black uppercase tracking-tighter mb-6">Minhas Locações</h2>
-              <div class="grid grid-cols-1 gap-6">
-                <div
-                  class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-40">
-                  <p class="text-stone-400 text-center">Nenhuma locação encontrada.</p>
+            <section id="tab-content-locacoes"
+                     class="tab-content hidden bg-surface-container-lowest rounded-md shadow-sm overflow-hidden">
+                <div class="p-8 md:p-10">
+
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                        <div>
+                            <h2 class="text-2xl font-black uppercase tracking-tighter">Minhas Locações Ativas</h2>
+                            <p class="text-sm text-stone-500 mt-1">
+                                Acompanhe seus aluguéis ativos, encerre ou cancele uma locação.
+                            </p>
+                        </div>
+
+                        <a href="?tab=locacoes"
+                           class="inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#6d4200] transition-colors">
+                            <span class="material-symbols-outlined text-sm">refresh</span>
+                            Atualizar
+                        </a>
+                    </div>
+
+                    <?php if ($rentalActionMessage): ?>
+                        <div class="mb-6 bg-green-50 border border-green-200 text-green-700 p-4 rounded-md text-sm font-semibold">
+                            <?php echo h($rentalActionMessage); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($rentalActionError): ?>
+                        <div class="mb-6 bg-red-50 border border-red-200 text-red-700 p-4 rounded-md text-sm font-semibold">
+                            <?php echo h($rentalActionError); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ($rentalsLoadError): ?>
+                        <div class="bg-red-50 border border-red-200 p-6 rounded-md">
+                            <p class="text-red-700 font-bold text-sm uppercase mb-1">Erro ao carregar locações</p>
+                            <p class="text-red-600 text-sm"><?php echo h($rentalsLoadError); ?></p>
+                        </div>
+
+                    <?php elseif (empty($activeRentals)): ?>
+                        <div class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-40">
+                            <p class="text-stone-400 text-center">Nenhuma locação ativa encontrada.</p>
+                        </div>
+
+                    <?php else: ?>
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                            <?php foreach ($activeRentals as $rental): ?>
+                                <?php
+                                $status = $rental["status"] ?? "";
+                                $statusText = getRentalStatusText($status);
+                                $statusClass = getRentalStatusBadgeClass($status);
+                                $canManage = canManageRental($status);
+                                ?>
+
+                                <article class="bg-surface-container-low border border-stone-200 rounded-md overflow-hidden shadow-sm">
+                                    <article class="bg-white border border-stone-200 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all">
+
+                                        <div class="p-5">
+
+                                            <div class="flex justify-between items-start mb-4">
+
+                                                <div>
+                                                    <p class="text-[10px] font-black uppercase tracking-widest text-stone-400">
+                                                        Locação Ativa
+                                                    </p>
+
+                                                    <p class="text-sm font-bold text-stone-600 mt-1">
+                                                        <?php echo h($rental["providerName"] ?? "Fornecedor"); ?>
+                                                    </p>
+                                                </div>
+
+                                                <span class="inline-flex items-center justify-center px-2 py-1 rounded-full border text-[10px] font-black uppercase <?php echo h($statusClass); ?>">
+                <?php echo h($statusText); ?>
+            </span>
+
+                                            </div>
+
+                                            <div class="space-y-3">
+
+                                                <div class="flex items-center gap-2 text-sm">
+                <span class="material-symbols-outlined text-stone-400 text-base">
+                    calendar_month
+                </span>
+
+                                                    <span>
+                    <?php echo formatDateBr($rental["startDate"] ?? null); ?>
+                    -
+                    <?php echo formatDateBr($rental["endDate"] ?? null); ?>
+                </span>
+                                                </div>
+
+                                                <div class="flex items-center gap-2 text-sm">
+                <span class="material-symbols-outlined text-stone-400 text-base">
+                    schedule
+                </span>
+
+                                                    <span>
+                    <?php echo h($rental["totalDays"] ?? 0); ?> dias
+                </span>
+                                                </div>
+
+                                                <div class="bg-[#fff8ea] rounded-md p-3 mt-2">
+                                                    <p class="text-[10px] uppercase font-black tracking-widest text-[#835400]">
+                                                        Total
+                                                    </p>
+
+                                                    <p class="text-xl font-black text-[#835400]">
+                                                        <?php echo formatMoneyBr($rental["totalAmount"] ?? 0); ?>
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                            <?php if ($canManage): ?>
+                                                <div class="grid grid-cols-2 gap-2 mt-4">
+
+                                                    <form method="POST"
+                                                          onsubmit="">
+
+                                                        <input type="hidden"
+                                                               name="rental_id"
+                                                               value="<?php echo h($rental["rentalId"] ?? ""); ?>">
+
+                                                        <input type="hidden"
+                                                               name="rental_action"
+                                                               value="complete">
+
+                                                        <button
+                                                                type="submit"
+                                                                class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md text-xs font-bold uppercase">
+
+                                                            Encerrar
+
+                                                        </button>
+
+                                                    </form>
+
+                                                    <form method="POST"
+                                                          onsubmit="">
+
+                                                        <input type="hidden"
+                                                               name="rental_id"
+                                                               value="<?php echo h($rental["rentalId"] ?? ""); ?>">
+
+                                                        <input type="hidden"
+                                                               name="rental_action"
+                                                               value="cancel">
+
+                                                        <button
+                                                                type="submit"
+                                                                class="w-full border-2 border-red-500 text-red-500 hover:bg-red-50 py-2 rounded-md text-xs font-bold uppercase">
+
+                                                            Cancelar
+
+                                                        </button>
+
+                                                    </form>
+
+                                                </div>
+                                            <?php endif; ?>
+
+                                        </div>
+
+                                    </article>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
           <!-- Tab Content: Histórico -->
-          <section id="tab-content-historico"
-            class="tab-content hidden bg-surface-container-lowest rounded-md shadow-sm overflow-hidden">
-            <div class="p-8 md:p-10">
-              <h2 class="text-2xl font-black uppercase tracking-tighter mb-6">Histórico</h2>
-              <div class="grid grid-cols-1 gap-6">
-                <div
-                  class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-40">
-                  <p class="text-stone-400 text-center">Nenhum histórico encontrado.</p>
+            <!-- Tab Content: Histórico -->
+            <section id="tab-content-historico"
+                     class="tab-content hidden bg-surface-container-lowest rounded-md shadow-sm overflow-hidden">
+                <div class="p-8 md:p-10 space-y-10">
+
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-black uppercase tracking-tighter">Histórico de Locações</h2>
+                            <p class="text-sm text-stone-500 mt-1">Veja todas as suas locações encerradas e canceladas.</p>
+                        </div>
+                        <a href="?tab=historico"
+                           class="inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-md font-bold text-xs uppercase hover:bg-[#6d4200] transition-colors">
+                            <span class="material-symbols-outlined text-sm">refresh</span>
+                            Atualizar
+                        </a>
+                    </div>
+
+                    <?php if ($historyLoadError): ?>
+                        <div class="bg-red-50 border border-red-200 p-6 rounded-md">
+                            <p class="text-red-700 font-bold text-sm uppercase mb-1">Erro ao carregar histórico</p>
+                            <p class="text-red-600 text-sm"><?php echo h($historyLoadError); ?></p>
+                        </div>
+                    <?php else: ?>
+
+                        <!-- Bloco: Finalizadas -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-stone-100 border border-stone-200">
+                        <span class="material-symbols-outlined text-stone-500 text-base">check_circle</span>
+                    </span>
+                                <h3 class="text-sm font-black uppercase tracking-widest text-stone-500">
+                                    Finalizadas
+                                    <span class="ml-2 text-[10px] bg-stone-100 border border-stone-200 text-stone-500 px-2 py-0.5 rounded-full">
+                            <?php echo count($completedRentals); ?>
+                        </span>
+                                </h3>
+                            </div>
+
+                            <?php if (empty($completedRentals)): ?>
+                                <div class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-32">
+                                    <div class="text-center">
+                                        <span class="material-symbols-outlined text-stone-300 text-4xl block mb-2">inbox</span>
+                                        <p class="text-stone-400 text-sm">Nenhuma locação finalizada ainda.</p>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                                    <?php foreach ($completedRentals as $rental): ?>
+                                        <article style="cursor: pointer" onclick="window.location.href = '../PagMaquina/code.php?cd=<?= $rental['listingId'] ?? null?>'" class="bg-white border border-stone-200 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all">
+                                            <div class="h-1 w-full bg-stone-300"></div>
+                                            <div class="p-5">
+                                                <div class="flex justify-between items-start mb-4">
+                                                    <div>
+                                                        <p class="text-[10px] font-black uppercase tracking-widest text-stone-400">Locação Encerrada</p>
+                                                        <p class="text-sm font-bold text-stone-600 mt-1">
+                                                            <?php echo h($rental["providerName"] ?? "Fornecedor"); ?>
+                                                        </p>
+                                                    </div>
+                                                    <span class="inline-flex items-center justify-center px-2 py-1 rounded-full border text-[10px] font-black uppercase bg-stone-100 text-stone-700 border-stone-200">
+                                            Concluído
+                                        </span>
+                                                </div>
+                                                <div class="space-y-3">
+                                                    <div class="flex items-center gap-2 text-sm text-stone-600">
+                                                        <span class="material-symbols-outlined text-stone-400 text-base">calendar_month</span>
+                                                        <span>
+                                                <?php echo formatDateBr($rental["startDate"] ?? null); ?>
+                                                –
+                                                <?php echo formatDateBr($rental["endDate"] ?? null); ?>
+                                            </span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 text-sm text-stone-600">
+                                                        <span class="material-symbols-outlined text-stone-400 text-base">schedule</span>
+                                                        <span><?php echo h($rental["totalDays"] ?? 0); ?> dias</span>
+                                                    </div>
+                                                    <div class="bg-[#f4f4f4] rounded-md p-3 mt-2">
+                                                        <p class="text-[10px] uppercase font-black tracking-widest text-stone-500">Total pago</p>
+                                                        <p class="text-xl font-black text-stone-700">
+                                                            <?php echo formatMoneyBr($rental["totalAmount"] ?? 0); ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Divisor -->
+                        <div class="border-t border-stone-100"></div>
+
+                        <!-- Bloco: Canceladas -->
+                        <div>
+                            <div class="flex items-center gap-3 mb-4">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-red-50 border border-red-200">
+                        <span class="material-symbols-outlined text-red-400 text-base">cancel</span>
+                    </span>
+                                <h3 class="text-sm font-black uppercase tracking-widest text-stone-500">
+                                    Canceladas
+                                    <span class="ml-2 text-[10px] bg-red-50 border border-red-200 text-red-500 px-2 py-0.5 rounded-full">
+                            <?php echo count($cancelledRentals); ?>
+                        </span>
+                                </h3>
+                            </div>
+
+                            <?php if (empty($cancelledRentals)): ?>
+                                <div class="bg-surface-container-low p-6 rounded-md border border-stone-200 flex items-center justify-center min-h-32">
+                                    <div class="text-center">
+                                        <span class="material-symbols-outlined text-stone-300 text-4xl block mb-2">check_circle</span>
+                                        <p class="text-stone-400 text-sm">Nenhuma locação cancelada. Ótimo!</p>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                                    <?php foreach ($cancelledRentals as $rental): ?>
+                                        <article  style="cursor: pointer" onclick="window.location.href = '../PagMaquina/code.php?cd=<?= $rental['listingId'] ?? null?>'" class="bg-white border border-red-100 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all opacity-80 hover:opacity-100">
+                                            <div class="h-1 w-full bg-red-300"></div>
+                                            <div class="p-5">
+                                                <div class="flex justify-between items-start mb-4">
+                                                    <div>
+                                                        <p class="text-[10px] font-black uppercase tracking-widest text-stone-400">Locação Cancelada</p>
+                                                        <p class="text-sm font-bold text-stone-600 mt-1">
+                                                            <?php echo h($rental["providerName"] ?? "Fornecedor"); ?>
+                                                        </p>
+                                                    </div>
+                                                    <span class="inline-flex items-center justify-center px-2 py-1 rounded-full border text-[10px] font-black uppercase bg-red-100 text-red-800 border-red-200">
+                                            Cancelado
+                                        </span>
+                                                </div>
+                                                <div class="space-y-3">
+                                                    <div class="flex items-center gap-2 text-sm text-stone-600">
+                                                        <span class="material-symbols-outlined text-stone-400 text-base">calendar_month</span>
+                                                        <span>
+                                                <?php echo formatDateBr($rental["startDate"] ?? null); ?>
+                                                –
+                                                <?php echo formatDateBr($rental["endDate"] ?? null); ?>
+                                            </span>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 text-sm text-stone-600">
+                                                        <span class="material-symbols-outlined text-stone-400 text-base">schedule</span>
+                                                        <span><?php echo h($rental["totalDays"] ?? 0); ?> dias</span>
+                                                    </div>
+                                                    <div class="bg-red-50 rounded-md p-3 mt-2">
+                                                        <p class="text-[10px] uppercase font-black tracking-widest text-red-400">Valor</p>
+                                                        <p class="text-xl font-black text-red-400 line-through decoration-red-300">
+                                                            <?php echo formatMoneyBr($rental["totalAmount"] ?? 0); ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                    <?php endif; ?>
                 </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
           <!-- Tab Content: Suporte -->
           <section id="tab-content-suporte"

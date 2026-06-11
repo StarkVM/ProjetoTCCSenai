@@ -1,3 +1,41 @@
+<?php
+require_once("../endpoints.php");
+$endpoints = new Endpoints();
+
+$dados = [];
+
+$url = $endpoints->urlListing. "?mine=false&page=1&pageSize=50";
+
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json"
+]); // tipo do envio
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$data = json_decode($response, true); // tranforma json em array
+curl_close($ch);
+
+if ($statusCode >= 200 && $statusCode <= 299) {
+    $responseData = json_decode($response, true);
+
+    $dados = $responseData['items'] ?? [];
+
+} else {
+    $dados = [];
+
+}
+function formatarReais(float $valor): string
+{
+    return 'R$ ' . number_format($valor, 2, ',', '.');
+}
+?>
+
+
+
 <!DOCTYPE html>
 
 <html class="light" lang="pt-BR">
@@ -270,8 +308,69 @@
             </div>
         </section>
         <!-- Equipment Grid -->
-        <section id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
 
+            <?php if (empty($dados)): ?>
+
+                <div id="adicionar-anuncio" class="group bg-surface-container-lowest rounded-md overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 border-dashed border-2 border-outline-variant/30 flex flex-col items-center justify-center p-8 text-center min-h-[500px]">
+                    <div class="w-16 h-16 bg-surface-container-low rounded-full flex items-center justify-center mb-6 group-hover:bg-primary-fixed transition-colors">
+                        <span style="font-size: 50px; color: red;">😢</span>
+
+                    </div>
+                    <h3 class="text-2xl font-headline font-black tracking-tight mb-2">Ops... Não foi encontrado nenhum registro por aqui</h3>
+                    <p class="text-on-surface-variant text-sm mb-8">Volte mais tarde!</p>
+
+                </div>
+
+            <?php else: ?>
+
+                <?php foreach ($dados as $item):
+                    $id             = (string) ($item['listingId'] ?? "0");
+                    $title          = htmlspecialchars($item['title'] ?? '');
+                    $description    = htmlspecialchars($item['description'] ?? '');
+                    $dailyPrice     = formatarReais((float) ($item['dailyPrice'] ?? 0));
+                    $images         = $item['images'] ?? [];
+                    $imagemPrincipal = htmlspecialchars(!empty($images) ? ($images[0]['url'] ?? 'placeholder.jpg') : 'placeholder.jpg');
+                    $cidade         = htmlspecialchars($item['pickupCity'] ?? '');
+                    $estado         = htmlspecialchars($item['pickupState'] ?? '');
+                    $localizacao    = "{$cidade}, {$estado}";
+                    $isFleet        = !empty($item['isFleet']);
+                    $operador       = !empty($item['operatorAvailable']);
+                    $frete          = !empty($item['freightAvailable']);
+                    ?>
+                    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Perfil lateral de uma grande escavadeira amarela em solo macio, com alto nível de detalhe em texturas metálicas e sistemas hidráulicos" />
+                                <div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Disponível</div>
+                            </div>
+                            <div class="p-8">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="font-headline text-xl font-bold uppercase tracking-tight"><?= $title ?></h3>
+                                    <div class="flex items-center gap-1 bg-tertiary-container/20 text-on-tertiary-container px-2 py-1 rounded-sm">
+                                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                        <span class="font-label text-xs font-black">9.8</span>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-surface-container px-3 py-2 rounded-sm">
+                                        <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Preço/Dia</p>
+                                        <p class="font-headline font-bold text-primary"><?= $dailyPrice ?></p>
+                                    </div>
+                                    <div class="bg-surface-container px-3 py-2 rounded-sm">
+                                        <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Localização</p>
+                                        <p class="font-headline font-bold text-on-surface truncate"><?= $localizacao ?></p>
+                                    </div>
+                                </div>
+                                <button  class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300" onclick='window.location.href="../PagMaquina/code.php?cd=<?php echo $id  ?>"'>
+                                    Solicitar Locação
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
         </section>
         <!-- Pagination -->
         <div id="pagination" class="mt-xl flex justify-center items-center gap-4">
@@ -294,7 +393,7 @@
     <!-- Footer -->
     <footer id="footer"></footer>
     <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
-    <script src="catalogFiller.js"></script>
+
     <script>
 
 

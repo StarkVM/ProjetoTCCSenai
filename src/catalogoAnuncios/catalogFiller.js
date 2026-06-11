@@ -122,7 +122,7 @@ function saveData(obj){
   console.log(obj);
   try{
     localStorage.setItem("item", JSON.stringify(obj));
-    window.location.href = "../PagMaquina/code.html";
+    window.location.href = "../PagMaquina/code.php";
   }
   
   catch{
