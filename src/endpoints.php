@@ -24,11 +24,7 @@ class endpoints
 
     public function __construct()
     {
-<<<<<<< HEAD
-        $this->UrlPadrao = "http://localhost:5000";
-=======
         $this->UrlPadrao = "https://addressing-fingers-corps-pizza.trycloudflare.com";
->>>>>>> c86480b0b044861a55de4cd707df2bf664c98fd1
 
         $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
         $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";

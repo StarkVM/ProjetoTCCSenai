@@ -299,6 +299,7 @@ $responseError = $er;
               class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
               Pre&ccedil;o do Frete (R$)
             </label>
+            <br>
             <input id="precoFrete" name="precoFrete" step="0.01"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
               placeholder="0.00" type="number" />
@@ -379,6 +380,7 @@ $responseError = $er;
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      console.log("carregado");
       const form = document.querySelector("form");
       const cepEl = document.getElementById("cep");
       const logradouroEl = document.getElementById("logradouro");
@@ -427,16 +429,24 @@ $responseError = $er;
       }
 
       function atualizarCampoCondicional(selectEl, containerEl, inputEl) {
+        console.log("campo atualizado");
         if (!selectEl || !containerEl) {
           return;
         }
 
-        const exibir = selectEl.value === "yes";
+        const exibir = selectEl.value === "true";
         containerEl.style.display = exibir ? "block" : "none";
-
         if (!exibir && inputEl) {
           inputEl.value = "";
         }
+      }
+      
+      if (disponibilizaOperadorEl) {
+        console.log("disponibilizaoperador existe")
+        disponibilizaOperadorEl.addEventListener("change", function() {
+          atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
+        });
+        atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
       }
 
       function configurarUploadsDeImagem() {
@@ -511,12 +521,6 @@ $responseError = $er;
         });
       }
 
-      if (disponibilizaOperadorEl) {
-        disponibilizaOperadorEl.addEventListener("change", function() {
-          atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
-        });
-        atualizarCampoCondicional(disponibilizaOperadorEl, containerPrecoMaoObra, precoDiariaMaoObraEl);
-      }
 
       if (disponibilizaFreteEl) {
         disponibilizaFreteEl.addEventListener("change", function() {
