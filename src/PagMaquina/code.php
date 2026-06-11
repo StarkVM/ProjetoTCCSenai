@@ -412,7 +412,6 @@ $semDados = "Sem dados";
             <?php endif; ?>
     </main>
 
-    <!-- Modal de Confirmação Desativar Conta -->
     <div id="disableAccountModal"
         class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
         <div class="bg-white dark:bg-[#1c1b1b] rounded-lg shadow-xl max-w-sm w-full mx-4">
@@ -421,15 +420,7 @@ $semDados = "Sem dados";
             </div>
             <div class="p-6 space-y-4">
                 <p class="text-stone-600 dark:text-stone-400">Tem certeza que deseja alugar este equipamento?</p>
-                <div
-                    class="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 rounded p-4">
-                    <p
-                        class="text-xs font-semibold text-yellow-800 dark:text-yellow-300 uppercase tracking-widest mb-2">
-                        ⚠ Atenção</p>
-                    <p class="text-sm text-yellow-700 dark:text-yellow-300">Ao confirmar o aluguel, você concorda com os
-                        termos do mesmo e firma um acordo com o provedor.</p>
-                    <p class="text-sm text-yellow-700 dark:text-yellow-300">termo AKI</p>
-                </div>
+
             </div>
             <div class="p-6 border-t border-stone-200 dark:border-stone-700 flex gap-3">
                 <button onclick="closeDisableAccountModal()"
