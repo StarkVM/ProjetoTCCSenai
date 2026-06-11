@@ -184,27 +184,7 @@ function formatarReais(float $valor): string
                         </button>
 
                     </div>
-                    <!-- Category Chips -->
-                    <div class="flex flex-wrap gap-3 mt-8">
-                        <!-- Chips de categoria — adicionar data-category e id em cada um -->
-                        <button data-category="Escavadeiras"
-                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
-                            <span class="material-symbols-outlined text-sm">construction</span> Escavadeiras
-                        </button>
-                        <button data-category="Guindastes"
-                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
-                            <span class="material-symbols-outlined text-sm">construction</span> Guindastes
-                        </button>
-                        <button data-category="Retroescavadeiras"
-                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
-                            <span class="material-symbols-outlined text-sm">construction</span> Retroescavadeiras
-                        </button>
-                        <button data-category="Tratores"
-                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
-                            <span class="material-symbols-outlined text-sm">construction</span> Tratores
-                        </button>
 
-                    </div>
                 </div>
             </div>
             <!-- Side Stat -->
