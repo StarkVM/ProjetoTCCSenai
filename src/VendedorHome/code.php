@@ -202,10 +202,7 @@ function formatarReais(float $valor): string
                     <span class="material-symbols-outlined">inventory_2</span>
                     <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Inventário</span>
                 </button>
-                <button class="tab-btn p-4 w-full flex items-center justify-center md:justify-start gap-4 opacity-60 hover:opacity-100 transition-all group" id="btn-proposals" onclick="switchTab('proposals')">
-                    <span class="material-symbols-outlined">request_quote</span>
-                    <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Propostas</span>
-                </button>
+
                 <button class="tab-btn p-4 w-full flex items-center justify-center md:justify-start gap-4 opacity-60 hover:opacity-100 transition-all group" id="btn-rentals" onclick="switchTab('rentals')">
                     <span class="material-symbols-outlined">engineering</span>
                     <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Aluguéis</span>
