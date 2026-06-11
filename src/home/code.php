@@ -227,22 +227,22 @@ function formatarReais(float $valor): string
                         </div>
 
                     <?php else: ?>
-
-                    <?php foreach ($dados as $item):
-                    $id             = (string) ($item['listingId'] ?? "0");
-                    $title          = htmlspecialchars($item['title'] ?? '');
-                    $description    = htmlspecialchars($item['description'] ?? '');
-                    $dailyPrice     = formatarReais((float) ($item['dailyPrice'] ?? 0));
-                    $images         = $item['images'] ?? [];
-                    $imagemPrincipal = htmlspecialchars(!empty($images) ? ($images[0]['url'] ?? 'placeholder.jpg') : 'placeholder.jpg');
-                    $cidade         = htmlspecialchars($item['pickupCity'] ?? '');
-                    $estado         = htmlspecialchars($item['pickupState'] ?? '');
-                    $localizacao    = "{$cidade}, {$estado}";
-                    $isFleet        = !empty($item['isFleet']);
-                    $operador       = !empty($item['operatorAvailable']);
-                    $frete          = !empty($item['freightAvailable']);
-                    ?>
-                        <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div id="cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <?php foreach ($dados as $item):
+                        $id             = (string) ($item['listingId'] ?? "0");
+                        $title          = htmlspecialchars($item['title'] ?? '');
+                        $description    = htmlspecialchars($item['description'] ?? '');
+                        $dailyPrice     = formatarReais((float) ($item['dailyPrice'] ?? 0));
+                        $images         = $item['images'] ?? [];
+                        $imagemPrincipal = htmlspecialchars(!empty($images) ? ($images[0]['url'] ?? 'placeholder.jpg') : 'placeholder.jpg');
+                        $cidade         = htmlspecialchars($item['pickupCity'] ?? '');
+                        $estado         = htmlspecialchars($item['pickupState'] ?? '');
+                        $localizacao    = "{$cidade}, {$estado}";
+                        $isFleet        = !empty($item['isFleet']);
+                        $operador       = !empty($item['operatorAvailable']);
+                        $frete          = !empty($item['freightAvailable']);
+                        ?>
+                        
                             <div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
                                 <div class="relative h-64 overflow-hidden">
                                     <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Perfil lateral de uma grande escavadeira amarela em solo macio, com alto nível de detalhe em texturas metálicas e sistemas hidráulicos" />
@@ -271,10 +271,8 @@ function formatarReais(float $valor): string
                                     </button>
                                 </div>
                             </div>
-                        </div>
-
             <?php endforeach; ?>
-
+                    </div>
                     <?php endif; ?>
         </section>
         <!-- Why Us Section (Bento Grid) -->

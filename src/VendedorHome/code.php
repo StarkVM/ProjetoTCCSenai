@@ -12,6 +12,7 @@ if($_POST["acao"] == "deletar") deletar($_POST["id"]);
 $dados = [];
 $historico = [];
 
+if($_POST["acao"] == "cancelar") cancelar($_POST["id"]);
 /// FUNÇÃO PARA DELETAR UM ANUNCIO
 function deletar($lid) : void
 {
@@ -42,7 +43,35 @@ function deletar($lid) : void
     }
 
 }
+function cancelar($lid) : void
+{
+    $endpoints = new Endpoints();
+    $url = $endpoints->urlRentals. "/{$lid}/cancel";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true); //  define que é delete
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-Type: application/json",
+            "Authorization: Bearer " . $_SESSION['accessToken']
+    ]); // tipo do envio
 
+    $response = curl_exec($ch);
+    $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $data = json_decode($response, true); // tranforma json em array
+    curl_close($ch);
+
+    if($statusCode >= 200 && $statusCode <= 299) {
+
+        header("Refresh:0");
+
+
+    }
+    else
+    {
+        $responseError = "Ocorreu um erro ao cancelar o aluguel, por favor tente novamente.";
+    }
+
+}
 $endpoints = new Endpoints();
 $url = $endpoints->urlListing. "?mine=true&page=1&pageSize=50&status=Approved";
 
@@ -79,6 +108,38 @@ function formatarReais(float $valor): string
 }
 
 
+$url2 = $endpoints->urlRentals. "?Role=Provider&status=Active&page=1&pageSize=40";
+
+
+$ch2 = curl_init($url2);
+
+curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+curl_setopt($ch2, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $_SESSION['accessToken']
+]); // tipo do envio
+
+$response2 = curl_exec($ch2);
+$statusCode = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
+$data2 = json_decode($response2, true); // tranforma json em array
+curl_close($ch2);
+
+global $id;
+if ($statusCode >= 200 && $statusCode <= 299) {
+    $responseData = json_decode($response2, true);
+
+    $dados2 = $responseData['items'] ?? [];
+
+} else {
+    $dados2 = [];
+
+}
+
+function fmtDate($d) {
+    if (empty($d)) return '-';
+    $dt = DateTime::createFromFormat('Y-m-d', substr($d, 0, 10));
+    return $dt ? $dt->format('d/m/Y') : htmlspecialchars($d);
+}
 ?>
 
 
@@ -203,10 +264,7 @@ function formatarReais(float $valor): string
                     <span class="material-symbols-outlined">inventory_2</span>
                     <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Inventário</span>
                 </button>
-                <button class="tab-btn p-4 w-full flex items-center justify-center md:justify-start gap-4 opacity-60 hover:opacity-100 transition-all group" id="btn-proposals" onclick="switchTab('proposals')">
-                    <span class="material-symbols-outlined">request_quote</span>
-                    <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Propostas</span>
-                </button>
+
                 <button class="tab-btn p-4 w-full flex items-center justify-center md:justify-start gap-4 opacity-60 hover:opacity-100 transition-all group" id="btn-rentals" onclick="switchTab('rentals')">
                     <span class="material-symbols-outlined">engineering</span>
                     <span class="hidden md:block font-headline font-bold uppercase text-xs tracking-wider">Aluguéis</span>
@@ -228,7 +286,7 @@ function formatarReais(float $valor): string
                 <p id="responseErro" class="text-red-500 text-sm font-medium">
                     <?php if (isset($responseError)) echo $responseError; ?>
                 </p>
-                <div class="tab-content" id="inventory-actions">
+                <div id="inventory-actions">
                     <button onclick="window.location.href='../CadMaquinas/code.php'" class="btn-industrial px-6 py-3 text-white rounded-md font-headline font-bold uppercase text-xs tracking-wide flex items-center justify-center gap-2 shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
                         <span class="material-symbols-outlined text-sm">add</span>
                         Cadastrar Máquina
@@ -311,7 +369,7 @@ function formatarReais(float $valor): string
                                         <button onclick="openDisableAccountModal('<?= $id ?>')"  class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
                                             Deletar
                                         </button>
-                                        <button onclick='openEditModal(<?=  json_encode($id) ?>)'  class="bg-yellow-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
+                                        <button onclick='openEditModalCancel(<?=  json_encode($id) ?>)'  class="bg-yellow-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
                                             Editar
                                         </button>
                                     </div>
@@ -334,14 +392,108 @@ function formatarReais(float $valor): string
                 </div>
             </div>
             <div class="tab-content hidden" id="rentals-content">
-                <div class="p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
-                        <span class="material-symbols-outlined text-3xl opacity-40">key</span>
+                <?php if (empty($dados2)): ?>
+                    <div class="p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
+                            <span class="material-symbols-outlined text-3xl opacity-40">key</span>
+                        </div>
+                        <p class="font-headline font-bold uppercase tracking-tighter text-lg">Sem aluguéis ativos</p>
+                        <p class="text-sm opacity-60 max-w-xs mx-auto">Sua frota está pronta para o trabalho. Comece a fechar negócios hoje.</p>
                     </div>
-                    <p class="font-headline font-bold uppercase tracking-tighter text-lg">Sem aluguéis ativos</p>
-                    <p class="text-sm opacity-60 max-w-xs mx-auto">Sua frota está pronta para o trabalho. Comece a fechar negócios hoje.</p>
-                </div>
+                <?php else: ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                        <?php foreach ($dados2 as $item):
+                            $rentalId        = (string) ($item['rentalId']          ?? "0");
+                            $listingId       = (string) ($item['listingId']         ?? "0");
+                            $renterName      = htmlspecialchars($item['renterName'] ?? 'Locatário');
+                            $providerName    = htmlspecialchars($item['providerName'] ?? '');
+                            $startDate       = fmtDate($item['startDate']           ?? null);
+                            $endDate         = fmtDate($item['endDate']             ?? null);
+                            $totalDays       = (int)   ($item['totalDays']          ?? 0);
+                            $totalAmount     = formatarReais((float)($item['totalAmount'] ?? 0));
+                            $includeOperator = !empty($item['includeOperator']);
+                            $includeFreight  = !empty($item['includeFreight']);
+
+                            // Preços detalhados
+                            $dailyPrice      = formatarReais((float)($item['listingDailyPrice'] ?? 0));
+                            $operatorPrice   = formatarReais((float)($item['operatorDailyPrice'] ?? 0));
+                            $freightPrice    = formatarReais((float)($item['freightFixedPrice']  ?? 0));
+
+                            // Status numérico: 1=Approved, 2=InProgress, 3=Completed, 4=Cancelled
+                            $status = (int)($item['status'] ?? 0);
+                            $statusLabel = match($status) {
+                                1 => 'Aprovado',
+                                2 => 'Em andamento',
+                                3 => 'Concluído',
+                                4 => 'Cancelado',
+                                default => 'Desconhecido'
+                            };
+                            $statusColor = match($status) {
+                                1 => 'bg-yellow-500',
+                                2 => 'bg-green-500',
+                                3 => 'bg-stone-400',
+                                4 => 'bg-red-500',
+                                default => 'bg-stone-400'
+                            };
+                            ?>
+                            <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl">
+                                <!-- Header do card -->
+                                <div class="h-2 w-full <?= $statusColor ?>"></div>
+                                <div class="p-5 space-y-3">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="text-[10px] font-black uppercase tracking-widest text-stone-400">Locação ativa</p>
+                                            <p class="font-headline font-bold text-base uppercase leading-tight mt-1"><?= $renterName ?></p>
+                                        </div>
+                                        <span class="<?= $statusColor ?> text-white px-2 py-1 rounded text-[10px] font-black uppercase shadow">
+                    <?= $statusLabel ?>
+                </span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-sm text-on-surface/70">
+                                        <span class="material-symbols-outlined text-base">calendar_month</span>
+                                        <span><?= $startDate ?> – <?= $endDate ?></span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 text-sm text-on-surface/70">
+                                        <span class="material-symbols-outlined text-base">schedule</span>
+                                        <span><?= $totalDays ?> dias · <?= $dailyPrice ?>/dia</span>
+                                    </div>
+
+                                    <?php if ($includeOperator || $includeFreight): ?>
+                                        <div class="flex gap-2 flex-wrap">
+                                            <?php if ($includeOperator): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary">
+                                                    <span class="material-symbols-outlined text-xs">person</span>
+                                                    Operador · <?= $operatorPrice ?>/dia
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ($includeFreight): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary">
+                                                    <span class="material-symbols-outlined text-xs">local_shipping</span>
+                                                    Frete · <?= $freightPrice ?>
+
+                                                </div>
+
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="bg-[#fff8ea] rounded-md p-3">
+                                        <p class="text-[10px] uppercase font-black tracking-widest text-[#835400]">Total</p>
+                                        <p class="text-xl font-black text-[#835400]"><?= $totalAmount ?></p>
+                                    </div>
+                                    <button onclick="openDisableAccountModalCancel('<?= $rentalId ?>')" class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
+
             <div class="tab-content hidden" id="history-content">
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="history-list">
                     <!-- Histórico de aluguéis injetado por JS -->
@@ -572,9 +724,29 @@ function formatarReais(float $valor): string
             </div>
         </div>
     </div>
+    <!-- Modal de Confirmação Cacelar aluguel -->
+    <div id="disableAccountModalCancel" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white dark:bg-[#1c1b1b] rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <div class="p-6 border-b border-stone-200 dark:border-stone-700">
+                <h2 class="text-lg font-bold text-on-surface">Cancelar Aluguel</h2>
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-stone-600 dark:text-stone-400">Tem certeza que deseja cancelar o aluguel?</p>
+                <div class="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 rounded p-4">
+                    <p class="text-xs font-semibold text-red-800 dark:text-red-300 uppercase tracking-widest mb-2">⚠ Atenção</p>
+                    <p class="text-sm text-red-700 dark:text-red-300">Essa ação irá cancelar o aluguel e você não conseguirá acessa-lo novamente. Seus dados serão preservados, mas você precisará entrar em contato com o suporte para reativar.</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-stone-200 dark:border-stone-700 flex gap-3">
+                <button onclick="closeDisableAccountModalCancel()" class="flex-1 px-4 py-2 border-2 border-stone-300 dark:border-stone-600 text-stone-600 dark:text-stone-400 rounded-md font-bold text-xs uppercase hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors">Cancelar</button>
+                <button onclick="confirmDisableAccountCancel()" class="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md font-bold text-xs uppercase transition-colors">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
     <footer id="footer"></footer>
     <script>
+
 
         function strB(str) {
 
@@ -683,8 +855,51 @@ function formatarReais(float $valor): string
                     location.reload();
                 });
         }
+        //////////////////
+        function openDisableAccountModalCancel(id) {
+            anuncioId2 = id;
 
-        
+            document.getElementById('disableAccountModalCancel')
+                .classList.remove('hidden');
+
+            document.getElementById('disableAccountModalCancel')
+                .classList.add('flex');
+        }
+
+        function confirmDisableAccountCancel() {
+            closeDisableAccountModal();
+            cancelarItem(anuncioId2);
+        }
+
+        function closeDisableAccountModalCancel() {
+            document.getElementById('disableAccountModalCancel').classList.add('hidden');
+            document.getElementById('disableAccountModalCancel').classList.remove('flex');
+        }
+
+
+
+        // Fechar modal ao clicar fora dele
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('disableAccountModalCancel');
+            if (modal && e.target === modal) {
+                closeDisableAccountModalCancel();
+            }
+        });
+
+        function cancelarItem(id) {
+
+            fetch('code.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'acao=cancelar&id=' + id
+            })
+                .then(response => response.text())
+                .then(() => {
+                    location.reload();
+                });
+        }
+
+
         // EXEMPLO: Estrutura de dados esperada para cada máquina no inventário
         // Você pode carregar isso via API ou processá-lo no backend e injetar no HTML
         /*
@@ -721,31 +936,26 @@ function formatarReais(float $valor): string
 
 
         function switchTab(tab) {
-            // Content
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
 
             const activeContent = document.getElementById(tab + '-content');
             if (activeContent) activeContent.classList.remove('hidden');
 
-            // Show inventory action only on inventory tab
+            // Mostra botão só no inventário — agora funciona pois não tem tab-content
             const actionBtn = document.getElementById('inventory-actions');
             if (actionBtn) actionBtn.classList.toggle('hidden', tab !== 'inventory');
 
-            // Buttons
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             const activeButton = document.getElementById('btn-' + tab);
             if (activeButton) activeButton.classList.add('active');
 
-            // Header titles
             const titles = {
-                'inventory': ['Meus anúncios', 'Frota Ativa'],
-                'proposals': ['Propostas', 'Negociações em curso'],
-                'rentals': ['Aluguéis', 'Máquinas em operação'],
-                'history': ['Histórico', 'Aluguéis concluídos'],
-                'stats': ['Relatórios', 'Performance da frota']
+                'inventory': ['Meus anúncios',  'Frota Ativa'],
+                'rentals':   ['Aluguéis',        'Máquinas em operação'],
+                'history':   ['Histórico',       'Aluguéis concluídos'],
             };
-            document.getElementById('tab-title').textContent = titles[tab][0];
-            document.getElementById('tab-subtitle').textContent = titles[tab][1];
+            document.getElementById('tab-title').textContent    = titles[tab]?.[0] ?? '';
+            document.getElementById('tab-subtitle').textContent = titles[tab]?.[1] ?? '';
         }
 
 
