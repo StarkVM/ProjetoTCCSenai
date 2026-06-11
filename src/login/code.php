@@ -189,7 +189,13 @@ if (isset($er) && !empty($er)) {
                         </div>
 
                         <!-- Login Button -->
-                        <p id="erro" style="font-size: 10px color=red"><?php if (isset($responseError)) echo $responseError ?></p>
+                        
+                        <?php if (isset($responseError)): ?>
+  <div id="erro" class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
+    <span class="material-symbols-outlined text-sm">error</span>
+    <?= $responseError ?>
+  </div>
+<?php endif; ?>
                         <div class="pt-4">
                             <button name="loginEntrar" class="group relative w-full bg-primary hover:bg-on-primary-container text-on-primary font-headline font-black text-sm uppercase tracking-[0.2em] py-5 rounded-sm transition-all duration-300 flex items-center justify-center gap-3 overflow-hidden" type="submit">
                                 <div class="absolute inset-0  bg-primary-container opacity-100 group-hover:opacity-50 transition-opacity"></div>

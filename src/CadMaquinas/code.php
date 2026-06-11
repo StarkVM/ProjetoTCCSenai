@@ -130,7 +130,12 @@ $responseError = $er;
 
 <body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
   <header id="header"></header>
-
+    <?php if (isset($responseError)): ?>
+    <div class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
+    <span class="material-symbols-outlined text-sm">error</span>
+    <?= $responseError ?>
+    </div>
+    <?php endif; ?>
   <main class="max-w-[1440px] mx-auto px-8 py-16 md:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-end">
       <div class="lg:col-span-8">
@@ -351,11 +356,9 @@ $responseError = $er;
             </div>
           <?php } ?>
         </div>
-      </div>
-        <p id="responseErro" class="text-red-500 text-sm font-medium">
-            <?php if (isset($responseError)) echo $responseError; ?>
-        </p>
-      <div
+</div>
+
+<div
         class="lg:col-span-12 flex flex-col md:flex-row justify-between items-center gap-8 py-12 border-t border-outline-variant/30 mt-8">
         <button name="registrarMaquina"
           class="w-full md:w-auto px-12 py-6 primary-gradient text-white font-headline text-xl font-black uppercase tracking-tighter rounded-md active:scale-95 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-4"
@@ -365,6 +368,7 @@ $responseError = $er;
         </button>
       </div>
     </form>
+
   </main>
 
   <footer id="footer"></footer>

@@ -289,9 +289,12 @@ if (isset($er) && !empty($er)) {
           </div>
 
           <!-- ERRO -->
-          <p id="responseErro" class="text-red-500 text-sm font-medium">
-            <?php if (isset($responseError)) echo $responseError; ?>
-          </p>
+        <?php if (isset($responseError)): ?>
+        <div id="responseErro" class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
+          <span class="material-symbols-outlined text-sm">error</span>
+          <?= $responseError ?>
+        </div>
+        <?php endif; ?>
 
           <!-- BOTÃO -->
           <div class="pt-4">
