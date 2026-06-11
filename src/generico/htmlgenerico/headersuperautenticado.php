@@ -101,7 +101,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
 <nav class="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-8 md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
   <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-opacity duration-200" href="../home/code.php">Início</a>
   <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-opacity duration-200" href="../catalogoAnuncios/code.php">Catálogo</a>
-  <a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>
+
 </nav>
 
 

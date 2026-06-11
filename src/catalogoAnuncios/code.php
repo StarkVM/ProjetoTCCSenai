@@ -1,4 +1,6 @@
 <?php
+
+error_reporting(0);
 require_once("../endpoints.php");
 $endpoints = new Endpoints();
 
@@ -32,6 +34,8 @@ function formatarReais(float $valor): string
 {
     return 'R$ ' . number_format($valor, 2, ',', '.');
 }
+
+
 ?>
 
 
@@ -214,11 +218,11 @@ function formatarReais(float $valor): string
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                            <input type="checkbox"
+                            <input value="0" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Escavadeiras
+                                Desconhecido
                             </span>
                         </label>
 
@@ -226,11 +230,11 @@ function formatarReais(float $valor): string
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                            <input type="checkbox"
+                            <input value="1" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Tratores
+                                Escavadeira
                             </span>
                         </label>
 
@@ -238,11 +242,11 @@ function formatarReais(float $valor): string
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                                                        <input type="checkbox"
+                                                        <input value="2" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Retroescavadeiras
+                                Retroescavadeira
                             </span>
                         </label>
 
@@ -250,11 +254,11 @@ function formatarReais(float $valor): string
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                            <input type="checkbox"
+                            <input value="3" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Guindastes
+                                P&aacute; carregadeira
                             </span>
                         </label>
 
@@ -262,44 +266,80 @@ function formatarReais(float $valor): string
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
 
-                            <input type="checkbox"
+                            <input value="4" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Rolos
+                                Empilhadeira
                             </span>
                         </label>
 
                         <!-- ITEM -->
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                            <input type="checkbox"
+                            <input value="5" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Carregadeiras
+                                Guindaste
                             </span>
                         </label>
 
                         <!-- ITEM -->
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                            <input type="checkbox"
+                            <input value="6" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Mineração
+                                Trator de esteira
                             </span>
                         </label>
 
                         <!-- ITEM -->
                         <label
                             class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                            <input type="checkbox"
+                            <input value="7" type="checkbox"
                                 class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
 
                             <span class="text-[#2A2A2A] font-semibold">
-                                Asfalto
+                                Rolo compactador
+                            </span>
+                        </label>
+                        <label
+                                class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input value="8" type="checkbox"
+                                   class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Caminh&atilde;o basculante
+                            </span>
+                        </label>
+                        <label
+                                class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input value="9" type="checkbox"
+                                   class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Minicarregadeira
+                            </span>
+                        </label>
+                        <label
+                                class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input value="99" type="checkbox"
+                                   class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Outro
+                            </span>
+                        </label>
+                        <label
+                                class="group flex items-center gap-3 bg-white border border-[#DDD7CB] hover:border-[#C58B18] rounded-xl px-4 py-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                            <input value="7" type="checkbox"
+                                   class="w-5 h-5 cursor-pointer appearance-none rounded border-2 border-[#C58B18] checked:bg-[#C58B18] checked:border-[#C58B18] relative">
+
+                            <span class="text-[#2A2A2A] font-semibold">
+                                Rolo compactador
                             </span>
                         </label>
 
@@ -387,37 +427,117 @@ function formatarReais(float $valor): string
         </div>
     </main>
     <!-- Footer -->
+    </main>
+
     <footer id="footer"></footer>
     <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
-
     <script>
-
-
-        const filterToggleBtn = document.getElementById("filter-toggle-btn");
-        const filtersPanel = document.getElementById("filters-panel");
-
-        filterToggleBtn.addEventListener("click", () => {
-            filtersPanel.classList.toggle("hidden");
+        document.getElementById("filter-toggle-btn").addEventListener("click", () => {
+            document.getElementById("filters-panel").classList.toggle("hidden");
         });
 
+        const searchInput = document.querySelector("input[type='text']");
+        const checkboxes  = document.querySelectorAll("#filters-panel input[type='checkbox']");
 
-        const filterButtons = document.querySelectorAll(".filter-btn");
+        let debounceTimer = null;
 
-        filterButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
+        function fetchFiltered() {
+            const term       = searchInput.value.trim();
+            const categories = Array.from(checkboxes)
+                .filter(cb => cb.checked)
+                .map(cb => cb.value);
 
-                // remove estilo ativo de todos
-                filterButtons.forEach(b => {
-                    b.classList.remove("bg-zinc-900", "text-white", "border-zinc-900");
-                    b.classList.add("bg-white", "text-zinc-600", "border-zinc-200");
-                });
+            // Usa só a primeira categoria selecionada (API aceita um por vez conforme Swagger)
+            const category = categories.length ? categories[0] : "";
 
-                // adiciona no clicado
-                btn.classList.remove("bg-white", "text-zinc-600", "border-zinc-200");
-                btn.classList.add("bg-zinc-900", "text-white", "border-zinc-900");
-            });
+            let url = `/ProjetoTCCSenai/src/CatalogoAnuncios/buscar.php?page=1&pageSize=50`;
+            if (term)     url += `&Name=${encodeURIComponent(term)}`;
+            if (category) url += `&Category=${encodeURIComponent(category)}`;
+
+            console.log("Buscando:", url); // ← confirma no DevTools que os params estão chegando
+
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Resultado:", data); // ← veja o retorno
+                    renderCards(data.items ?? []);
+                })
+                .catch(err => console.error("Erro:", err));
+        }
+        function renderCards(items) {
+            const container = document.getElementById("cards-container");
+            if (!container) return;
+
+            if (!items.length) {
+                container.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center py-24 text-center">
+                        <span style="font-size:50px">😢</span>
+                        <h3 class="text-2xl font-bold uppercase mt-4">Nenhum resultado encontrado</h3>
+                        <p class="text-sm text-on-surface-variant mt-2">Tente outros termos ou remova alguns filtros.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = items.map(item => {
+                const id         = item.listingId ?? "0";
+                const title      = escHtml(item.title ?? "");
+                const dailyPrice = formatBRL(item.dailyPrice ?? 0);
+                const images     = item.images ?? [];
+                const img        = escHtml(images.length ? (images[0].url ?? "placeholder.jpg") : "placeholder.jpg");
+                const local      = [escHtml(item.pickupCity ?? ""), escHtml(item.pickupState ?? "")]
+                    .filter(Boolean).join(", ") || "—";
+
+                return `
+                <div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${img}" alt="${title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Disponível</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-headline text-xl font-bold uppercase tracking-tight mb-4">${title}</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-surface-container px-3 py-2 rounded-sm">
+                                <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Preço/Dia</p>
+                                <p class="font-headline font-bold text-primary">${dailyPrice}</p>
+                            </div>
+                            <div class="bg-surface-container px-3 py-2 rounded-sm">
+                                <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Localização</p>
+                                <p class="font-headline font-bold text-on-surface truncate">${local}</p>
+                            </div>
+                        </div>
+                        <button onclick="window.location.href='../PagMaquina/code.php?cd=${id}'"
+                            class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
+                            Solicitar Locação
+                        </button>
+                    </div>
+                </div>`;
+            }).join("");
+        }
+
+        function escHtml(str) {
+            return String(str)
+                .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+                .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+        }
+
+        function formatBRL(value) {
+            return "R$ " + Number(value).toFixed(2)
+                .replace(".", ",")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Enter na barra de busca
+        searchInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                clearTimeout(debounceTimer);
+                fetchFiltered();
+            }
         });
+
+        // Cada checkbox atualiza imediatamente ao marcar/desmarcar
+        checkboxes.forEach(cb => cb.addEventListener("change", fetchFiltered));
     </script>
 </body>
-
 </html>
+
+

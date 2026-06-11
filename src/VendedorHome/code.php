@@ -13,6 +13,7 @@ $dados = [];
 $historico = [];
 
 if($_POST["acao"] == "cancelar") cancelar($_POST["id"]);
+
 /// FUNÇÃO PARA DELETAR UM ANUNCIO
 function deletar($lid) : void
 {
@@ -72,6 +73,7 @@ function cancelar($lid) : void
     }
 
 }
+
 $endpoints = new Endpoints();
 $url = $endpoints->urlListing. "?mine=true&page=1&pageSize=50&status=Approved";
 
@@ -124,7 +126,7 @@ $statusCode = curl_getinfo($ch2, CURLINFO_HTTP_CODE);
 $data2 = json_decode($response2, true); // tranforma json em array
 curl_close($ch2);
 
-global $id;
+
 if ($statusCode >= 200 && $statusCode <= 299) {
     $responseData = json_decode($response2, true);
 
@@ -139,6 +141,36 @@ function fmtDate($d) {
     if (empty($d)) return '-';
     $dt = DateTime::createFromFormat('Y-m-d', substr($d, 0, 10));
     return $dt ? $dt->format('d/m/Y') : htmlspecialchars($d);
+}
+
+$url3 = $endpoints->urlRentals. "?Role=Provider&page=1&pageSize=40";
+
+
+$ch3 = curl_init($url3);
+
+curl_setopt($ch3, CURLOPT_RETURNTRANSFER, true); // faz a resposta vir como string
+curl_setopt($ch3, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $_SESSION['accessToken']
+]); // tipo do envio
+
+$response3 = curl_exec($ch3);
+$statusCode = curl_getinfo($ch3, CURLINFO_HTTP_CODE);
+$data3 = json_decode($response3, true); // tranforma json em array
+curl_close($ch3);
+
+
+if ($statusCode >= 200 && $statusCode <= 299) {
+    $responseData = json_decode($response3, true);
+
+    // Filtra apenas os itens com status >= 3 (Concluído ou Cancelado)
+    $dados3 = array_values(array_filter(
+            $responseData['items'] ?? [],
+            fn($item) => (int)($item['status'] ?? 0) >= 3
+    ));
+
+} else {
+    $dados3 = [];
 }
 ?>
 
@@ -327,7 +359,7 @@ function fmtDate($d) {
                             $frete          = !empty($item['freightAvailable']);
                             ?>
 
-                            <div style="cursor: pointer"  class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
+                            <div style="cursor: pointer" class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl group">
                                 <div onclick="window.location.href='../PagMaquina/code.php?cd=<?= $id?>'" class="h-48 relative overflow-hidden">
                                     <img src="<?= $imagemPrincipal ?>" alt="<?= $title ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                                     <div class="absolute inset-0 machine-card-gradient"></div>
@@ -361,36 +393,42 @@ function fmtDate($d) {
                                         </div>
                                     <?php endif; ?>
 
-                                    <div class="flex items-center justify-between pt-4 border-t border-outline-variant/5">
-                                        <div>
-                                            <p class="text-[10px] uppercase font-bold opacity-40 mb-0.5">Diária</p>
-                                            <p class="text-xl font-headline font-black text-on-surface"><?= $dailyPrice ?></p>
+                                    <div class="pt-4 border-t border-outline-variant/5">
+                                        <div class="mb-4">
+                                            <p class="text-[10px] uppercase font-bold opacity-40">Diária</p>
+                                            <p class="text-xl font-headline font-black"><?= $dailyPrice ?></p>
                                         </div>
-                                        <button onclick="openDisableAccountModal('<?= $id ?>')"  class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
-                                            Deletar
-                                        </button>
-                                        <button onclick='openEditModalCancel(<?=  json_encode($id) ?>)'  class="bg-yellow-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
-                                            Editar
-                                        </button>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            <button
+                                                    type="button"
+                                                    onclick="openDisableAccountModal('<?= $id ?>')"
+                                                    class="bg-red-600 hover:bg-red-700 text-white py-2 px-2 rounded text-[10px] font-bold uppercase">
+                                                Deletar
+                                            </button>
+                                            <button
+                                                    type="button"
+                                                    onclick='openEditModal(<?= json_encode($id) ?>)'
+                                                    class="bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-2 rounded text-[10px] font-bold uppercase">
+                                                Editar
+                                            </button>
+                                            <button
+                                                    type="button"
+                                                    onclick='openDisableAccountModalImage(<?= json_encode($id) ?>)'
+                                                    class="bg-amber-700 hover:bg-amber-800 text-white py-2 px-2 rounded text-[10px] font-bold uppercase">
+                                                Editar Imagens
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div><!-- FIM DO CARD -->
 
                         <?php endforeach; ?>
 
                     <?php endif; ?>
 
-                </div>
-            </div>
-            <div class="tab-content hidden" id="proposals-content">
-                <div class="p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
-                        <span class="material-symbols-outlined text-3xl opacity-40">mail</span>
-                    </div>
-                    <p class="font-headline font-bold uppercase tracking-tighter text-lg">Nenhuma proposta recebida</p>
-                    <p class="text-sm opacity-60 max-w-xs mx-auto">Assim que houver interessados em suas máquinas, as propostas aparecerão aqui.</p>
-                </div>
-            </div>
+                </div><!-- FIM DO GRID -->
+            </div><!-- FIM #inventory-content -->
+
             <div class="tab-content hidden" id="rentals-content">
                 <?php if (empty($dados2)): ?>
                     <div class="p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
@@ -414,13 +452,9 @@ function fmtDate($d) {
                             $totalAmount     = formatarReais((float)($item['totalAmount'] ?? 0));
                             $includeOperator = !empty($item['includeOperator']);
                             $includeFreight  = !empty($item['includeFreight']);
-
-                            // Preços detalhados
                             $dailyPrice      = formatarReais((float)($item['listingDailyPrice'] ?? 0));
                             $operatorPrice   = formatarReais((float)($item['operatorDailyPrice'] ?? 0));
                             $freightPrice    = formatarReais((float)($item['freightFixedPrice']  ?? 0));
-
-                            // Status numérico: 1=Approved, 2=InProgress, 3=Completed, 4=Cancelled
                             $status = (int)($item['status'] ?? 0);
                             $statusLabel = match($status) {
                                 1 => 'Aprovado',
@@ -438,7 +472,6 @@ function fmtDate($d) {
                             };
                             ?>
                             <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl">
-                                <!-- Header do card -->
                                 <div class="h-2 w-full <?= $statusColor ?>"></div>
                                 <div class="p-5 space-y-3">
                                     <div class="flex justify-between items-start">
@@ -447,20 +480,17 @@ function fmtDate($d) {
                                             <p class="font-headline font-bold text-base uppercase leading-tight mt-1"><?= $renterName ?></p>
                                         </div>
                                         <span class="<?= $statusColor ?> text-white px-2 py-1 rounded text-[10px] font-black uppercase shadow">
-                    <?= $statusLabel ?>
-                </span>
+                                            <?= $statusLabel ?>
+                                        </span>
                                     </div>
-
                                     <div class="flex items-center gap-2 text-sm text-on-surface/70">
                                         <span class="material-symbols-outlined text-base">calendar_month</span>
                                         <span><?= $startDate ?> – <?= $endDate ?></span>
                                     </div>
-
                                     <div class="flex items-center gap-2 text-sm text-on-surface/70">
                                         <span class="material-symbols-outlined text-base">schedule</span>
                                         <span><?= $totalDays ?> dias · <?= $dailyPrice ?>/dia</span>
                                     </div>
-
                                     <?php if ($includeOperator || $includeFreight): ?>
                                         <div class="flex gap-2 flex-wrap">
                                             <?php if ($includeOperator): ?>
@@ -473,95 +503,120 @@ function fmtDate($d) {
                                                 <div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary">
                                                     <span class="material-symbols-outlined text-xs">local_shipping</span>
                                                     Frete · <?= $freightPrice ?>
-
                                                 </div>
-
                                             <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
-
                                     <div class="bg-[#fff8ea] rounded-md p-3">
                                         <p class="text-[10px] uppercase font-black tracking-widest text-[#835400]">Total</p>
                                         <p class="text-xl font-black text-[#835400]"><?= $totalAmount ?></p>
                                     </div>
-                                    <button onclick="openDisableAccountModalCancel('<?= $rentalId ?>')" class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest ">
+                                    <button onclick="openDisableAccountModalCancel('<?= $rentalId ?>')" class="bg-red-600 hover:bg-primary transition-colors text-white px-4 py-2 rounded text-[10px] font-bold uppercase tracking-widest">
                                         Cancelar
                                     </button>
                                 </div>
-                            </div>
+                            </div><!-- FIM DO CARD -->
+
                         <?php endforeach; ?>
-                    </div>
+
+                    </div><!-- FIM DO GRID -->
                 <?php endif; ?>
-            </div>
+            </div><!-- FIM #rentals-content -->
 
             <div class="tab-content hidden" id="history-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="history-list">
-                    <!-- Histórico de aluguéis injetado por JS -->
-                </div>
-            </div>
-            <div class="tab-content hidden" id="stats-content">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 hover:shadow-lg transition-shadow">
-                        <p class="text-[10px] font-bold uppercase opacity-60 mb-2 tracking-widest">Rendimento Mensal</p>
-                        <p class="text-3xl font-headline font-black">R$ 142.500</p>
-                        <div class="flex items-center gap-1 text-primary text-[10px] font-bold mt-2 bg-primary/5 inline-flex px-2 py-1 rounded">
-                            <span class="material-symbols-outlined text-xs">trending_up</span>
-                            <span>+12% vs mês anterior</span>
+                <?php if (empty($dados3)): ?>
+                    <div class="p-16 bg-surface-container-low rounded-xl border-dashed border-2 border-outline-variant/30 text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-surface-container-highest mb-4">
+                            <span class="material-symbols-outlined text-3xl opacity-40">key</span>
                         </div>
+                        <p class="font-headline font-bold uppercase tracking-tighter text-lg">Sem históricos</p>
+                        <p class="text-sm opacity-60 max-w-xs mx-auto">Sua frota está pronta para o trabalho. Comece a fechar negócios hoje.</p>
                     </div>
-                    <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 hover:shadow-lg transition-shadow">
-                        <p class="text-[10px] font-bold uppercase opacity-60 mb-2 tracking-widest">Frota Ativa</p>
-                        <p class="text-3xl font-headline font-black">24 Máquinas</p>
-                        <div class="mt-3 flex items-center gap-4">
-                            <div>
-                                <p class="text-[10px] font-bold text-primary">18</p>
-                                <p class="text-[9px] uppercase opacity-50 font-bold">Alugadas</p>
-                            </div>
-                            <div class="w-px h-6 bg-outline-variant/20"></div>
-                            <div>
-                                <p class="text-[10px] font-bold">06</p>
-                                <p class="text-[9px] uppercase opacity-50 font-bold">Disponíveis</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10 md:col-span-2 lg:col-span-1 hover:shadow-lg transition-shadow">
-                        <p class="text-[10px] font-bold uppercase opacity-60 mb-2 tracking-widest">Visualizações</p>
-                        <p class="text-3xl font-headline font-black">1.482</p>
-                        <p class="text-[10px] opacity-60 mt-2 font-bold uppercase">Últimos 30 dias</p>
-                    </div>
-                </div>
-                <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/10">
-                    <h3 class="font-headline font-bold uppercase tracking-tight mb-4 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary">analytics</span>
-                        Análise de Utilização
-                    </h3>
-                    <div class="h-48 w-full bg-surface-container-highest/50 rounded-lg flex items-end justify-around p-4 gap-2">
-                        <div class="w-full bg-primary/20 h-1/4 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">25%</div>
-                        </div>
-                        <div class="w-full bg-primary/40 h-2/4 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">50%</div>
-                        </div>
-                        <div class="w-full bg-primary/60 h-3/4 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">75%</div>
-                        </div>
-                        <div class="w-full bg-primary h-full rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">100%</div>
-                        </div>
-                        <div class="w-full bg-primary/80 h-4/5 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">80%</div>
-                        </div>
-                        <div class="w-full bg-primary/50 h-3/5 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">60%</div>
-                        </div>
-                        <div class="w-full bg-primary h-5/6 rounded-t-sm relative group">
-                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold hidden group-hover:block">85%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <?php else: ?>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                        <?php foreach ($dados3 as $item):
+                            $rentalId        = (string) ($item['rentalId']          ?? "0");
+                            $listingId       = (string) ($item['listingId']         ?? "0");
+                            $renterName      = htmlspecialchars($item['renterName'] ?? 'Locatário');
+                            $providerName    = htmlspecialchars($item['providerName'] ?? '');
+                            $startDate       = fmtDate($item['startDate']           ?? null);
+                            $endDate         = fmtDate($item['endDate']             ?? null);
+                            $totalDays       = (int)   ($item['totalDays']          ?? 0);
+                            $totalAmount     = formatarReais((float)($item['totalAmount'] ?? 0));
+                            $includeOperator = !empty($item['includeOperator']);
+                            $includeFreight  = !empty($item['includeFreight']);
+                            $dailyPrice      = formatarReais((float)($item['listingDailyPrice'] ?? 0));
+                            $operatorPrice   = formatarReais((float)($item['operatorDailyPrice'] ?? 0));
+                            $freightPrice    = formatarReais((float)($item['freightFixedPrice']  ?? 0));
+                            $status = (int)($item['status'] ?? 0);
+                            $statusLabel = match($status) {
+                                1 => 'Aprovado',
+                                2 => 'Em andamento',
+                                3 => 'Concluído',
+                                4 => 'Cancelado',
+                                default => 'Desconhecido'
+                            };
+                            $statusColor = match($status) {
+                                1 => 'bg-yellow-500',
+                                2 => 'bg-green-500',
+                                3 => 'bg-stone-400',
+                                4 => 'bg-red-500',
+                                default => 'bg-stone-400'
+                            };
+                            ?>
+                            <div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:border-primary/30 transition-all hover:shadow-xl">
+                                <div class="h-2 w-full <?= $statusColor ?>"></div>
+                                <div class="p-5 space-y-3">
+                                    <div class="flex justify-between items-start">
+                                        <div>
+                                            <p class="text-[10px] font-black uppercase tracking-widest text-stone-400">Locação ativa</p>
+                                            <p class="font-headline font-bold text-base uppercase leading-tight mt-1"><?= $renterName ?></p>
+                                        </div>
+                                        <span class="<?= $statusColor ?> text-white px-2 py-1 rounded text-[10px] font-black uppercase shadow">
+                                            <?= $statusLabel ?>
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-on-surface/70">
+                                        <span class="material-symbols-outlined text-base">calendar_month</span>
+                                        <span><?= $startDate ?> – <?= $endDate ?></span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-on-surface/70">
+                                        <span class="material-symbols-outlined text-base">schedule</span>
+                                        <span><?= $totalDays ?> dias · <?= $dailyPrice ?>/dia</span>
+                                    </div>
+                                    <?php if ($includeOperator || $includeFreight): ?>
+                                        <div class="flex gap-2 flex-wrap">
+                                            <?php if ($includeOperator): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-primary/10 rounded text-[10px] font-bold text-primary">
+                                                    <span class="material-symbols-outlined text-xs">person</span>
+                                                    Operador · <?= $operatorPrice ?>/dia
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if ($includeFreight): ?>
+                                                <div class="flex items-center gap-1 px-2 py-1 bg-tertiary/10 rounded text-[10px] font-bold text-tertiary">
+                                                    <span class="material-symbols-outlined text-xs">local_shipping</span>
+                                                    Frete · <?= $freightPrice ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="bg-[#fff8ea] rounded-md p-3">
+                                        <p class="text-[10px] uppercase font-black tracking-widest text-[#835400]">Total</p>
+                                        <p class="text-xl font-black text-[#835400]"><?= $totalAmount ?></p>
+                                    </div>
+                                </div>
+                            </div><!-- FIM DO CARD -->
+
+                        <?php endforeach; ?>
+
+                    </div><!-- FIM DO GRID -->
+                <?php endif; ?>
+            </div><!-- FIM #history-content -->
+
+        </div><!-- FIM .flex-1 (Tab Content Area) -->
     </main>
+
 
     <!-- Modal de Edição -->
     <div id="editModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 overflow-y-auto">
@@ -743,7 +798,65 @@ function fmtDate($d) {
             </div>
         </div>
     </div>
+    <!-- Modal de edição image aluguel -->
+    <!-- Modal de edição de imagens -->
+    <div id="AccountModalImage" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-[#1c1b1b] rounded-xl shadow-2xl max-w-2xl w-full mx-4">
 
+            <div class="flex items-center justify-between p-6 border-b border-stone-200 dark:border-stone-700">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1">add_a_photo</span>
+                    <h2 class="font-headline text-xl font-bold uppercase tracking-tight">Editar Imagens</h2>
+                </div>
+                <button onclick="closeDisableAccountModalImage()" class="text-on-surface/60 hover:text-on-surface transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <p class="text-xs text-on-surface-variant mb-4 uppercase tracking-widest font-bold">
+                    Selecione até 5 imagens · máx. 5MB cada
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="image-slots-container">
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <div class="relative" id="slot-wrapper-<?= $i ?>">
+                            <label for="imagem<?= $i ?>"
+                                   class="image-slot aspect-square bg-surface-container-low rounded-sm border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center p-4 hover:bg-surface-container-high transition-colors cursor-pointer overflow-hidden relative"
+                                   data-slot="<?= $i ?>">
+                                <img id="preview-<?= $i ?>"
+                                     class="image-preview absolute inset-0 h-full w-full object-cover hidden"
+                                     alt="Prévia <?= $i ?>" />
+                                <span id="placeholder-<?= $i ?>" class="flex flex-col items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-3xl">add</span>
+                            <span class="font-headline text-[10px] font-bold uppercase tracking-widest">Imagem <?= $i ?></span>
+                        </span>
+                            </label>
+                            <input id="imagem<?= $i ?>" type="file" accept="image/*" class="hidden image-input" data-slot="<?= $i ?>" />
+                            <button type="button"
+                                    onclick="removerImagem(<?= $i ?>)"
+                                    id="remove-btn-<?= $i ?>"
+                                    class="remove-image hidden absolute top-1 right-1 h-6 w-6 rounded-full bg-red-600 text-white items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">close</span>
+                            </button>
+                        </div>
+                    <?php endfor; ?>
+                </div>
+                <p id="imageModalErro" class="text-red-500 text-xs mt-3 hidden"></p>
+            </div>
+
+            <div class="p-6 border-t border-stone-200 dark:border-stone-700 flex gap-3 justify-end">
+                <button onclick="closeDisableAccountModalImage()"
+                        class="px-5 py-2 border-2 border-stone-300 text-stone-600 rounded-md font-bold text-xs uppercase hover:bg-stone-50 transition-colors">
+                    Cancelar
+                </button>
+                <button onclick="salvarImagens()"
+                        id="btnSalvarImagens"
+                        class="px-5 py-2 bg-primary text-white rounded-md font-bold text-xs uppercase hover:bg-primary/90 transition-colors">
+                    Salvar Imagens
+                </button>
+            </div>
+        </div>
+    </div>
     <footer id="footer"></footer>
     <script>
 
@@ -898,7 +1011,112 @@ function fmtDate($d) {
                     location.reload();
                 });
         }
+        ///////////////////////////
+        let currentImageListingId = null;
 
+        function openDisableAccountModalImage(id) {
+            currentImageListingId = id;
+
+            // Limpa slots anteriores
+            for (let i = 1; i <= 5; i++) removerImagem(i);
+            document.getElementById('imageModalErro').classList.add('hidden');
+
+            document.getElementById('AccountModalImage').classList.remove('hidden');
+            document.getElementById('AccountModalImage').classList.add('flex');
+        }
+
+        function closeDisableAccountModalImage() {
+            document.getElementById('AccountModalImage').classList.add('hidden');
+            document.getElementById('AccountModalImage').classList.remove('flex');
+            currentImageListingId = null;
+        }
+
+        // Fechar ao clicar fora
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('AccountModalImage');
+            if (modal && e.target === modal) closeDisableAccountModalImage();
+        });
+
+        // Preview ao selecionar arquivo
+        document.querySelectorAll('.image-input').forEach(input => {
+            input.addEventListener('change', function () {
+                const slot    = this.dataset.slot;
+                const file    = this.files[0];
+                if (!file) return;
+
+                const preview     = document.getElementById('preview-' + slot);
+                const placeholder = document.getElementById('placeholder-' + slot);
+                const removeBtn   = document.getElementById('remove-btn-' + slot);
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                    placeholder.classList.add('hidden');
+                    removeBtn.classList.remove('hidden');
+                    removeBtn.classList.add('flex');
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function removerImagem(slot) {
+            const input       = document.getElementById('imagem' + slot);
+            const preview     = document.getElementById('preview-' + slot);
+            const placeholder = document.getElementById('placeholder-' + slot);
+            const removeBtn   = document.getElementById('remove-btn-' + slot);
+
+            if (input)       input.value = '';
+            if (preview)     { preview.src = ''; preview.classList.add('hidden'); }
+            if (placeholder) placeholder.classList.remove('hidden');
+            if (removeBtn)   { removeBtn.classList.add('hidden'); removeBtn.classList.remove('flex'); }
+        }
+
+        function salvarImagens() {
+            if (!currentImageListingId) return;
+
+            const formData = new FormData();
+            let count = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const input = document.getElementById('imagem' + i);
+                if (input?.files[0]) {
+                    formData.append('imagens[]', input.files[0]);
+                    count++;
+                }
+            }
+
+            if (count === 0) {
+                const erro = document.getElementById('imageModalErro');
+                erro.textContent = 'Selecione ao menos uma imagem.';
+                erro.classList.remove('hidden');
+                return;
+            }
+
+            const btn = document.getElementById('btnSalvarImagens');
+            btn.textContent = 'Salvando...';
+            btn.disabled    = true;
+
+            fetch(`/ProjetoTCCSenai/src/VendedorHome/atualizarImagem.php?cd=${currentImageListingId}`, {
+                method: 'POST',
+                body:   formData,
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        closeDisableAccountModalImage();
+                        location.reload();
+                    } else {
+                        const erro = document.getElementById('imageModalErro');
+                        erro.textContent = data.message ?? 'Erro ao salvar imagens.';
+                        erro.classList.remove('hidden');
+                    }
+                })
+                .finally(() => {
+                    btn.textContent = 'Salvar Imagens';
+                    btn.disabled    = false;
+                });
+        }
 
         // EXEMPLO: Estrutura de dados esperada para cada máquina no inventário
         // Você pode carregar isso via API ou processá-lo no backend e injetar no HTML
@@ -981,7 +1199,7 @@ function fmtDate($d) {
 
             document.getElementById('editOperatorAvailable').value = item.operatorAvailable ? 'true' : 'false';
             document.getElementById('editFreightAvailable').value = item.freightAvailable ? 'true' : 'false';
-            document.getElementById('tipoMaquina').value = item.pickupState || '';
+            document.getElementById('tipoMaquina').value = item.category || '';
             document.getElementById('editOperatorDailyPrice').value = item.operatorDailyPrice || '';
             document.getElementById('editFreightFixedPrice').value = item.freightFixedPrice || '';
 

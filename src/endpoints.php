@@ -22,15 +22,16 @@ class endpoints
     public string $urlRentals;
 
 
+
     public function __construct()
     {
 
-        $this->UrlPadrao = "http://localhost:5000";
+        $this->UrlPadrao = "https://copyright-seemed-creating-tested.trycloudflare.com";
 
 
         $this->urlVerificarBanco = $this->UrlPadrao . "/api/v1/user-access/health/db";
         $this->urlME = $this->UrlPadrao . "/api/v1/user-access/user/me";
-        $this->urlVerifyEmail  = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/verify-email";
+        $this->urlVerifyEmail = $this->UrlPadrao . "/api/v1/user-access/auth/email-verification/verify-email";
         $this->urlRefreshToken = $this->UrlPadrao . "/api/v1/user-access/auth/refresh-tokens";
         $this->Cadastro = $this->UrlPadrao . "/api/v1/user-access/auth/register";
         $this->urlLogin = $this->UrlPadrao . "/api/v1/user-access/auth/login";
@@ -45,8 +46,11 @@ class endpoints
         $this->urlProvider = $this->UrlPadrao . "/api/v1/user-access/user/me/provider";
         $this->urlListing = $this->UrlPadrao . "/api/v1/listings";
         $this->urlRentals = $this->UrlPadrao . "/api/v1/rentals";
-
     }
+
+
+
+
 }
 
 ?>

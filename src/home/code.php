@@ -169,28 +169,41 @@ function formatarReais(float $valor): string
                     </h1>
                     <!-- Search & Filter Bar -->
                     <div class="bg-surface-container-lowest/80 backdrop-blur-xl p-2 rounded-md shadow-2xl flex flex-col md:flex-row gap-2 max-w-3xl mt-12">
-                        <div class="flex-1 flex items-center px-4 bg-surface-container-low rounded-sm">
+
+                        <div class="flex-1 flex items-center gap-2 px-4 bg-surface-container-low rounded-sm">
                             <span class="material-symbols-outlined text-outline">search</span>
-                            <input class="w-full bg-transparent border-none focus:ring-0 font-body py-4 placeholder:text-outline-variant" placeholder="Qual máquina você precisa hoje?" type="text" />
+                            <input id="search-input"
+                                   class="w-full bg-transparent border-none focus:ring-0 font-body py-4 placeholder:text-outline-variant"
+                                   placeholder="Qual máquina você precisa hoje?"
+                                   type="text" />
                         </div>
-                        <button class="bg-primary text-on-primary font-headline font-bold uppercase px-10 py-4 rounded-sm hover:bg-primary-container transition-colors duration-300">
+
+                        <button id="search-btn"
+                                class="bg-primary text-on-primary font-headline font-bold uppercase px-10 py-4 rounded-sm hover:bg-primary-container transition-colors duration-300">
                             Pesquisar
                         </button>
+
                     </div>
                     <!-- Category Chips -->
                     <div class="flex flex-wrap gap-3 mt-8">
-                        <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
+                        <!-- Chips de categoria — adicionar data-category e id em cada um -->
+                        <button data-category="Escavadeiras"
+                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
                             <span class="material-symbols-outlined text-sm">construction</span> Escavadeiras
                         </button>
-                        <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">precision_manufacturing</span> Guindastes
+                        <button data-category="Guindastes"
+                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
+                            <span class="material-symbols-outlined text-sm">construction</span> Guindastes
                         </button>
-                        <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">agriculture</span> Retroescavadeiras
+                        <button data-category="Retroescavadeiras"
+                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
+                            <span class="material-symbols-outlined text-sm">construction</span> Retroescavadeiras
                         </button>
-                        <button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full font-label text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">forklift</span> Tratores
+                        <button data-category="Tratores"
+                                class="chip bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full ...">
+                            <span class="material-symbols-outlined text-sm">construction</span> Tratores
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -338,5 +351,116 @@ function formatarReais(float $valor): string
     <footer id="footer"></footer>
     <!-- <script src="homefiller.js"></script> -->
     <script src="../generico/jsgenerico/frame.js?v=vendor-modal-4"></script>
+    <script>
+    const searchInput = document.getElementById("search-input");
+    const searchBtn   = document.getElementById("search-btn");
+    const chips       = document.querySelectorAll("button[data-category]");
+
+    let activeCategory = "";
+
+    /* --- Chips: toggle de categoria ativa --- */
+    chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+    const cat = chip.dataset.category;
+
+    if (activeCategory === cat) {
+    // Clicou no mesmo chip: desativa
+    activeCategory = "";
+    chip.classList.remove("!bg-primary", "!text-on-primary");
+    } else {
+    // Ativa o clicado e desativa os demais
+    activeCategory = cat;
+    chips.forEach(c => c.classList.remove("!bg-primary", "!text-on-primary"));
+    chip.classList.add("!bg-primary", "!text-on-primary");
+    }
+
+    fetchFiltered();
+    });
+    });
+
+    /* --- Botão Pesquisar e tecla Enter --- */
+    searchBtn.addEventListener("click", fetchFiltered);
+    searchInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") fetchFiltered();
+    });
+
+    /* --- Busca na API --- */
+    function fetchFiltered() {
+    const term = searchInput.value.trim();
+
+    let url = `/ProjetoTCCSenai/src/CatalogoAnuncios/buscar.php?page=1&pageSize=10`;
+    if (term)           url += `&Name=${encodeURIComponent(term)}`;
+    if (activeCategory) url += `&Category=${encodeURIComponent(activeCategory)}`;
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => renderCards(data.items ?? []))
+    .catch(err => console.error("Erro:", err));
+    }
+
+    /* --- Renderização dos cards --- */
+    function renderCards(items) {
+    const container = document.getElementById("cards-container");
+    if (!container) return;
+
+    if (!items.length) {
+    container.innerHTML = `
+    <div class="col-span-full flex flex-col items-center justify-center py-24 text-center">
+        <span style="font-size:50px">😢</span>
+        <h3 class="text-2xl font-headline font-bold uppercase mt-4">Nenhum resultado encontrado</h3>
+        <p class="text-sm text-on-surface-variant mt-2">Tente outros termos ou remova o filtro.</p>
+    </div>`;
+    return;
+    }
+
+    container.innerHTML = items.map(item => {
+    const id         = item.listingId ?? "0";
+    const title      = escHtml(item.title ?? "");
+    const dailyPrice = formatBRL(item.dailyPrice ?? 0);
+    const images     = item.images ?? [];
+    const img        = escHtml(images.length ? (images[0].url ?? "placeholder.jpg") : "placeholder.jpg");
+    const local      = [escHtml(item.pickupCity ?? ""), escHtml(item.pickupState ?? "")]
+    .filter(Boolean).join(", ") || "—";
+
+    return `
+    <div class="bg-surface-container-lowest rounded-md overflow-hidden group hover:shadow-xl transition-all duration-500">
+        <div class="relative h-64 overflow-hidden">
+            <img src="${img}" alt="${title}"
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-sm">Disponível</div>
+        </div>
+        <div class="p-8">
+            <h3 class="font-headline text-xl font-bold uppercase tracking-tight mb-4">${title}</h3>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-surface-container px-3 py-2 rounded-sm">
+                    <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Preço/Dia</p>
+                    <p class="font-headline font-bold text-primary">${dailyPrice}</p>
+                </div>
+                <div class="bg-surface-container px-3 py-2 rounded-sm">
+                    <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-tighter mb-1">Localização</p>
+                    <p class="font-headline font-bold text-on-surface truncate">${local}</p>
+                </div>
+            </div>
+            <button onclick="window.location.href='../PagMaquina/code.php?cd=${id}'"
+                    class="w-full border-2 border-primary text-primary font-headline font-bold uppercase py-3 rounded-sm hover:bg-primary hover:text-on-primary transition-all duration-300">
+                Solicitar Locação
+            </button>
+        </div>
+    </div>`;
+    }).join("");
+    }
+
+    function escHtml(str) {
+    return String(str)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+    }
+
+    function formatBRL(value) {
+    return "R$ " + Number(value).toFixed(2)
+    .replace(".", ",")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    </script>
 </body>
 </html>
