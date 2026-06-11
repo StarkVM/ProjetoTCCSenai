@@ -1,44 +1,44 @@
 <?php
 error_reporting(0);
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.php';
-if(isset($_SESSION["logado"]) && $_SESSION["logado"] == true){
-    header("Location: /ProjetoTCCSenai/src/home/code.php");
-    exit();
+if (isset($_SESSION["logado"]) && $_SESSION["logado"] == true) {
+  header("Location: /ProjetoTCCSenai/src/home/code.php");
+  exit();
 }
- // limpa os erros e avisos do header
+// limpa os erros e avisos do header
 
 // SE OCORRER ALGUM ERROR NO CADASTRO, É GETADO O CODIGO DA URL E É MOSTRADO PARA O CLIENTE
 $er = $_GET['er'];
 if (isset($er) && !empty($er)) {
-    switch ($er) {
-        case "Email and Cpf conflict.":
-            $responseError = "Email e Cpf já estão cadastrados.";
-            break;
-        case "Email or Cpf conflict.":
-            $responseError = "Email ou Cpf já estão cadastrados.";
-            break;
-        case "Registration in progress.":
-            $responseError = "Registro em progresso com este Email ou Cpf.";
-            break;
-        case "Database save failed.":
-            $responseError = "Ocorreu um erro ao processar os dados, por favor, tente novamente.";
-            break;
-        case "Send verification code failed.":
-            $responseError = "Falha ao enviar o código de verificação para o email!";
-            break;
-        case "User cpf validation failed.":
-            $responseError = "Falha ao validar o CPF, verifique as informações fornecidas e tente novamente.";
-            break;
-        case "0":
-            $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
-            break;
-        case "3":
-            $responseError = "A senha informada precisa ter entre 8 e 50 caracteres.";
-            break;
-        default:
-            $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
-            break;
-    }
+  switch ($er) {
+    case "Email and Cpf conflict.":
+      $responseError = "Email e Cpf já estão cadastrados.";
+      break;
+    case "Email or Cpf conflict.":
+      $responseError = "Email ou Cpf já estão cadastrados.";
+      break;
+    case "Registration in progress.":
+      $responseError = "Registro em progresso com este Email ou Cpf.";
+      break;
+    case "Database save failed.":
+      $responseError = "Ocorreu um erro ao processar os dados, por favor, tente novamente.";
+      break;
+    case "Send verification code failed.":
+      $responseError = "Falha ao enviar o código de verificação para o email!";
+      break;
+    case "User cpf validation failed.":
+      $responseError = "Falha ao validar o CPF, verifique as informações fornecidas e tente novamente.";
+      break;
+    case "0":
+      $responseError = "Ocorreu um erro inesperado, por favor, tente novamente.";
+      break;
+    case "3":
+      $responseError = "A senha informada precisa ter entre 8 e 50 caracteres.";
+      break;
+    default:
+      $responseError = "Ocorreu um erro ao processar a requisição, por favor, tente novamente.";
+      break;
+  }
 }
 
 
@@ -53,9 +53,15 @@ if (isset($er) && !empty($er)) {
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -126,13 +132,12 @@ if (isset($er) && !empty($er)) {
     }
   </script>
   <style>
-
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
     .signature-gradient {
-      background: linear-gradient(135deg,  #f9a825 100%);
+      background: linear-gradient(135deg, #f9a825 100%);
     }
 
     .glass-panel {
@@ -148,7 +153,10 @@ if (isset($er) && !empty($er)) {
     <!-- Left Column: Branding and Imagery (Asymmetric Layout) -->
     <div class="relative w-full md:w-1/2 lg:w-[60%] h-64 md:h-auto overflow-hidden bg-on-background">
       <div class="absolute inset-0 z-0">
-        <img alt="Escavadeira industrial pesada" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="Cena cinematográfica de uma enorme escavadeira amarela em um canteiro de obras durante a hora azul, com detalhes mecânicos nítidos e névoa atmosférica industrial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6ev4WxiieivgIb66SpWY2arkN2yITvwjeuHuUSuk5VAxB3tno5_EoJIpRYVY62MXErOdcUf5gJlblc0WMV5Mn5tSkJ6dJihHUfjD8MLbYYMb-cBWz5YvTvOyZqP7UMJDC17qOgAQgKKmCIfPlmHKGck9WbsgeZ7GcPmoODX76RJUNnFMJwt6Ml6k-_SldReVycHGjVsN0hWoQCKbEfOgA83ZKWHlac_iucCSpIjtdwFdJQbfGgYv6qvWSrdTTYK1Zmj932-NbVYO" />
+        <img alt="Escavadeira industrial pesada"
+          class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+          data-alt="Cena cinematográfica de uma enorme escavadeira amarela em um canteiro de obras durante a hora azul, com detalhes mecânicos nítidos e névoa atmosférica industrial"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-6ev4WxiieivgIb66SpWY2arkN2yITvwjeuHuUSuk5VAxB3tno5_EoJIpRYVY62MXErOdcUf5gJlblc0WMV5Mn5tSkJ6dJihHUfjD8MLbYYMb-cBWz5YvTvOyZqP7UMJDC17qOgAQgKKmCIfPlmHKGck9WbsgeZ7GcPmoODX76RJUNnFMJwt6Ml6k-_SldReVycHGjVsN0hWoQCKbEfOgA83ZKWHlac_iucCSpIjtdwFdJQbfGgYv6qvWSrdTTYK1Zmj932-NbVYO" />
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-on-background via-transparent to-transparent opacity-80"></div>
       <div class="relative z-10 h-full flex flex-col justify-between p-20 md:p-20">
@@ -270,15 +278,12 @@ if (isset($er) && !empty($er)) {
           <!-- TERMOS -->
           <div class="flex items-start gap-3 bg-[#F8F6F2] border border-[#DDD7CB] rounded-xl p-5">
 
-            <input type="checkbox" id="termbox" required
-              class="mt-1 w-5 h-5 accent-[#C58B18] cursor-pointer">
+            <input type="checkbox" id="termbox" required class="mt-1 w-5 h-5 accent-[#C58B18] cursor-pointer">
 
             <label for="termbox" class="text-sm text-[#555555] leading-relaxed">
               Eu li e concordo com os
-              <button
-                  onclick="openTermsModal()"
-                  class="text-[#C58B18] font-semibold hover:underlin">
-                  Termos de Uso
+              <button onclick="openTermsModal()" class="text-[#C58B18] font-semibold hover:underlin">
+                Termos de Uso
               </button>
               e
               <a href="#" class="text-[#C58B18] font-semibold hover:underline">
@@ -289,12 +294,13 @@ if (isset($er) && !empty($er)) {
           </div>
 
           <!-- ERRO -->
-        <?php if (isset($responseError)): ?>
-        <div id="responseErro" class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
-          <span class="material-symbols-outlined text-sm">error</span>
-          <?= $responseError ?>
-        </div>
-        <?php endif; ?>
+            <?php if (isset($responseError)): ?>
+            <div id="responseErro"
+              class="flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase tracking-wide px-4 py-3 rounded-sm">
+              <span class="material-symbols-outlined text-sm">error</span>
+                  <?= $responseError ?>
+            </div>
+            <?php endif; ?>
 
           <!-- BOTÃO -->
           <div class="pt-4">
@@ -309,7 +315,8 @@ if (isset($er) && !empty($er)) {
         </form>
         <div class="mt-8 text-center">
           <p class="font-body text-xs text-on-surface-variant uppercase tracking-widest">
-            Já possui uma conta? <a class="text-primary font-bold hover:underline" href="../login/code.php">Acesso de Login</a>
+            Já possui uma conta? <a class="text-primary font-bold hover:underline" href="../login/code.php">Acesso de
+              Login</a>
           </p>
         </div>
       </div>
@@ -363,51 +370,43 @@ if (isset($er) && !empty($er)) {
 
     //MODAL TERMOS DE USO
     function openTermsModal() {
-        const modal = document.getElementById("termsModal");
+      const modal = document.getElementById("termsModal");
 
-        modal.classList.remove("hidden");
-        modal.classList.add("flex");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
     }
 
     function closeTermsModal() {
-        const modal = document.getElementById("termsModal");
+      const modal = document.getElementById("termsModal");
 
-        modal.classList.add("hidden");
-        modal.classList.remove("flex");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
     }
 
   </script>
-  <div
-    id="termsModal"
-    class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <div id="termsModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
 
     <div class="bg-white max-w-2xl w-[90%] rounded-lg shadow-xl">
 
-        <div class="flex justify-between items-center p-6 border-b">
-            <h2 class="font-bold text-xl">Termos de Uso</h2>
+      <div class="flex justify-between items-center p-6 border-b">
+        <h2 class="font-bold text-xl">Termos de Uso</h2>
 
-            <button
-                onclick="closeTermsModal()"
-                class="text-gray-500 hover:text-black text-2xl">
-                &times;
-            </button>
-        </div>
+        <button onclick="closeTermsModal()" class="text-gray-500 hover:text-black text-2xl">
+          &times;
+        </button>
+      </div>
 
-            <iframe
-            src="termos.html"
-            class="w-full h-[70vh] border-0">
-            </iframe>
+      <iframe src="termos.html" class="w-full h-[70vh] border-0">
+      </iframe>
 
-        <div class="p-6 border-t flex justify-end">
-            <button
-                onclick="closeTermsModal()"
-                class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
-                Fechar
-            </button>
-        </div>
+      <div class="p-6 border-t flex justify-end">
+        <button onclick="closeTermsModal()" class="bg-primary text-white px-4 py-2 rounded hover:opacity-90">
+          Fechar
+        </button>
+      </div>
 
     </div>
-</div>
+  </div>
 </body>
 
 </html>
