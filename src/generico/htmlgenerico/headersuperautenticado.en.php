@@ -21,9 +21,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ProjetoTCCSenai/src/config/session.ph
     <nav class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm font-bold uppercase">
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-opacity duration-200" href="../home/code.php">Início</a>
       <a class="text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8] transition-opacity duration-200" href="../catalogoAnuncios/code.php">Catálogo</a>
-        <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == "1") echo "<a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>"?>
+      <a class='text-[#4a4949] dark:text-[#a5a09f] hover:text-[#1c1b1b] dark:hover:text-[#fcf9f8]' href='../VendedorHome/code.php'>Locações</a>
     </nav>
     <div class="flex items-center gap-4">
+            <?php if (isset($_SESSION["type"]) && $_SESSION["type"] == "1"): ?>
+  <button onclick="window.location.href='../VendedorHome/code.php'" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
+    Área do Vendedor
+  </button>
+<?php endif; ?>
         <?php if(isset($_SESSION["type"]) && $_SESSION["type"] == 0) echo '<button type="button" id="openVendorModalButton" class="flex items-center gap-2 px-4 py-2 rounded-md bg-[#835400] text-white font-bold text-xs uppercase hover:scale-105 active:scale-95 transition-all shadow-md">
         <span class="material-symbols-outlined text-sm">storefront</span>
         Ser Vendedor
