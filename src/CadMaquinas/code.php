@@ -189,15 +189,6 @@ $responseError = $er;
           </div>
 
           <div class="flex flex-col gap-2">
-            <label for="marca" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">
-              Marca / Fabricante
-            </label>
-            <input id="marca" name="marca"
-              class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
-              placeholder="Digite a Marca" type="text" />
-          </div>
-
-          <div class="flex flex-col gap-2">
             <label for="cep" class="font-headline text-[10px] font-bold uppercase tracking-widest text-secondary">CEP</label>
             <input id="cep" name="cep"
               class="bg-surface-container-lowest border-none focus:ring-2 focus:ring-primary-container p-4 rounded-sm font-headline text-sm font-medium"
